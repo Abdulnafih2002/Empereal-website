@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" role="img" aria-label="Empereal — Energizing Communities">
+  <g transform="translate(8 8)">
+    <!-- Sunburst: 12 yellow segments in a circle, last (bottom-right) orange. -->
+    <g fill="#F5B82E" stroke="none">
+      <g transform="translate(32 32)">
+        <!-- rotate a rounded-rect petal around the center; pattern skips the left opening -->
+        <g id="petal">
+          <rect x="20" y="-3.2" width="12" height="6.4" rx="3.2"/>
+        </g>
+        <use href="#petal" transform="rotate(-75)"/>
+        <use href="#petal" transform="rotate(-50)"/>
+        <use href="#petal" transform="rotate(-25)"/>
+        <use href="#petal" transform="rotate(0)"/>
+        <use href="#petal" transform="rotate(25)"/>
+        <use href="#petal" transform="rotate(50)"/>
+        <use href="#petal" transform="rotate(75)"/>
+        <use href="#petal" transform="rotate(100)"/>
+        <use href="#petal" transform="rotate(125)"/>
+        <use href="#petal" transform="rotate(150)"/>
+        <!-- orange accent petal (bottom) -->
+        <g fill="#F27400">
+          <rect x="20" y="-3.2" width="12" height="6.4" rx="3.2" transform="rotate(95)"/>
+        </g>
+      </g>
+    </g>
+    <!-- Lightning bolt in center -->
+    <path
+      d="M33 16l-9 18h6l-4 14 11-18h-6z"
+      fill="#F5B82E"
+      stroke="#fff"
+      stroke-width="1"
+      stroke-linejoin="round"
+    />
+  </g>
+  <!-- Wordmark -->
+  <text
+    x="84"
+    y="44"
+    font-family="'Clash Display','Satoshi',Inter,system-ui,sans-serif"
+    font-size="30"
+    font-weight="600"
+    fill="#1F3C5C"
+    letter-spacing="-0.01em"
+  >Empereal</text>
+  <text
+    x="85"
+    y="64"
+    font-family="'Satoshi',Inter,system-ui,sans-serif"
+    font-size="8"
+    font-weight="500"
+    fill="#64748B"
+    letter-spacing="0.22em"
+  >ENERGIZING COMMUNITIES</text>
+</svg>

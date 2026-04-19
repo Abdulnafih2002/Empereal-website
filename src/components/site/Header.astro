@@ -1,0 +1,236 @@
+---
+import Container from "../primitives/Container.astro";
+
+type NavLink = { label: string; href: string; children?: { label: string; href: string; desc?: string }[] };
+
+const nav: NavLink[] = [
+  {
+    label: "About Empereal",
+    href: "#about",
+    children: [
+      { label: "Who We Are", href: "#about", desc: "A global smart energy & EPC leader." },
+      { label: "Leadership", href: "#", desc: "Engineering-led team." },
+      { label: "Our Values", href: "#", desc: "Credibility, clarity, delivery." },
+    ],
+  },
+  {
+    label: "Solutions",
+    href: "#experience",
+    children: [
+      { label: "End-to-End Solar EPC", href: "#experience", desc: "Design to commissioning." },
+      { label: "High-Efficiency Power Systems", href: "#experience", desc: "Optimized output." },
+      { label: "Commercial & Industrial", href: "#experience", desc: "For factories & facilities." },
+      { label: "Green Hydrogen", href: "#", desc: "Fuel-switching at scale." },
+    ],
+  },
+  {
+    label: "Projects",
+    href: "#projects",
+    children: [
+      { label: "Utility Scale", href: "#projects", desc: "GW-class installations." },
+      { label: "Rooftop & Industrial", href: "#projects", desc: "Factories & warehousing." },
+      { label: "Carports & Parking", href: "#projects", desc: "Infrastructure-integrated PV." },
+    ],
+  },
+  {
+    label: "News & Insights",
+    href: "#news",
+    children: [
+      { label: "Press Releases", href: "#news" },
+      { label: "Event Highlights", href: "#news" },
+      { label: "Articles", href: "#news" },
+    ],
+  },
+  { label: "Contact", href: "#footer" },
+];
+---
+<header
+  id="site-header"
+  class="sticky top-0 z-40 w-full bg-white/90 backdrop-blur-md border-b border-primary/5"
+  data-header
+>
+  <Container class="flex items-center justify-between gap-4 h-16 lg:h-20">
+    <a href="/" class="flex items-center" aria-label="Empereal home">
+      <img src="/logo.svg" alt="Empereal — Energizing Communities" class="h-9 lg:h-10 w-auto" />
+    </a>
+
+    <nav aria-label="Primary" class="hidden lg:flex items-center gap-1">
+      {nav.map((item) => (
+        <div class="relative group" data-nav-item>
+          <a
+            href={item.href}
+            class="inline-flex items-center gap-1 px-3 py-2 rounded-md text-sm font-medium text-ink hover:text-primary transition-colors"
+          >
+            {item.label}
+            {item.children && (
+              <svg viewBox="0 0 12 12" class="h-3 w-3 text-muted transition-transform group-hover:rotate-180" fill="none" aria-hidden="true">
+                <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </a>
+
+          {item.children && (
+            <div
+              class="invisible opacity-0 translate-y-1 pointer-events-none absolute left-1/2 -translate-x-1/2 top-full pt-3 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-0 group-focus-within:pointer-events-auto"
+              role="menu"
+            >
+              <div class="w-72 rounded-xl bg-white shadow-card-lg ring-1 ring-primary/5 p-2">
+                {item.children.map((c) => (
+                  <a
+                    href={c.href}
+                    class="block rounded-lg px-3 py-2.5 hover:bg-primary-50 transition-colors"
+                    role="menuitem"
+                  >
+                    <div class="text-sm font-semibold text-primary-dark">{c.label}</div>
+                    {c.desc && <div class="text-xs text-muted mt-0.5">{c.desc}</div>}
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <div class="hidden lg:flex items-center">
+      <a
+        href="#footer"
+        class="inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-5 py-2.5 text-sm font-semibold text-white transition-colors min-h-[44px] shadow-sm"
+      >
+        Get Started
+      </a>
+    </div>
+
+    <button
+      type="button"
+      class="lg:hidden inline-flex items-center justify-center h-11 w-11 rounded-lg text-ink hover:bg-primary-50 transition-colors"
+      aria-label="Open menu"
+      aria-controls="mobile-drawer"
+      aria-expanded="false"
+      data-drawer-toggle
+    >
+      <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" aria-hidden="true">
+        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+  </Container>
+
+  <div
+    class="lg:hidden fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-200"
+    data-drawer-backdrop
+    aria-hidden="true"
+  >
+    <div class="absolute inset-0 bg-primary-dark/50"></div>
+  </div>
+
+  <aside
+    id="mobile-drawer"
+    class="lg:hidden fixed top-0 right-0 z-[60] h-[100dvh] w-[88vw] max-w-sm bg-white text-ink translate-x-full transition-transform duration-250 ease-out shadow-2xl flex flex-col"
+    data-drawer
+    aria-hidden="true"
+  >
+    <div class="flex items-center justify-between p-5 border-b border-primary/10">
+      <img src="/logo.svg" alt="" class="h-8 w-auto" />
+      <button
+        type="button"
+        class="inline-flex items-center justify-center h-11 w-11 rounded-lg text-ink hover:bg-primary-50"
+        aria-label="Close menu"
+        data-drawer-close
+      >
+        <svg viewBox="0 0 24 24" class="h-6 w-6" fill="none" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="flex-1 overflow-y-auto p-3" aria-label="Mobile primary">
+      {nav.map((item) => (
+        <details class="group border-b border-primary/5 last:border-b-0">
+          <summary class="flex items-center justify-between px-3 py-3.5 rounded-lg text-base font-semibold text-ink cursor-pointer list-none">
+            <a href={item.href} data-drawer-link>{item.label}</a>
+            {item.children && (
+              <svg viewBox="0 0 12 12" class="h-3 w-3 text-muted transition-transform group-open:rotate-180" fill="none" aria-hidden="true">
+                <path d="M3 4.5l3 3 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </summary>
+          {item.children && (
+            <div class="pb-2 pl-3">
+              {item.children.map((c) => (
+                <a
+                  href={c.href}
+                  class="block rounded-md px-3 py-2 text-sm text-muted hover:text-primary hover:bg-primary-50"
+                  data-drawer-link
+                >{c.label}</a>
+              ))}
+            </div>
+          )}
+        </details>
+      ))}
+    </nav>
+    <div class="p-4 border-t border-primary/10">
+      <a
+        href="#footer"
+        class="flex items-center justify-center rounded-md bg-cta hover:bg-cta-dark px-5 py-3 text-sm font-semibold text-white min-h-[48px]"
+        data-drawer-link
+      >Get Started</a>
+    </div>
+  </aside>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>("[data-drawer-toggle]");
+  const drawer = document.querySelector<HTMLElement>("[data-drawer]");
+  const backdrop = document.querySelector<HTMLElement>("[data-drawer-backdrop]");
+  const closeBtn = document.querySelector<HTMLButtonElement>("[data-drawer-close]");
+  const links = document.querySelectorAll<HTMLAnchorElement>("[data-drawer-link]");
+
+  let scrollLockY = 0;
+
+  const open = () => {
+    if (!drawer || !backdrop || !toggle) return;
+    drawer.classList.remove("translate-x-full");
+    drawer.setAttribute("aria-hidden", "false");
+    backdrop.classList.remove("opacity-0", "pointer-events-none");
+    toggle.setAttribute("aria-expanded", "true");
+
+    // Lock page scroll — pin body at current scroll so iOS Safari can't rubber-band either.
+    scrollLockY = window.scrollY;
+    document.documentElement.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollLockY}px`;
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+  };
+
+  const close = () => {
+    if (!drawer || !backdrop || !toggle) return;
+    drawer.classList.add("translate-x-full");
+    drawer.setAttribute("aria-hidden", "true");
+    backdrop.classList.add("opacity-0", "pointer-events-none");
+    toggle.setAttribute("aria-expanded", "false");
+
+    // Unlock scroll and restore the exact position the user was on.
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    window.scrollTo(0, scrollLockY);
+  };
+
+  toggle?.addEventListener("click", open);
+  closeBtn?.addEventListener("click", close);
+  backdrop?.addEventListener("click", close);
+  links.forEach((l) => l.addEventListener("click", close));
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
+
+  const header = document.querySelector<HTMLElement>("[data-header]");
+  window.addEventListener("scroll", () => {
+    if (!header) return;
+    header.classList.toggle("shadow-sm", window.scrollY > 8);
+  }, { passive: true });
+</script>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 80" role="img" aria-label="Empereal — Energizing Communities">
+  <g transform="translate(8 8)">
+    <g fill="#F5B82E" stroke="none">
+      <g transform="translate(32 32)">
+        <g id="petal-l">
+          <rect x="20" y="-3.2" width="12" height="6.4" rx="3.2"/>
+        </g>
+        <use href="#petal-l" transform="rotate(-75)"/>
+        <use href="#petal-l" transform="rotate(-50)"/>
+        <use href="#petal-l" transform="rotate(-25)"/>
+        <use href="#petal-l" transform="rotate(0)"/>
+        <use href="#petal-l" transform="rotate(25)"/>
+        <use href="#petal-l" transform="rotate(50)"/>
+        <use href="#petal-l" transform="rotate(75)"/>
+        <use href="#petal-l" transform="rotate(100)"/>
+        <use href="#petal-l" transform="rotate(125)"/>
+        <use href="#petal-l" transform="rotate(150)"/>
+        <g fill="#F27400">
+          <rect x="20" y="-3.2" width="12" height="6.4" rx="3.2" transform="rotate(95)"/>
+        </g>
+      </g>
+    </g>
+    <path
+      d="M33 16l-9 18h6l-4 14 11-18h-6z"
+      fill="#F5B82E"
+      stroke="#11243C"
+      stroke-width="1"
+      stroke-linejoin="round"
+    />
+  </g>
+  <text
+    x="84"
+    y="44"
+    font-family="'Clash Display','Satoshi',Inter,system-ui,sans-serif"
+    font-size="30"
+    font-weight="600"
+    fill="#ffffff"
+    letter-spacing="-0.01em"
+  >Empereal</text>
+  <text
+    x="85"
+    y="64"
+    font-family="'Satoshi',Inter,system-ui,sans-serif"
+    font-size="8"
+    font-weight="500"
+    fill="rgba(255,255,255,0.65)"
+    letter-spacing="0.22em"
+  >ENERGIZING COMMUNITIES</text>
+</svg>

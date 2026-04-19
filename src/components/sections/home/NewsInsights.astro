@@ -1,0 +1,137 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const articles = [
+  {
+    tag: "United Arab Emirates",
+    date: "April 10, 2026",
+    title: "Empereal Powers Solar Pavilion at Expo 2020 Dubai",
+    excerpt: "Empereal showcased renewable innovations at Expo 2020 Dubai — 1.65 MWp across 33 pavilions delivered under stringent timelines.",
+    image: "/images/project-uae.jpg",
+  },
+  {
+    tag: "Partnership",
+    date: "March 8, 2026",
+    title: "Empereal Partners with ADNOC for Solar Projects",
+    excerpt: "Empereal collaborates with ADNOC to advance solar energy infrastructure across the UAE and wider GCC markets.",
+    image: "/images/hero-solar.jpg",
+  },
+  {
+    tag: "Summit",
+    date: "April 16, 2026",
+    title: "Empereal at World Future Energy Summit 2026",
+    excerpt: "Empereal presented cutting-edge solar solutions in Abu Dhabi — highlighting next-generation BIPV and hydrogen-ready architectures.",
+    image: "/images/testimonial-2.jpg",
+  },
+];
+---
+<section
+  id="news"
+  class="relative isolate overflow-hidden bg-primary-dark text-white section-pad"
+  aria-labelledby="news-title"
+>
+  <div class="absolute inset-0 -z-10">
+    <img
+      src="/images/footer-bg.jpg"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover opacity-65"
+      loading="lazy"
+      decoding="async"
+      onerror="this.remove()"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-primary-dark/85 via-primary-dark/55 to-primary-dark/75" aria-hidden="true"></div>
+  </div>
+
+  <Container>
+    <div class="text-center max-w-2xl mx-auto reveal-stagger">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+        Stay Informed. Stay Powered.
+      </p>
+      <h2 id="news-title" class="fluid-h2 mt-3 text-white">News &amp; Insights from Empereal</h2>
+      <p class="mt-4 text-white/75 fluid-lead">
+        Discover the latest updates on Empereal's solar projects and sustainable energy initiatives.
+      </p>
+    </div>
+
+    <div class="relative mt-12 lg:mt-16" data-news>
+      <div
+        class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0 lg:overflow-visible lg:grid lg:grid-cols-3 news-scroll reveal-stagger"
+        role="list"
+        data-news-track
+      >
+        {articles.map((a) => (
+          <article
+            role="listitem"
+            class="group flex-shrink-0 w-[85%] sm:w-[55%] lg:w-auto snap-start overflow-hidden rounded-2xl bg-white text-ink shadow-card hover:shadow-card-lg transition-all duration-300"
+          >
+            <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary via-primary-light to-accent/30">
+              <img
+                src={a.image}
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                onerror="this.remove()"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
+              <div class="absolute left-3 top-3 inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+                {a.tag}
+              </div>
+              <div class="absolute left-3 bottom-3 inline-flex items-center gap-1.5 rounded-md bg-primary-dark/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
+                <svg viewBox="0 0 20 20" class="h-3 w-3" fill="none" aria-hidden="true">
+                  <rect x="3" y="4" width="14" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 8h14M7 3v2M13 3v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                {a.date}
+              </div>
+            </div>
+            <div class="p-5 lg:p-6">
+              <h3 class="font-display text-base lg:text-lg font-semibold text-primary-dark leading-snug">
+                {a.title}
+              </h3>
+              <p class="mt-2 text-sm text-muted leading-relaxed">{a.excerpt}</p>
+              <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+                Read article
+                <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                  <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-6 flex items-center justify-center gap-3 lg:hidden">
+        <button type="button" class="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Previous article" data-news-prev>
+          <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+            <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button type="button" class="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Next article" data-news-next>
+          <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+            <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .news-scroll::-webkit-scrollbar { height: 4px; }
+  .news-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 999px; }
+</style>
+
+<script>
+  const track = document.querySelector<HTMLElement>("[data-news-track]");
+  const prev = document.querySelector<HTMLButtonElement>("[data-news-prev]");
+  const next = document.querySelector<HTMLButtonElement>("[data-news-next]");
+  const scrollBy = (dir: 1 | -1) => {
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>("article");
+    const delta = (card?.offsetWidth ?? 280) + 20;
+    track.scrollBy({ left: delta * dir, behavior: "smooth" });
+  };
+  prev?.addEventListener("click", () => scrollBy(-1));
+  next?.addEventListener("click", () => scrollBy(1));
+</script>

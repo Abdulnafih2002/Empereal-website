@@ -1,0 +1,87 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const projects = [
+  {
+    country: "United Arab Emirates",
+    flag: "🇦🇪",
+    title: "Large-Scale Solar Plant",
+    summary: "Utility-scale solar power generation in the UAE — providing clean energy on a massive scale.",
+    image: "/images/project-uae.jpg",
+    gradient: "from-primary-dark via-primary to-accent/40",
+  },
+  {
+    country: "India",
+    flag: "🇮🇳",
+    title: "Rooftop Solar for Factories",
+    summary: "High-efficiency solar installations for Indian manufacturing facilities to reduce energy costs.",
+    image: "/images/project-uae.jpg",
+    gradient: "from-primary to-cta/50",
+  },
+  {
+    country: "Malaysia",
+    flag: "🇲🇾",
+    title: "Solar Carports & Parking",
+    summary: "Solar-powered carports and parking structures across Malaysia reducing operating expenses.",
+    image: "/images/project-uae.jpg",
+    gradient: "from-orange/40 via-primary to-primary-dark",
+  },
+];
+---
+<section id="projects" class="section-pad bg-white" aria-labelledby="projects-title">
+  <Container>
+    <div class="text-center max-w-2xl mx-auto reveal-stagger">
+      <p class="eyebrow">Smart. Scalable. Sustainable Energy Projects.</p>
+      <h2 id="projects-title" class="fluid-h2 mt-3">Our Projects</h2>
+      <p class="mt-4 text-muted fluid-lead">
+        Empereal pioneers world-class solar installations across Asia and the Middle East, enabling sustainable energy solutions that power communities and industries.
+      </p>
+    </div>
+
+    <div class="mt-12 lg:mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {projects.map((p) => (
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
+          <div class={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${p.gradient}`}>
+            <img
+              src={p.image}
+              alt={`${p.title} — ${p.country}`}
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              onerror="this.remove()"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent" aria-hidden="true"></div>
+
+            <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+              <span aria-hidden="true">{p.flag}</span>
+              {p.country}
+            </div>
+          </div>
+
+          <div class="flex flex-col flex-1 p-5 lg:p-6">
+            <h3 class="font-display text-lg lg:text-xl font-semibold text-primary-dark">{p.title}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{p.summary}</p>
+            <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+              View case study
+              <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center reveal">
+      <a
+        href="#"
+        class="inline-flex items-center gap-2 rounded-md border border-primary/20 bg-white hover:border-primary hover:bg-primary-50 px-6 py-3 text-sm font-semibold text-primary transition-colors min-h-[44px]"
+      >
+        Explore All Projects
+        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+          <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </Container>
+</section>

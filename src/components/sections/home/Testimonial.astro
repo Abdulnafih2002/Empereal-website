@@ -1,0 +1,128 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const items = [
+  {
+    quote: "Empereal delivered beyond our expectations with their solar EPC expertise. The project was seamless, from design through to commissioning, setting a new standard of performance and sustainability.",
+    name: "Ryan Robson",
+    role: "Operations Director · Industrial Client",
+    initials: "RR",
+    image: "/images/testimonial-1.jpg",
+  },
+  {
+    quote: "Empereal has helped us achieve significant energy savings while advancing our sustainability objectives — their engineering rigor stood out from day one.",
+    name: "Sara El-Hadi",
+    role: "Head of Sustainability · Commercial Real Estate",
+    initials: "SE",
+    image: "/images/testimonial-2.jpg",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="testimonial-title">
+  <Container>
+    <h2 id="testimonial-title" class="sr-only">What our clients say</h2>
+
+    <div class="relative" data-testimonial>
+      {items.map((t, i) => (
+        <article
+          class={`testimonial-slide grid gap-8 lg:gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center ${i === 0 ? "" : "hidden"}`}
+          data-testimonial-slide
+          data-index={i}
+          aria-hidden={i === 0 ? "false" : "true"}
+        >
+          <div class="relative reveal-left reveal-stagger">
+            <svg
+              viewBox="0 0 80 80"
+              class="h-10 w-10 text-accent"
+              fill="currentColor"
+              aria-hidden="true"
+            >
+              <path d="M16 32c0-9 7-16 16-16v-8C18 8 8 18 8 36v28h28V32H16zm32 0c0-9 7-16 16-16v-8c-14 0-24 10-24 28v28h28V32H48z"/>
+            </svg>
+            <blockquote class="mt-4">
+              <p class="font-display text-xl sm:text-2xl lg:text-[1.65rem] leading-snug text-primary-dark">
+                {t.quote}
+              </p>
+              <footer class="mt-6 flex items-center gap-3">
+                <div class="h-12 w-12 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm shadow-sm">
+                  {t.initials}
+                </div>
+                <div>
+                  <cite class="not-italic text-sm font-semibold text-primary-dark">{t.name}</cite>
+                  <p class="text-xs text-muted">{t.role}</p>
+                </div>
+              </footer>
+            </blockquote>
+          </div>
+
+          <figure class="relative reveal-right">
+            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[5/4] shadow-card-lg ring-1 ring-primary/5 bg-gradient-to-br from-primary to-accent/20">
+              <img
+                src={t.image}
+                alt=""
+                class="absolute inset-0 h-full w-full object-cover"
+                loading="lazy"
+                decoding="async"
+                onerror="this.remove()"
+              />
+            </div>
+          </figure>
+        </article>
+      ))}
+
+      <div class="mt-8 flex items-center justify-between">
+        <div class="flex items-center gap-1.5" role="tablist" aria-label="Select testimonial">
+          {items.map((_, i) => (
+            <button
+              type="button"
+              class="h-2 w-6 rounded-full bg-primary/15 data-[active=true]:bg-accent data-[active=true]:w-10 transition-all"
+              data-testimonial-dot
+              data-index={i}
+              data-active={i === 0 ? "true" : "false"}
+              role="tab"
+              aria-selected={i === 0 ? "true" : "false"}
+              aria-label={`Testimonial ${i + 1}`}
+            ></button>
+          ))}
+        </div>
+        <div class="flex items-center gap-2">
+          <button type="button" class="h-10 w-10 rounded-full border border-primary/15 bg-white hover:bg-primary-50 text-primary flex items-center justify-center transition-colors" aria-label="Previous testimonial" data-testimonial-prev>
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+              <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button type="button" class="h-10 w-10 rounded-full border border-primary/15 bg-white hover:bg-primary-50 text-primary flex items-center justify-center transition-colors" aria-label="Next testimonial" data-testimonial-next>
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+              <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>("[data-testimonial-slide]");
+  const dots = document.querySelectorAll<HTMLButtonElement>("[data-testimonial-dot]");
+  const prev = document.querySelector<HTMLButtonElement>("[data-testimonial-prev]");
+  const next = document.querySelector<HTMLButtonElement>("[data-testimonial-next]");
+  let current = 0;
+  const show = (i: number) => {
+    if (!slides.length) return;
+    current = (i + slides.length) % slides.length;
+    slides.forEach((s, idx) => {
+      const active = idx === current;
+      s.classList.toggle("hidden", !active);
+      s.setAttribute("aria-hidden", active ? "false" : "true");
+    });
+    dots.forEach((d, idx) => {
+      const active = idx === current;
+      d.setAttribute("data-active", active ? "true" : "false");
+      d.setAttribute("aria-selected", active ? "true" : "false");
+    });
+  };
+  prev?.addEventListener("click", () => show(current - 1));
+  next?.addEventListener("click", () => show(current + 1));
+  dots.forEach((d) => d.addEventListener("click", () => show(Number(d.dataset.index ?? 0))));
+</script>
