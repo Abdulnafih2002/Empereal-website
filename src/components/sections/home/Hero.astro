@@ -10,7 +10,7 @@ const metrics = [
 ];
 ---
 <section
-  class="relative isolate overflow-hidden bg-primary-dark text-white"
+  class="hero-section relative isolate overflow-hidden bg-primary-dark text-white flex flex-col -mt-16 lg:mt-0"
   aria-label="Empereal Energy — Smart Solar Solutions"
   data-hero
 >
@@ -37,8 +37,8 @@ const metrics = [
     </svg>
   </div>
 
-  <Container class="relative">
-    <div class="pt-14 pb-10 sm:pt-20 sm:pb-14 lg:pt-28 lg:pb-20 max-w-3xl">
+  <Container class="relative flex-1 flex items-center">
+    <div class="pt-24 pb-14 sm:pt-28 sm:pb-20 lg:py-24 max-w-3xl">
       <h1 class="fluid-display text-white hero-enter hero-enter-1">Powering Progress with Smart Solar Solutions</h1>
       <p class="fluid-lead mt-6 text-white/85 max-w-2xl hero-enter hero-enter-2">
         Integrated, high-performance solar energy systems for businesses and communities across Asia and the Middle East.
@@ -64,23 +64,45 @@ const metrics = [
     </div>
   </Container>
 
-  <!-- Metrics strip -->
-  <div class="relative border-t border-white/10 bg-primary-dark/70 backdrop-blur-sm">
-    <Container>
-      <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y divide-white/10 sm:divide-y-0 sm:divide-x sm:divide-white/10 reveal-stagger">
-        {metrics.map((m, i) => (
-          <div
-            class={`px-4 py-5 lg:py-7 text-center sm:text-left ${i === metrics.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
-            data-metric
-          >
-            <dt class="order-2 mt-1 text-[11px] sm:text-xs uppercase tracking-[0.15em] text-white/65 font-medium">{m.label}</dt>
-            <dd class="order-1 font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">{m.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </Container>
-  </div>
 </section>
+
+<!-- Metrics strip: standalone section below the hero, so on mobile it sits
+     below the fold at load and only appears after the user scrolls. -->
+<div class="relative bg-primary-dark text-white">
+  <Container>
+    <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y divide-white/10 sm:divide-y-0 sm:divide-x sm:divide-white/10 reveal-stagger">
+      {metrics.map((m, i) => (
+        <div
+          class={`px-4 py-5 lg:py-7 text-center sm:text-left ${i === metrics.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
+          data-metric
+        >
+          <dt class="order-2 mt-1 text-[11px] sm:text-xs uppercase tracking-[0.15em] text-white/65 font-medium">{m.label}</dt>
+          <dd class="order-1 font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white">{m.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</div>
+
+<style>
+  /* Hero fills the FULL viewport on mobile (image extends behind the header
+     via the negative margin applied on the section). On desktop we subtract
+     the header height so the hero still fits one screen without overlapping
+     the opaque white header, since the image reads better there at fixed bounds.
+     `dvh` tracks mobile browser chrome (URL bar) correctly; `svh`/`vh` fallback. */
+  .hero-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+  @media (min-width: 1024px) {
+    .hero-section {
+      min-height: calc(100vh - 5rem);
+      min-height: calc(100svh - 5rem);
+      min-height: calc(100dvh - 5rem);
+    }
+  }
+</style>
 
 <script>
   const reveals = document.querySelectorAll<HTMLElement>(".reveal");

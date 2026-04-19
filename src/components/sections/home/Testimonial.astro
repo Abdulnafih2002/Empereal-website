@@ -4,59 +4,100 @@ import Container from "../../primitives/Container.astro";
 const items = [
   {
     quote: "Empereal delivered beyond our expectations with their solar EPC expertise. The project was seamless, from design through to commissioning, setting a new standard of performance and sustainability.",
-    name: "Ryan Robson",
-    role: "Operations Director · Industrial Client",
+    name: "Ryun Robson",
+    role: "Operations Director  |  Industrial Client",
     initials: "RR",
+    avatar: "/images/testimonial-avatar-1.jpg",
     image: "/images/testimonial-1.jpg",
   },
   {
     quote: "Empereal has helped us achieve significant energy savings while advancing our sustainability objectives — their engineering rigor stood out from day one.",
     name: "Sara El-Hadi",
-    role: "Head of Sustainability · Commercial Real Estate",
+    role: "Head of Sustainability  |  Commercial Real Estate",
     initials: "SE",
+    avatar: "/images/testimonial-avatar-2.jpg",
     image: "/images/testimonial-2.jpg",
   },
 ];
 ---
-<section class="section-pad bg-surface" aria-labelledby="testimonial-title">
+<section class="section-pad bg-white" aria-labelledby="testimonial-title">
   <Container>
     <h2 id="testimonial-title" class="sr-only">What our clients say</h2>
 
     <div class="relative" data-testimonial>
       {items.map((t, i) => (
         <article
-          class={`testimonial-slide grid gap-8 lg:gap-12 lg:grid-cols-[1.2fr_1fr] lg:items-center ${i === 0 ? "" : "hidden"}`}
+          class={`testimonial-slide ${i === 0 ? "" : "hidden"}`}
           data-testimonial-slide
           data-index={i}
           aria-hidden={i === 0 ? "false" : "true"}
         >
-          <div class="relative reveal-left reveal-stagger">
-            <svg
-              viewBox="0 0 80 80"
-              class="h-10 w-10 text-accent"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M16 32c0-9 7-16 16-16v-8C18 8 8 18 8 36v28h28V32H16zm32 0c0-9 7-16 16-16v-8c-14 0-24 10-24 28v28h28V32H48z"/>
-            </svg>
-            <blockquote class="mt-4">
-              <p class="font-display text-xl sm:text-2xl lg:text-[1.65rem] leading-snug text-primary-dark">
+          <div class="grid lg:grid-cols-[1.15fr_1fr] rounded-3xl bg-surface shadow-card ring-1 ring-primary/5 overflow-hidden reveal">
+            <!-- Text side -->
+            <div class="p-7 sm:p-10 lg:p-14 order-2 lg:order-1 flex flex-col">
+              <!-- Quote badge -->
+              <div class="inline-flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-white shadow-sm ring-1 ring-primary/10">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 sm:h-5 sm:w-5 text-primary-dark" fill="currentColor" aria-hidden="true">
+                  <path d="M6.5 10c0-2.5 2-4.5 4.5-4.5V3C6.5 3 3 6.5 3 11v8h8V10H6.5zm11 0c0-2.5 2-4.5 4.5-4.5V3c-4.5 0-8 3.5-8 8v8h8V10h-4.5z"/>
+                </svg>
+              </div>
+
+              <!-- Quote text -->
+              <blockquote class="mt-6 sm:mt-8 text-base sm:text-lg lg:text-[1.35rem] leading-[1.65] text-ink max-w-[44ch]">
                 {t.quote}
-              </p>
-              <footer class="mt-6 flex items-center gap-3">
-                <div class="h-12 w-12 rounded-full bg-primary text-white flex items-center justify-center font-semibold text-sm shadow-sm">
-                  {t.initials}
+              </blockquote>
+
+              <!-- Dashed divider -->
+              <hr class="mt-8 sm:mt-10 border-t border-dashed border-primary/20 max-w-[18rem]" />
+
+              <!-- Author -->
+              <div class="mt-5 flex items-center gap-3">
+                <div class="relative h-11 w-11 shrink-0 rounded-full bg-primary-50 ring-2 ring-white shadow-sm overflow-hidden">
+                  <span class="absolute inset-0 flex items-center justify-center text-xs font-semibold text-primary-dark">
+                    {t.initials}
+                  </span>
+                  <img
+                    src={t.avatar}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.remove()"
+                  />
                 </div>
                 <div>
-                  <cite class="not-italic text-sm font-semibold text-primary-dark">{t.name}</cite>
-                  <p class="text-xs text-muted">{t.role}</p>
+                  <p class="text-sm font-semibold text-ink">{t.name}</p>
+                  <p class="text-xs text-muted mt-0.5">{t.role}</p>
                 </div>
-              </footer>
-            </blockquote>
-          </div>
+              </div>
 
-          <figure class="relative reveal-right">
-            <div class="relative overflow-hidden rounded-2xl aspect-[4/3] lg:aspect-[5/4] shadow-card-lg ring-1 ring-primary/5 bg-gradient-to-br from-primary to-accent/20">
+              <!-- Nav arrows -->
+              <div class="mt-8 flex items-center gap-2">
+                <button
+                  type="button"
+                  class="h-11 w-11 rounded-lg border border-primary/15 bg-white hover:bg-primary/5 text-primary flex items-center justify-center transition-colors shadow-sm"
+                  aria-label="Previous testimonial"
+                  data-testimonial-prev
+                >
+                  <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                    <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  class="h-11 w-11 rounded-lg border border-primary/15 bg-white hover:bg-primary/5 text-primary flex items-center justify-center transition-colors shadow-sm"
+                  aria-label="Next testimonial"
+                  data-testimonial-next
+                >
+                  <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                    <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <!-- Image side: extends flush to the card's rounded edge and blends into the card background -->
+            <figure class="relative aspect-[4/3] lg:aspect-auto order-1 lg:order-2 bg-gradient-to-br from-primary via-primary-light to-accent/20">
               <img
                 src={t.image}
                 alt=""
@@ -65,48 +106,28 @@ const items = [
                 decoding="async"
                 onerror="this.remove()"
               />
-            </div>
-          </figure>
+              <!-- Mobile: image meets text below — fade the BOTTOM edge into the card -->
+              <div
+                class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-surface via-surface/70 to-transparent pointer-events-none lg:hidden"
+                aria-hidden="true"
+              ></div>
+              <!-- Desktop: image sits to the right of the text — fade the LEFT edge into the card -->
+              <div
+                class="absolute inset-y-0 left-0 w-2/5 bg-gradient-to-r from-surface via-surface/60 to-transparent pointer-events-none hidden lg:block"
+                aria-hidden="true"
+              ></div>
+            </figure>
+          </div>
         </article>
       ))}
-
-      <div class="mt-8 flex items-center justify-between">
-        <div class="flex items-center gap-1.5" role="tablist" aria-label="Select testimonial">
-          {items.map((_, i) => (
-            <button
-              type="button"
-              class="h-2 w-6 rounded-full bg-primary/15 data-[active=true]:bg-accent data-[active=true]:w-10 transition-all"
-              data-testimonial-dot
-              data-index={i}
-              data-active={i === 0 ? "true" : "false"}
-              role="tab"
-              aria-selected={i === 0 ? "true" : "false"}
-              aria-label={`Testimonial ${i + 1}`}
-            ></button>
-          ))}
-        </div>
-        <div class="flex items-center gap-2">
-          <button type="button" class="h-10 w-10 rounded-full border border-primary/15 bg-white hover:bg-primary-50 text-primary flex items-center justify-center transition-colors" aria-label="Previous testimonial" data-testimonial-prev>
-            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
-              <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-          <button type="button" class="h-10 w-10 rounded-full border border-primary/15 bg-white hover:bg-primary-50 text-primary flex items-center justify-center transition-colors" aria-label="Next testimonial" data-testimonial-next>
-            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
-              <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-      </div>
     </div>
   </Container>
 </section>
 
 <script>
   const slides = document.querySelectorAll<HTMLElement>("[data-testimonial-slide]");
-  const dots = document.querySelectorAll<HTMLButtonElement>("[data-testimonial-dot]");
-  const prev = document.querySelector<HTMLButtonElement>("[data-testimonial-prev]");
-  const next = document.querySelector<HTMLButtonElement>("[data-testimonial-next]");
+  const prevBtns = document.querySelectorAll<HTMLButtonElement>("[data-testimonial-prev]");
+  const nextBtns = document.querySelectorAll<HTMLButtonElement>("[data-testimonial-next]");
   let current = 0;
   const show = (i: number) => {
     if (!slides.length) return;
@@ -116,13 +137,7 @@ const items = [
       s.classList.toggle("hidden", !active);
       s.setAttribute("aria-hidden", active ? "false" : "true");
     });
-    dots.forEach((d, idx) => {
-      const active = idx === current;
-      d.setAttribute("data-active", active ? "true" : "false");
-      d.setAttribute("aria-selected", active ? "true" : "false");
-    });
   };
-  prev?.addEventListener("click", () => show(current - 1));
-  next?.addEventListener("click", () => show(current + 1));
-  dots.forEach((d) => d.addEventListener("click", () => show(Number(d.dataset.index ?? 0))));
+  prevBtns.forEach((b) => b.addEventListener("click", () => show(current - 1)));
+  nextBtns.forEach((b) => b.addEventListener("click", () => show(current + 1)));
 </script>
