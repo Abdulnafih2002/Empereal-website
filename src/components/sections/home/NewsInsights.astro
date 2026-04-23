@@ -53,16 +53,15 @@ const articles = [
       </p>
     </div>
 
-    <div class="relative mt-12 lg:mt-16" data-news>
+    <div class="relative mt-12 lg:mt-16">
       <div
-        class="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:mx-0 lg:px-0 lg:overflow-visible lg:grid lg:grid-cols-3 news-scroll reveal-stagger"
+        class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 reveal-stagger"
         role="list"
-        data-news-track
       >
         {articles.map((a) => (
           <article
             role="listitem"
-            class="group flex-shrink-0 w-[85%] sm:w-[55%] lg:w-auto snap-start overflow-hidden rounded-2xl bg-white text-ink shadow-card hover:shadow-card-lg transition-all duration-300"
+            class="group overflow-hidden rounded-2xl bg-white text-ink shadow-card hover:shadow-card-lg transition-all duration-300"
           >
             <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary via-primary-light to-accent/30">
               <img
@@ -100,38 +99,6 @@ const articles = [
           </article>
         ))}
       </div>
-
-      <div class="mt-6 flex items-center justify-center gap-3 lg:hidden">
-        <button type="button" class="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Previous article" data-news-prev>
-          <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
-            <path d="M12 4l-6 6 6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-        <button type="button" class="h-10 w-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" aria-label="Next article" data-news-next>
-          <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
-            <path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
     </div>
   </Container>
 </section>
-
-<style>
-  .news-scroll::-webkit-scrollbar { height: 4px; }
-  .news-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 999px; }
-</style>
-
-<script>
-  const track = document.querySelector<HTMLElement>("[data-news-track]");
-  const prev = document.querySelector<HTMLButtonElement>("[data-news-prev]");
-  const next = document.querySelector<HTMLButtonElement>("[data-news-next]");
-  const scrollBy = (dir: 1 | -1) => {
-    if (!track) return;
-    const card = track.querySelector<HTMLElement>("article");
-    const delta = (card?.offsetWidth ?? 280) + 20;
-    track.scrollBy({ left: delta * dir, behavior: "smooth" });
-  };
-  prev?.addEventListener("click", () => scrollBy(-1));
-  next?.addEventListener("click", () => scrollBy(1));
-</script>

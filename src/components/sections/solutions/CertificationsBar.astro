@@ -1,0 +1,49 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const certs = [
+  "ISO 9001:2015",
+  "ISO 14001:2015",
+  "ISO 45001:2018",
+  "IEC 61730",
+  "IEC 61215",
+  "Dubai SHAMS/D33",
+];
+---
+<section class="bg-primary-dark/95 text-white border-t border-accent/15 py-5 overflow-hidden" aria-label="Certifications">
+  <Container class="flex flex-col sm:flex-row sm:items-center gap-4">
+    <p class="text-xs font-semibold uppercase tracking-[0.15em] text-white/55 shrink-0">Certified under</p>
+
+    <div class="marquee group relative flex-1 min-w-0 overflow-hidden">
+      <ul class="marquee-track flex gap-2 w-max">
+        {[...certs, ...certs].map((c, i) => (
+          <li
+            class="shrink-0 rounded-md bg-white/5 border border-white/15 px-3 py-1.5 text-xs text-white/75 whitespace-nowrap"
+            aria-hidden={i >= certs.length ? "true" : "false"}
+          >
+            {c}
+          </li>
+        ))}
+      </ul>
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-12 bg-gradient-to-r from-primary-dark to-transparent" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-12 bg-gradient-to-l from-primary-dark to-transparent" aria-hidden="true"></div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  @keyframes marquee-x {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+  .marquee-track {
+    animation: marquee-x 32s linear infinite;
+    will-change: transform;
+  }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
+</style>

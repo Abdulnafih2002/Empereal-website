@@ -6,21 +6,22 @@ type NavLink = { label: string; href: string; children?: { label: string; href: 
 const nav: NavLink[] = [
   {
     label: "About Empereal",
-    href: "#about",
+    href: "/about",
     children: [
-      { label: "Who We Are", href: "#about", desc: "A global smart energy & EPC leader." },
-      { label: "Leadership", href: "#", desc: "Engineering-led team." },
-      { label: "Our Values", href: "#", desc: "Credibility, clarity, delivery." },
+      { label: "Who We Are", href: "/about", desc: "A global smart energy & EPC leader." },
+      { label: "Leadership", href: "/leadership", desc: "Founder-led, experience-driven." },
+      { label: "Our Values", href: "/about#our-purpose-title", desc: "Credibility, clarity, delivery." },
     ],
   },
   {
     label: "Solutions",
-    href: "#experience",
+    href: "/solutions",
     children: [
-      { label: "End-to-End Solar EPC", href: "#experience", desc: "Design to commissioning." },
-      { label: "High-Efficiency Power Systems", href: "#experience", desc: "Optimized output." },
-      { label: "Commercial & Industrial", href: "#experience", desc: "For factories & facilities." },
-      { label: "Green Hydrogen", href: "#", desc: "Fuel-switching at scale." },
+      { label: "Solutions Overview", href: "/solutions", desc: "Six disciplines, one partner." },
+      { label: "Solar Power Systems", href: "/solutions#solution-areas-title", desc: "Utility, C&I, BIPV, O&M." },
+      { label: "Water & Desalination", href: "/solutions#solution-areas-title", desc: "Solar thermal & PV-RO systems." },
+      { label: "Energy Storage", href: "/solutions#solution-areas-title", desc: "BESS & patented thermal storage." },
+      { label: "Green Hydrogen", href: "/solutions#solution-areas-title", desc: "Fuel-switching at scale." },
     ],
   },
   {
@@ -231,11 +232,12 @@ const nav: NavLink[] = [
 
   const header = document.querySelector<HTMLElement>("[data-header]");
   const mobileMQ = window.matchMedia("(max-width: 1023.98px)");
+  // Only go transparent on mobile when the page has a dark hero backdrop behind the header.
+  const hasHeroBackdrop = !!document.querySelector("[data-hero-backdrop]");
   const updateHeader = () => {
     if (!header) return;
     const scrolled = window.scrollY > 40;
-    // Transparent over the hero — mobile only. Desktop keeps solid white always.
-    header.classList.toggle("is-transparent", !scrolled && mobileMQ.matches);
+    header.classList.toggle("is-transparent", !scrolled && mobileMQ.matches && hasHeroBackdrop);
     header.classList.toggle("shadow-sm", scrolled);
   };
   window.addEventListener("scroll", updateHeader, { passive: true });

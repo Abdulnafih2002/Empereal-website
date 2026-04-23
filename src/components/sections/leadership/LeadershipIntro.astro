@@ -1,0 +1,36 @@
+---
+import Container from "../../primitives/Container.astro";
+---
+<section class="section-pad bg-white" aria-labelledby="leadership-intro-title">
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <figure class="group relative order-1 lg:order-1 reveal-left">
+        <div class="hover-zoom relative overflow-hidden rounded-2xl aspect-[4/3] shadow-card-lg ring-1 ring-primary/5 bg-gradient-to-br from-primary via-primary-light to-accent/30 transition-shadow duration-500 hover:shadow-2xl hover:shadow-primary-dark/20">
+          <img
+            src="/images/footer-bg.jpg"
+            alt="Empereal operational footprint across Asia and the Middle East"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+            onerror="this.remove()"
+          />
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary-dark/70 to-transparent" aria-hidden="true"></div>
+          <figcaption class="absolute left-4 bottom-3 inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-primary-dark shadow">
+            Global delivery, local expertise
+          </figcaption>
+        </div>
+      </figure>
+
+      <div class="order-2 lg:order-2 reveal-right">
+        <p class="eyebrow">About Our Leadership</p>
+        <h2 id="leadership-intro-title" class="fluid-h2 mt-3">Founder-led. Experience-driven.</h2>
+        <p class="fluid-lead mt-6 text-muted">
+          Empereal Energy and Services is led by a founding team that combines expertise in renewable energy, water desalination, financial markets, and technology.
+        </p>
+        <p class="mt-4 text-muted">
+          The leadership structure is designed to balance strategic vision with operational execution across Empereal's geographic markets — board-level governance in Singapore, regional operations across five markets, and specialist technical leadership embedded in every project.
+        </p>
+      </div>
+    </div>
+  </Container>
+</section>

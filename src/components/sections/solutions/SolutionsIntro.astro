@@ -1,0 +1,36 @@
+---
+import Container from "../../primitives/Container.astro";
+---
+<section class="section-pad bg-white" aria-labelledby="solutions-intro-title">
+  <Container>
+    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
+      <div class="reveal-left">
+        <p class="eyebrow">Full-Lifecycle Engineering Services</p>
+        <h2 id="solutions-intro-title" class="fluid-h2 mt-3">One partner. Every discipline.</h2>
+        <p class="fluid-lead mt-6 text-muted max-w-xl">
+          Empereal provides a 360-degree service spanning architectural and engineering design, EPC, and long-term O&M. Our solutions are designed to be innovative and reliable, enabling clients to meet growing requirements in a sustainable and cost-efficient manner.
+        </p>
+        <p class="mt-4 text-muted max-w-xl">
+          Six engineering disciplines operate under a single accountability structure — from feasibility studies through to 25-year performance optimisation. No vendor handoffs, no delivery gaps.
+        </p>
+      </div>
+
+      <figure class="group relative reveal-right">
+        <div class="hover-zoom relative overflow-hidden rounded-2xl aspect-[4/3] shadow-card-lg ring-1 ring-primary/5 bg-gradient-to-br from-primary via-primary-light to-accent/30 transition-shadow duration-500 hover:shadow-2xl hover:shadow-primary-dark/20">
+          <img
+            src="/images/feature-epc.jpg"
+            alt="Empereal engineering team on a solar EPC project site"
+            class="absolute inset-0 h-full w-full object-cover"
+            loading="lazy"
+            decoding="async"
+            onerror="this.remove()"
+          />
+          <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary-dark/70 to-transparent" aria-hidden="true"></div>
+          <figcaption class="absolute left-4 bottom-3 inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-primary-dark shadow">
+            Engineering-led EPC delivery
+          </figcaption>
+        </div>
+      </figure>
+    </div>
+  </Container>
+</section>

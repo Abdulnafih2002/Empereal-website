@@ -2,24 +2,29 @@
 import Container from "../../primitives/Container.astro";
 
 const points = [
-  "Trusted solar EPC expertise",
-  "Pioneering projects across Asia & the Middle East",
+  "Trusted EPC expertise across 200+ commissioned projects worldwide",
+  "Pioneering architectural solar integration across Asia and the Middle East",
+  "ISO 9001, ISO 14001, and ISO 45001 certified operations",
+  "Patented solar thermal and solar desalination technologies",
 ];
 ---
-<section id="about" class="section-pad bg-white" aria-labelledby="about-title">
+<section class="section-pad bg-surface" aria-labelledby="our-purpose-title">
   <Container>
     <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
       <div class="reveal-left reveal-stagger order-2 lg:order-1">
-        <p class="eyebrow">Smart. Sustainable. Solar.</p>
-        <h2 id="about-title" class="fluid-h2 mt-3">About Empereal</h2>
+        <p class="eyebrow">Our Purpose</p>
+        <h2 id="our-purpose-title" class="fluid-h2 mt-3">Empowering communities through clean energy and pure water</h2>
         <p class="mt-5 text-muted fluid-lead max-w-xl">
-          Empereal is a global leader in solar energy solutions, dedicated to driving sustainable progress with innovative, high-performance solar projects. We empower communities and industries to transition to clean energy.
+          Empereal exists to empower communities through the provision of clean energy and pure water, delivered via innovative and reliable world-class systems. We aim to create deep social impact that improves the quality of life and sustainability of industrial, commercial, and rural communities.
+        </p>
+        <p class="mt-4 text-muted max-w-xl">
+          Our expertise allows us to design, build, and operate innovative and reliable renewable energy projects to match any mix of requirements.
         </p>
 
         <ul class="mt-7 space-y-3">
           {points.map((p) => (
             <li class="flex items-start gap-3 text-sm sm:text-base text-ink">
-              <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-success/15 text-success-dark shrink-0" aria-hidden="true">
+              <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent text-primary-dark shrink-0" aria-hidden="true">
                 <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none">
                   <path d="M4 10.5l3.5 3.5L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
@@ -30,30 +35,29 @@ const points = [
         </ul>
 
         <a
-          href="#about"
+          href="/#experience"
           class="mt-8 inline-flex items-center gap-2 rounded-md bg-ink hover:bg-primary-dark px-5 py-3 text-sm font-semibold text-white transition-colors min-h-[44px]"
         >
-          Learn More
+          Learn more about our solutions
           <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
             <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </a>
       </div>
 
-      <figure class="relative order-1 lg:order-2 reveal-right">
-        <div class="relative overflow-hidden rounded-2xl aspect-[4/3] shadow-card-lg ring-1 ring-primary/5 bg-gradient-to-br from-primary via-primary-light to-accent/30">
+      <figure class="group relative order-1 lg:order-2 reveal-right">
+        <div class="hover-zoom relative overflow-hidden rounded-2xl aspect-[4/3] shadow-card-lg ring-1 ring-primary/5 bg-gradient-to-br from-primary via-primary-light to-accent/30 transition-shadow duration-500 hover:shadow-2xl hover:shadow-primary-dark/20">
           <img
-            src="/images/hero-solar.jpg"
-            alt="Solar installation landscape at sunset"
+            src="/images/project-uae.jpg"
+            alt="Architectural solar integration on a Dubai landmark"
             class="absolute inset-0 h-full w-full object-cover"
             loading="lazy"
             decoding="async"
             onerror="this.remove()"
           />
-          <!-- Subtle vignette for caption legibility -->
           <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-primary-dark/70 to-transparent" aria-hidden="true"></div>
           <figcaption class="absolute left-4 bottom-3 inline-flex items-center rounded-md bg-accent px-3 py-1.5 text-xs font-semibold text-primary-dark shadow">
-            Expo 2020 Dubai
+            DEWA HQ — Jadaf, Dubai
           </figcaption>
         </div>
       </figure>

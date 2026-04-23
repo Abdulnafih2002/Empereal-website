@@ -1,0 +1,22 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const stats = [
+  { value: "650+ MWp", label: "Solar Capacity Installed" },
+  { value: "200+", label: "Projects Delivered" },
+  { value: "15+", label: "Years of Operation" },
+  { value: "6", label: "Countries Active" },
+];
+---
+<section class="bg-primary-dark text-white border-t border-accent/15" aria-label="Empereal by the numbers">
+  <Container>
+    <dl class="grid grid-cols-2 lg:grid-cols-4 divide-y divide-white/10 lg:divide-y-0 lg:divide-x lg:divide-white/10 reveal-stagger">
+      {stats.map((s) => (
+        <div class="px-4 py-7 lg:py-9 text-center">
+          <dd class="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-accent">{s.value}</dd>
+          <dt class="mt-2 text-xs uppercase tracking-[0.15em] text-white/70 font-medium">{s.label}</dt>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</section>

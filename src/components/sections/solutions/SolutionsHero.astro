@@ -1,0 +1,95 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const pills = [
+  "Solar Power Systems",
+  "Water & Desalination",
+  "Energy Storage",
+  "Integrated Infrastructure",
+  "Architectural BIPV",
+  "Green Hydrogen",
+];
+---
+<nav aria-label="Breadcrumb" class="bg-primary-dark/95 border-b border-white/5">
+  <Container class="flex items-center gap-2 py-2.5 text-xs">
+    <a href="/" class="text-white/55 hover:text-white/90 transition-colors">Home</a>
+    <span class="text-white/30" aria-hidden="true">›</span>
+    <span class="text-white/85" aria-current="page">Solutions</span>
+  </Container>
+</nav>
+
+<section
+  class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
+  aria-labelledby="solutions-hero-title"
+>
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/images/hero-solar.jpg"
+      alt=""
+      class="h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+      onerror="this.remove()"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/85 via-primary-dark/55 to-primary-dark/20"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 via-transparent to-transparent"></div>
+    <div class="absolute -bottom-32 -right-32 h-[520px] w-[520px] rounded-full bg-accent/15 blur-[140px] animate-pulse-glow"></div>
+    <div class="hidden lg:block absolute -right-10 -top-10 w-[520px] h-[420px] opacity-[0.08]">
+      <svg width="100%" height="100%" viewBox="0 0 280 220" fill="none" preserveAspectRatio="xMidYMid meet">
+        <line x1="0" y1="0" x2="280" y2="220" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="70" y1="0" x2="280" y2="165" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="140" y1="0" x2="280" y2="110" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="210" y1="0" x2="280" y2="55" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="0" y1="55" x2="225" y2="220" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="0" y1="110" x2="170" y2="220" stroke="#F5B82E" stroke-width=".5"/>
+      </svg>
+    </div>
+  </div>
+
+  <Container class="relative flex-1 flex items-center">
+    <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
+      <p class="eyebrow !text-white hero-enter hero-enter-1">360° Clean Energy Engineering</p>
+      <h1 id="solutions-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
+        Integrated solutions for <span class="text-accent">clean energy and pure water</span>
+      </h1>
+      <p class="fluid-lead mt-6 text-white/85 max-w-2xl hero-enter hero-enter-3">
+        Six engineering disciplines. One delivery partner. From feasibility to commissioning and long-term O&M — engineered for infrastructure, industry, and communities.
+      </p>
+
+      <div class="mt-8 hero-enter hero-enter-4">
+        <a
+          href="#footer"
+          class="press group inline-flex items-center gap-2 rounded-md bg-accent hover:bg-accent-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-dark transition-colors min-h-[48px] shadow-lg shadow-accent/20"
+        >
+          Request a Technical Consultation
+          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <ul class="mt-8 flex flex-wrap gap-2 hero-enter hero-enter-4">
+        {pills.map((p) => (
+          <li class="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs text-white/75">
+            {p}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .page-hero {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+    min-height: calc(100dvh - 6rem);
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+      min-height: calc(100dvh - 7rem);
+    }
+  }
+</style>

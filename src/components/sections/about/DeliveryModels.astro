@@ -1,0 +1,58 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const models = [
+  {
+    tag: "EPCM",
+    name: "Engineering, Procurement, Construction & Management",
+    desc: "Full-scope delivery from design through commissioning and handover, with integrated project management.",
+  },
+  {
+    tag: "Project Developer",
+    name: "Develop-Build-Own-Operate",
+    desc: "Empereal develops, builds, and operates energy and water assets — providing clients with performance-based offtake structures.",
+  },
+  {
+    tag: "BOO / BOT",
+    name: "Build-Operate-Own or Transfer",
+    desc: "Long-term asset ownership or defined transfer arrangements for government and utility-scale clients.",
+  },
+  {
+    tag: "Consulting",
+    name: "Feasibility & Technical Advisory",
+    desc: "Feasibility assessments, generation studies, system modelling, and independent technical advisory for lenders and developers.",
+  },
+];
+---
+<section class="section-pad bg-white" aria-labelledby="delivery-models-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">How We Work</p>
+      <h2 id="delivery-models-title" class="fluid-h2 mt-3">Delivery models</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal structures project delivery to match client requirements — from full EPCM mandates to develop-build-own-operate arrangements and standalone technical advisory.
+      </p>
+    </div>
+
+    <div class="mt-10 rounded-2xl ring-1 ring-primary/10 overflow-hidden reveal-stagger">
+      <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 divide-primary/10">
+        {models.slice(0, 2).map((m, i) => (
+          <div class={`p-6 sm:p-7 bg-white ${i === 0 ? "sm:border-r sm:border-primary/10" : ""}`}>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-dark">{m.tag}</p>
+            <h3 class="mt-2 text-base font-semibold text-primary-dark">{m.name}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 divide-primary/10 border-t border-primary/10">
+        {models.slice(2).map((m, i) => (
+          <div class={`p-6 sm:p-7 bg-white ${i === 0 ? "sm:border-r sm:border-primary/10" : ""}`}>
+            <p class="text-[11px] font-semibold uppercase tracking-[0.12em] text-accent-dark">{m.tag}</p>
+            <h3 class="mt-2 text-base font-semibold text-primary-dark">{m.name}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</section>

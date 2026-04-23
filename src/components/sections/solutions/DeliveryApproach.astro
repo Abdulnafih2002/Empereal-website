@@ -1,0 +1,51 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const steps = [
+  {
+    num: "1",
+    title: "Feasibility & design",
+    desc: "Resource assessment, generation studies, shading analysis, and architectural integration planning.",
+  },
+  {
+    num: "2",
+    title: "Engineering & procurement",
+    desc: "Detailed engineering, equipment selection, authority submissions, and supply chain management.",
+  },
+  {
+    num: "3",
+    title: "Construction & commissioning",
+    desc: "Field installation, testing, grid connection, authority approvals, and handover documentation.",
+  },
+  {
+    num: "4",
+    title: "Operations & maintenance",
+    desc: "Performance monitoring, preventive maintenance, fault resolution, and long-term asset optimisation.",
+  },
+];
+---
+<section class="section-pad bg-[#0F2238] text-white" aria-labelledby="delivery-approach-title">
+  <Container>
+    <div class="max-w-2xl mx-auto text-center reveal">
+      <p class="eyebrow !text-accent">How We Deliver</p>
+      <h2 id="delivery-approach-title" class="fluid-h2 mt-3 text-white">Our delivery approach</h2>
+      <p class="fluid-lead mt-5 text-white/75">
+        Every Empereal project follows a rigorous, phased delivery process — from initial resource assessment through to long-term performance optimisation.
+      </p>
+    </div>
+
+    <div class="relative mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+      <div class="hidden lg:block absolute top-6 left-[12.5%] right-[12.5%] h-px bg-accent/30" aria-hidden="true"></div>
+
+      {steps.map((s) => (
+        <div class="relative flex flex-col items-center text-center">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-accent text-primary-dark font-display text-lg font-semibold shadow-lg shadow-accent/30 relative z-10" aria-hidden="true">
+            {s.num}
+          </div>
+          <h3 class="mt-5 text-base font-semibold text-white">{s.title}</h3>
+          <p class="mt-2 text-sm text-white/70 leading-relaxed max-w-[240px]">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

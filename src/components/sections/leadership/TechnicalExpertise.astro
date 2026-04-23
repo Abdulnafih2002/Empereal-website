@@ -1,0 +1,98 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const items = [
+  {
+    title: "Solar PV system design & EPC",
+    desc: "Utility-scale, commercial, industrial, and residential PV. From feasibility through commissioning and O&M.",
+    icon: "solar",
+  },
+  {
+    title: "Architectural BIPV engineering",
+    desc: "Custom module design, structural integration, IEC certification, and Dubai SHAMS/D33 compliance for iconic buildings.",
+    icon: "bipv",
+  },
+  {
+    title: "Solar thermal desalination",
+    desc: "Patented LFR technology, MED desalination, phase-change thermal storage, and PV-RO system integration.",
+    icon: "drop",
+  },
+  {
+    title: "Energy storage systems",
+    desc: "Battery energy storage, patented PCM thermal storage, intelligent energy management, and off-grid hybrid design.",
+    icon: "battery",
+  },
+  {
+    title: "Green hydrogen systems",
+    desc: "Alkaline electrolyser design, sea-water-to-hydrogen integration, and renewable power coupling for hydrogen production.",
+    icon: "h2",
+  },
+  {
+    title: "Project finance & structuring",
+    desc: "Bankable feasibility studies, independent technical advisory for lenders, and EPCM, BOO, and BOT project structuring.",
+    icon: "finance",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="expertise-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Technical Expertise</p>
+      <h2 id="expertise-title" class="fluid-h2 mt-3">Specialist depth across six disciplines</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's technical leadership holds specialist knowledge across the full range of clean energy and water engineering disciplines — not generalist project management.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {items.map((item) => (
+        <div class="group flex items-start gap-4 rounded-xl bg-white ring-1 ring-primary/10 p-5 sm:p-6 hover:ring-accent/40 hover:shadow-card hover:-translate-y-0.5 transition-all duration-300">
+          <div class="icon-lift inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent/15 text-accent-dark shrink-0" aria-hidden="true">
+            {item.icon === "solar" && (
+              <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+                <rect x="2" y="7" width="16" height="3" rx="1" fill="currentColor"/>
+                <rect x="2" y="12" width="16" height="3" rx="1" fill="currentColor" opacity=".5"/>
+                <line x1="6" y1="2" x2="6" y2="18" stroke="currentColor" stroke-width=".8"/>
+                <line x1="14" y1="2" x2="14" y2="18" stroke="currentColor" stroke-width=".8"/>
+              </svg>
+            )}
+            {item.icon === "bipv" && (
+              <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+                <rect x="2.5" y="7" width="15" height="10" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5 7 L10 3 L15 7" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            )}
+            {item.icon === "drop" && (
+              <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+                <path d="M10 2 Q14.5 7 14.5 11 A4.5 4.5 0 0 1 5.5 11 Q5.5 7 10 2Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
+              </svg>
+            )}
+            {item.icon === "battery" && (
+              <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+                <rect x="3" y="6" width="13" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/>
+                <rect x="16" y="9" width="2" height="4" rx=".5" fill="currentColor"/>
+                <path d="M10 9v5m-2.5-2.5h5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            )}
+            {item.icon === "h2" && (
+              <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+                <circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.4"/>
+                <text x="10" y="13" text-anchor="middle" font-size="7" fill="currentColor" font-weight="600">H₂</text>
+              </svg>
+            )}
+            {item.icon === "finance" && (
+              <svg viewBox="0 0 20 20" class="h-5 w-5" fill="none">
+                <rect x="2" y="10" width="16" height="7" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M4 10 L6 5 L10 2 L14 5 L16 10" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              </svg>
+            )}
+          </div>
+          <div>
+            <h3 class="text-base font-semibold text-primary-dark">{item.title}</h3>
+            <p class="mt-1 text-sm text-muted leading-relaxed">{item.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

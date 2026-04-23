@@ -1,0 +1,62 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const principles = [
+  {
+    num: "01",
+    title: "Founder-led strategic direction",
+    body: "Long-term vision established by the founding team, ensuring continuity of purpose, technical standards, and client relationships across geographies and market cycles.",
+  },
+  {
+    num: "02",
+    title: "Local operational leadership",
+    body: "Empereal nurtures and enriches leadership teams in each geography, cultivating practices that work best in each country — blending global standards with local intelligence.",
+  },
+  {
+    num: "03",
+    title: "Diversity of thought",
+    body: "Working and learning in collaboration with professionals from diverse academic, ethnic, and social backgrounds — a deliberate approach to building stronger engineering and management teams.",
+  },
+  {
+    num: "04",
+    title: "Innovation culture",
+    body: "A fearless culture that fosters imagination and innovation — embracing change, conflicts, and crisis as opportunities rather than obstacles to progress.",
+  },
+  {
+    num: "05",
+    title: "Mentorship & development",
+    body: "Providing internships for students from Asia, Europe, and the Americas annually — investing in the next generation of clean energy engineers and project managers.",
+  },
+  {
+    num: "06",
+    title: "Accountability over hierarchy",
+    body: "Decisions are taken close to the work. Engineers and project managers carry direct accountability for quality, schedule, and client outcomes — not delegated upward.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="philosophy-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Leadership Philosophy</p>
+      <h2 id="philosophy-title" class="fluid-h2 mt-3">How we lead</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Six principles that define how Empereal's leadership operates — internally, with clients, and within the communities where we work.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {principles.map((p) => (
+        <article class="group relative rounded-xl bg-white ring-1 ring-primary/10 p-6 sm:p-7 hover:ring-accent/40 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300">
+          <div class="flex items-center gap-3">
+            <span class="icon-lift inline-flex items-center justify-center h-9 w-9 rounded-lg bg-accent/15 text-accent-dark font-display text-sm font-semibold tabular-nums" aria-hidden="true">
+              {p.num}
+            </span>
+            <span class="h-px flex-1 bg-primary/10" aria-hidden="true"></span>
+          </div>
+          <h3 class="mt-5 text-base sm:text-lg font-semibold text-primary-dark">{p.title}</h3>
+          <p class="mt-2 text-sm text-muted leading-relaxed">{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -145,6 +145,95 @@
     .reveal-stagger > *  { transform: translateY(12px); transition-duration: 0.5s; }
     .hero-enter          { animation-duration: 0.6s; }
   }
+
+  /* ===========================
+     Micro-interactions & motion
+     =========================== */
+
+  /* Smooth press feedback — apply to clickable elements */
+  .press {
+    transition: transform 0.15s cubic-bezier(.4,0,.2,1);
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  /* Arrow slide on parent hover: wrap arrow icon with `.arrow-slide` inside a `group` */
+  .arrow-slide {
+    transition: transform 0.28s cubic-bezier(.22,.7,.3,1);
+    will-change: transform;
+  }
+  .group:hover .arrow-slide,
+  a:hover > .arrow-slide,
+  button:hover > .arrow-slide {
+    transform: translateX(4px);
+  }
+
+  /* Icon lift on parent hover: card icons, badges */
+  .icon-lift {
+    transition: transform 0.32s cubic-bezier(.22,.7,.3,1);
+    will-change: transform;
+  }
+  .group:hover .icon-lift {
+    transform: translateY(-2px) scale(1.06);
+  }
+
+  /* Smooth zoom for images inside a hover-zoom frame */
+  .hover-zoom {
+    overflow: hidden;
+  }
+  .hover-zoom img {
+    transition: transform 0.7s cubic-bezier(.22,.7,.3,1);
+    will-change: transform;
+  }
+  .hover-zoom:hover img,
+  .group:hover .hover-zoom img {
+    transform: scale(1.06);
+  }
+
+  /* Continuous subtle motion (GPU-accelerated, low-cost) */
+  @keyframes float-y {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.35; }
+    50%      { opacity: 0.65; }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(12px, -8px, 0); }
+  }
+
+  .animate-float       { animation: float-y 6s ease-in-out infinite; will-change: transform; }
+  .animate-pulse-glow  { animation: pulse-glow 5s ease-in-out infinite; will-change: opacity; }
+  .animate-drift       { animation: drift 14s ease-in-out infinite; will-change: transform; }
+
+  /* Delayed stagger helpers for continuous anims */
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-600 { animation-delay: 0.6s; }
+  .delay-1000 { animation-delay: 1s; }
+
+  /* Reveal zoom (scale from ~0.94 + fade) — great for feature blocks */
+  .reveal-zoom {
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+      opacity 0.7s cubic-bezier(.22,.7,.3,1),
+      transform 0.7s cubic-bezier(.22,.7,.3,1);
+    will-change: opacity, transform;
+  }
+  .reveal-zoom.is-visible {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Consistent focus ring for all interactive elements */
+  .focus-ring:focus-visible {
+    outline: 2px solid theme('colors.accent.DEFAULT');
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -161,9 +250,13 @@
   .reveal-right,
   .reveal-scale,
   .reveal-fade,
+  .reveal-zoom,
   .reveal-stagger,
   .reveal-stagger > *,
-  .hero-enter {
+  .hero-enter,
+  .animate-float,
+  .animate-pulse-glow,
+  .animate-drift {
     opacity: 1 !important;
     transform: none !important;
     animation: none !important;
