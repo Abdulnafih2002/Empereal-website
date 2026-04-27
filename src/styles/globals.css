@@ -158,6 +158,19 @@
     transform: scale(0.97);
   }
 
+  /* Uniform CTA size for hero buttons across every page hero.
+     Mobile: full-width within the flex row; sm+: fixed 17rem so primary +
+     secondary line up regardless of label length. Text/icon centered. */
+  .hero-cta {
+    width: 100%;
+    justify-content: center;
+  }
+  @media (min-width: 640px) {
+    .hero-cta {
+      width: 17rem;
+    }
+  }
+
   /* Arrow slide on parent hover: wrap arrow icon with `.arrow-slide` inside a `group` */
   .arrow-slide {
     transition: transform 0.28s cubic-bezier(.22,.7,.3,1);
