@@ -1,0 +1,50 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const steps = [
+  {
+    n: "1",
+    title: "Source water analysis",
+    desc: "Feed water characterisation, salinity testing, site assessment, and resource modelling for solar field sizing.",
+  },
+  {
+    n: "2",
+    title: "System design & engineering",
+    desc: "Technology selection, thermal or PV system design, desalination unit sizing, and storage integration.",
+  },
+  {
+    n: "3",
+    title: "Fabrication & installation",
+    desc: "LFR mirror field or PV array installation, desalination unit assembly, piping, controls, and commissioning.",
+  },
+  {
+    n: "4",
+    title: "Operations & monitoring",
+    desc: "Water quality monitoring, preventive maintenance, membrane management, and plant performance reporting.",
+  },
+];
+---
+<section class="section-pad bg-[#0F2238] text-white" aria-labelledby="water-delivery-title">
+  <Container>
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow !text-accent">How we deliver</p>
+      <h2 id="water-delivery-title" class="fluid-h2 mt-3 text-white">Our water project process</h2>
+      <p class="fluid-lead mt-5 text-white/60">
+        From source water analysis to long-term plant operations — every desalination project follows Empereal's rigorous, phased EPC delivery process.
+      </p>
+    </div>
+
+    <ol class="mt-12 grid gap-8 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4 relative reveal-stagger">
+      <span aria-hidden="true" class="hidden lg:block absolute top-[18px] left-[12.5%] right-[12.5%] h-px bg-accent/25"></span>
+      {steps.map((s) => (
+        <li class="flex flex-col items-center text-center px-2 relative">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent text-primary-dark font-semibold shadow-md shadow-accent/30 ring-4 ring-[#0F2238]">
+            {s.n}
+          </span>
+          <h3 class="mt-4 text-sm font-semibold text-white">{s.title}</h3>
+          <p class="mt-1.5 text-xs text-white/50 leading-relaxed">{s.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </Container>
+</section>

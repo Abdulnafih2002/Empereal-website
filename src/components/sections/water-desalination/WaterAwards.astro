@@ -1,0 +1,41 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const awards = [
+  {
+    org: "MIT, USA — 2011",
+    name: "Top 8 Technology Innovations",
+    desc: "Empereal's solar thermal desalination system recognised among the world's top eight technology innovations of 2011 by the Massachusetts Institute of Technology.",
+  },
+  {
+    org: "FICCI & HSBC — 2014",
+    name: "National Innovation Award",
+    desc: "National Innovation Award from the Federation of Indian Chambers of Commerce & Industry and HSBC, recognising Empereal's contribution to sustainable water technology.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="water-awards-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Recognition &amp; awards</p>
+      <h2 id="water-awards-title" class="fluid-h2 mt-3">Industry-recognised innovation</h2>
+    </div>
+
+    <ul class="mt-8 grid gap-4 md:grid-cols-2 reveal-stagger">
+      {awards.map((a) => (
+        <li class="flex gap-4 rounded-2xl bg-white ring-1 ring-primary/10 p-6 hover:ring-accent/40 hover:shadow-card-lg transition-all">
+          <span class="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent/15">
+            <svg viewBox="0 0 20 20" class="h-5 w-5 text-accent-dark" fill="none" aria-hidden="true">
+              <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div class="min-w-0">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.08em] text-accent-dark">{a.org}</p>
+            <h3 class="mt-1 text-base font-semibold text-primary-dark">{a.name}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{a.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

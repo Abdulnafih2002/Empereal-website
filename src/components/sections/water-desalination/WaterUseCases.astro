@@ -1,0 +1,96 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const cases = [
+  {
+    title: "Coastal communities & islands",
+    desc: "Standalone seawater desalination powered entirely by solar — providing reliable fresh water without fossil fuel supply chains.",
+    icon: "drop",
+  },
+  {
+    title: "Power plants",
+    desc: "Flue gas waste heat recovery converting cooling tower blowdown into demineralized water — reducing industrial water consumption.",
+    icon: "plant",
+  },
+  {
+    title: "Industrial facilities",
+    desc: "Ultra-pure process water (< 5 ppm) for boilers, manufacturing processes, and industrial cooling — reducing reliance on municipal supply.",
+    icon: "factory",
+  },
+  {
+    title: "Rural & remote areas",
+    desc: "Decentralized community-scale water production without grid dependence — sustainable, affordable fresh water in underserved regions.",
+    icon: "village",
+  },
+  {
+    title: "Resorts & hospitality",
+    desc: "Sustainable fresh water systems for net-zero tourism developments — integrated with solar PV and thermal energy to eliminate dependencies.",
+    icon: "resort",
+  },
+  {
+    title: "Municipal water supply",
+    desc: "Large-scale solar desalination for public water infrastructure — scalable from pilot plants to municipal-scale systems supplying thousands.",
+    icon: "city",
+  },
+];
+---
+<section class="section-pad bg-[#0F2238] text-white" aria-labelledby="water-cases-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow !text-accent">Applications</p>
+      <h2 id="water-cases-title" class="fluid-h2 mt-3 text-white">Six desalination application sectors</h2>
+      <p class="fluid-lead mt-5 text-white/60">
+        Empereal's solar desalination systems serve diverse end-users — from remote island communities to large industrial facilities requiring ultra-pure process water.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {cases.map((c) => (
+        <li class="group rounded-xl bg-white/[0.04] border border-white/10 p-5 hover:bg-white/[0.07] hover:border-accent/30 transition-all">
+          <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent/15 ring-1 ring-accent/25 text-accent icon-lift">
+            {c.icon === "drop" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <path d="M10 2 Q14 7 14 11 A4 4 0 0 1 6 11 Q6 7 10 2Z" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="6" y1="14" x2="14" y2="14" stroke="currentColor" stroke-width="1" opacity=".5"/>
+              </svg>
+            )}
+            {c.icon === "plant" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <rect x="2" y="11" width="16" height="6" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5 11V8c0-2 2-3 5-3s5 1 5 3v3" stroke="currentColor" stroke-width="1.4"/>
+              </svg>
+            )}
+            {c.icon === "factory" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <rect x="3" y="6" width="14" height="11" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="6" y1="6" x2="6" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="11" y1="6" x2="11" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            )}
+            {c.icon === "village" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <circle cx="10" cy="6" r="3" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M3 17 Q10 12 17 17" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            )}
+            {c.icon === "resort" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <path d="M3 14 Q4 10 6 10 L10 5 L14 10 Q16 10 17 14Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+                <line x1="2" y1="17" x2="18" y2="17" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            )}
+            {c.icon === "city" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <rect x="2" y="7" width="16" height="10" rx="1" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M5 7V4.5a3.5 3.5 0 0 1 7 0V7" stroke="currentColor" stroke-width="1.4"/>
+                <circle cx="10" cy="13" r="1.5" fill="currentColor" opacity=".7"/>
+              </svg>
+            )}
+          </div>
+          <h3 class="mt-4 text-base font-semibold text-white">{c.title}</h3>
+          <p class="mt-1.5 text-sm text-white/55 leading-relaxed">{c.desc}</p>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

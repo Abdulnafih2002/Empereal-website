@@ -1,0 +1,61 @@
+---
+import Container from "../../primitives/Container.astro";
+import { projects, categoryLabels } from "../../../data/projects.ts";
+
+const slugs = [
+  "masdar-desalination",
+  "ntpc-flue-gas",
+  "ntpc-vallur",
+  "tidco-solar-desal",
+  "forward-osmosis",
+];
+const rows = slugs
+  .map((s) => projects.find((p) => p.slug === s))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+---
+<section class="section-pad bg-white" aria-labelledby="water-exp-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Selected experience</p>
+      <h2 id="water-exp-title" class="fluid-h2 mt-3">Desalination project track record</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Commissioned solar desalination plants across India and the UAE — from India's first solar thermal desalination plant in 2013 to NTPC's 150,000 L/day flue gas recovery system.
+      </p>
+    </div>
+
+    <div class="mt-10 overflow-x-auto rounded-xl ring-1 ring-primary/10 reveal">
+      <table class="w-full text-sm border-collapse min-w-[720px]">
+        <thead class="bg-primary-dark text-white">
+          <tr>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Project</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Location</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Capacity</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Technology</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Notes</th>
+          </tr>
+        </thead>
+        <tbody class="reveal-stagger">
+          {rows.map((p) => (
+            <tr class="border-t border-primary/5 even:bg-surface hover:bg-accent/5 transition-colors">
+              <td class="px-4 py-3 font-semibold text-primary-dark align-top">{p.title}</td>
+              <td class="px-4 py-3 align-top">
+                <span class="inline-block rounded-full bg-primary/[0.06] border border-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary-dark">
+                  {p.location}
+                </span>
+              </td>
+              <td class="px-4 py-3 font-semibold text-primary-dark align-top whitespace-nowrap">{p.scale}</td>
+              <td class="px-4 py-3 align-top">
+                <div class="flex flex-wrap gap-1">
+                  {p.categories.map((c) => (
+                    <span class="text-[10px] font-semibold uppercase tracking-[0.06em] px-2 py-0.5 rounded border border-accent/30 text-accent-dark bg-accent-soft">{categoryLabels[c]}</span>
+                  ))}
+                </div>
+              </td>
+              <td class="px-4 py-3 text-muted leading-relaxed align-top">{p.summary}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Container>
+</section>

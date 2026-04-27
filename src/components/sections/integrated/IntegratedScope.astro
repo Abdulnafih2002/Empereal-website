@@ -1,0 +1,65 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const items = [
+  {
+    title: "Hybrid solar PV + battery + backup systems",
+    desc: "Solar PV combined with BESS and controlled diesel or grid backup — designed to eliminate or minimise fossil fuel consumption.",
+  },
+  {
+    title: "Solar thermal + storage + desalination",
+    desc: "Integrated LFR thermal fields with PCM thermal storage driving MED desalination — 24/7 power and water from a unified plant.",
+  },
+  {
+    title: "Grid-connected & off-grid system design",
+    desc: "Both utility grid-tied and fully standalone off-grid system architectures — optimised for client location and supply requirements.",
+  },
+  {
+    title: "Electrical & mechanical system integration",
+    desc: "Full integration of electrical, mechanical, and control systems across all generation, storage, and consumption subsystems.",
+  },
+  {
+    title: "Building-integrated energy systems",
+    desc: "BIPV generation combined with battery storage and intelligent building energy management — for net-zero commercial buildings.",
+  },
+  {
+    title: "Power and water co-generation",
+    desc: "Simultaneous production of electricity and fresh water from a single integrated solar thermal and desalination plant.",
+  },
+  {
+    title: "Feasibility studies & system modelling",
+    desc: "Integrated system feasibility, generation and water yield modelling, and techno-economic analysis for project financing.",
+  },
+  {
+    title: "Complete EPCM services",
+    desc: "Engineering, procurement, construction, and management — from concept through commissioning, with a single point of accountability.",
+  },
+  {
+    title: "Long-term O&M & asset management",
+    desc: "Integrated O&M across all system components — performance monitoring, preventive maintenance, and full-asset optimisation.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="integrated-scope-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Scope of services</p>
+      <h2 id="integrated-scope-title" class="fluid-h2 mt-3">What we deliver</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's integrated infrastructure scope covers the complete engineering and delivery lifecycle — from system architecture and feasibility through construction, commissioning, and long-term asset management.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 reveal-stagger">
+      {items.map((it) => (
+        <li class="flex gap-3 rounded-xl bg-white ring-1 ring-primary/10 p-4 sm:p-5 hover:ring-accent/40 hover:shadow-card transition-all">
+          <span class="mt-2 inline-block h-[2px] w-4 bg-accent rounded-full shrink-0" aria-hidden="true"></span>
+          <div class="min-w-0">
+            <h3 class="text-sm sm:text-[15px] font-semibold text-primary-dark">{it.title}</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">{it.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

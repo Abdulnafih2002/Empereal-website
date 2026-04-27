@@ -1,0 +1,99 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const stats = [
+  { num: "650+ MWp", lbl: "Installed capacity" },
+  { num: "200+", lbl: "Projects delivered" },
+  { num: "15+", lbl: "Years operating" },
+  { num: "6", lbl: "Countries active" },
+];
+---
+<section
+  class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
+  aria-labelledby="solar-hero-title"
+>
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/images/hero-solar.jpg"
+      alt=""
+      class="h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+      onerror="this.remove()"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/70 to-primary-dark/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/70 via-transparent to-transparent"></div>
+    <div class="absolute -bottom-32 -right-32 h-[520px] w-[520px] rounded-full bg-accent/15 blur-[140px] animate-pulse-glow"></div>
+
+    <div class="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2 w-[460px] h-[400px] opacity-[0.10] animate-float">
+      <svg width="100%" height="100%" viewBox="0 0 240 220" fill="none" preserveAspectRatio="xMidYMid meet">
+        <rect x="10" y="60" width="220" height="40" rx="2" stroke="#F5B82E" stroke-width=".8"/>
+        <rect x="10" y="110" width="220" height="40" rx="2" stroke="#F5B82E" stroke-width=".8"/>
+        <rect x="10" y="160" width="220" height="40" rx="2" stroke="#F5B82E" stroke-width=".8"/>
+        <line x1="57" y1="60" x2="57" y2="200" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="104" y1="60" x2="104" y2="200" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="151" y1="60" x2="151" y2="200" stroke="#F5B82E" stroke-width=".5"/>
+        <line x1="198" y1="60" x2="198" y2="200" stroke="#F5B82E" stroke-width=".5"/>
+        <circle cx="120" cy="28" r="12" stroke="#F5B82E" stroke-width=".8"/>
+        <line x1="120" y1="10" x2="120" y2="6" stroke="#F5B82E" stroke-width=".8" stroke-linecap="round"/>
+        <line x1="102" y1="28" x2="98" y2="28" stroke="#F5B82E" stroke-width=".8" stroke-linecap="round"/>
+        <line x1="138" y1="28" x2="142" y2="28" stroke="#F5B82E" stroke-width=".8" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <Container class="relative flex-1 flex items-center">
+    <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
+      <p class="eyebrow !text-white hero-enter hero-enter-1">Solar Power Systems · EPC & O&amp;M</p>
+      <h1 id="solar-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
+        High-quality solar PV,<br/>
+        <span class="text-accent">engineered to perform.</span>
+      </h1>
+      <p class="fluid-lead mt-6 text-white/80 max-w-2xl hero-enter hero-enter-3">
+        Cost-effective photovoltaic solutions for utility, commercial, industrial, and architectural applications — designed, procured, built, and operated by a single engineering partner.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full sm:max-w-xl hero-enter hero-enter-4">
+        <a
+          href="#footer"
+          class="press group flex items-center justify-center gap-2 rounded-md bg-accent hover:bg-accent-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-dark transition-colors min-h-[48px] shadow-lg shadow-accent/20 text-center"
+        >
+          Request a Technical Consultation
+          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide shrink-0" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a
+          href="/projects?filter=solar-pv"
+          class="press flex items-center justify-center gap-2 rounded-md border border-white/25 bg-white/5 hover:bg-white/10 px-6 py-3.5 text-sm sm:text-base text-white transition-colors min-h-[48px] text-center"
+        >
+          View Solar Projects
+        </a>
+      </div>
+
+      <dl class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-xl overflow-hidden border border-white/10 max-w-2xl bg-white/[0.04] hero-enter hero-enter-4">
+        {stats.map((s) => (
+          <div class="bg-primary-dark/60 backdrop-blur-sm px-4 py-4 text-center">
+            <dt class="text-base sm:text-lg font-semibold text-accent leading-tight">{s.num}</dt>
+            <dd class="mt-1 text-[10px] uppercase tracking-[0.08em] text-white/50">{s.lbl}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .page-hero {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+    min-height: calc(100dvh - 6rem);
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+      min-height: calc(100dvh - 7rem);
+    }
+  }
+</style>

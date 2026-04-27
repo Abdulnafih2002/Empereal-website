@@ -1,0 +1,69 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const items = [
+  {
+    title: "Utility-scale solar PV farms",
+    desc: "Development and EPC for large-scale ground-mounted PV farms, including tracker systems and grid connection.",
+  },
+  {
+    title: "Commercial & industrial rooftops",
+    desc: "High-yield rooftop solar for factories, warehouses, offices, and commercial buildings — optimised for self-consumption and export.",
+  },
+  {
+    title: "Solar carports & parking structures",
+    desc: "Integrated solar carport and parking canopy installations that combine shading infrastructure with energy generation.",
+  },
+  {
+    title: "Ground-mounted & fixed-tilt systems",
+    desc: "Fixed-tilt PV systems engineered for maximum yield, land efficiency, and long-term reliability.",
+  },
+  {
+    title: "Single-axis tracker installations",
+    desc: "Tracker-based systems for utility-scale applications where additional generation yield justifies the investment.",
+  },
+  {
+    title: "Feasibility & generation modelling",
+    desc: "Bankable pre-development studies — resource assessment, P50/P90 generation modelling, and shadow analysis.",
+  },
+  {
+    title: "Electrical balance-of-plant design",
+    desc: "BOP electrical design based on local grid codes including SHAMS/D33 for Dubai BIPV systems.",
+  },
+  {
+    title: "Authority approvals & interconnection",
+    desc: "Full regulatory submission management, utility interconnection, and commissioning authority approvals.",
+  },
+  {
+    title: "Architectural BIPV",
+    desc: "Custom-designed solar facades, railings, canopies, and building-integrated modules for landmark architecture.",
+  },
+  {
+    title: "Operations & maintenance services",
+    desc: "Long-term O&M: performance monitoring, preventive maintenance, fault response, and yield reporting.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="solar-scope-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Scope of services</p>
+      <h2 id="solar-scope-title" class="fluid-h2 mt-3">What we deliver</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's solar EPC scope spans the full project lifecycle — from early-stage feasibility through to long-term asset operations and performance optimisation.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 reveal-stagger">
+      {items.map((it) => (
+        <li class="flex gap-3 rounded-xl bg-white ring-1 ring-primary/10 p-4 sm:p-5 hover:ring-accent/40 hover:shadow-card transition-all">
+          <span class="mt-2 inline-block h-[2px] w-4 bg-accent rounded-full shrink-0" aria-hidden="true"></span>
+          <div class="min-w-0">
+            <h3 class="text-sm sm:text-[15px] font-semibold text-primary-dark">{it.title}</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">{it.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

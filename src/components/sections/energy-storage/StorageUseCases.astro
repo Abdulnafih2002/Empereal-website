@@ -1,0 +1,95 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const cases = [
+  {
+    title: "Grid-connected solar + storage",
+    desc: "Peak shaving, load shifting, and grid stability support for commercial and industrial facilities — reducing demand charges and optimising self-consumption.",
+    icon: "grid",
+  },
+  {
+    title: "Off-grid & remote locations",
+    desc: "24/7 power for sites beyond grid reach — solar PV + BESS + controlled diesel backup, sized to eliminate or dramatically reduce diesel consumption.",
+    icon: "remote",
+  },
+  {
+    title: "CSP & thermal power plants",
+    desc: "Molten salt and accumulator storage for concentrating solar power — enabling dispatchable renewable electricity generation beyond daylight hours.",
+    icon: "csp",
+  },
+  {
+    title: "Desalination systems",
+    desc: "PCM thermal storage enabling round-the-clock solar desalination — continuous fresh water without fossil fuel backup or large battery arrays.",
+    icon: "desal",
+  },
+  {
+    title: "Industrial facilities",
+    desc: "Reliable solar power with storage for manufacturing — ensuring production continuity and eliminating exposure to grid outages.",
+    icon: "industry",
+  },
+  {
+    title: "Resorts & islands",
+    desc: "Fully renewable energy systems with storage for off-grid hospitality — eliminating diesel dependency and providing genuinely sustainable guest experiences.",
+    icon: "island",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="storage-cases-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Applications</p>
+      <h2 id="storage-cases-title" class="fluid-h2 mt-3">Six storage application sectors</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's energy storage solutions are deployed across six primary application contexts — from grid-connected commercial facilities to fully off-grid resorts and industrial sites.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+      {cases.map((c) => (
+        <li class="group rounded-xl bg-white ring-1 ring-primary/10 p-5 hover:ring-accent/40 hover:shadow-card transition-all">
+          <div class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent/15 text-accent-dark icon-lift">
+            {c.icon === "grid" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <path d="M2 12 L6 5 L9 9 L12 4 L18 12Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                <line x1="1" y1="16" x2="19" y2="16" stroke="currentColor" stroke-width="1.2"/>
+              </svg>
+            )}
+            {c.icon === "remote" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <path d="M10 2 Q14 6 14 10 A4 4 0 0 1 6 10 Q6 6 10 2Z" stroke="currentColor" stroke-width="1.4"/>
+              </svg>
+            )}
+            {c.icon === "csp" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <circle cx="10" cy="10" r="6" stroke="currentColor" stroke-width="1.4"/>
+                <path d="M10 5 Q13 8 13 10" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            )}
+            {c.icon === "desal" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <rect x="3" y="6" width="14" height="11" rx="1.4" stroke="currentColor" stroke-width="1.4"/>
+                <rect x="7" y="3" width="6" height="3" rx="1" fill="currentColor" opacity=".5"/>
+                <line x1="10" y1="9" x2="10" y2="14" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+              </svg>
+            )}
+            {c.icon === "industry" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <rect x="2" y="7" width="16" height="11" rx="1.4" stroke="currentColor" stroke-width="1.4"/>
+                <line x1="6" y1="7" x2="6" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                <line x1="14" y1="7" x2="14" y2="3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+              </svg>
+            )}
+            {c.icon === "island" && (
+              <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+                <path d="M3 14 Q4 10 6 10 L10 5 L14 10 Q16 10 17 14Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>
+                <line x1="2" y1="17" x2="18" y2="17" stroke="currentColor" stroke-width="1"/>
+              </svg>
+            )}
+          </div>
+          <h3 class="mt-4 text-base font-semibold text-primary-dark">{c.title}</h3>
+          <p class="mt-1.5 text-sm text-muted leading-relaxed">{c.desc}</p>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

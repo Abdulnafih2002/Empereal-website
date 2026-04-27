@@ -1,0 +1,65 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const items = [
+  {
+    title: "Solar thermal LFR desalination",
+    desc: "Design, fabrication, and installation of Linear Fresnel Reflector solar thermal fields driving MED desalination units.",
+  },
+  {
+    title: "PV-powered reverse osmosis (RO)",
+    desc: "Solar photovoltaic arrays powering reverse osmosis membranes — grid-connected and off-grid configurations.",
+  },
+  {
+    title: "Forward osmosis water treatment",
+    desc: "Low-energy forward osmosis systems for industrial effluent recovery and water reuse applications.",
+  },
+  {
+    title: "Solar-biomass hybrid desalination",
+    desc: "Round-the-clock fresh water production combining solar thermal with biomass backup — no fossil fuel dependency.",
+  },
+  {
+    title: "Flue gas waste heat recovery",
+    desc: "Industrial desalination using waste heat from power plant flue gas — converting a by-product into ultra-pure process water.",
+  },
+  {
+    title: "Industrial effluent recycling",
+    desc: "Cooling tower blowdown treatment, boiler feedwater production, and industrial wastewater reuse systems.",
+  },
+  {
+    title: "Standalone & off-grid systems",
+    desc: "Decentralised community-scale water production for locations with no grid access or unreliable power.",
+  },
+  {
+    title: "Design, integration & commissioning",
+    desc: "Full EPC scope from source water analysis and detailed engineering through commissioning and authority approvals.",
+  },
+  {
+    title: "Long-term O&M",
+    desc: "Performance monitoring, preventive maintenance, membrane management, and water quality reporting for commissioned plants.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="water-scope-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Scope of services</p>
+      <h2 id="water-scope-title" class="fluid-h2 mt-3">What we deliver</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's water and desalination scope covers the full project lifecycle — from initial source water analysis through design, EPC, commissioning, and long-term O&amp;M.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 reveal-stagger">
+      {items.map((it) => (
+        <li class="flex gap-3 rounded-xl bg-white ring-1 ring-primary/10 p-4 sm:p-5 hover:ring-accent/40 hover:shadow-card transition-all">
+          <span class="mt-2 inline-block h-[2px] w-4 bg-accent rounded-full shrink-0" aria-hidden="true"></span>
+          <div class="min-w-0">
+            <h3 class="text-sm sm:text-[15px] font-semibold text-primary-dark">{it.title}</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">{it.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

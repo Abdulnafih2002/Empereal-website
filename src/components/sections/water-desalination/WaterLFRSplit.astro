@@ -1,0 +1,67 @@
+---
+import Container from "../../primitives/Container.astro";
+import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+
+const checks = [
+  "Product water quality: < 5 ppm (ultra-pure)",
+  "Steam temperature: 98°C from solar field alone",
+  "24/7 operation via phase-change thermal storage",
+  "Zero fossil fuel input — fully renewable operation",
+  "Scalable: 20,000 to 150,000+ litres per day per plant",
+];
+
+const tags = ["Seawater", "Brackish water", "Industrial effluent", "Thermal storage"];
+---
+<section class="section-pad bg-white" aria-labelledby="water-lfr-title">
+  <Container>
+    <div class="grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="group order-2 lg:order-1 reveal-left">
+        <ImagePlaceholder
+          src="/images/solutions/lfr-field.jpg"
+          alt="Linear Fresnel Reflector field at MASDAR, Abu Dhabi"
+          aspect="4/3"
+          tone="ocean"
+          label="LFR Field — MASDAR, Abu Dhabi"
+          class="shadow-card-lg"
+        >
+          <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-[#0B2338]/85 via-[#0B2338]/40 to-transparent pointer-events-none">
+            <p class="text-xs text-white/70 uppercase tracking-[0.14em]">Linear Fresnel Reflector</p>
+            <p class="mt-1 text-base lg:text-lg font-semibold text-white">MASDAR — Abu Dhabi · 40,000 L/day</p>
+          </div>
+        </ImagePlaceholder>
+      </div>
+
+      <div class="order-1 lg:order-2 reveal-right">
+        <p class="eyebrow">Patented LFR Technology</p>
+        <h2 id="water-lfr-title" class="fluid-h2 mt-3">Direct steam generation for continuous desalination.</h2>
+        <p class="fluid-lead mt-5 text-muted">
+          Empereal's patented Linear Fresnel Reflector technology generates direct saturated steam at 98°C from concentrated solar radiation — eliminating heat transfer fluids and reducing system complexity. The steam directly drives multi-effect distillation units, producing ultra-pure water at less than 5 ppm.
+        </p>
+        <p class="mt-4 text-muted leading-relaxed">
+          Thermal energy storage using phase-change materials ensures uninterrupted desalination even when solar irradiance is unavailable — enabling true 24/7 fresh water production from renewable energy.
+        </p>
+
+        <ul class="mt-7 space-y-3">
+          {checks.map((c) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent shrink-0">
+                <svg viewBox="0 0 10 10" class="h-2.5 w-2.5" fill="none" aria-hidden="true">
+                  <path d="M2 5l2 2 4-4" stroke="#11243C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="text-[15px] text-ink/80 leading-relaxed">{c}</span>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </Container>
+</section>

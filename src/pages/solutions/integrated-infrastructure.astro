@@ -1,0 +1,32 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SolutionsSubNav from "../../components/sections/solutions/SolutionsSubNav.astro";
+import IntegratedHero from "../../components/sections/integrated/IntegratedHero.astro";
+import IntegratedIntro from "../../components/sections/integrated/IntegratedIntro.astro";
+import IntegratedSystemDiagram from "../../components/sections/integrated/IntegratedSystemDiagram.astro";
+import IntegratedScope from "../../components/sections/integrated/IntegratedScope.astro";
+import IntegratedAdvantageSplit from "../../components/sections/integrated/IntegratedAdvantageSplit.astro";
+import IntegratedFeaturedProjects from "../../components/sections/integrated/IntegratedFeaturedProjects.astro";
+import IntegratedExperienceTable from "../../components/sections/integrated/IntegratedExperienceTable.astro";
+import IntegratedUseCases from "../../components/sections/integrated/IntegratedUseCases.astro";
+import IntegratedDeliverySteps from "../../components/sections/integrated/IntegratedDeliverySteps.astro";
+import CertificationsBar from "../../components/sections/solutions/CertificationsBar.astro";
+import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro";
+---
+<BaseLayout
+  title="Integrated Energy Infrastructure — Empereal Energy Solutions"
+  description="Hybrid systems combining solar PV, solar thermal, energy storage, desalination, and backup power into unified, always-on infrastructure — designed, built, and operated by Empereal from end to end."
+>
+  <SolutionsSubNav active="integrated" breadcrumb="Integrated Energy Infrastructure" />
+  <IntegratedHero />
+  <IntegratedIntro />
+  <IntegratedSystemDiagram />
+  <IntegratedScope />
+  <IntegratedAdvantageSplit />
+  <IntegratedFeaturedProjects />
+  <IntegratedExperienceTable />
+  <IntegratedUseCases />
+  <IntegratedDeliverySteps />
+  <CertificationsBar />
+  <SolutionsCTA />
+</BaseLayout>

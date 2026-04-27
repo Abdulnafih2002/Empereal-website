@@ -1,0 +1,95 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const rows = [
+  {
+    type: "Battery BESS",
+    energy: "Electrical",
+    duration: "2–6 hrs typical",
+    offgrid: "yes",
+    thermal: "no",
+    best: "PV + BESS off-grid, peak shaving, EV charging",
+  },
+  {
+    type: "PCM Thermal (Patented)",
+    energy: "Thermal heat",
+    duration: "4+ hrs",
+    offgrid: "partial",
+    thermal: "yes",
+    best: "Solar desalination, process heat, CSP augmentation",
+  },
+  {
+    type: "Molten Salt",
+    energy: "Thermal heat",
+    duration: "6–15 hrs",
+    offgrid: "partial",
+    thermal: "yes",
+    best: "Large-scale CSP plants, industrial process heat",
+  },
+  {
+    type: "Accumulator (Steam)",
+    energy: "Thermal / Steam",
+    duration: "4+ hrs",
+    offgrid: "partial",
+    thermal: "yes",
+    best: "Steam-generating solar thermal plants and desalination",
+  },
+];
+
+const pillClass = (state: string) => {
+  if (state === "yes") return "bg-success/10 border-success/30 text-success-dark";
+  if (state === "partial") return "bg-accent/10 border-accent/30 text-accent-dark";
+  return "bg-muted/10 border-muted/20 text-muted";
+};
+const pillLabel = (state: string) => {
+  if (state === "yes") return "✓ Yes";
+  if (state === "partial") return "Thermal only";
+  return "No";
+};
+---
+<section class="section-pad bg-white" aria-labelledby="storage-compare-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Technology comparison</p>
+      <h2 id="storage-compare-title" class="fluid-h2 mt-3">Selecting the right storage technology</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal selects and designs the appropriate storage technology based on the specific energy type (electrical or thermal), duration requirement, and application.
+      </p>
+    </div>
+
+    <div class="mt-10 overflow-x-auto rounded-xl ring-1 ring-primary/10 reveal">
+      <table class="w-full text-sm border-collapse min-w-[760px]">
+        <thead class="bg-primary-dark text-white">
+          <tr>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Storage type</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Energy form</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Duration</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Off-grid</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Thermal loads</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Best application</th>
+          </tr>
+        </thead>
+        <tbody class="reveal-stagger">
+          {rows.map((r) => (
+            <tr class="border-t border-primary/5 even:bg-surface hover:bg-accent/5 transition-colors">
+              <td class="px-4 py-3 font-semibold text-primary-dark align-top">{r.type}</td>
+              <td class="px-4 py-3 text-muted align-top">{r.energy}</td>
+              <td class="px-4 py-3 text-muted align-top whitespace-nowrap">{r.duration}</td>
+              <td class="px-4 py-3 align-top">
+                <span class={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border ${pillClass(r.offgrid)}`}>
+                  {pillLabel(r.offgrid)}
+                </span>
+              </td>
+              <td class="px-4 py-3 align-top">
+                <span class={`inline-block text-[10px] font-semibold px-2 py-0.5 rounded-full border ${pillClass(r.thermal)}`}>
+                  {pillLabel(r.thermal)}
+                </span>
+              </td>
+              <td class="px-4 py-3 text-muted leading-relaxed align-top">{r.best}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </Container>
+</section>

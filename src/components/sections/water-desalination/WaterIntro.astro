@@ -1,0 +1,29 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const recognitions = [
+  { num: "MIT 2011", lbl: "Top 8 Technology Innovations" },
+  { num: "FICCI 2014", lbl: "National Innovation Award" },
+  { num: "< 5 ppm", lbl: "Ultra-pure product water" },
+];
+---
+<section class="bg-white" aria-labelledby="water-intro-title">
+  <Container>
+    <div class="max-w-3xl mx-auto text-center pt-16 sm:pt-20 lg:pt-24 pb-10 reveal">
+      <p class="eyebrow">Pioneers in solar desalination</p>
+      <h2 id="water-intro-title" class="fluid-h2 mt-3">One of the few global firms delivering both renewable power and sustainable water.</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Water scarcity is one of the defining infrastructure challenges of rapidly growing economies. Empereal is one of the few global clean energy firms with both power and water in its solutions portfolio. We design and implement solar-powered desalination systems that produce ultra-pure water without reliance on fossil fuels.
+      </p>
+    </div>
+
+    <div class="grid gap-3 sm:grid-cols-3 max-w-3xl mx-auto pb-16 sm:pb-20 lg:pb-24 reveal-stagger">
+      {recognitions.map((r) => (
+        <div class="rounded-xl bg-white ring-1 ring-primary/10 px-5 py-5 text-center hover:ring-accent/40 hover:shadow-card transition-all">
+          <div class="text-lg font-semibold text-accent-dark">{r.num}</div>
+          <div class="mt-1 text-xs text-muted">{r.lbl}</div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

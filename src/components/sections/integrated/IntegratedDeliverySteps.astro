@@ -1,0 +1,50 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const steps = [
+  {
+    n: "1",
+    title: "System architecture & feasibility",
+    desc: "Load profiling, solar resource assessment, technology selection, and integrated system modelling — power and water together.",
+  },
+  {
+    n: "2",
+    title: "Integrated engineering",
+    desc: "Detailed multi-discipline engineering — electrical, mechanical, civil, controls — across all generation, storage, and distribution subsystems.",
+  },
+  {
+    n: "3",
+    title: "Procurement & construction",
+    desc: "Coordinated procurement and construction management across all components — a single construction programme, one site team.",
+  },
+  {
+    n: "4",
+    title: "Commissioning & O&M",
+    desc: "Integrated system commissioning, EMS configuration, performance testing, and long-term O&M across the full integrated asset.",
+  },
+];
+---
+<section class="section-pad bg-primary-dark text-white" aria-labelledby="integrated-delivery-title">
+  <Container>
+    <div class="text-center max-w-2xl mx-auto reveal">
+      <p class="eyebrow !text-accent">How we deliver</p>
+      <h2 id="integrated-delivery-title" class="fluid-h2 mt-3 text-white">Our integrated system delivery process</h2>
+      <p class="fluid-lead mt-5 text-white/60">
+        Integration begins at the design stage — not on site. Every subsystem is specified to work within the unified energy system from day one.
+      </p>
+    </div>
+
+    <ol class="mt-12 grid gap-8 sm:gap-4 sm:grid-cols-2 lg:grid-cols-4 relative reveal-stagger">
+      <span aria-hidden="true" class="hidden lg:block absolute top-[18px] left-[12.5%] right-[12.5%] h-px bg-accent/25"></span>
+      {steps.map((s) => (
+        <li class="flex flex-col items-center text-center px-2 relative">
+          <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-accent text-primary-dark font-semibold shadow-md shadow-accent/30 ring-4 ring-primary-dark">
+            {s.n}
+          </span>
+          <h3 class="mt-4 text-sm font-semibold text-white">{s.title}</h3>
+          <p class="mt-1.5 text-xs text-white/50 leading-relaxed">{s.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </Container>
+</section>

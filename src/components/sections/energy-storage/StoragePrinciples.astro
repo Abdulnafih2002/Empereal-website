@@ -1,0 +1,42 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const principles = [
+  {
+    n: "01",
+    title: "System integration first",
+    body: "Storage is designed as part of the overall energy system, not as an add-on component. Thermal and electrical storage are sized and optimised for the specific application — load profile, solar resource, and dispatch requirements.",
+  },
+  {
+    n: "02",
+    title: "Patented thermal storage",
+    body: "Our phase-change material storage systems provide reliable thermal energy storage at a fraction of the cost of battery storage for equivalent thermal applications — proprietary technology proven in operational plants.",
+  },
+  {
+    n: "03",
+    title: "Intelligent management",
+    body: "Real-time energy management systems monitor generation, storage levels, and demand to optimise dispatch and ensure uninterrupted supply — whether grid-connected, off-grid, or hybrid.",
+  },
+];
+---
+<section class="section-pad bg-[#0F2238] text-white" aria-labelledby="storage-principles-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow !text-accent">Engineering principles</p>
+      <h2 id="storage-principles-title" class="fluid-h2 mt-3 text-white">Three principles guiding every storage system</h2>
+      <p class="fluid-lead mt-5 text-white/60">
+        Storage is not a product — it is a system design decision. Empereal's approach ensures every storage solution is correctly specified, integrated, and managed for its specific application.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 md:grid-cols-3 reveal-stagger">
+      {principles.map((p) => (
+        <li class="rounded-2xl bg-white/[0.04] border border-white/10 p-6 hover:bg-white/[0.07] hover:border-accent/30 transition-all">
+          <div class="text-3xl font-semibold text-accent/30 leading-none">{p.n}</div>
+          <h3 class="mt-3 text-base font-semibold text-white">{p.title}</h3>
+          <p class="mt-2 text-sm text-white/55 leading-relaxed">{p.body}</p>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

@@ -29,8 +29,9 @@ const features = [
 
     <div class="mt-12 lg:mt-16 grid gap-5 lg:grid-cols-[1.2fr_1fr_1fr] lg:items-stretch reveal-stagger">
       <!-- Featured card: End-to-End Solar EPC -->
-      <article class="group relative overflow-hidden rounded-2xl bg-primary-dark text-white shadow-card min-h-[360px] lg:min-h-[440px]">
-        <div class="absolute inset-0">
+      <article class="group relative overflow-hidden rounded-2xl bg-primary-dark text-white shadow-card hover:shadow-card-lg transition-all duration-300 hover:-translate-y-1 min-h-[360px] lg:min-h-[440px]">
+        <!-- Hover image layer — image only appears on hover, like the other cards -->
+        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ease-out pointer-events-none">
           <img
             src="/images/feature-epc.jpg"
             alt=""
@@ -39,8 +40,8 @@ const features = [
             decoding="async"
             onerror="this.remove()"
           />
-          <div class="absolute inset-0 bg-gradient-to-br from-primary-dark via-primary/70 to-success/40" aria-hidden="true"></div>
-          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/85 via-primary-dark/30 to-transparent" aria-hidden="true"></div>
+          <div class="absolute inset-0 bg-gradient-to-br from-primary-dark/70 via-primary/50 to-success/30" aria-hidden="true"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/75 via-primary-dark/20 to-transparent" aria-hidden="true"></div>
         </div>
 
         <div class="relative flex h-full flex-col justify-between p-6 lg:p-8">

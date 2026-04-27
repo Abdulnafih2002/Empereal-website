@@ -1,0 +1,66 @@
+---
+import Container from "../../primitives/Container.astro";
+import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+import { projects } from "../../../data/projects.ts";
+
+const slugs = ["luxglamp-resort", "diamond-bakery", "masdar-desalination", "ntpc-flue-gas"];
+const featured = slugs
+  .map((s) => projects.find((p) => p.slug === s))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const tagFor: Record<string, string> = {
+  "luxglamp-resort": "Off-grid Resort · Solar PV · Storage · Backup",
+  "diamond-bakery": "Commercial · Solar PV · Storage · Cooling",
+  "masdar-desalination": "Solar Thermal · Thermal Storage · Desalination",
+  "ntpc-flue-gas": "Waste Heat Recovery · Industrial · Desalination",
+};
+---
+<section class="section-pad bg-[#0F2238] text-white" aria-labelledby="integrated-featured-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow !text-accent">Selected experience</p>
+      <h2 id="integrated-featured-title" class="fluid-h2 mt-3 text-white">Integrated systems — delivered</h2>
+      <p class="fluid-lead mt-5 text-white/60">
+        Four commissioned integrated energy and water projects demonstrating the breadth of Empereal's full-system delivery capability.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-4 md:grid-cols-2 reveal-stagger">
+      {featured.map((p) => (
+        <li class="group rounded-2xl bg-white text-ink overflow-hidden ring-1 ring-white/5 hover:-translate-y-1 hover:shadow-card-lg transition-all">
+          <ImagePlaceholder
+            src={p.image}
+            alt={p.imageAlt ?? p.title}
+            aspect="3/1.4"
+            tone={p.tone}
+            label={`${p.title} — ${p.location}`}
+            rounded="rounded-none"
+          >
+            <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-primary-dark/80 backdrop-blur-sm px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] text-white">
+              {p.country}
+            </span>
+          </ImagePlaceholder>
+
+          <div class="p-5 lg:p-6">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.07em] text-accent-dark">{tagFor[p.slug]}</p>
+            <h3 class="mt-1.5 text-base font-semibold text-primary-dark">{p.title}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{p.summary}</p>
+
+            <dl class="mt-4 grid gap-1.5 pt-4 border-t border-primary/10 text-[12px]">
+              <div class="flex gap-2">
+                <dt class="text-muted min-w-[64px] shrink-0">Systems</dt>
+                <dd class="font-medium text-primary-dark">{p.scope}</dd>
+              </div>
+              {p.scale !== "—" && (
+                <div class="flex gap-2">
+                  <dt class="text-muted min-w-[64px] shrink-0">Output</dt>
+                  <dd class="font-medium text-primary-dark">{p.scale}</dd>
+                </div>
+              )}
+            </dl>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

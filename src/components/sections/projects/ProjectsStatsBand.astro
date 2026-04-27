@@ -1,0 +1,27 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const stats = [
+  { num: "650+ MWp", lbl: "Solar Capacity Installed" },
+  { num: "200+", lbl: "Projects Delivered" },
+  { num: "15+", lbl: "Years of Operation" },
+  { num: "6", lbl: "Countries Active" },
+];
+---
+<section class="bg-primary-dark text-white border-t border-accent/15" aria-label="Portfolio statistics">
+  <Container>
+    <dl class="grid grid-cols-2 lg:grid-cols-4 reveal-stagger">
+      {stats.map((s, i) => (
+        <div class:list={[
+          "py-7 px-5 text-center",
+          i < stats.length - 1 ? "lg:border-r border-white/[0.07]" : "",
+          i % 2 === 0 ? "border-r border-white/[0.07] lg:border-r" : "",
+          i < 2 ? "border-b border-white/[0.07] lg:border-b-0" : "",
+        ]}>
+          <dt class="text-2xl lg:text-3xl font-semibold text-accent leading-none">{s.num}</dt>
+          <dd class="mt-2 text-[11px] text-white/45 uppercase tracking-[0.08em]">{s.lbl}</dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+</section>

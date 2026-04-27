@@ -1,0 +1,96 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const kpis = [
+  "Patented phase-change thermal storage",
+  "BESS integrated with solar PV",
+  "24/7 operation — off-grid & grid-tied",
+  "Molten salt & accumulator CSP storage",
+];
+---
+<section
+  class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
+  aria-labelledby="storage-hero-title"
+>
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/images/hero-solar.jpg"
+      alt=""
+      class="h-full w-full object-cover opacity-90"
+      loading="eager"
+      decoding="async"
+      onerror="this.remove()"
+    />
+    <div class="absolute inset-0 bg-gradient-to-l from-primary-dark/95 via-primary-dark/75 to-primary-dark/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/70 via-transparent to-transparent"></div>
+    <div class="absolute -top-32 -right-32 h-[460px] w-[460px] rounded-full bg-accent/20 blur-[140px] animate-pulse-glow"></div>
+
+    <div class="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 w-[380px] h-[360px] opacity-[0.10] animate-float">
+      <svg width="100%" height="100%" viewBox="0 0 240 220" fill="none" preserveAspectRatio="xMidYMid meet">
+        <rect x="70" y="40" width="100" height="140" rx="6" stroke="#F5B82E" stroke-width=".8"/>
+        <rect x="70" y="40" width="100" height="28" rx="6" stroke="#F5B82E" stroke-width=".8" fill="rgba(245,166,35,.05)"/>
+        <rect x="70" y="76" width="100" height="28" stroke="#F5B82E" stroke-width=".5" fill="rgba(245,166,35,.04)"/>
+        <rect x="70" y="112" width="100" height="28" stroke="#F5B82E" stroke-width=".5" fill="rgba(245,166,35,.03)"/>
+        <rect x="70" y="148" width="100" height="28" stroke="#F5B82E" stroke-width=".4"/>
+        <rect x="100" y="28" width="18" height="12" rx="3" stroke="#F5B82E" stroke-width=".8"/>
+        <rect x="122" y="28" width="18" height="12" rx="3" stroke="#F5B82E" stroke-width=".8"/>
+        <path d="M132 48 L126 60 L131 60 L125 72 L137 56 L131 56 Z" fill="#F5B82E" opacity=".6"/>
+      </svg>
+    </div>
+  </div>
+
+  <Container class="relative flex-1 flex items-center">
+    <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
+      <p class="eyebrow !text-white hero-enter hero-enter-1">Energy Storage Systems · Electrical &amp; Thermal</p>
+      <h1 id="storage-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
+        Store energy.<br/>
+        <span class="text-accent">Maintain supply. Operate continuously.</span>
+      </h1>
+      <p class="fluid-lead mt-6 text-white/80 max-w-2xl hero-enter hero-enter-3">
+        Intelligent battery energy storage and patented thermal storage solutions — designed to bridge solar intermittency and ensure continuous power and heat availability, around the clock.
+      </p>
+
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3 w-full sm:max-w-xl hero-enter hero-enter-4">
+        <a
+          href="#footer"
+          class="press group flex items-center justify-center gap-2 rounded-md bg-accent hover:bg-accent-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-dark transition-colors min-h-[48px] shadow-lg shadow-accent/20 text-center"
+        >
+          Request a Technical Consultation
+          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide shrink-0" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a
+          href="/projects?filter=storage"
+          class="press flex items-center justify-center gap-2 rounded-md border border-white/25 bg-white/5 hover:bg-white/10 px-6 py-3.5 text-sm sm:text-base text-white transition-colors min-h-[48px] text-center"
+        >
+          View Storage Projects
+        </a>
+      </div>
+
+      <ul class="mt-10 flex flex-wrap gap-2 hero-enter hero-enter-4">
+        {kpis.map((k) => (
+          <li class="inline-flex items-center gap-2 rounded-md bg-white/[0.05] border border-white/10 px-3 py-2 text-[11px] text-white/70">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
+            {k}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .page-hero {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+    min-height: calc(100dvh - 6rem);
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+      min-height: calc(100dvh - 7rem);
+    }
+  }
+</style>

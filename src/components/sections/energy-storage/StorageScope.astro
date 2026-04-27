@@ -1,0 +1,61 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const items = [
+  {
+    title: "Battery energy storage systems (BESS)",
+    desc: "BESS design, integration, and commissioning paired with solar PV arrays — grid-connected and off-grid configurations.",
+  },
+  {
+    title: "Intelligent energy management systems",
+    desc: "Real-time EMS monitoring generation, storage levels, and demand — optimising dispatch and ensuring uninterrupted supply.",
+  },
+  {
+    title: "Patented PCM thermal storage",
+    desc: "Phase-change material thermal storage providing 4+ hour duration for process heat, desalination, and CSP applications.",
+  },
+  {
+    title: "Molten salt thermal storage",
+    desc: "High-temperature molten salt storage for concentrating solar power (CSP) plants requiring extended dispatchability.",
+  },
+  {
+    title: "Accumulator-based thermal storage",
+    desc: "Pressurised accumulator systems providing 4+ hour thermal storage for steam-generating solar thermal plants.",
+  },
+  {
+    title: "Off-grid hybrid system design",
+    desc: "Solar PV + BESS + diesel backup for off-grid sites — sized to eliminate or minimise diesel consumption.",
+  },
+  {
+    title: "Standalone & grid-connected configurations",
+    desc: "Storage engineered for both isolated off-grid operation and grid-connected peak shaving / arbitrage applications.",
+  },
+  {
+    title: "Design, integration & commissioning",
+    desc: "Full EPC scope from storage system sizing and selection through integration, commissioning, and testing.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="storage-scope-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Scope of services</p>
+      <h2 id="storage-scope-title" class="fluid-h2 mt-3">What we deliver</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's energy storage scope spans both electrical and thermal systems — from concept design through integration, commissioning, and long-term O&amp;M.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-3 sm:grid-cols-2 reveal-stagger">
+      {items.map((it) => (
+        <li class="flex gap-3 rounded-xl bg-white ring-1 ring-primary/10 p-4 sm:p-5 hover:ring-accent/40 hover:shadow-card transition-all">
+          <span class="mt-2 inline-block h-[2px] w-4 bg-accent rounded-full shrink-0" aria-hidden="true"></span>
+          <div class="min-w-0">
+            <h3 class="text-sm sm:text-[15px] font-semibold text-primary-dark">{it.title}</h3>
+            <p class="mt-1.5 text-sm text-muted leading-relaxed">{it.desc}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

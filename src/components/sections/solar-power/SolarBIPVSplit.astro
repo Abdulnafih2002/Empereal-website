@@ -1,0 +1,67 @@
+---
+import Container from "../../primitives/Container.astro";
+import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+
+const checks = [
+  "IEC 61730 & IEC 61215 solar module certification",
+  "Building material certifications: C1048, E2353, E935, E1886",
+  "Dubai SHAMS/D33 compliant system design",
+  "Net-zero building sustainability rating support",
+  "40+ BIPV projects at Expo 2020 Dubai alone",
+];
+
+const tags = ["Facades", "Rooftops", "Railings", "Canopies", "Custom modules", "Net-zero rated"];
+---
+<section class="section-pad bg-white" aria-labelledby="solar-bipv-title">
+  <Container>
+    <div class="grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="reveal-left">
+        <p class="eyebrow">Architectural BIPV</p>
+        <h2 id="solar-bipv-title" class="fluid-h2 mt-3">Solar as architecture, not an afterthought.</h2>
+        <p class="fluid-lead mt-5 text-muted">
+          Empereal is one of a small number of global firms with the engineering capability to design, certify, and install building-integrated photovoltaic systems that are simultaneously high-performance generators and integral architectural elements.
+        </p>
+        <p class="mt-4 text-muted leading-relaxed">
+          Our BIPV work spans facades, roofs, railings, canopies, and bespoke solar elements engineered to meet IEC module certification standards and building-code requirements simultaneously.
+        </p>
+
+        <ul class="mt-7 space-y-3">
+          {checks.map((c) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent shrink-0">
+                <svg viewBox="0 0 10 10" class="h-2.5 w-2.5" fill="none" aria-hidden="true">
+                  <path d="M2 5l2 2 4-4" stroke="#11243C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="text-[15px] text-ink/80 leading-relaxed">{c}</span>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="group reveal-right">
+        <ImagePlaceholder
+          src="/images/feature-epc.jpg"
+          alt="DEWA HQ — 5,012 kWp BIPV — World's largest net-zero building"
+          aspect="4/3"
+          tone="navy"
+          label="DEWA HQ — 5,012 kWp BIPV"
+          class="shadow-card-lg"
+        >
+          <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-primary-dark/85 via-primary-dark/40 to-transparent pointer-events-none">
+            <p class="text-xs text-white/70 uppercase tracking-[0.14em]">Featured</p>
+            <p class="mt-1 text-base lg:text-lg font-semibold text-white">DEWA HQ — World's largest net-zero building</p>
+          </div>
+        </ImagePlaceholder>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,79 @@
+---
+import Container from "../../primitives/Container.astro";
+import { projects, categoryLabels } from "../../../data/projects.ts";
+
+const slugs = [
+  "dewa-hq-jadaf",
+  "zamani-islands-resort",
+  "uae-pavilion-expo-2020",
+  "rta-depots",
+  "nlc-110mw",
+  "charanka-solar-park",
+  "karnataka-32mw",
+  "masdar-mc2",
+  "igi-airport-sunsource",
+  "capital-towers",
+  "jeddah-oceanarium",
+  "solar-portrait-dewa",
+];
+
+const rows = slugs
+  .map((s) => projects.find((p) => p.slug === s))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+---
+<section class="section-pad bg-white" aria-labelledby="solar-exp-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Selected experience</p>
+      <h2 id="solar-exp-title" class="fluid-h2 mt-3">Project track record</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        A selection of Empereal's commissioned solar PV and BIPV projects across Asia, the Middle East, and beyond — spanning architectural integrations, utility-scale farms, and transport infrastructure.
+      </p>
+    </div>
+
+    <div class="mt-10 overflow-x-auto rounded-xl ring-1 ring-primary/10 reveal">
+      <table class="w-full text-sm border-collapse min-w-[720px]">
+        <thead class="bg-primary-dark text-white">
+          <tr>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Project</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Location</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Scale</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Category</th>
+            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Scope</th>
+          </tr>
+        </thead>
+        <tbody class="reveal-stagger">
+          {rows.map((p) => (
+            <tr class="border-t border-primary/5 even:bg-surface hover:bg-accent/5 transition-colors">
+              <td class="px-4 py-3 font-semibold text-primary-dark align-top">{p.title}</td>
+              <td class="px-4 py-3 align-top">
+                <span class="inline-block rounded-full bg-primary/[0.06] border border-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary-dark">
+                  {p.location}
+                </span>
+              </td>
+              <td class="px-4 py-3 font-semibold text-primary-dark align-top whitespace-nowrap">{p.scale}</td>
+              <td class="px-4 py-3 align-top">
+                <div class="flex flex-wrap gap-1">
+                  {p.categories.map((c) => (
+                    <span class="text-[10px] font-semibold uppercase tracking-[0.06em] px-2 py-0.5 rounded border border-accent/30 text-accent-dark bg-accent-soft">{categoryLabels[c]}</span>
+                  ))}
+                </div>
+              </td>
+              <td class="px-4 py-3 text-muted leading-relaxed align-top">{p.scope}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p class="mt-6 text-sm text-muted">
+      Full project portfolio available on the
+      <a href="/projects" class="text-accent-dark font-semibold hover:text-accent transition-colors group inline-flex items-center gap-1">
+        Projects page
+        <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 arrow-slide" fill="none" aria-hidden="true">
+          <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </p>
+  </Container>
+</section>

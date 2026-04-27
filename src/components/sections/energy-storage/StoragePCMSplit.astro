@@ -1,0 +1,66 @@
+---
+import Container from "../../primitives/Container.astro";
+import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+
+const checks = [
+  "Stores heat at precisely controlled phase-change temperatures",
+  "4+ hour thermal storage duration — no battery required",
+  "Fraction of the cost of equivalent electrical storage",
+  "Enables 24/7 desalination and process heat — zero fossil fuel",
+  "Proprietary Empereal technology — patented and operational",
+];
+const tags = ["Desalination", "Process heat", "CSP integration", "Off-grid", "Patented"];
+---
+<section class="section-pad bg-white" aria-labelledby="storage-pcm-title">
+  <Container>
+    <div class="grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
+      <div class="reveal-left">
+        <p class="eyebrow">Patented PCM Thermal Storage</p>
+        <h2 id="storage-pcm-title" class="fluid-h2 mt-3">Continuous solar heat — day and night.</h2>
+        <p class="fluid-lead mt-5 text-muted">
+          Empereal's phase-change material thermal storage system is a patented innovation that addresses the fundamental limitation of solar thermal systems: intermittency. By storing heat in materials that change phase at precisely defined temperatures, the system releases a consistent, controlled heat output over extended periods — even after sunset or during cloud cover.
+        </p>
+        <p class="mt-4 text-muted leading-relaxed">
+          This technology is integral to Empereal's solar desalination systems, enabling round-the-clock fresh water production without battery storage or fossil fuel backup — at a fraction of the capital cost of equivalent electrical storage.
+        </p>
+
+        <ul class="mt-7 space-y-3">
+          {checks.map((c) => (
+            <li class="flex items-start gap-3">
+              <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent shrink-0">
+                <svg viewBox="0 0 10 10" class="h-2.5 w-2.5" fill="none" aria-hidden="true">
+                  <path d="M2 5l2 2 4-4" stroke="#11243C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+              <span class="text-[15px] text-ink/80 leading-relaxed">{c}</span>
+            </li>
+          ))}
+        </ul>
+
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {tags.map((t) => (
+            <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
+              {t}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="group reveal-right">
+        <ImagePlaceholder
+          src="/images/solutions/pcm-storage.jpg"
+          alt="PCM thermal storage system integrated with solar LFR field"
+          aspect="4/3"
+          tone="navy"
+          label="PCM thermal storage + BESS with EMS"
+          class="shadow-card-lg"
+        >
+          <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-primary-dark/85 via-primary-dark/40 to-transparent pointer-events-none">
+            <p class="text-xs text-white/70 uppercase tracking-[0.14em]">Patented Empereal technology</p>
+            <p class="mt-1 text-base lg:text-lg font-semibold text-white">PCM thermal + BESS with intelligent EMS</p>
+          </div>
+        </ImagePlaceholder>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,34 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SolutionsSubNav from "../../components/sections/solutions/SolutionsSubNav.astro";
+import StorageHero from "../../components/sections/energy-storage/StorageHero.astro";
+import StorageIntro from "../../components/sections/energy-storage/StorageIntro.astro";
+import StorageTypeCards from "../../components/sections/energy-storage/StorageTypeCards.astro";
+import StoragePCMSplit from "../../components/sections/energy-storage/StoragePCMSplit.astro";
+import StorageScope from "../../components/sections/energy-storage/StorageScope.astro";
+import StoragePrinciples from "../../components/sections/energy-storage/StoragePrinciples.astro";
+import StorageComparisonTable from "../../components/sections/energy-storage/StorageComparisonTable.astro";
+import StorageUseCases from "../../components/sections/energy-storage/StorageUseCases.astro";
+import StorageDeliverySteps from "../../components/sections/energy-storage/StorageDeliverySteps.astro";
+import StoragePatentBar from "../../components/sections/energy-storage/StoragePatentBar.astro";
+import CertificationsBar from "../../components/sections/solutions/CertificationsBar.astro";
+import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro";
+---
+<BaseLayout
+  title="Energy Storage Systems — Empereal Energy Solutions"
+  description="Intelligent battery energy storage and patented phase-change thermal storage solutions — designed to bridge solar intermittency and ensure continuous power and heat availability, around the clock."
+>
+  <SolutionsSubNav active="storage" breadcrumb="Energy Storage Systems" />
+  <StorageHero />
+  <StorageIntro />
+  <StorageTypeCards />
+  <StoragePCMSplit />
+  <StorageScope />
+  <StoragePrinciples />
+  <StorageComparisonTable />
+  <StorageUseCases />
+  <StorageDeliverySteps />
+  <StoragePatentBar />
+  <CertificationsBar />
+  <SolutionsCTA />
+</BaseLayout>

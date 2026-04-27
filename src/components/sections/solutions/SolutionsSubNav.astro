@@ -1,0 +1,60 @@
+---
+import Container from "../../primitives/Container.astro";
+
+interface Props {
+  active?: "solar" | "water" | "storage" | "integrated" | "bipv" | "hydrogen";
+  breadcrumb?: string;
+}
+
+const { active, breadcrumb } = Astro.props;
+
+const items = [
+  { key: "solar", label: "Solar Power Systems", href: "/solutions/solar-power-systems" },
+  { key: "water", label: "Water & Desalination", href: "/solutions/water-desalination" },
+  { key: "storage", label: "Energy Storage", href: "/solutions/energy-storage" },
+  { key: "integrated", label: "Integrated Infrastructure", href: "/solutions/integrated-infrastructure" },
+  { key: "bipv", label: "Architectural BIPV", href: "/solutions" },
+  { key: "hydrogen", label: "Green Hydrogen", href: "/solutions" },
+];
+---
+<nav aria-label="Breadcrumb" class="bg-primary-dark/95 border-b border-white/5">
+  <Container class="flex items-center gap-2 py-2.5 text-xs">
+    <a href="/" class="text-white/55 hover:text-white/90 transition-colors">Home</a>
+    <span class="text-white/30" aria-hidden="true">›</span>
+    <a href="/solutions" class="text-white/55 hover:text-white/90 transition-colors">Solutions</a>
+    {breadcrumb && (
+      <>
+        <span class="text-white/30" aria-hidden="true">›</span>
+        <span class="text-white/85" aria-current="page">{breadcrumb}</span>
+      </>
+    )}
+  </Container>
+</nav>
+
+<nav aria-label="Solution areas" class="bg-[#112236] border-b border-white/5">
+  <Container class="overflow-x-auto">
+    <ul class="flex gap-0 min-w-max">
+      {items.map((it) => {
+        const isActive = it.key === active;
+        return (
+          <li>
+            <a
+              href={it.href}
+              class={`relative inline-flex items-center px-4 py-3 text-[12px] font-medium whitespace-nowrap transition-colors ${
+                isActive
+                  ? "text-accent"
+                  : "text-white/55 hover:text-white/90"
+              }`}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {it.label}
+              {isActive && (
+                <span class="absolute inset-x-3 bottom-0 h-[2px] bg-accent rounded-full"></span>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </Container>
+</nav>
