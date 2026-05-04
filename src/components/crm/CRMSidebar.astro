@@ -132,8 +132,7 @@ const isActive = (href: string) =>
   closeBtn?.addEventListener("click", closeSidebar);
   overlay?.addEventListener("click", closeSidebar);
 
-  document.getElementById("logout-btn")?.addEventListener("click", async () => {
-    await fetch("/api/crm/auth/logout", { method: "POST" });
-    window.location.href = "/crm/login";
+  document.getElementById("logout-btn")?.addEventListener("click", () => {
+    window.location.href = "/api/crm/auth/logout";
   });
 </script>

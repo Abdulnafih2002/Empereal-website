@@ -83,6 +83,88 @@ const today = new Date().toLocaleDateString("en-GB", { weekday: "short", day: "n
       closeBtn && (closeBtn.style.display = "none");
     });
     closeBtn?.addEventListener("click", () => { closeBtn.style.display = "none"; });
+
+    // ── Real-time enquiry polling ──────────────────────────────────────────────
+    // Poll every 60 s. Updates the sidebar badge and, on the dashboard / enquiries
+    // pages, shows a banner so the user can reload to see new entries.
+
+    const POLL_MS = 60_000;
+    const PAGES_WITH_TABLE = ["/crm", "/crm/enquiries"];
+
+    let lastNewCount = -1; // -1 means "not yet known"
+
+    function getSidebarBadge(): HTMLElement | null {
+      // The badge is inside the Enquiries nav link — find it by its rounded-full class
+      return document.querySelector<HTMLElement>('a[href="/crm/enquiries"] span.rounded-full');
+    }
+
+    function updateBadge(newCount: number) {
+      const badge = getSidebarBadge();
+      if (newCount > 0) {
+        if (badge) {
+          badge.textContent = String(newCount);
+        } else {
+          // Badge doesn't exist yet — create it inside the Enquiries link
+          const link = document.querySelector<HTMLElement>('a[href="/crm/enquiries"]');
+          if (link) {
+            const span = document.createElement("span");
+            span.className = "inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-orange px-1.5 text-xs font-bold text-white";
+            span.textContent = String(newCount);
+            link.appendChild(span);
+          }
+        }
+      } else if (badge) {
+        badge.remove();
+      }
+    }
+
+    function showRefreshBanner(added: number) {
+      if (document.getElementById("eq-refresh-banner")) return; // already shown
+      const banner = document.createElement("div");
+      banner.id = "eq-refresh-banner";
+      banner.className = "fixed bottom-5 right-5 z-50 flex items-center gap-3 rounded-xl bg-primary text-white px-5 py-3.5 shadow-lg text-sm font-medium cursor-pointer";
+      banner.innerHTML = `
+        <svg class="h-4 w-4 shrink-0 text-orange" viewBox="0 0 20 20" fill="currentColor">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-11.25a.75.75 0 00-1.5 0v4.59L7.3 9.24a.75.75 0 00-1.1 1.02l3.25 3.5a.75.75 0 001.1 0l3.25-3.5a.75.75 0 10-1.1-1.02l-1.95 2.1V6.75z" clip-rule="evenodd"/>
+        </svg>
+        <span>${added} new enquir${added === 1 ? "y" : "ies"} — click to refresh</span>
+        <button class="ml-1 text-white/50 hover:text-white" aria-label="Dismiss">✕</button>
+      `;
+      banner.addEventListener("click", (e) => {
+        if ((e.target as HTMLElement).tagName === "BUTTON") {
+          banner.remove();
+        } else {
+          window.location.reload();
+        }
+      });
+      document.body.appendChild(banner);
+    }
+
+    async function poll() {
+      try {
+        const res = await fetch("/api/crm/enquiries", { cache: "no-store" });
+        if (!res.ok) return;
+        const enquiries = await res.json() as Array<{ status: string }>;
+        const newCount = enquiries.filter((e) => e.status === "new").length;
+
+        updateBadge(newCount);
+
+        const path = window.location.pathname.replace(/\/$/, "") || "/crm";
+        const onTablePage = PAGES_WITH_TABLE.some((p) => path === p || path.startsWith(p + "?"));
+
+        if (lastNewCount !== -1 && newCount > lastNewCount && onTablePage) {
+          showRefreshBanner(newCount - lastNewCount);
+        }
+
+        lastNewCount = newCount;
+      } catch {
+        // silently ignore network errors
+      }
+    }
+
+    // First poll after a short delay so the page fully renders first
+    setTimeout(poll, 3000);
+    setInterval(poll, POLL_MS);
   </script>
 </body>
 </html>
