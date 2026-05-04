@@ -46,7 +46,7 @@ async function putBlobJson(pathname: string, data: unknown): Promise<void> {
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
-const AUTH_KEY = "empereal/auth.json";
+const AUTH_KEY = "empereal/auth";
 
 export async function getPasswordHash(): Promise<string | null> {
   const data = await getBlobJson<{ hash?: string }>(AUTH_KEY, {});
@@ -59,7 +59,7 @@ export async function putPasswordHash(hash: string): Promise<void> {
 
 // ─── Enquiries ────────────────────────────────────────────────────────────────
 
-const ENQUIRIES_KEY = "empereal/enquiries.json";
+const ENQUIRIES_KEY = "empereal/enquiries";
 
 export async function getEnquiries(): Promise<Enquiry[]> {
   return getBlobJson<Enquiry[]>(ENQUIRIES_KEY, []);
@@ -71,7 +71,7 @@ export async function putEnquiries(enquiries: Enquiry[]): Promise<void> {
 
 // ─── Solutions ────────────────────────────────────────────────────────────────
 
-const SOLUTIONS_KEY = "empereal/solutions.json";
+const SOLUTIONS_KEY = "empereal/solutions";
 
 const DEFAULT_SOLUTIONS: Solution[] = [
   {
@@ -141,7 +141,7 @@ export async function putSolutions(solutions: Solution[]): Promise<void> {
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
-const PROJECTS_KEY = "empereal/projects.json";
+const PROJECTS_KEY = "empereal/projects";
 
 // Loaded at build time from src/data/projects.json
 import rawProjects from "../data/projects.json";
@@ -178,7 +178,7 @@ export async function putProjects(projects: Project[]): Promise<void> {
 
 // ─── Settings ─────────────────────────────────────────────────────────────────
 
-const SETTINGS_KEY = "empereal/settings.json";
+const SETTINGS_KEY = "empereal/settings";
 
 const DEFAULT_SETTINGS: SiteSettings = {
   address: "Dubai, United Arab Emirates",
@@ -199,7 +199,7 @@ export async function putSettings(settings: SiteSettings): Promise<void> {
 
 // ─── Features Section ─────────────────────────────────────────────────────────
 
-const FEATURES_KEY = "empereal/features.json";
+const FEATURES_KEY = "empereal/features";
 
 const DEFAULT_FEATURES: FeaturesSection = {
   highlight: {
