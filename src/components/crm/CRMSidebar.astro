@@ -95,17 +95,16 @@ const isActive = (href: string) =>
 
   <!-- Logout -->
   <div class="shrink-0 border-t border-primary-light p-3">
-    <form method="POST" action="/api/crm/auth/logout">
-      <button
-        type="submit"
-        class="flex w-full items-center gap-3 rounded-lg border-l-2 border-transparent px-3 py-2.5 text-sm font-medium text-white/50 transition-all hover:bg-red-900/30 hover:text-red-300"
-      >
-        <svg viewBox="0 0 16 16" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M6 2H2a1 1 0 00-1 1v10a1 1 0 001 1h4M11 11l4-3-4-3M15 8H6"/>
-        </svg>
-        Sign Out
-      </button>
-    </form>
+    <button
+      id="logout-btn"
+      type="button"
+      class="flex w-full items-center gap-3 rounded-lg border-l-2 border-transparent px-3 py-2.5 text-sm font-medium text-white/50 transition-all hover:bg-red-900/30 hover:text-red-300"
+    >
+      <svg viewBox="0 0 16 16" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M6 2H2a1 1 0 00-1 1v10a1 1 0 001 1h4M11 11l4-3-4-3M15 8H6"/>
+      </svg>
+      Sign Out
+    </button>
   </div>
 </aside>
 
@@ -132,4 +131,9 @@ const isActive = (href: string) =>
   openBtn?.addEventListener("click", openSidebar);
   closeBtn?.addEventListener("click", closeSidebar);
   overlay?.addEventListener("click", closeSidebar);
+
+  document.getElementById("logout-btn")?.addEventListener("click", async () => {
+    await fetch("/api/crm/auth/logout", { method: "POST" });
+    window.location.href = "/crm/login";
+  });
 </script>
