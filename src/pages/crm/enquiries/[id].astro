@@ -91,7 +91,6 @@ if (enquiry.status === "new") {
             class="rounded-lg border border-red-200 bg-red-50 px-5 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-100">
             Delete
           </button>
-          <p id="eq-status-msg" class="ml-auto hidden text-sm" aria-live="polite"></p>
         </div>
       </form>
     </div>
@@ -102,26 +101,28 @@ if (enquiry.status === "new") {
   const id = window.location.pathname.split("/").pop();
   const form = document.getElementById("enquiry-form") as HTMLFormElement | null;
   const deleteBtn = document.getElementById("delete-btn") as HTMLButtonElement | null;
-  const msg = document.getElementById("eq-status-msg") as HTMLParagraphElement | null;
+  const crm = (window as any).__crm;
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!form || !msg) return;
-    const status = (form.querySelector<HTMLSelectElement>("#eq-status"))?.value;
-    const notes = (form.querySelector<HTMLTextAreaElement>("#eq-notes"))?.value ?? "";
+    if (!form) return;
+    const btn = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    const status = form.querySelector<HTMLSelectElement>("#eq-status")?.value;
+    const notes = form.querySelector<HTMLTextAreaElement>("#eq-notes")?.value ?? "";
+    crm.saving(btn);
     const res = await fetch(`/api/crm/enquiries/${id}`, {
       method: "PATCH", headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status, notes }),
     });
-    msg.textContent = res.ok ? "Saved." : "Failed.";
-    msg.className = res.ok ? "ml-auto text-sm text-green-600" : "ml-auto text-sm text-red-600";
-    msg.classList.remove("hidden");
-    setTimeout(() => msg.classList.add("hidden"), 3000);
+    const data = res.ok ? {} : await res.json().catch(() => ({})) as { error?: string };
+    crm.saved(btn, res.ok);
+    crm.toast(res.ok ? "Enquiry updated" : (data.error ?? "Failed to save"), res.ok ? "success" : "error");
   });
 
   deleteBtn?.addEventListener("click", async () => {
     if (!confirm("Delete this enquiry? This cannot be undone.")) return;
     const res = await fetch(`/api/crm/enquiries/${id}`, { method: "DELETE" });
     if (res.ok) window.location.href = "/crm/enquiries";
+    else crm.toast("Failed to delete enquiry", "error");
   });
 </script>

@@ -69,7 +69,6 @@ const newCount = enquiries.filter((e) => e.status === "new").length;
             class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20" />
         </div>
 
-        <p id="hl-status" class="hidden text-sm" aria-live="polite"></p>
         <div class="pt-1 border-t border-slate-100">
           <button type="submit"
             class="rounded-lg bg-primary hover:bg-primary-light px-5 py-2.5 text-sm font-semibold text-white transition-colors shadow-sm">
@@ -135,12 +134,13 @@ const newCount = enquiries.filter((e) => e.status === "new").length;
 
 <script>
   const hlForm = document.getElementById("highlight-form") as HTMLFormElement | null;
-  const hlStatus = document.getElementById("hl-status") as HTMLParagraphElement | null;
+  const crm = (window as any).__crm;
 
   hlForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!hlForm || !hlStatus) return;
-    hlStatus.classList.add("hidden");
+    if (!hlForm) return;
+    const btn = hlForm.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    crm.saving(btn);
 
     const fd = new FormData(hlForm);
     const body = {
@@ -160,10 +160,9 @@ const newCount = enquiries.filter((e) => e.status === "new").length;
       body: JSON.stringify(body),
     });
 
-    hlStatus.textContent = res.ok ? "Saved successfully." : "Failed to save.";
-    hlStatus.className = res.ok ? "text-sm text-green-600" : "text-sm text-red-600";
-    hlStatus.classList.remove("hidden");
-    setTimeout(() => hlStatus?.classList.add("hidden"), 3000);
+    const data = res.ok ? {} : await res.json().catch(() => ({})) as { error?: string };
+    crm.saved(btn, res.ok);
+    crm.toast(res.ok ? "Highlight saved" : (data.error ?? "Failed to save"), res.ok ? "success" : "error");
   });
 
   document.querySelectorAll<HTMLButtonElement>("[data-delete-id]").forEach((btn) => {

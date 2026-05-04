@@ -69,8 +69,6 @@ const ICONS = ["solar","drop","battery","hub","bipv","h2","star","globe","bolt",
 
         <ImageUpload name="imageUrl" value={solution.imageUrl} label="Card Image (optional)" />
 
-        <p id="form-status" class="hidden text-sm" aria-live="polite"></p>
-
         <div class="flex gap-3 pt-1 border-t border-slate-100">
           <button type="submit"
             class="rounded-lg bg-primary hover:bg-primary-light px-5 py-2.5 text-sm font-semibold text-white transition-colors shadow-sm">
@@ -89,12 +87,13 @@ const ICONS = ["solar","drop","battery","hub","bipv","h2","star","globe","bolt",
 <script>
   const id = window.location.pathname.split("/").pop();
   const form = document.getElementById("solution-form") as HTMLFormElement | null;
-  const statusEl = document.getElementById("form-status") as HTMLParagraphElement | null;
+  const crm = (window as any).__crm;
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!form || !statusEl) return;
-    statusEl.classList.add("hidden");
+    if (!form) return;
+    const btn = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    crm.saving(btn);
 
     const fd = new FormData(form);
     const body = {
@@ -112,15 +111,8 @@ const ICONS = ["solar","drop","battery","hub","bipv","h2","star","globe","bolt",
       body: JSON.stringify(body),
     });
 
-    if (res.ok) {
-      statusEl.textContent = "Saved successfully.";
-      statusEl.className = "text-sm text-green-600";
-    } else {
-      const data = await res.json() as { error?: string };
-      statusEl.textContent = data.error ?? "Failed to save.";
-      statusEl.className = "text-sm text-red-600";
-    }
-    statusEl.classList.remove("hidden");
-    setTimeout(() => statusEl.classList.add("hidden"), 3000);
+    const data = res.ok ? {} : await res.json().catch(() => ({})) as { error?: string };
+    crm.saved(btn, res.ok);
+    crm.toast(res.ok ? "Solution saved" : (data.error ?? "Failed to save"), res.ok ? "success" : "error");
   });
 </script>

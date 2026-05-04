@@ -58,8 +58,6 @@ const nextOrder = cards.reduce((m, c) => Math.max(m, c.order), 0) + 1;
           </div>
         </div>
 
-        <p id="form-error" class="hidden rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 text-sm text-red-600" aria-live="polite"></p>
-
         <div class="flex gap-3 pt-1 border-t border-slate-100">
           <button type="submit"
             class="rounded-lg bg-primary hover:bg-primary-light px-5 py-2.5 text-sm font-semibold text-white transition-colors shadow-sm">
@@ -77,12 +75,13 @@ const nextOrder = cards.reduce((m, c) => Math.max(m, c.order), 0) + 1;
 
 <script>
   const form = document.getElementById("card-form") as HTMLFormElement | null;
-  const errorEl = document.getElementById("form-error") as HTMLParagraphElement | null;
+  const crm = (window as any).__crm;
 
   form?.addEventListener("submit", async (e) => {
     e.preventDefault();
-    if (!form || !errorEl) return;
-    errorEl.classList.add("hidden");
+    if (!form) return;
+    const btn = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    crm.saving(btn);
 
     const fd = new FormData(form);
     const body = {
@@ -103,9 +102,9 @@ const nextOrder = cards.reduce((m, c) => Math.max(m, c.order), 0) + 1;
     if (res.ok) {
       window.location.href = "/crm/features";
     } else {
-      const data = await res.json() as { error?: string };
-      errorEl.textContent = data.error ?? "Failed to save.";
-      errorEl.classList.remove("hidden");
+      const data = await res.json().catch(() => ({})) as { error?: string };
+      crm.saved(btn, false);
+      crm.toast(data.error ?? "Failed to save", "error");
     }
   });
 </script>
