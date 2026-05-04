@@ -1,4 +1,4 @@
-import { getEnquiries, putEnquiries } from '../../../../chunks/storage_Dt7dQkXR.mjs';
+import { g as getEnquiries, a as putEnquiries } from '../../../../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../../../../renderers.mjs';
 
 const prerender = false;

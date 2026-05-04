@@ -2,7 +2,7 @@ import { e as createAstro, f as createComponent, k as renderComponent, l as rend
 import 'piccolore';
 import { $ as $$CRMLayout } from '../../../chunks/CRMLayout_1MXVuW2v.mjs';
 import { $ as $$StatusBadge } from '../../../chunks/StatusBadge_CewrjZWs.mjs';
-import { getEnquiries, putEnquiries } from '../../../chunks/storage_Dt7dQkXR.mjs';
+import { g as getEnquiries, a as putEnquiries } from '../../../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const $$Astro = createAstro("https://empereal.energy");

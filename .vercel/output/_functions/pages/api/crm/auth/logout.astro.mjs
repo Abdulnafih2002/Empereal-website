@@ -1,4 +1,4 @@
-import { c as clearAuthCookie } from '../../../../chunks/auth_CIeqbsfA.mjs';
+import { c as clearAuthCookie } from '../../../../chunks/auth_0-FqN9zB.mjs';
 export { renderers } from '../../../../renderers.mjs';
 
 const prerender = false;

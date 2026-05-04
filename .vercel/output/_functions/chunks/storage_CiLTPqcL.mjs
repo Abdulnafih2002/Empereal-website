@@ -182,4 +182,4 @@ async function putFeatures(features) {
   return putBlobJson(FEATURES_KEY, features);
 }
 
-export { getEnquiries, getFeatures, getPasswordHash, getProjects, getSettings, getSolutions, putEnquiries, putFeatures, putPasswordHash, putProjects, putSettings, putSolutions };
+export { putEnquiries as a, getFeatures as b, putFeatures as c, getProjects as d, putProjects as e, getSettings as f, getEnquiries as g, putSettings as h, getSolutions as i, putSolutions as j, getPasswordHash as k, putPasswordHash as p };

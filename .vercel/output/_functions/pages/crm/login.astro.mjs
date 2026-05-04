@@ -3,7 +3,7 @@ import 'piccolore';
 import 'clsx';
 /* empty css                                    */
 /* empty css                                    */
-import { g as getTokenFromRequest, v as verifyToken } from '../../chunks/auth_CIeqbsfA.mjs';
+import { g as getTokenFromRequest, v as verifyToken } from '../../chunks/auth_0-FqN9zB.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const $$Astro$1 = createAstro("https://empereal.energy");

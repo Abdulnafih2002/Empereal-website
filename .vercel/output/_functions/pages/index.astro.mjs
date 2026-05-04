@@ -2,7 +2,7 @@ import { f as createComponent, m as maybeRenderHead, k as renderComponent, l as 
 import 'piccolore';
 import { $ as $$Container, a as $$BaseLayout } from '../chunks/BaseLayout_CiFmNO2a.mjs';
 /* empty css                                 */
-import { getFeatures } from '../chunks/storage_Dt7dQkXR.mjs';
+import { b as getFeatures } from '../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$Hero = createComponent(($$result, $$props, $$slots) => {

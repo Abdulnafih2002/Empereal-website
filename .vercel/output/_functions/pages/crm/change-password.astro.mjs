@@ -1,7 +1,7 @@
 import { f as createComponent, k as renderComponent, l as renderScript, r as renderTemplate, m as maybeRenderHead } from '../../chunks/astro/server_Bkw53cAP.mjs';
 import 'piccolore';
 import { $ as $$CRMLayout } from '../../chunks/CRMLayout_1MXVuW2v.mjs';
-import { getEnquiries } from '../../chunks/storage_Dt7dQkXR.mjs';
+import { g as getEnquiries } from '../../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../../renderers.mjs';
 
 const prerender = false;

@@ -2,7 +2,7 @@ import { f as createComponent, k as renderComponent, r as renderTemplate, m as m
 import 'piccolore';
 import { $ as $$CRMLayout } from '../chunks/CRMLayout_1MXVuW2v.mjs';
 import { $ as $$StatusBadge } from '../chunks/StatusBadge_CewrjZWs.mjs';
-import { getEnquiries, getSolutions, getProjects } from '../chunks/storage_Dt7dQkXR.mjs';
+import { g as getEnquiries, i as getSolutions, d as getProjects } from '../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../renderers.mjs';
 
 const prerender = false;

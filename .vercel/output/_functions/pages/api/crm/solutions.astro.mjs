@@ -1,4 +1,4 @@
-import { getSolutions, putSolutions } from '../../../chunks/storage_Dt7dQkXR.mjs';
+import { i as getSolutions, j as putSolutions } from '../../../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const prerender = false;

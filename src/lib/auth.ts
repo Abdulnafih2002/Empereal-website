@@ -1,5 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { getPasswordHash } from "./storage.js";
 
 function env(key: string): string {
   // process.env is populated by --env-file in dev and by Vercel at runtime
@@ -18,7 +19,6 @@ export async function hashPassword(plain: string): Promise<string> {
 
 export async function verifyPassword(plain: string): Promise<boolean> {
   // Blob hash (set via CRM) takes priority over the env-var initial value
-  const { getPasswordHash } = await import("./storage.js");
   const blobHash = await getPasswordHash();
   const hash = blobHash ?? env("ADMIN_PASSWORD_HASH");
   if (!hash) return false;

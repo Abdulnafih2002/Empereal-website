@@ -1,5 +1,5 @@
 import { d as defineMiddleware, s as sequence } from './chunks/index_D2W2ZVRk.mjs';
-import { g as getTokenFromRequest, v as verifyToken } from './chunks/auth_CIeqbsfA.mjs';
+import { g as getTokenFromRequest, v as verifyToken } from './chunks/auth_0-FqN9zB.mjs';
 import 'es-module-lexer';
 import './chunks/astro-designed-error-pages_BCPFtYiY.mjs';
 import 'piccolore';

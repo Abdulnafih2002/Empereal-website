@@ -1,4 +1,4 @@
-import { getProjects, putProjects } from '../../../chunks/storage_Dt7dQkXR.mjs';
+import { d as getProjects, e as putProjects } from '../../../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const prerender = false;

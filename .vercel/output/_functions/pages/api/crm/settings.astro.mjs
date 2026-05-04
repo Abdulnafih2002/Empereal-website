@@ -1,4 +1,4 @@
-import { getSettings, putSettings } from '../../../chunks/storage_Dt7dQkXR.mjs';
+import { f as getSettings, h as putSettings } from '../../../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../../../renderers.mjs';
 
 const prerender = false;

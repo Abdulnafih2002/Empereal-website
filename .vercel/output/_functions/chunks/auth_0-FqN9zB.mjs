@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { k as getPasswordHash } from './storage_CiLTPqcL.mjs';
 
 const __vite_import_meta_env__ = {"ASSETS_PREFIX": undefined, "BASE_URL": "/", "DEV": false, "MODE": "production", "PROD": true, "SITE": "https://empereal.energy", "SSR": true};
 function env(key) {
@@ -14,7 +15,6 @@ async function hashPassword(plain) {
   return bcrypt.hash(plain, 10);
 }
 async function verifyPassword(plain) {
-  const { getPasswordHash } = await import('./storage_Dt7dQkXR.mjs');
   const blobHash = await getPasswordHash();
   const hash = blobHash ?? env("ADMIN_PASSWORD_HASH");
   if (!hash) return false;

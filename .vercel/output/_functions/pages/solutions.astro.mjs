@@ -3,7 +3,7 @@ import 'piccolore';
 import { $ as $$Container, a as $$BaseLayout } from '../chunks/BaseLayout_CiFmNO2a.mjs';
 /* empty css                                     */
 import { $ as $$CertificationsBar, a as $$SolutionsCTA } from '../chunks/SolutionsCTA_CZ1RsRPK.mjs';
-import { getSolutions } from '../chunks/storage_Dt7dQkXR.mjs';
+import { i as getSolutions } from '../chunks/storage_CiLTPqcL.mjs';
 export { renderers } from '../renderers.mjs';
 
 const $$SolutionsHero = createComponent(($$result, $$props, $$slots) => {
