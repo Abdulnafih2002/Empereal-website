@@ -1,4 +1,4 @@
-import { a as verifyPassword, s as signToken, b as setAuthCookie } from '../../../../chunks/auth_BHfGCVaX.mjs';
+import { a as verifyPassword, s as signToken, b as setAuthCookie } from '../../../../chunks/auth_CIeqbsfA.mjs';
 export { renderers } from '../../../../renderers.mjs';
 
 const prerender = false;
