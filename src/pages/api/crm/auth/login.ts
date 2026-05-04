@@ -15,7 +15,12 @@ export const POST: APIRoute = async ({ request }) => {
     return json({ error: "Invalid password." }, 401);
   }
 
-  const token = signToken();
+  let token: string;
+  try {
+    token = signToken();
+  } catch {
+    return json({ error: "Server configuration error. Contact the administrator." }, 500);
+  }
   const headers = new Headers({ "Content-Type": "application/json" });
   setAuthCookie(headers, token);
   return new Response(JSON.stringify({ ok: true }), { status: 200, headers });
