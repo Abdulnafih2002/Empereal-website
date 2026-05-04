@@ -20,7 +20,7 @@ async function getBlobJson<T>(pathname: string, fallback: T): Promise<T> {
     const { blobs } = await list({ prefix: pathname });
     const blob = blobs.find((b) => b.pathname === pathname);
     if (!blob) return fallback;
-    const res = await fetch(blob.url, { cache: "no-store" });
+    const res = await fetch(`${blob.url}?_=${Date.now()}`, { cache: "no-store" });
     if (!res.ok) return fallback;
     return (await res.json()) as T;
   } catch {
