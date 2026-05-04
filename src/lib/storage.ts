@@ -1,4 +1,4 @@
-import { put, list } from "@vercel/blob";
+import { put, list, del } from "@vercel/blob";
 import type { Enquiry, Solution, Project, SiteSettings, FeaturesSection, FeatureCard } from "./types.js";
 
 // Local dev in-memory fallback when BLOB_READ_WRITE_TOKEN is not set
@@ -18,9 +18,10 @@ async function getBlobJson<T>(pathname: string, fallback: T): Promise<T> {
   }
   try {
     const { blobs } = await list({ prefix: pathname });
-    const blob = blobs.find((b) => b.pathname === pathname);
-    if (!blob) return fallback;
-    const res = await fetch(`${blob.url}?v=${blob.uploadedAt.getTime()}`, { cache: "no-store" });
+    if (blobs.length === 0) return fallback;
+    // Pick the newest blob — there should only ever be one, but sort defensively
+    const blob = blobs.sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime())[0];
+    const res = await fetch(blob.url, { cache: "no-store" });
     if (!res.ok) return fallback;
     return (await res.json()) as T;
   } catch {
@@ -33,11 +34,14 @@ async function putBlobJson(pathname: string, data: unknown): Promise<void> {
     memStore.set(pathname, JSON.stringify(data));
     return;
   }
-  await put(pathname, JSON.stringify(data), {
-    access: "public",
-    addRandomSuffix: false,
-    cacheControlMaxAge: 0,
-  });
+  // List old blobs BEFORE writing so we know which ones to delete
+  const { blobs: old } = await list({ prefix: pathname });
+  // addRandomSuffix: true gives each write a unique CDN URL.
+  // With addRandomSuffix: false, Vercel Blob CDN can cache the fixed URL
+  // for up to one year even after the content is overwritten.
+  await put(pathname, JSON.stringify(data), { access: "public", addRandomSuffix: true });
+  // Clean up superseded blobs (fire-and-forget — non-critical)
+  if (old.length > 0) del(old.map((b) => b.url)).catch(() => {});
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
