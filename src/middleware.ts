@@ -27,5 +27,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
     context.locals.admin = { authenticated: true };
   }
 
-  return next();
+  const response = await next();
+
+  // Prevent Vercel's CDN from caching SSR page responses. Without this,
+  // anonymous (cookie-free) requests to public pages get cached at the edge
+  // and never reflect blob data updates until the cache naturally expires.
+  if (!pathname.startsWith("/_")) {
+    response.headers.set("Cache-Control", "no-store");
+  }
+
+  return response;
 });
