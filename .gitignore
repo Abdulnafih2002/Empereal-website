@@ -6,7 +6,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 .env
+.env.local
 .env.production
 .DS_Store
 .idea/
 .vscode/
+crm-credentials.json

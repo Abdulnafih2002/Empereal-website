@@ -1,0 +1,44 @@
+import { f as createComponent, k as renderComponent, r as renderTemplate, m as maybeRenderHead, h as addAttribute } from '../chunks/astro/server_Bkw53cAP.mjs';
+import 'piccolore';
+import { $ as $$CRMLayout } from '../chunks/CRMLayout_1MXVuW2v.mjs';
+import { $ as $$StatusBadge } from '../chunks/StatusBadge_CewrjZWs.mjs';
+import { getEnquiries, getSolutions, getProjects } from '../chunks/storage_Dt7dQkXR.mjs';
+export { renderers } from '../renderers.mjs';
+
+const prerender = false;
+const $$Index = createComponent(async ($$result, $$props, $$slots) => {
+  const [enquiries, solutions, projects] = await Promise.all([
+    getEnquiries(),
+    getSolutions(),
+    getProjects()
+  ]);
+  const newCount = enquiries.filter((e) => e.status === "new").length;
+  const recent = enquiries.slice(0, 8);
+  const stats = [
+    { label: "Total Enquiries", value: enquiries.length, href: "/crm/enquiries", iconBg: "bg-slate-100", iconColor: "text-slate-600", border: "border-l-slate-400" },
+    { label: "New Enquiries", value: newCount, href: "/crm/enquiries?status=new", iconBg: "bg-orange/10", iconColor: "text-orange", border: newCount > 0 ? "border-l-orange" : "border-l-slate-400", highlight: newCount > 0 },
+    { label: "Solutions", value: solutions.length, href: "/crm/solutions", iconBg: "bg-blue-50", iconColor: "text-blue-600", border: "border-l-blue-400" },
+    { label: "Projects", value: projects.length, href: "/crm/projects", iconBg: "bg-emerald-50", iconColor: "text-emerald-600", border: "border-l-emerald-400" }
+  ];
+  return renderTemplate`${renderComponent($$result, "CRMLayout", $$CRMLayout, { "title": "Dashboard", "newEnquiries": newCount }, { "default": async ($$result2) => renderTemplate`  ${maybeRenderHead()}<div class="grid grid-cols-2 gap-4 lg:grid-cols-4"> ${stats.map((s, i) => renderTemplate`<a${addAttribute(s.href, "href")}${addAttribute([
+    "group relative flex items-start justify-between rounded-xl bg-white p-5 border-l-4 ring-1 ring-slate-200 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5",
+    s.border
+  ], "class:list")}> <div> <p${addAttribute(["text-3xl font-bold", s.highlight ? "text-orange" : "text-slate-900"], "class:list")}>${s.value}</p> <p class="mt-1 text-xs font-medium text-slate-500">${s.label}</p> </div> <div${addAttribute(["flex h-10 w-10 shrink-0 items-center justify-center rounded-lg", s.iconBg, s.iconColor], "class:list")}> ${i === 0 && renderTemplate`<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 13.5h3.86a2.25 2.25 0 012.012 1.244l.256.512a2.25 2.25 0 002.013 1.244h3.218a2.25 2.25 0 002.013-1.244l.256-.512a2.25 2.25 0 012.013-1.244h3.859m-19.5.338V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18v-4.162c0-.224-.034-.447-.1-.661L19.24 5.338a2.25 2.25 0 00-2.15-1.588H6.911a2.25 2.25 0 00-2.15 1.588L2.35 13.177a2.25 2.25 0 00-.1.661z"></path></svg>`} ${i === 1 && renderTemplate`<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path></svg>`} ${i === 2 && renderTemplate`<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3"></path></svg>`} ${i === 3 && renderTemplate`<svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"></path></svg>`} </div> </a>`)} </div>  <div class="mt-8"> <div class="mb-4 flex items-center justify-between"> <div> <h2 class="text-sm font-semibold text-slate-900">Recent Enquiries</h2> <p class="mt-0.5 text-xs text-slate-400">Latest ${recent.length} of ${enquiries.length} total</p> </div> <a href="/crm/enquiries" class="flex items-center gap-1 text-xs font-medium text-primary transition hover:text-orange">
+View all
+<svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h8M6 2l4 4-4 4"></path></svg> </a> </div> ${recent.length === 0 ? renderTemplate`<div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm py-16 text-center"> <svg class="mx-auto mb-3 h-10 w-10 text-slate-200" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"></path><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"></path></svg> <p class="text-sm text-slate-400">No enquiries yet</p> </div>` : renderTemplate`<div class="overflow-hidden rounded-xl bg-white ring-1 ring-slate-200 shadow-sm"> <div class="overflow-x-auto"> <table class="min-w-full divide-y divide-slate-100 text-sm"> <thead class="bg-slate-50"> <tr> <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Name</th> <th class="hidden px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400 md:table-cell">Email</th> <th class="hidden px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400 lg:table-cell">Interest</th> <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Status</th> <th class="hidden px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400 sm:table-cell">Date</th> </tr> </thead> <tbody class="divide-y divide-slate-100"> ${recent.map((e) => renderTemplate`<tr class="hover:bg-slate-50 transition-colors"> <td class="px-5 py-3.5 font-medium text-slate-800"> <a${addAttribute(`/crm/enquiries/${e.id}`, "href")} class="hover:text-primary transition-colors">${e.name}</a> </td> <td class="hidden px-5 py-3.5 text-slate-500 md:table-cell">${e.email}</td> <td class="hidden px-5 py-3.5 text-slate-500 lg:table-cell">${e.interest ?? "\u2014"}</td> <td class="px-5 py-3.5">${renderComponent($$result2, "StatusBadge", $$StatusBadge, { "status": e.status })}</td> <td class="hidden px-5 py-3.5 text-xs text-slate-400 sm:table-cell"> ${new Date(e.createdAt).toLocaleDateString()} </td> </tr>`)} </tbody> </table> </div> </div>`} </div> ` })}`;
+}, "/Users/n3globaltech/Documents/GitHub/Empereal-website/src/pages/crm/index.astro", void 0);
+
+const $$file = "/Users/n3globaltech/Documents/GitHub/Empereal-website/src/pages/crm/index.astro";
+const $$url = "/crm";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+  __proto__: null,
+  default: $$Index,
+  file: $$file,
+  prerender,
+  url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

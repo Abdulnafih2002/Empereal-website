@@ -19,6 +19,15 @@ module.exports = {
         orange: {
           DEFAULT: "#F27400",
           dark: "#C85E00",
+          light: "#FEF0E0",
+        },
+        crm: {
+          sidebar: "#1F3C5C",
+          "sidebar-hover": "#2E5489",
+          "sidebar-active": "#263d57",
+          orange: "#F27400",
+          "orange-muted": "#FEF0E0",
+          border: "#2E5489",
         },
         cta: {
           DEFAULT: "#2E4FC1",

@@ -1,0 +1,97 @@
+---
+export const prerender = false;
+import CRMLayout from "../../layouts/CRMLayout.astro";
+import { getSettings, getEnquiries } from "../../lib/storage.js";
+
+const [settings, enquiries] = await Promise.all([getSettings(), getEnquiries()]);
+const newCount = enquiries.filter((e) => e.status === "new").length;
+---
+<CRMLayout title="Site Settings" newEnquiries={newCount}>
+  <div class="max-w-lg space-y-6">
+    <!-- Contact Information -->
+    <div class="bg-white rounded-xl shadow-sm ring-1 ring-slate-200/60 overflow-hidden">
+      <div class="border-b border-slate-100 px-6 py-4">
+        <h2 class="text-sm font-semibold text-slate-900">Contact Information</h2>
+        <p class="text-xs text-slate-400 mt-0.5">Displayed on the contact page and footer</p>
+      </div>
+      <form id="settings-form" class="p-6 space-y-5">
+        <div>
+          <label for="set-address" class="block text-sm font-medium text-slate-700 mb-1.5">Office Address</label>
+          <input id="set-address" name="address" type="text" value={settings.address}
+            placeholder="Full office address"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+        <div>
+          <label for="set-email" class="block text-sm font-medium text-slate-700 mb-1.5">Contact Email</label>
+          <input id="set-email" name="email" type="email" value={settings.email}
+            placeholder="info@empereal.energy"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+        <div>
+          <label for="set-phone" class="block text-sm font-medium text-slate-700 mb-1.5">Phone Number</label>
+          <input id="set-phone" name="phone" type="tel" value={settings.phone}
+            placeholder="+971 4 000 0000"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+        <div>
+          <label for="set-wa" class="block text-sm font-medium text-slate-700 mb-1.5">
+            WhatsApp Number
+            <span class="ml-1 text-xs font-normal text-slate-400">(digits only, e.g. 971501234567)</span>
+          </label>
+          <input id="set-wa" name="whatsappNumber" type="text" value={settings.whatsappNumber}
+            placeholder="971501234567"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+
+        <div class="border-t border-slate-100 pt-5">
+          <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-widest mb-4">Online Presence</h3>
+          <div>
+            <label for="set-li" class="block text-sm font-medium text-slate-700 mb-1.5">LinkedIn URL</label>
+            <input id="set-li" name="linkedinUrl" type="url" value={settings.linkedinUrl ?? ""}
+              placeholder="https://linkedin.com/company/empereal"
+              class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+          </div>
+        </div>
+
+        <p id="settings-status" class="hidden text-sm" aria-live="polite"></p>
+
+        <div class="pt-1 border-t border-slate-100">
+          <button type="submit"
+            class="rounded-lg bg-primary hover:bg-primary-light px-5 py-2.5 text-sm font-semibold text-white transition-colors shadow-sm">
+            Save Settings
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</CRMLayout>
+
+<script>
+  const form = document.getElementById("settings-form") as HTMLFormElement | null;
+  const statusEl = document.getElementById("settings-status") as HTMLParagraphElement | null;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!form || !statusEl) return;
+    statusEl.classList.add("hidden");
+
+    const fd = new FormData(form);
+    const body = Object.fromEntries(fd.entries());
+
+    const res = await fetch("/api/crm/settings", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    if (res.ok) {
+      statusEl.textContent = "Settings saved successfully.";
+      statusEl.className = "text-sm text-green-600";
+    } else {
+      statusEl.textContent = "Failed to save settings.";
+      statusEl.className = "text-sm text-red-600";
+    }
+    statusEl.classList.remove("hidden");
+    setTimeout(() => statusEl.classList.add("hidden"), 3000);
+  });
+</script>

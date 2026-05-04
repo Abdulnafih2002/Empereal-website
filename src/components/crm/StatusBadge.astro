@@ -1,0 +1,17 @@
+---
+import type { EnquiryStatus } from "../../lib/types.js";
+interface Props { status: EnquiryStatus }
+const { status } = Astro.props;
+
+const config: Record<EnquiryStatus, { pill: string; dot: string }> = {
+  new:      { pill: "bg-blue-50 text-blue-700 ring-1 ring-blue-200",   dot: "bg-blue-500" },
+  read:     { pill: "bg-slate-100 text-slate-600 ring-1 ring-slate-200", dot: "bg-slate-400" },
+  replied:  { pill: "bg-green-50 text-green-700 ring-1 ring-green-200", dot: "bg-green-500" },
+  archived: { pill: "bg-amber-50 text-amber-700 ring-1 ring-amber-200", dot: "bg-amber-500" },
+};
+const c = config[status];
+---
+<span class:list={["inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-semibold capitalize", c.pill]}>
+  <span class:list={["h-1.5 w-1.5 shrink-0 rounded-full", c.dot]}></span>
+  {status}
+</span>

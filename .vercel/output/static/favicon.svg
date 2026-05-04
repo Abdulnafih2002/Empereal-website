@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <g transform="translate(32 32)">
+    <g fill="#F5B82E">
+      <g id="p">
+        <rect x="20" y="-3.2" width="12" height="6.4" rx="3.2"/>
+      </g>
+      <use href="#p" transform="rotate(-75)"/>
+      <use href="#p" transform="rotate(-50)"/>
+      <use href="#p" transform="rotate(-25)"/>
+      <use href="#p" transform="rotate(0)"/>
+      <use href="#p" transform="rotate(25)"/>
+      <use href="#p" transform="rotate(50)"/>
+      <use href="#p" transform="rotate(75)"/>
+      <use href="#p" transform="rotate(100)"/>
+      <use href="#p" transform="rotate(125)"/>
+      <use href="#p" transform="rotate(150)"/>
+      <rect x="20" y="-3.2" width="12" height="6.4" rx="3.2" transform="rotate(95)" fill="#F27400"/>
+    </g>
+  </g>
+  <path
+    d="M33 16l-9 18h6l-4 14 11-18h-6z"
+    fill="#F5B82E"
+    stroke="#ffffff"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+</svg>

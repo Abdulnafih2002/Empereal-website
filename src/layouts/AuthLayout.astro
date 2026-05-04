@@ -1,0 +1,75 @@
+---
+import "../styles/globals.css";
+interface Props { title: string }
+const { title } = Astro.props;
+---
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>{title} — Empereal CRM</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; }
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="h-full flex flex-col lg:flex-row">
+
+  <!-- Left brand panel -->
+  <div class="hidden lg:flex lg:w-5/12 xl:w-1/2 flex-col justify-between p-10 relative overflow-hidden bg-primary">
+    <!-- Background glow -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
+      <div class="absolute -top-32 -right-32 h-80 w-80 rounded-full bg-orange/10 blur-3xl"></div>
+      <div class="absolute bottom-0 -left-20 h-64 w-64 rounded-full bg-white/5 blur-3xl"></div>
+    </div>
+
+    <div class="relative z-10">
+      <img src="/logo.svg" alt="Empereal" class="h-9 w-auto" style="filter: brightness(10) saturate(0);" />
+    </div>
+
+    <div class="relative z-10">
+      <div class="mb-6 inline-flex items-center gap-2 rounded-full bg-orange/20 px-3 py-1">
+        <span class="h-1.5 w-1.5 rounded-full bg-orange"></span>
+        <span class="text-xs font-semibold uppercase tracking-wider text-orange">Secure Admin Access</span>
+      </div>
+      <h2 class="text-3xl font-bold leading-snug text-white">
+        Manage your energy<br/>solutions from one place.
+      </h2>
+      <p class="mt-4 max-w-xs text-sm leading-relaxed text-white/60">
+        The Empereal CRM gives you full control over enquiries, solutions, projects and site content.
+      </p>
+
+      <div class="mt-10 grid grid-cols-2 gap-3">
+        {[
+          { label: "Enquiry Inbox",     desc: "Track & respond" },
+          { label: "Content Editor",    desc: "Solutions & projects" },
+          { label: "Site Settings",     desc: "Contact & links" },
+          { label: "Real-time Storage", desc: "Vercel Blob" },
+        ].map((f) => (
+          <div class="rounded-xl border border-white/10 bg-white/5 p-3">
+            <p class="text-xs font-semibold text-white">{f.label}</p>
+            <p class="mt-0.5 text-xs text-white/40">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <p class="relative z-10 text-xs text-white/25">© {new Date().getFullYear()} Empereal Energy</p>
+  </div>
+
+  <!-- Right auth panel -->
+  <div class="flex flex-1 flex-col items-center justify-center bg-slate-50 px-6 py-12 min-h-screen lg:min-h-0">
+    <!-- Mobile logo -->
+    <div class="mb-8 lg:hidden">
+      <img src="/logo.svg" alt="Empereal" class="mx-auto h-10 w-auto" />
+    </div>
+    <slot />
+  </div>
+</body>
+</html>
