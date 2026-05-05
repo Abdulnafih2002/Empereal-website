@@ -1,0 +1,215 @@
+---
+export const prerender = false;
+import CRMLayout from "../../../layouts/CRMLayout.astro";
+import ImageUpload from "../../../components/crm/ImageUpload.astro";
+import { getBlogPosts, getEnquiries } from "../../../lib/storage.js";
+
+const [enquiries, posts] = await Promise.all([getEnquiries(), getBlogPosts()]);
+const newCount = enquiries.filter((e) => e.status === "new").length;
+const nextOrder = posts.reduce((m, p) => Math.max(m, p.order), 0) + 1;
+const today = new Date().toISOString().slice(0, 10);
+
+const TAGS = ["United Arab Emirates", "Partnership", "Summit", "Project", "General"];
+---
+<CRMLayout title="Add Post" newEnquiries={newCount}>
+  <div class="max-w-2xl">
+    <a href="/crm/blog" class="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-800 transition-colors mb-6">
+      <svg class="h-3.5 w-3.5" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 6H2M6 2L2 6l4 4"/></svg>
+      Back to posts
+    </a>
+
+    <div class="bg-white rounded-xl shadow-sm ring-1 ring-slate-200/60 overflow-hidden">
+      <div class="border-b border-slate-100 px-6 py-4">
+        <h2 class="text-sm font-semibold text-slate-900">New Blog Post</h2>
+        <p class="text-xs text-slate-400 mt-0.5">This article will appear on the public /blog page</p>
+      </div>
+
+      <form id="post-form" class="p-6 space-y-5">
+        <!-- Title -->
+        <div>
+          <label for="p-title" class="block text-sm font-medium text-slate-700 mb-1.5">
+            Title <span class="text-orange">*</span>
+          </label>
+          <input id="p-title" name="title" type="text" required
+            placeholder="e.g. Empereal Opens New Office in Riyadh"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+
+        <!-- Slug -->
+        <div>
+          <label for="p-slug" class="block text-sm font-medium text-slate-700 mb-1.5">
+            Slug <span class="text-orange">*</span>
+            <span class="font-normal text-slate-400 ml-1">(URL: /blog/your-slug)</span>
+          </label>
+          <input id="p-slug" name="slug" type="text" required
+            placeholder="empereal-opens-riyadh-office"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 font-mono transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+
+        <!-- Tag + Date + Read Time -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label for="p-tag" class="block text-sm font-medium text-slate-700 mb-1.5">Category / Tag</label>
+            <select id="p-tag" name="tag"
+              class="w-full rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm text-slate-800 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20">
+              {TAGS.map((t) => <option value={t}>{t}</option>)}
+            </select>
+          </div>
+          <div>
+            <label for="p-date" class="block text-sm font-medium text-slate-700 mb-1.5">
+              Publish Date <span class="text-orange">*</span>
+            </label>
+            <input id="p-date" name="isoDate" type="date" required value={today}
+              class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+          </div>
+          <div>
+            <label for="p-readtime" class="block text-sm font-medium text-slate-700 mb-1.5">Read Time</label>
+            <input id="p-readtime" name="readTime" type="text" value="4 min read"
+              class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+          </div>
+        </div>
+
+        <!-- Excerpt -->
+        <div>
+          <label for="p-excerpt" class="block text-sm font-medium text-slate-700 mb-1.5">
+            Excerpt <span class="text-orange">*</span>
+            <span class="font-normal text-slate-400 ml-1">(shown on card and listing page)</span>
+          </label>
+          <textarea id="p-excerpt" name="excerpt" required rows="2"
+            placeholder="1–2 sentence summary of the article…"
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 resize-none"></textarea>
+        </div>
+
+        <!-- Display order -->
+        <div class="w-36">
+          <label for="p-order" class="block text-sm font-medium text-slate-700 mb-1.5">Display order</label>
+          <input id="p-order" name="order" type="number" min="1" value={nextOrder}
+            class="w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 min-h-[44px]" />
+        </div>
+
+        <!-- Hero Image -->
+        <ImageUpload name="image" label="Hero Image" />
+
+        <!-- Sections -->
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <label class="block text-sm font-medium text-slate-700">Article Sections</label>
+            <button type="button" id="add-section"
+              class="inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-600 transition-colors">
+              <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 1v10M1 6h10"/></svg>
+              Add Section
+            </button>
+          </div>
+          <div id="sections-container" class="space-y-4">
+            <!-- Sections added dynamically by JS or pre-filled -->
+            <div class="section-row rounded-lg border border-slate-200 p-4 space-y-3">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-semibold text-slate-400 uppercase tracking-wide">Section 1</span>
+                <button type="button" class="remove-section text-xs text-red-400 hover:text-red-600 transition-colors">Remove</button>
+              </div>
+              <input type="text" class="section-heading w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20"
+                placeholder="Section heading (e.g. The Challenge)" />
+              <textarea class="section-body w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 resize-none"
+                rows="5" placeholder="Section body text…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 pt-1 border-t border-slate-100">
+          <button type="submit"
+            class="rounded-lg bg-primary hover:bg-primary-light px-5 py-2.5 text-sm font-semibold text-white transition-colors shadow-sm">
+            Publish Post
+          </button>
+          <a href="/crm/blog"
+            class="rounded-lg bg-slate-100 hover:bg-slate-200 px-5 py-2.5 text-sm font-medium text-slate-600 transition-colors">
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</CRMLayout>
+
+<script>
+  const titleInput = document.getElementById("p-title") as HTMLInputElement;
+  const slugInput  = document.getElementById("p-slug")  as HTMLInputElement;
+
+  // Auto-generate slug from title
+  titleInput?.addEventListener("input", () => {
+    if (!slugInput) return;
+    slugInput.value = titleInput.value
+      .toLowerCase()
+      .replace(/[^a-z0-9\s-]/g, "")
+      .trim()
+      .replace(/\s+/g, "-");
+  });
+
+  // Add section
+  const container = document.getElementById("sections-container")!;
+  document.getElementById("add-section")?.addEventListener("click", () => {
+    const count = container.querySelectorAll(".section-row").length + 1;
+    const row = document.createElement("div");
+    row.className = "section-row rounded-lg border border-slate-200 p-4 space-y-3";
+    row.innerHTML = `
+      <div class="flex items-center justify-between">
+        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wide">Section ${count}</span>
+        <button type="button" class="remove-section text-xs text-red-400 hover:text-red-600 transition-colors">Remove</button>
+      </div>
+      <input type="text" class="section-heading w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20"
+        placeholder="Section heading" />
+      <textarea class="section-body w-full rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20 resize-none"
+        rows="5" placeholder="Section body text…"></textarea>
+    `;
+    container.appendChild(row);
+    row.querySelector(".remove-section")?.addEventListener("click", () => row.remove());
+  });
+
+  // Remove section (for initial row)
+  container.querySelectorAll(".remove-section").forEach((btn) => {
+    btn.addEventListener("click", () => (btn.closest(".section-row") as HTMLElement)?.remove());
+  });
+
+  // Submit
+  const form = document.getElementById("post-form") as HTMLFormElement | null;
+  const crm = (window as any).__crm;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const btn = form.querySelector<HTMLButtonElement>('[type="submit"]')!;
+    crm.saving(btn);
+
+    const fd = new FormData(form);
+    const sections: { heading: string; body: string }[] = [];
+    document.querySelectorAll<HTMLElement>(".section-row").forEach((row) => {
+      const heading = (row.querySelector(".section-heading") as HTMLInputElement)?.value.trim();
+      const body    = (row.querySelector(".section-body")    as HTMLTextAreaElement)?.value.trim();
+      if (heading) sections.push({ heading, body });
+    });
+
+    const body = {
+      title:    fd.get("title"),
+      slug:     fd.get("slug"),
+      tag:      fd.get("tag"),
+      isoDate:  fd.get("isoDate"),
+      readTime: fd.get("readTime"),
+      excerpt:  fd.get("excerpt"),
+      image:    fd.get("image") || "/images/hero-solar.jpg",
+      order:    Number(fd.get("order")) || 1,
+      sections,
+    };
+
+    const res = await fetch("/api/crm/blog", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+    if (res.ok) {
+      window.location.href = "/crm/blog";
+    } else {
+      const data = await res.json().catch(() => ({})) as { error?: string };
+      crm.saved(btn, false);
+      crm.toast(data.error ?? "Failed to save", "error");
+    }
+  });
+</script>

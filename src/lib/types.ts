@@ -46,6 +46,20 @@ export interface NewsArticle {
   href?: string;
 }
 
+export interface CrmBlogPost {
+  id: string;
+  slug: string;
+  tag: string;
+  date: string;
+  isoDate: string;
+  readTime: string;
+  title: string;
+  excerpt: string;
+  image: string;
+  sections: { heading: string; body: string }[];
+  order: number;
+}
+
 export interface Testimonial {
   id: string;
   quote: string;

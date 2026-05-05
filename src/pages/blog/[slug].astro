@@ -1,0 +1,170 @@
+---
+export const prerender = false;
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/primitives/Container.astro";
+import { getBlogPosts } from "../../lib/storage.js";
+
+const posts = await getBlogPosts();
+const { slug } = Astro.params;
+const post = posts.find((p) => p.slug === slug);
+if (!post) return Astro.redirect("/blog");
+
+const related = posts.filter((p) => p.slug !== slug).slice(0, 2);
+---
+<BaseLayout
+  title={`${post.title} — Empereal News & Insights`}
+  description={post.excerpt}
+  image={post.image}
+>
+  <!-- Back link -->
+  <div class="bg-white border-b border-primary/5 py-3">
+    <Container>
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-primary transition-colors"
+        aria-label="Back to News & Insights"
+      >
+        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+          <path d="M16 10H4m0 0l4-4M4 10l4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to News &amp; Insights
+      </a>
+    </Container>
+  </div>
+
+  <!-- Hero -->
+  <section class="relative isolate overflow-hidden bg-primary-dark" aria-label="Article hero">
+    <div class="relative h-[50vh] min-h-[360px] max-h-[520px]">
+      <img
+        src={post.image}
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
+        onerror="this.remove()"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/50 to-transparent" aria-hidden="true"></div>
+
+      <div class="absolute bottom-0 left-0 right-0 p-6 sm:p-10 lg:p-14">
+        <Container>
+          <div class="max-w-3xl">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <span class="inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+                {post.tag}
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/80">
+                <svg viewBox="0 0 20 20" class="h-3 w-3" fill="none" aria-hidden="true">
+                  <rect x="3" y="4" width="14" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M3 8h14M7 3v2M13 3v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                <time datetime={post.isoDate}>{post.date}</time>
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-medium text-white/80">
+                <svg viewBox="0 0 20 20" class="h-3 w-3" fill="none" aria-hidden="true">
+                  <circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/>
+                  <path d="M10 6v4l2.5 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+                {post.readTime}
+              </span>
+            </div>
+            <h1 class="fluid-h2 text-white font-display font-bold leading-tight">{post.title}</h1>
+          </div>
+        </Container>
+      </div>
+    </div>
+  </section>
+
+  <!-- Article body -->
+  <section class="bg-white section-pad" aria-label="Article content">
+    <Container>
+      <div class="max-w-prose mx-auto">
+        <!-- Author strip -->
+        <div class="flex items-center gap-3 mb-10 pb-6 border-b border-primary/10">
+          <img src="/logo.svg" alt="" class="h-8 w-auto opacity-80" aria-hidden="true" />
+          <div>
+            <p class="text-sm font-semibold text-primary-dark">Empereal Editorial Team</p>
+            <p class="text-xs text-muted"><time datetime={post.isoDate}>{post.date}</time></p>
+          </div>
+        </div>
+
+        <!-- Excerpt lead -->
+        <p class="text-base sm:text-lg text-muted leading-relaxed font-medium mb-10 pb-10 border-b border-primary/10">
+          {post.excerpt}
+        </p>
+
+        <!-- Sections -->
+        {post.sections.map((section) => (
+          <div class="mb-10">
+            <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-4">{section.heading}</h2>
+            <p class="text-base text-muted leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Related articles -->
+  {related.length > 0 && (
+    <section class="bg-surface section-pad" aria-labelledby="related-title">
+      <Container>
+        <h2 id="related-title" class="fluid-h3 font-display font-bold text-primary-dark mb-8">Related Articles</h2>
+        <div class="grid gap-6 grid-cols-1 md:grid-cols-2">
+          {related.map((r) => (
+            <article class="group overflow-hidden rounded-2xl bg-white text-ink shadow-card hover:shadow-card-lg transition-all duration-300 border border-primary/5">
+              <a href={`/blog/${r.slug}`} class="block" tabindex="-1" aria-label={`Read: ${r.title}`}>
+                <div class="relative aspect-[16/9] overflow-hidden bg-gradient-to-br from-primary via-primary-light to-accent/30">
+                  <img
+                    src={r.image}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.remove()"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
+                  <div class="absolute left-3 top-3 inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+                    {r.tag}
+                  </div>
+                </div>
+              </a>
+              <div class="p-5 lg:p-6">
+                <p class="text-xs text-muted mb-2"><time datetime={r.isoDate}>{r.date}</time> · {r.readTime}</p>
+                <h3 class="font-display text-base font-semibold text-primary-dark leading-snug">
+                  <a href={`/blog/${r.slug}`} class="hover:text-primary transition-colors">{r.title}</a>
+                </h3>
+                <p class="mt-2 text-sm text-muted leading-relaxed line-clamp-2">{r.excerpt}</p>
+                <a href={`/blog/${r.slug}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+                  Read article
+                  <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                    <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </Container>
+    </section>
+  )}
+
+  <!-- CTA banner -->
+  <section class="bg-primary text-white py-16 lg:py-20">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="fluid-h3 font-display font-bold text-white">Interested in Our Work?</h2>
+        <p class="mt-4 text-white/80 fluid-body">
+          Speak with our team to explore how Empereal can power your next clean energy project.
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-8 py-3.5 text-sm font-semibold text-white transition-colors shadow-sm"
+        >
+          Get in Touch
+          <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

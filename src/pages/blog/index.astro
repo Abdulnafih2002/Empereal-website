@@ -1,0 +1,148 @@
+---
+export const prerender = false;
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/primitives/Container.astro";
+import { getBlogPosts } from "../../lib/storage.js";
+
+const posts = await getBlogPosts();
+const tagParam = Astro.url.searchParams.get("tag") ?? "All";
+const tags = ["All", ...Array.from(new Set(posts.map((p) => p.tag)))];
+const filtered = tagParam === "All" ? posts : posts.filter((p) => p.tag === tagParam);
+---
+<BaseLayout
+  title="News & Insights — Empereal Clean Energy"
+  description="Latest news, project highlights, partnerships, and event coverage from Empereal — a global solar EPC and clean energy leader."
+>
+  <!-- Hero -->
+  <section
+    class="relative isolate overflow-hidden bg-primary-dark text-white py-20 lg:py-28"
+    aria-labelledby="blog-hero-title"
+  >
+    <div class="absolute inset-0 -z-10">
+      <img
+        src="/images/footer-bg.jpg"
+        alt=""
+        class="absolute inset-0 h-full w-full object-cover opacity-70"
+        loading="eager"
+        decoding="async"
+        onerror="this.remove()"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-primary/70 via-primary-light/30 to-primary/60" aria-hidden="true"></div>
+    </div>
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">
+          Stay Informed. Stay Powered.
+        </p>
+        <h1 id="blog-hero-title" class="fluid-h2 mt-3 text-white">News &amp; Insights</h1>
+        <p class="mt-4 text-white/75 fluid-lead">
+          Discover the latest updates on Empereal's solar projects, partnerships, and sustainable energy initiatives.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Filter tabs + Grid -->
+  <section class="bg-white section-pad" aria-label="Articles">
+    <Container>
+      <!-- Tag filter tabs -->
+      <div class="flex flex-wrap gap-2 mb-10" role="tablist" aria-label="Filter by category">
+        {tags.map((tag) => {
+          const isActive = tag === tagParam;
+          const href = tag === "All" ? "/blog" : `/blog?tag=${encodeURIComponent(tag)}`;
+          return (
+            <a
+              href={href}
+              role="tab"
+              aria-selected={isActive ? "true" : "false"}
+              class={[
+                "inline-flex items-center rounded-full px-4 py-1.5 text-sm font-semibold transition-colors",
+                isActive
+                  ? "bg-primary text-white shadow-sm"
+                  : "bg-white text-muted border border-primary/15 hover:bg-primary-50 hover:text-primary-dark",
+              ].join(" ")}
+            >
+              {tag}
+            </a>
+          );
+        })}
+      </div>
+
+      {filtered.length === 0 ? (
+        <div class="py-24 text-center text-muted">
+          <p class="text-lg font-medium">No articles found for this category.</p>
+          <a href="/blog" class="mt-4 inline-block text-sm font-semibold text-primary hover:underline">View all articles</a>
+        </div>
+      ) : (
+        <div class="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 reveal-stagger" role="list">
+          {filtered.map((post) => (
+            <article
+              role="listitem"
+              class="group overflow-hidden rounded-2xl bg-white text-ink shadow-card hover:shadow-card-lg transition-all duration-300 border border-primary/5"
+            >
+              <a href={`/blog/${post.slug}`} class="block" aria-label={`Read: ${post.title}`} tabindex="-1">
+                <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary via-primary-light to-accent/30">
+                  <img
+                    src={post.image}
+                    alt=""
+                    class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    onerror="this.remove()"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
+                  <div class="absolute left-3 top-3 inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+                    {post.tag}
+                  </div>
+                  <div class="absolute left-3 bottom-3 inline-flex items-center gap-1.5 rounded-md bg-primary-dark/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
+                    <svg viewBox="0 0 20 20" class="h-3 w-3" fill="none" aria-hidden="true">
+                      <rect x="3" y="4" width="14" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M3 8h14M7 3v2M13 3v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                    <time datetime={post.isoDate}>{post.date}</time>
+                  </div>
+                </div>
+              </a>
+              <div class="p-5 lg:p-6">
+                <h2 class="font-display text-base lg:text-lg font-semibold text-primary-dark leading-snug">
+                  <a href={`/blog/${post.slug}`} class="hover:text-primary transition-colors">{post.title}</a>
+                </h2>
+                <p class="mt-2 text-sm text-muted leading-relaxed">{post.excerpt}</p>
+                <div class="mt-4 flex items-center justify-between">
+                  <span class="text-xs text-muted/70">{post.readTime}</span>
+                  <a href={`/blog/${post.slug}`} class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+                    Read article
+                    <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                      <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="bg-primary text-white py-16 lg:py-20">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto">
+        <h2 class="fluid-h3 font-display font-bold text-white">Interested in Our Work?</h2>
+        <p class="mt-4 text-white/80 fluid-body">
+          Get in touch with our team to explore how Empereal can deliver clean energy solutions for your project.
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-8 py-3.5 text-sm font-semibold text-white transition-colors shadow-sm"
+        >
+          Get in Touch
+          <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

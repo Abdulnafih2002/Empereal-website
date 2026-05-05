@@ -1,0 +1,226 @@
+---
+export const prerender = false;
+import CRMLayout from "../../layouts/CRMLayout.astro";
+import { getEnquiries, listAllBlobs, blobEnabled } from "../../lib/storage.js";
+
+const enquiries = await getEnquiries();
+const newCount = enquiries.filter((e) => e.status === "new").length;
+
+const enabled = blobEnabled();
+const blobs = enabled ? await listAllBlobs() : [];
+
+// ── Group blobs ───────────────────────────────────────────────────────────────
+const DATA_KEYS: { key: string; label: string }[] = [
+  { key: "empereal/auth",      label: "Auth / Password" },
+  { key: "empereal/enquiries", label: "Enquiries" },
+  { key: "empereal/blog",      label: "Blog Posts" },
+  { key: "empereal/projects",  label: "Projects" },
+  { key: "empereal/settings",  label: "Site Settings" },
+  { key: "empereal/features",  label: "Features Section" },
+];
+
+type BlobItem = (typeof blobs)[number];
+
+const dataGroups = DATA_KEYS.map(({ key, label }) => {
+  const items = blobs
+    .filter((b) => b.pathname.startsWith(key) && !b.pathname.startsWith("empereal/images/"))
+    .sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+  return { key, label, items, orphans: items.slice(1) };
+});
+
+const imageBlobs: BlobItem[] = blobs
+  .filter((b) => b.pathname.startsWith("empereal/images/"))
+  .sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+
+const totalOrphans = dataGroups.reduce((n, g) => n + g.orphans.length, 0);
+const totalSize = blobs.reduce((n, b) => n + b.size, 0);
+
+function formatBytes(bytes: number): string {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(2)} MB`;
+}
+
+function timeAgo(date: Date): string {
+  const diff = Math.floor((Date.now() - date.getTime()) / 1000);
+  if (diff < 60) return "just now";
+  if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
+  return `${Math.floor(diff / 86400)}d ago`;
+}
+---
+<CRMLayout title="Storage" newEnquiries={newCount}>
+
+  {!enabled ? (
+    <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm px-6 py-12 text-center">
+      <svg class="mx-auto mb-3 h-10 w-10 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+        <ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/>
+      </svg>
+      <p class="text-sm font-medium text-slate-500">Vercel Blob not connected</p>
+      <p class="mt-1 text-xs text-slate-400">Set <code class="bg-slate-100 px-1 rounded">BLOB_READ_WRITE_TOKEN</code> to manage storage.</p>
+    </div>
+  ) : (
+    <div class="space-y-6">
+
+      <!-- Summary bar -->
+      <div class="flex flex-wrap items-center justify-between gap-4 rounded-xl bg-white ring-1 ring-slate-200 shadow-sm px-5 py-4">
+        <div class="flex items-center gap-6 text-sm text-slate-600">
+          <span><span class="font-semibold text-slate-800">{blobs.length}</span> blobs</span>
+          <span><span class="font-semibold text-slate-800">{formatBytes(totalSize)}</span> used</span>
+          <span><span class="font-semibold text-slate-800">{imageBlobs.length}</span> images</span>
+          {totalOrphans > 0 && (
+            <span class="text-orange font-semibold">{totalOrphans} orphaned blob{totalOrphans !== 1 ? "s" : ""} detected</span>
+          )}
+        </div>
+        {totalOrphans > 0 && (
+          <button
+            id="cleanup-btn"
+            type="button"
+            class="inline-flex items-center gap-2 rounded-lg bg-slate-800 hover:bg-slate-700 px-4 py-2 text-sm font-semibold text-white transition-colors"
+          >
+            <svg class="h-3.5 w-3.5" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12M5 4V2h6v2M10 4v8M6 4v8M4 4l.5 10h7L12 4"/></svg>
+            Clean Up Orphans
+          </button>
+        )}
+      </div>
+
+      <!-- Data Store -->
+      <div class="bg-white rounded-xl ring-1 ring-slate-200 shadow-sm overflow-hidden">
+        <div class="border-b border-slate-100 px-5 py-3.5">
+          <h2 class="text-sm font-semibold text-slate-800">Data Store</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Blob records for each CRM data type</p>
+        </div>
+        <table class="min-w-full divide-y divide-slate-100 text-sm">
+          <thead class="bg-slate-50">
+            <tr>
+              <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Key</th>
+              <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Blobs</th>
+              <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Size</th>
+              <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Last updated</th>
+              <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">
+            {dataGroups.map((g) => (
+              <tr class="hover:bg-slate-50/60 transition-colors">
+                <td class="px-5 py-3.5">
+                  <p class="font-medium text-slate-800">{g.label}</p>
+                  <p class="text-xs text-slate-400 font-mono mt-0.5">{g.key}</p>
+                </td>
+                <td class="px-5 py-3.5 text-slate-600">{g.items.length}</td>
+                <td class="px-5 py-3.5 text-slate-600">{formatBytes(g.items.reduce((n, b) => n + b.size, 0))}</td>
+                <td class="px-5 py-3.5 text-slate-500 text-xs">
+                  {g.items[0] ? timeAgo(g.items[0].uploadedAt) : "—"}
+                </td>
+                <td class="px-5 py-3.5">
+                  {g.items.length === 0 && <span class="text-xs text-slate-400">No data</span>}
+                  {g.items.length === 1 && <span class="inline-flex items-center gap-1 text-xs font-medium text-slate-500"><span class="h-1.5 w-1.5 rounded-full bg-slate-400 inline-block"></span>OK</span>}
+                  {g.orphans.length > 0 && (
+                    <span class="inline-flex items-center gap-1 text-xs font-medium text-orange">
+                      <span class="h-1.5 w-1.5 rounded-full bg-orange inline-block"></span>
+                      {g.orphans.length} orphan{g.orphans.length !== 1 ? "s" : ""}
+                    </span>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Images -->
+      <div class="bg-white rounded-xl ring-1 ring-slate-200 shadow-sm overflow-hidden">
+        <div class="border-b border-slate-100 px-5 py-3.5 flex items-center justify-between">
+          <div>
+            <h2 class="text-sm font-semibold text-slate-800">Uploaded Images</h2>
+            <p class="text-xs text-slate-400 mt-0.5">{imageBlobs.length} image{imageBlobs.length !== 1 ? "s" : ""} · {formatBytes(imageBlobs.reduce((n, b) => n + b.size, 0))}</p>
+          </div>
+        </div>
+
+        {imageBlobs.length === 0 ? (
+          <div class="py-12 text-center text-sm text-slate-400">No uploaded images yet.</div>
+        ) : (
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-slate-100 text-sm">
+              <thead class="bg-slate-50">
+                <tr>
+                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">File</th>
+                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Size</th>
+                  <th class="px-5 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-400">Uploaded</th>
+                  <th class="px-5 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-400">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100">
+                {imageBlobs.map((b) => {
+                  const filename = b.pathname.split("/").pop() ?? b.pathname;
+                  return (
+                    <tr class="hover:bg-slate-50/60 transition-colors" data-blob-row>
+                      <td class="px-5 py-3 flex items-center gap-3">
+                        <img src={b.url} alt="" class="h-10 w-10 rounded-md object-cover bg-slate-100 shrink-0" loading="lazy" onerror="this.remove()" />
+                        <span class="font-mono text-xs text-slate-600 truncate max-w-xs">{filename}</span>
+                      </td>
+                      <td class="px-5 py-3 text-slate-500 text-xs whitespace-nowrap">{formatBytes(b.size)}</td>
+                      <td class="px-5 py-3 text-slate-400 text-xs whitespace-nowrap">{timeAgo(b.uploadedAt)}</td>
+                      <td class="px-5 py-3 text-right">
+                        <button
+                          type="button"
+                          class="inline-flex items-center gap-1 rounded-lg border border-red-200 bg-red-50 hover:bg-red-100 px-3 py-1.5 text-xs font-medium text-red-600 transition-colors"
+                          data-delete-url={b.url}
+                        >
+                          <svg class="h-3 w-3" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 3h8M5 3V2h2v1M10 3l-.5 7a1 1 0 01-1 .9H3.5a1 1 0 01-1-.9L2 3"/></svg>
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
+
+    </div>
+  )}
+</CRMLayout>
+
+<script>
+  // ── Delete single image ───────────────────────────────────────────────────────
+  document.querySelectorAll<HTMLButtonElement>("[data-delete-url]").forEach((btn) => {
+    btn.addEventListener("click", async () => {
+      if (!confirm("Delete this image? This cannot be undone.")) return;
+      const url = btn.dataset.deleteUrl!;
+      btn.disabled = true;
+      btn.textContent = "Deleting…";
+      const res = await fetch("/api/crm/storage", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+      if (res.ok) {
+        btn.closest("[data-blob-row]")?.remove();
+      } else {
+        btn.disabled = false;
+        btn.textContent = "Delete";
+        alert("Failed to delete image.");
+      }
+    });
+  });
+
+  // ── Cleanup orphans ───────────────────────────────────────────────────────────
+  document.getElementById("cleanup-btn")?.addEventListener("click", async () => {
+    const btn = document.getElementById("cleanup-btn") as HTMLButtonElement;
+    btn.disabled = true;
+    btn.textContent = "Cleaning up…";
+    const res = await fetch("/api/crm/storage", { method: "POST" });
+    if (res.ok) {
+      const data = await res.json() as { deleted?: number };
+      alert(`Done — removed ${data.deleted ?? 0} orphaned blob${data.deleted !== 1 ? "s" : ""}.`);
+      window.location.reload();
+    } else {
+      btn.disabled = false;
+      btn.textContent = "Clean Up Orphans";
+      alert("Cleanup failed. Try again.");
+    }
+  });
+</script>

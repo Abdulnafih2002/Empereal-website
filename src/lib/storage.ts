@@ -1,5 +1,5 @@
 import { put, list, del } from "@vercel/blob";
-import type { Enquiry, Solution, Project, SiteSettings, FeaturesSection, FeatureCard } from "./types.js";
+import type { Enquiry, Solution, Project, SiteSettings, FeaturesSection, FeatureCard, CrmBlogPost } from "./types.js";
 
 // Local dev in-memory fallback when BLOB_READ_WRITE_TOKEN is not set
 const memStore = new Map<string, string>();
@@ -245,4 +245,73 @@ export async function getFeatures(): Promise<FeaturesSection> {
 
 export async function putFeatures(features: FeaturesSection): Promise<void> {
   return putBlobJson(FEATURES_KEY, features);
+}
+
+// ─── Blog Posts ───────────────────────────────────────────────────────────────
+
+const BLOG_KEY = "empereal/blog";
+
+// Loaded at build time from src/data/blog.ts
+import { posts as staticBlogPosts } from "../data/blog.js";
+
+const DEFAULT_BLOG_POSTS: CrmBlogPost[] = staticBlogPosts.map((p, i) => ({
+  id: p.slug,
+  slug: p.slug,
+  tag: p.tag,
+  date: p.date,
+  isoDate: p.isoDate,
+  readTime: p.readTime,
+  title: p.title,
+  excerpt: p.excerpt,
+  image: p.image,
+  sections: p.sections,
+  order: i + 1,
+}));
+
+export async function getBlogPosts(): Promise<CrmBlogPost[]> {
+  const posts = await getBlobJson<CrmBlogPost[]>(BLOG_KEY, DEFAULT_BLOG_POSTS);
+  return [...posts].sort((a, b) => a.order - b.order);
+}
+
+export async function putBlogPosts(posts: CrmBlogPost[]): Promise<void> {
+  return putBlobJson(BLOG_KEY, posts);
+}
+
+// ─── Blob Storage Management ──────────────────────────────────────────────────
+
+const DATA_KEYS = [
+  "empereal/auth",
+  "empereal/enquiries",
+  "empereal/blog",
+  "empereal/projects",
+  "empereal/settings",
+  "empereal/features",
+];
+
+export function blobEnabled(): boolean {
+  return hasBlob();
+}
+
+export async function listAllBlobs() {
+  if (!hasBlob()) return [];
+  const { blobs } = await list({ prefix: "empereal/" });
+  return blobs;
+}
+
+export async function deleteBlobUrl(url: string): Promise<void> {
+  await del([url]);
+}
+
+export async function cleanupOrphanBlobs(): Promise<number> {
+  if (!hasBlob()) return 0;
+  const { blobs } = await list({ prefix: "empereal/" });
+  const toDelete: string[] = [];
+  for (const key of DATA_KEYS) {
+    const group = blobs
+      .filter((b) => b.pathname.startsWith(key))
+      .sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+    if (group.length > 1) toDelete.push(...group.slice(1).map((b) => b.url));
+  }
+  if (toDelete.length > 0) await del(toDelete);
+  return toDelete.length;
 }

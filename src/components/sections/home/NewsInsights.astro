@@ -1,29 +1,8 @@
 ---
 import Container from "../../primitives/Container.astro";
+import { getBlogPosts } from "../../../lib/storage.js";
 
-const articles = [
-  {
-    tag: "United Arab Emirates",
-    date: "April 10, 2026",
-    title: "Empereal Powers Solar Pavilion at Expo 2020 Dubai",
-    excerpt: "Empereal showcased renewable innovations at Expo 2020 Dubai — 1.65 MWp across 33 pavilions delivered under stringent timelines.",
-    image: "/images/project-uae.jpg",
-  },
-  {
-    tag: "Partnership",
-    date: "March 8, 2026",
-    title: "Empereal Partners with ADNOC for Solar Projects",
-    excerpt: "Empereal collaborates with ADNOC to advance solar energy infrastructure across the UAE and wider GCC markets.",
-    image: "/images/hero-solar.jpg",
-  },
-  {
-    tag: "Summit",
-    date: "April 16, 2026",
-    title: "Empereal at World Future Energy Summit 2026",
-    excerpt: "Empereal presented cutting-edge solar solutions in Abu Dhabi — highlighting next-generation BIPV and hydrogen-ready architectures.",
-    image: "/images/testimonial-2.jpg",
-  },
-];
+const articles = (await getBlogPosts()).slice(0, 3);
 ---
 <section
   id="news"
@@ -63,33 +42,35 @@ const articles = [
             role="listitem"
             class="group overflow-hidden rounded-2xl bg-white text-ink shadow-card hover:shadow-card-lg transition-all duration-300"
           >
-            <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary via-primary-light to-accent/30">
-              <img
-                src={a.image}
-                alt=""
-                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-                decoding="async"
-                onerror="this.remove()"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
-              <div class="absolute left-3 top-3 inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
-                {a.tag}
+            <a href={`/blog/${a.slug}`} class="block" tabindex="-1" aria-label={`Read: ${a.title}`}>
+              <div class="relative aspect-[16/10] overflow-hidden bg-gradient-to-br from-primary via-primary-light to-accent/30">
+                <img
+                  src={a.image}
+                  alt=""
+                  class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.remove()"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
+                <div class="absolute left-3 top-3 inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+                  {a.tag}
+                </div>
+                <div class="absolute left-3 bottom-3 inline-flex items-center gap-1.5 rounded-md bg-primary-dark/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
+                  <svg viewBox="0 0 20 20" class="h-3 w-3" fill="none" aria-hidden="true">
+                    <rect x="3" y="4" width="14" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M3 8h14M7 3v2M13 3v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <time datetime={a.isoDate}>{a.date}</time>
+                </div>
               </div>
-              <div class="absolute left-3 bottom-3 inline-flex items-center gap-1.5 rounded-md bg-primary-dark/80 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur">
-                <svg viewBox="0 0 20 20" class="h-3 w-3" fill="none" aria-hidden="true">
-                  <rect x="3" y="4" width="14" height="13" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                  <path d="M3 8h14M7 3v2M13 3v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-                </svg>
-                {a.date}
-              </div>
-            </div>
+            </a>
             <div class="p-5 lg:p-6">
               <h3 class="font-display text-base lg:text-lg font-semibold text-primary-dark leading-snug">
                 {a.title}
               </h3>
               <p class="mt-2 text-sm text-muted leading-relaxed">{a.excerpt}</p>
-              <a href="#" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+              <a href={`/blog/${a.slug}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
                 Read article
                 <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
                   <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
