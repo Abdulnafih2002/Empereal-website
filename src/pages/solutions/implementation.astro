@@ -1,0 +1,385 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/primitives/Container.astro";
+
+const scopeItems = [
+  {
+    group: "Procurement & Civil Works",
+    items: [
+      "Procurement of high-quality solar components and materials",
+      "Civil and structural works for solar mounting systems",
+      "Electrical installation and DC/AC wiring",
+      "Module mounting and system assembly",
+    ],
+  },
+  {
+    group: "Installation & Commissioning",
+    items: [
+      "Inverter and balance-of-system installation",
+      "Testing, commissioning, and performance verification",
+      "Grid connection and synchronization",
+      "As-built documentation and O&M handover",
+    ],
+  },
+];
+
+const audiences = [
+  {
+    title: "EPC Contractors",
+    desc: "Specialist construction execution support for contractors needing a trusted build partner to deliver to spec.",
+    icon: `<path d="M2 20h20M4 20V10l8-7 8 7v10M9 20v-5h6v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    title: "Developers & Investors",
+    desc: "Turnkey construction delivery once design is finalised — protecting your capital with on-time, on-spec outcomes.",
+    icon: `<path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    title: "Utilities & IPPs",
+    desc: "High-volume construction execution for utility-scale solar farms, with rigorous QA and grid synchronization.",
+    icon: `<path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    title: "Government & Public Sector",
+    desc: "Reliable, compliant construction delivery for national infrastructure programmes with full audit documentation.",
+    icon: `<circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
+  },
+];
+
+const steps = [
+  {
+    n: "01",
+    title: "Project Kickoff",
+    desc: "Review design documents, confirm scope, and mobilize resources.",
+  },
+  {
+    n: "02",
+    title: "Procurement & Logistics",
+    desc: "Source components and coordinate delivery schedules.",
+  },
+  {
+    n: "03",
+    title: "Site Preparation",
+    desc: "Civil works, mounting structure installation, and safety setup.",
+  },
+  {
+    n: "04",
+    title: "System Installation",
+    desc: "Module mounting, electrical wiring, and BOS integration.",
+  },
+  {
+    n: "05",
+    title: "Testing & Commissioning",
+    desc: "Performance verification, grid sync, and quality checks.",
+  },
+  {
+    n: "06",
+    title: "Handover & Training",
+    desc: "Documentation delivery, client training, and warranty activation.",
+  },
+];
+
+const relatedModels = [
+  {
+    title: "Design & Consultancy Only",
+    desc: "Independent engineering guidance from the earliest stage of a project. We provide feasibility studies, technical and architectural design, and authority approvals — positioning your project for success before a single panel is procured.",
+    image: "/images/mercedes-binghatti.jpg",
+    href: "/solutions/design-consultancy",
+    gradient: "from-primary-dark via-primary to-accent/40",
+  },
+  {
+    title: "Full End-to-End EPC",
+    desc: "Complete project lifecycle management under a single contract — from feasibility through design, procurement, construction, commissioning, and long-term O&M. We take full accountability from concept to operation.",
+    image: "/images/feature-epc.jpg",
+    href: "/solutions/full-epc",
+    gradient: "from-primary to-cta/50",
+  },
+];
+---
+<BaseLayout
+  title="Implementation & Construction Only | Empereal Solutions"
+  description="Once the design is complete and you're ready to build, we step in as your execution partner — handling procurement, construction, installation, testing, and commissioning, on time and to spec."
+>
+  <!-- Breadcrumbs -->
+  <nav aria-label="Breadcrumb" class="bg-primary-dark/95 border-b border-white/5">
+    <Container class="flex items-center gap-2 py-2.5 text-xs">
+      <a href="/" class="text-white/55 hover:text-white/90 transition-colors">Home</a>
+      <span class="text-white/30" aria-hidden="true">›</span>
+      <a href="/solutions" class="text-white/55 hover:text-white/90 transition-colors">Solutions</a>
+      <span class="text-white/30" aria-hidden="true">›</span>
+      <span class="text-white/85" aria-current="page">Implementation & Construction Only</span>
+    </Container>
+  </nav>
+
+  <!-- Hero Section -->
+  <section
+    class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
+    aria-labelledby="impl-hero-title"
+  >
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <img
+        src="/images/dewa-hq-1.jpg"
+        alt="Implementation & Construction Only"
+        class="h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/90 via-primary-dark/60 to-primary-dark/25"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 via-transparent to-transparent"></div>
+      <div class="absolute -bottom-32 -right-32 h-[520px] w-[520px] rounded-full bg-accent/15 blur-[140px] animate-pulse-glow"></div>
+      <svg class="absolute inset-0 w-full h-full opacity-[0.05]" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="implHeroGrid" x="0" y="0" width="48" height="48" patternUnits="userSpaceOnUse">
+            <path d="M48 0H0v48" fill="none" stroke="#fff" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="1440" height="800" fill="url(#implHeroGrid)"/>
+      </svg>
+    </div>
+
+    <Container class="relative flex-1 flex items-center">
+      <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
+        <p class="eyebrow !text-white hero-enter hero-enter-1">Engagement Model</p>
+        <h1 id="impl-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
+          Implementation & <span class="text-accent">Construction Only</span>
+        </h1>
+        <p class="fluid-lead mt-6 text-white/85 max-w-2xl hero-enter hero-enter-3">
+          Once the design is complete and you're ready to build, we step in as your execution partner — handling procurement, construction, installation, testing, and commissioning, on time and to spec.
+        </p>
+
+        <div class="mt-8 flex flex-wrap items-center gap-3 hero-enter hero-enter-4">
+          <a
+            href="/contact"
+            class="hero-cta press group inline-flex items-center gap-2 whitespace-nowrap rounded-md bg-orange hover:bg-orange-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-white transition-colors min-h-[48px] shadow-lg shadow-orange/30"
+          >
+            Discuss Your Construction Needs
+            <svg viewBox="0 0 20 20" class="h-4 w-4 shrink-0 arrow-slide" fill="none" aria-hidden="true">
+              <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a
+            href="#scope"
+            class="hero-cta inline-flex items-center gap-2 whitespace-nowrap rounded-md bg-cta hover:bg-cta-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-white transition-colors min-h-[48px] shadow-lg shadow-cta/25"
+          >
+            Our Services
+          </a>
+        </div>
+
+        <!-- Stats Banner -->
+        <dl class="mt-12 grid grid-cols-2 lg:grid-cols-4 divide-y divide-white/10 lg:divide-y-0 lg:divide-x lg:divide-white/10 border-y border-white/10 py-5 lg:py-7 max-w-2xl hero-enter hero-enter-4">
+          <div class="px-6 py-2 flex flex-col items-start">
+            <dt class="order-2 mt-1 text-[10px] uppercase tracking-[0.15em] text-white/65 font-medium">Projects Built</dt>
+            <dd class="order-1 font-display text-2xl sm:text-3xl font-semibold text-white">350+</dd>
+          </div>
+          <div class="px-6 py-2 flex flex-col items-start">
+            <dt class="order-2 mt-1 text-[10px] uppercase tracking-[0.15em] text-white/65 font-medium">Countries</dt>
+            <dd class="order-1 font-display text-2xl sm:text-3xl font-semibold text-white">15+</dd>
+          </div>
+          <div class="px-6 py-2 flex flex-col items-start">
+            <dt class="order-2 mt-1 text-[10px] uppercase tracking-[0.15em] text-white/65 font-medium">Years Experience</dt>
+            <dd class="order-1 font-display text-2xl sm:text-3xl font-semibold text-white">20+</dd>
+          </div>
+          <div class="px-6 py-2 flex flex-col items-start">
+            <dt class="order-2 mt-1 text-[10px] uppercase tracking-[0.15em] text-white/65 font-medium">On-time Delivery</dt>
+            <dd class="order-1 font-display text-2xl sm:text-3xl font-semibold text-white">99%</dd>
+          </div>
+        </dl>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Scope of Services -->
+  <section id="scope" class="section-pad bg-surface" aria-labelledby="impl-scope-title">
+    <Container>
+      <div class="max-w-2xl reveal">
+        <p class="eyebrow">Scope of Services</p>
+        <h2 id="impl-scope-title" class="fluid-h2 mt-3">What we deliver</h2>
+        <p class="fluid-lead mt-5 text-muted">
+          Our services span the full project lifecycle, delivered with technical rigour and industry-leading expertise.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 reveal-stagger">
+        {scopeItems.map((group) => (
+          <div class="bg-white rounded-2xl border border-primary/10 p-6 sm:p-8 hover:shadow-card transition-all">
+            <h3 class="text-sm font-bold uppercase tracking-[0.1em] text-accent">{group.group}</h3>
+            <ul class="mt-5 space-y-3">
+              {group.items.map((item) => (
+                <li class="flex gap-3">
+                  <span class="mt-2 inline-block h-[2px] w-4 bg-accent rounded-full shrink-0" aria-hidden="true"></span>
+                  <span class="text-sm text-ink/80 leading-relaxed">{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Who We Support -->
+  <section class="section-pad bg-white" aria-labelledby="impl-support-title">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto reveal-stagger">
+        <p class="eyebrow">Who we support</p>
+        <h2 id="impl-support-title" class="fluid-h2 mt-3">Who we support</h2>
+        <p class="mt-4 text-muted fluid-lead">
+          We partner with organisations across the energy and infrastructure ecosystem.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+        {audiences.map((a) => (
+          <div class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 p-6 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
+            <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-accent-soft text-primary-dark ring-1 ring-accent/20">
+              <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true">
+                <Fragment set:html={a.icon} />
+              </svg>
+            </div>
+            <h3 class="mt-4 font-display text-base font-semibold text-primary-dark">{a.title}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{a.desc}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Our Process -->
+  <section class="section-pad bg-[#0F2238] text-white" aria-labelledby="impl-process-title">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="eyebrow !text-accent">Our Process</p>
+        <h2 id="impl-process-title" class="fluid-h2 mt-3 text-white">Our Process</h2>
+        <p class="fluid-lead mt-5 text-white/60">
+          How we deliver under this engagement model, from start to finish.
+        </p>
+      </div>
+
+      <ol class="mt-12 grid gap-8 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3 relative reveal-stagger">
+        {steps.map((s) => (
+          <li class="flex gap-5 items-start">
+            <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-accent text-primary-dark font-bold text-sm shadow-md shadow-accent/30 ring-4 ring-[#0F2238]">
+              {s.n}
+            </span>
+            <div class="min-w-0">
+              <h3 class="text-sm font-semibold text-white">{s.title}</h3>
+              <p class="mt-1.5 text-xs text-white/55 leading-relaxed">{s.desc}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </Container>
+  </section>
+
+  <!-- Related Project -->
+  <section class="section-pad bg-white" aria-labelledby="impl-project-title">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto reveal">
+        <p class="eyebrow">Our Work</p>
+        <h2 id="impl-project-title" class="fluid-h2 mt-3">Related Projects</h2>
+      </div>
+
+      <div class="mt-10 max-w-sm mx-auto reveal">
+        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
+          <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-accent/40">
+            <img
+              src="/images/dewa-hq-main.jpg"
+              alt="DEWA HQ — Al Shera Building"
+              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              onerror="this.remove()"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent" aria-hidden="true"></div>
+            <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
+              <span aria-hidden="true">🇦🇪</span>
+              United Arab Emirates
+            </div>
+          </div>
+
+          <div class="flex flex-col flex-1 p-5 lg:p-6 text-left">
+            <h3 class="font-display text-lg lg:text-xl font-semibold text-primary-dark">DEWA HQ — Al Shera Building</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">
+              One of the largest integrated solar façade installations in the Middle East.
+            </p>
+            <a href="/projects#dewa-hq" class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+              View case study
+              <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      </div>
+
+      <div class="mt-10 text-center reveal">
+        <a
+          href="/projects"
+          class="inline-flex items-center gap-2 rounded-md border border-primary/20 bg-white hover:border-primary hover:bg-primary-50 px-6 py-3 text-sm font-semibold text-primary transition-colors min-h-[44px]"
+        >
+          Explore All Projects
+          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+
+  <!-- Explore Other Engagement Models -->
+  <section class="section-pad bg-white" aria-labelledby="impl-models-title">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto reveal-stagger">
+        <p class="eyebrow">Engagement Models</p>
+        <h2 id="impl-models-title" class="fluid-h2 mt-3">Explore Other Engagement Models</h2>
+        <p class="mt-4 text-muted fluid-lead">
+          Compare our flexible engagement options to find the right fit.
+        </p>
+      </div>
+
+      <div class="mt-12 lg:mt-16 grid gap-5 md:grid-cols-2 reveal-stagger">
+        {relatedModels.map((m) => (
+          <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
+            <div class={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${m.gradient}`}>
+              <img
+                src={m.image}
+                alt={m.title}
+                class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                onerror="this.remove()"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
+            </div>
+            <div class="flex flex-col flex-1 p-5 lg:p-6">
+              <h3 class="font-display text-lg lg:text-xl font-semibold text-primary-dark">{m.title}</h3>
+              <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{m.desc}</p>
+              <a href={m.href} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+                Learn more
+                <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                  <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-hero {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+    min-height: calc(100dvh - 6rem);
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+      min-height: calc(100dvh - 7rem);
+    }
+  }
+</style>

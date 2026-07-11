@@ -1,0 +1,97 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/primitives/Container.astro";
+
+const faqs = [
+  {
+    q: "What types of solar projects does Empereal handle?",
+    a: "Empereal specializes in a comprehensive range of solar and renewable energy solutions including utility-scale solar farms, commercial & industrial rooftop installations, solar carports, building-integrated photovoltaics (BIPV), energy storage systems, green hydrogen projects, and full operations & maintenance services.",
+  },
+  {
+    q: "How long does a typical solar project take?",
+    a: "Project timelines vary based on scale and complexity. Commercial & industrial projects typically take 3–6 months from contract to commissioning, while utility-scale projects may require 12–18 months. We provide detailed timelines during the consultation phase and work to optimize delivery schedules.",
+  },
+  {
+    q: "Do you provide financing options?",
+    a: "Yes, Empereal offers flexible financing and partnership models including EPC contracts, build-own-operate (BOO) arrangements, and power purchase agreements (PPAs). Our team works with clients to identify the most suitable financial structure for their project and budget requirements.",
+  },
+  {
+    q: "What regions does Empereal operate in?",
+    a: "Empereal operates across the Middle East, South Asia, Southeast Asia, and select markets globally. Our primary hubs are in the UAE, Saudi Arabia, India, Singapore, and the Maldives, with project delivery capabilities in 15+ countries.",
+  },
+  {
+    q: "What is BIPV and how does it differ from standard solar?",
+    a: "Building-Integrated Photovoltaics (BIPV) refers to solar materials that are integrated into the building envelope — replacing conventional building materials such as glass, roofing, or facades. Unlike standard rooftop solar which is mounted on top of existing structures, BIPV becomes part of the architecture, serving dual functions of generating energy and providing weather protection.",
+  },
+  {
+    q: "Do you offer operations and maintenance services?",
+    a: "Yes, we provide comprehensive O&M services including performance monitoring, preventive maintenance, corrective maintenance, module cleaning, and system optimization. Our O&M contracts are designed to maximize energy yield and extend system lifetime.",
+  },
+  {
+    q: "What certifications does Empereal hold?",
+    a: "Empereal is certified to ISO 9001 (Quality Management), ISO 14001 (Environmental Management), and ISO 45001 (Occupational Health & Safety). These certifications ensure that every project is delivered to the highest standards of quality, safety, and environmental responsibility.",
+  },
+  {
+    q: "Can you handle green hydrogen projects?",
+    a: "Absolutely. Empereal has delivered green hydrogen projects including electrolyzer integration, fuel-switching solutions, and industrial decarbonization systems. Our DEWA R&D project features a 2.5MW alkaline electrolyzer producing 500 Nm³/h of high-purity hydrogen.",
+  },
+];
+---
+<BaseLayout
+  title="Frequently Asked Questions — Empereal"
+  description="Find answers to common questions about Empereal's solar EPC services, project timelines, financing, certifications, and more."
+>
+  <!-- Hero -->
+  <section class="bg-primary-dark text-white py-16 lg:py-20" aria-labelledby="faq-title">
+    <Container>
+      <div class="max-w-2xl">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Support</p>
+        <h1 id="faq-title" class="fluid-h2 mt-3 text-white">Frequently Asked Questions</h1>
+        <p class="mt-4 text-white/75 fluid-lead">
+          Find answers to common questions about our solar EPC services, project timelines, financing, and more.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Q&A list -->
+  <section class="bg-white section-pad" aria-label="Frequently asked questions">
+    <Container>
+      <div class="max-w-3xl mx-auto space-y-4 reveal-stagger">
+        {faqs.map((item) => (
+          <div class="rounded-2xl bg-white ring-1 ring-primary/10 p-6 sm:p-7 hover:ring-accent/40 hover:shadow-card transition-all">
+            <div class="flex items-start gap-4">
+              <span class="mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-lg bg-accent/15 text-accent-dark shrink-0" aria-hidden="true">
+                <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none">
+                  <circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.4"/>
+                  <path d="M7.6 7.8a2.5 2.5 0 0 1 4.86.8c0 1.6-2.5 2.4-2.5 2.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+                  <path d="M10 14.2h.01" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+              <div class="min-w-0">
+                <h3 class="text-base sm:text-lg font-semibold text-primary-dark">{item.q}</h3>
+                <p class="mt-2 text-sm sm:text-[15px] text-muted leading-relaxed">{item.a}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="mt-14 text-center max-w-xl mx-auto reveal">
+        <h2 class="fluid-h3 font-display font-bold text-primary-dark">Still have questions?</h2>
+        <p class="mt-3 text-muted">
+          Can't find what you're looking for? Our team is ready to help.
+        </p>
+        <a
+          href="/contact"
+          class="mt-6 inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-6 py-3 text-sm font-semibold text-white transition-colors min-h-[44px]"
+        >
+          Contact Us
+          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

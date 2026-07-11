@@ -1,0 +1,140 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const partners = [
+  { name: "TotalEnergies", file: "totalenergies" },
+  { name: "JinkoSolar", file: "jinkosolar" },
+  { name: "LONGi", file: "longi" },
+  { name: "Peric", file: "peric" },
+  { name: "Enphase", file: "enphase" },
+  { name: "hyCLEANER", file: "hycleaner" },
+];
+
+const clients = [
+  { name: "Expo 2020 Dubai", file: "expo2020" },
+  { name: "Binghatti", file: "binghatti" },
+  { name: "Mercedes-Benz", file: "mercedes-benz" },
+  { name: "Enova", file: "enova" },
+  { name: "Masdar", file: "masdar" },
+  { name: "DEWA", file: "dewa" },
+  { name: "Park Hyatt Maldives", file: "park-hyatt" },
+];
+---
+
+<section class="section-pad bg-white border-t border-primary/5 overflow-hidden" aria-labelledby="clients-partners-title">
+  <Container>
+    <div class="text-center max-w-3xl mx-auto reveal">
+      <h2 id="clients-partners-title" class="font-display text-2xl sm:text-3xl font-semibold text-primary-dark">
+        Our Clients &amp; Partners
+      </h2>
+      <p class="mt-4 text-xs sm:text-sm text-muted max-w-2xl mx-auto leading-relaxed">
+        Trusted by leading clients and strategic partners across Asia and the Middle East.<br class="hidden sm:inline" />
+        At Empereal, our clients and partners are at the heart of everything we do. We are committed to building strong, lasting relationships through exceptional service, reliability, and high-quality solutions.
+      </p>
+    </div>
+  </Container>
+
+  <!-- Partners marquee (scrolls left) -->
+  <div class="relative mt-12 marquee-track" aria-hidden="true">
+    <!-- fade masks -->
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
+
+    <div class="marquee marquee--left flex gap-16 items-center">
+      <!-- duplicated for seamless loop -->
+      {[...partners, ...partners].map((p) => (
+        <div class="logo-item flex-none h-9 flex items-center justify-center" title={p.name}>
+          <img
+            src={`/images/logos/${p.file}.webp`}
+            alt={p.name}
+            class="logo-img h-full w-auto max-w-[130px] object-contain"
+            loading="lazy"
+            decoding="async"
+            width="240"
+            height="72"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Clients marquee (scrolls right) -->
+  <div class="relative mt-10 marquee-track" aria-hidden="true">
+    <div class="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
+    <div class="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
+
+    <div class="marquee marquee--right flex gap-16 items-center">
+      {[...clients, ...clients].map((c) => (
+        <div class="logo-item flex-none h-9 flex items-center justify-center" title={c.name}>
+          <img
+            src={`/images/logos/${c.file}.webp`}
+            alt={c.name}
+            class="logo-img h-full w-auto max-w-[130px] object-contain"
+            loading="lazy"
+            decoding="async"
+            width="240"
+            height="72"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-track {
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .marquee {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .marquee--left {
+    animation: scroll-left 28s linear infinite;
+  }
+
+  .marquee--right {
+    animation: scroll-right 32s linear infinite;
+  }
+
+  /* Default state: greyscale & dim */
+  .logo-img {
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
+  }
+
+  /* Hover on the logo wrapper: full colour + slight scale */
+  .logo-item:hover .logo-img {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  /* Pause the entire row when hovering anywhere on the track */
+  .marquee-track:hover .marquee {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll-left {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes scroll-right {
+    0%   { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
+  }
+
+  /* Respect reduced-motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    .marquee--left,
+    .marquee--right {
+      animation: none;
+    }
+  }
+</style>

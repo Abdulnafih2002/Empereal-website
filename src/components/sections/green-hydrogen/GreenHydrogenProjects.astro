@@ -1,0 +1,53 @@
+---
+import Container from "../../primitives/Container.astro";
+import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+import { projects } from "../../../data/projects.ts";
+
+const slugs = ["green-hydrogen-dewa"];
+const featured = slugs
+  .map((s) => projects.find((p) => p.slug === s))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const tagFor: Record<string, string> = {
+  "green-hydrogen-dewa": "Electrolyzer · Green Hydrogen · R&D",
+};
+---
+<section class="section-pad bg-white" aria-labelledby="hydrogen-projects-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Related Projects</p>
+      <h2 id="hydrogen-projects-title" class="fluid-h2 mt-3">Selected experience</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's green hydrogen work in action — from feasibility through to operational electrolyzer systems.
+      </p>
+    </div>
+
+    <ul class="mt-10 grid gap-4 sm:grid-cols-2 max-w-xl reveal-stagger">
+      {featured.map((p) => (
+        <li class="group rounded-2xl bg-white overflow-hidden ring-1 ring-primary/10 hover:-translate-y-1 hover:shadow-card-lg transition-all">
+          <ImagePlaceholder
+            src={p.image}
+            alt={p.imageAlt ?? p.title}
+            aspect="4/3"
+            tone={p.tone}
+            label={`${p.title} — ${p.location}`}
+            rounded="rounded-none"
+          >
+            <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-primary-dark/80 backdrop-blur-sm px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] text-white">
+              {p.country}
+            </span>
+          </ImagePlaceholder>
+
+          <div class="p-5 lg:p-6">
+            <p class="text-[10px] font-semibold uppercase tracking-[0.07em] text-accent-dark">{tagFor[p.slug]}</p>
+            <h3 class="mt-1.5 text-base font-semibold text-primary-dark">{p.title}</h3>
+            <p class="mt-2 text-sm text-muted leading-relaxed">{p.summary}</p>
+            {p.scale !== "—" && (
+              <p class="mt-3 text-[13px] font-medium text-primary-dark pt-3 border-t border-primary/10">{p.scale}</p>
+            )}
+          </div>
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

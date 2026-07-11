@@ -2,6 +2,8 @@
 import "../styles/globals.css";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
+import ClientsAndPartners from "../components/sections/shared/ClientsAndPartners.astro";
+import CookieConsent from "../components/site/CookieConsent.astro";
 
 interface Props {
   title?: string;
@@ -12,7 +14,7 @@ interface Props {
 const {
   title = "Empereal — Smart Solar & EPC Solutions",
   description = "A global smart solar & EPC leader delivering high-performance energy solutions across Asia and the Middle East.",
-  image = "/images/hero-solar.jpg",
+  image = "/images/dewa-hq-main.jpg",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).toString();
@@ -26,10 +28,18 @@ const org = {
   slogan: "Energizing Communities",
   description,
   industry: "Solar EPC · Smart Energy · Sustainability",
+  sameAs: ["https://linkedin.com/company/empereal", "https://twitter.com/empereal"],
   address: {
     "@type": "PostalAddress",
     addressLocality: "Dubai",
     addressCountry: "AE",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+971-XX-XXX-XXXX",
+    contactType: "sales",
+    areaServed: "Middle East, Asia",
+    availableLanguage: ["English", "Arabic"],
   },
 };
 ---
@@ -65,7 +75,9 @@ const org = {
     <main id="main">
       <slot />
     </main>
+    <ClientsAndPartners />
     <Footer />
+    <CookieConsent />
 
     <script>
       const reveals = document.querySelectorAll(

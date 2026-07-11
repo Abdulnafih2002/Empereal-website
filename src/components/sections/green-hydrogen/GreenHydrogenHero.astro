@@ -1,0 +1,93 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const stats = [
+  { num: "1.2 GW+", lbl: "Installed capacity" },
+  { num: "350+", lbl: "Projects delivered" },
+  { num: "20+", lbl: "Years operating" },
+  { num: "15+", lbl: "Countries active" },
+];
+---
+<section
+  class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
+  aria-labelledby="hydrogen-hero-title"
+>
+  <div class="absolute inset-0 -z-10" aria-hidden="true">
+    <img
+      src="/images/acwa-hq.jpg"
+      alt=""
+      class="h-full w-full object-cover"
+      loading="eager"
+      decoding="async"
+      onerror="this.remove()"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/70 to-primary-dark/30"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/70 via-transparent to-transparent"></div>
+    <div class="absolute -bottom-32 -right-32 h-[520px] w-[520px] rounded-full bg-accent/15 blur-[140px] animate-pulse-glow"></div>
+
+    <div class="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2 w-[380px] h-[360px] opacity-[0.10] animate-float">
+      <svg width="100%" height="100%" viewBox="0 0 200 200" fill="none" preserveAspectRatio="xMidYMid meet">
+        <circle cx="70" cy="100" r="26" stroke="#F5B82E" stroke-width=".8"/>
+        <circle cx="130" cy="100" r="26" stroke="#F5B82E" stroke-width=".8"/>
+        <line x1="96" y1="100" x2="104" y2="100" stroke="#F5B82E" stroke-width="1.2"/>
+        <text x="70" y="106" text-anchor="middle" fill="#F5B82E" font-size="18" opacity=".7">H</text>
+        <text x="130" y="106" text-anchor="middle" fill="#F5B82E" font-size="18" opacity=".7">H</text>
+      </svg>
+    </div>
+  </div>
+
+  <Container class="relative flex-1 flex items-center">
+    <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
+      <p class="eyebrow !text-white hero-enter hero-enter-1">Green Hydrogen · EPC &amp; O&amp;M</p>
+      <h1 id="hydrogen-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
+        High-quality solutions,<br/>
+        <span class="text-accent">engineered to perform.</span>
+      </h1>
+      <p class="fluid-lead mt-6 text-white/80 max-w-2xl hero-enter hero-enter-3">
+        Electrolyzer integration and fuel-switching solutions that turn surplus renewable energy into green hydrogen — powering industry, transport, and the wider energy transition.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 hero-enter hero-enter-4">
+        <a
+          href="/contact"
+          class="hero-cta press group flex items-center gap-2 rounded-md bg-accent hover:bg-accent-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-dark transition-colors min-h-[48px] shadow-lg shadow-accent/20 text-center"
+        >
+          Request a Consultation
+          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide shrink-0" fill="none" aria-hidden="true">
+            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a
+          href="/projects"
+          class="hero-cta press flex items-center gap-2 rounded-md border border-white/25 bg-white/5 hover:bg-white/10 px-6 py-3.5 text-sm sm:text-base text-white transition-colors min-h-[48px] text-center"
+        >
+          View Projects
+        </a>
+      </div>
+
+      <dl class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-px rounded-xl overflow-hidden border border-white/10 max-w-2xl bg-white/[0.04] hero-enter hero-enter-4">
+        {stats.map((s) => (
+          <div class="bg-primary-dark/60 backdrop-blur-sm px-4 py-4 text-center">
+            <dt class="text-base sm:text-lg font-semibold text-accent leading-tight">{s.num}</dt>
+            <dd class="mt-1 text-[10px] uppercase tracking-[0.08em] text-white/50">{s.lbl}</dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .page-hero {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+    min-height: calc(100dvh - 6rem);
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+      min-height: calc(100dvh - 7rem);
+    }
+  }
+</style>

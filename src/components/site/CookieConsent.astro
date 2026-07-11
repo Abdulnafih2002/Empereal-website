@@ -1,0 +1,88 @@
+---
+// Mounted once by BaseLayout. Bottom banner with Accept All / Reject Non-Essential.
+// Persists choice in localStorage. Exposes:
+//   window.cookieConsent           current preferences
+//   window.openCookieSettings()    re-shows the banner (used by footer link)
+//   addEventListener("cookieConsent", e => e.detail = prefs)
+---
+
+<div
+  id="cookie-banner"
+  class="fixed inset-x-0 bottom-0 z-[80] hidden p-4 sm:p-5"
+  role="region"
+  aria-label="Cookie consent"
+>
+  <div class="mx-auto max-w-5xl rounded-2xl bg-primary-dark text-white shadow-2xl ring-1 ring-white/10">
+    <div class="grid gap-4 p-5 sm:p-6 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+      <div>
+        <h2 class="font-display text-base font-semibold text-white">We value your privacy</h2>
+        <p class="mt-1.5 text-sm leading-relaxed text-white/75">
+          We use cookies to keep this site running and to understand how visitors use it.
+          <a href="/cookie-policy" class="underline hover:text-accent transition-colors">Read our Cookie Policy</a>.
+        </p>
+      </div>
+      <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:justify-end">
+        <button
+          type="button"
+          data-cc-action="reject"
+          class="inline-flex items-center justify-center rounded-md bg-white/10 hover:bg-white/15 px-4 py-2.5 text-sm font-semibold text-white transition-colors min-h-[44px]"
+        >Reject</button>
+        <button
+          type="button"
+          data-cc-action="accept"
+          class="inline-flex items-center justify-center rounded-md bg-cta hover:bg-cta-dark px-4 py-2.5 text-sm font-semibold text-white transition-colors min-h-[44px]"
+        >Accept All</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  type Prefs = { necessary: true; analytics: boolean; marketing: boolean; ts: number };
+
+  const STORAGE_KEY = "cookie_consent";
+  const TTL_MS = 365 * 24 * 60 * 60 * 1000; // 12 months
+
+  const banner = document.getElementById("cookie-banner")!;
+
+  function readPrefs(): Prefs | null {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const data = JSON.parse(raw) as Prefs;
+      if (typeof data.ts !== "number" || Date.now() - data.ts > TTL_MS) return null;
+      return data;
+    } catch { return null; }
+  }
+
+  function savePrefs(prefs: Omit<Prefs, "ts">) {
+    const full: Prefs = { ...prefs, ts: Date.now() };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(full));
+    (window as unknown as { cookieConsent: Prefs }).cookieConsent = full;
+    window.dispatchEvent(new CustomEvent("cookieConsent", { detail: full }));
+  }
+
+  function showBanner() { banner.classList.remove("hidden"); }
+  function hideBanner() { banner.classList.add("hidden"); }
+
+  document.addEventListener("click", (e) => {
+    const target = (e.target as HTMLElement).closest("[data-cc-action]") as HTMLElement | null;
+    if (!target) return;
+    const action = target.getAttribute("data-cc-action");
+    if (action === "accept") savePrefs({ necessary: true, analytics: true,  marketing: true });
+    else if (action === "reject") savePrefs({ necessary: true, analytics: false, marketing: false });
+    hideBanner();
+  });
+
+  // Init: load existing prefs or show banner
+  const initial = readPrefs();
+  if (initial) {
+    (window as unknown as { cookieConsent: Prefs }).cookieConsent = initial;
+  } else {
+    showBanner();
+  }
+
+  // Footer "Cookie Settings" link calls this — just re-shows the banner so the
+  // visitor can pick Accept or Reject again.
+  (window as unknown as { openCookieSettings: () => void }).openCookieSettings = showBanner;
+</script>

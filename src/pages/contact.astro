@@ -1,69 +1,328 @@
 ---
 export const prerender = false;
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/primitives/Container.astro";
 import ContactForm from "../components/site/ContactForm.astro";
+
+const stats = [
+  { value: "24h", label: "Response Time" },
+  { value: "15+", label: "Countries Active" },
+  { value: "350+", label: "Projects Delivered" },
+  { value: "20+", label: "Years Experience" },
+];
+
+const contactInfo = [
+  {
+    title: "Global Headquarters",
+    value: "Dubai, United Arab Emirates",
+    icon: `<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.5"/>`,
+  },
+  {
+    title: "Email Address",
+    value: "info@emperealenergy.com",
+    href: "mailto:info@emperealenergy.com",
+    icon: `<rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" stroke="currentColor" stroke-width="1.5"/>`,
+  },
+  {
+    title: "Phone Number",
+    value: "+971 XX XXX XXXX",
+    href: "tel:+971XXXXXXXX",
+    icon: `<path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+  {
+    title: "Business Hours",
+    value: "Sunday – Thursday, 9:00 AM – 6:00 PM GST",
+    icon: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
+  },
+  {
+    title: "Global Presence",
+    value: "15+ Countries across Middle East, Asia & Americas",
+    icon: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+  },
+];
+
+const offices = [
+  {
+    city: "Dubai",
+    country: "UAE",
+    address: "Business Bay, Dubai, United Arab Emirates",
+    phone: "+971 4 XXX XXXX",
+    email: "dubai@empereal.com",
+    tag: "HQ",
+  },
+  {
+    city: "Abu Dhabi",
+    country: "UAE",
+    address: "Masdar City, Abu Dhabi, United Arab Emirates",
+    phone: "+971 2 XXX XXXX",
+    email: "abudhabi@empereal.com",
+  },
+  {
+    city: "Riyadh",
+    country: "Saudi Arabia",
+    address: "King Abdullah Financial District, Riyadh, Saudi Arabia",
+    phone: "+966 11 XXX XXXX",
+    email: "riyadh@empereal.com",
+  },
+  {
+    city: "Singapore",
+    country: "Singapore",
+    address: "One Raffles Place, Singapore",
+    phone: "+65 XXXX XXXX",
+    email: "singapore@empereal.com",
+  },
+  {
+    city: "New Delhi",
+    country: "India",
+    address: "Aerocity, New Delhi, India",
+    phone: "+91 11 XXXX XXXX",
+    email: "india@empereal.com",
+  },
+  {
+    city: "Houston",
+    country: "USA",
+    address: "Post Oak Boulevard, Houston, Texas, USA",
+    phone: "+1 713 XXX XXXX",
+    email: "usa@empereal.com",
+  },
+];
 ---
 <BaseLayout
-  title="Contact Empereal — Solar & EPC Enquiries"
-  description="Get in touch with Empereal's energy experts. Request a consultation, ask about our solar, desalination, or energy storage solutions, or send us a general enquiry."
+  title="Contact Us | Empereal"
+  description="Whether you're exploring a new project or looking for expert guidance, our team is ready to help. Reach out today and let's build the future of energy together."
 >
-  <section class="section-pad bg-white">
-    <div class="mx-auto max-w-5xl px-6 sm:px-10 lg:px-14">
-      <div class="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:items-start">
-        <!-- Left: headings + contact info -->
-        <div>
-          <p class="eyebrow">Get In Touch</p>
-          <h1 class="fluid-h2 mt-3">Talk to our<br />energy experts</h1>
-          <p class="fluid-lead mt-5 text-muted max-w-md">
-            Whether you're planning a utility-scale installation or exploring solar for your facility, we're here to help you find the right solution.
-          </p>
+  <!-- Hero Section -->
+  <section
+    class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
+    aria-labelledby="contact-hero-title"
+  >
+    <div class="absolute inset-0 -z-10" aria-hidden="true">
+      <div class="absolute inset-0 bg-primary-dark"></div>
+      <img
+        src="/images/hero-solar.jpg"
+        alt="Contact Empereal"
+        class="h-full w-full object-cover opacity-35"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/85 via-primary-dark/60 to-primary-dark/20"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/65 via-transparent to-transparent"></div>
+      <div class="absolute -bottom-32 -right-32 h-[520px] w-[520px] rounded-full bg-accent/15 blur-[140px] animate-pulse-glow"></div>
+      <svg class="absolute inset-0 w-full h-full opacity-[0.06]" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <pattern id="contactHeroGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0H0v40" fill="none" stroke="#fff" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="1440" height="800" fill="url(#contactHeroGrid)"/>
+      </svg>
+    </div>
 
-          <dl class="mt-10 space-y-5 text-sm text-muted">
-            <div class="flex items-start gap-3">
-              <dt class="sr-only">Address</dt>
-              <svg viewBox="0 0 20 20" class="h-5 w-5 mt-0.5 text-accent shrink-0" fill="none" aria-hidden="true">
-                <path d="M10 2c3.3 0 6 2.7 6 6 0 4.5-6 10-6 10S4 12.5 4 8c0-3.3 2.7-6 6-6z" stroke="currentColor" stroke-width="1.5"/>
-                <circle cx="10" cy="8" r="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
-              </svg>
-              <dd>Dubai, United Arab Emirates</dd>
-            </div>
-            <div class="flex items-start gap-3">
-              <dt class="sr-only">Email</dt>
-              <svg viewBox="0 0 20 20" class="h-5 w-5 mt-0.5 text-accent shrink-0" fill="none" aria-hidden="true">
-                <rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
-                <path d="M2 6l8 6 8-6" stroke="currentColor" stroke-width="1.5"/>
-              </svg>
-              <dd><a href="mailto:info@empereal.com" class="hover:text-primary transition-colors">info@empereal.com</a></dd>
-            </div>
-            <div class="flex items-start gap-3">
-              <dt class="sr-only">Phone</dt>
-              <svg viewBox="0 0 20 20" class="h-5 w-5 mt-0.5 text-accent shrink-0" fill="none" aria-hidden="true">
-                <path d="M4 5c0-.5.4-1 1-1h2l1.5 3.5L7 9c.8 1.5 2 2.7 3.5 3.5L12 11l3.5 1.5V15c0 .5-.4 1-1 1C9 16 4 11 4 5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-              </svg>
-              <dd>+971 XX XXX XXXX</dd>
-            </div>
-          </dl>
+    <Container class="relative flex-1 flex items-center">
+      <div class="py-16 sm:py-20 lg:py-24 max-w-3xl mx-auto text-center">
+        <p class="eyebrow !text-white hero-enter hero-enter-1">Contact Us</p>
+        <h1 id="contact-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
+          Get in <span class="text-accent">Touch</span>
+        </h1>
+        <p class="fluid-lead mt-6 text-white/85 max-w-2xl mx-auto hero-enter hero-enter-3">
+          Whether you're exploring a new project or looking for expert guidance, our team is ready to help. Reach out today and let's build the future of energy together.
+        </p>
 
-          <!-- WhatsApp shortcut -->
+        <div class="mt-8 flex flex-wrap justify-center gap-3 hero-enter hero-enter-4">
           <a
-            href="https://wa.me/971501234567"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="mt-8 inline-flex items-center gap-2 rounded-lg bg-success hover:bg-success-dark px-5 py-3 text-sm font-semibold text-white transition-colors shadow-sm"
+            href="#form"
+            class="hero-cta press group inline-flex items-center gap-2 whitespace-nowrap rounded-md bg-orange hover:bg-orange-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-white transition-colors min-h-[48px] shadow-lg shadow-orange/30"
           >
-            <svg viewBox="0 0 24 24" class="h-4 w-4" fill="currentColor" aria-hidden="true">
-              <path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.2s-.8.9-1 1.1c-.2.2-.4.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.1-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5H8c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3.2 5 4.4.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.3-.7.3-1.2.2-1.4-.1-.2-.3-.2-.6-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 5L2 22l5.2-1.4c1.4.8 3.1 1.2 4.8 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/>
+            Send a Message
+            <svg viewBox="0 0 20 20" class="h-4 w-4 shrink-0 arrow-slide" fill="none" aria-hidden="true">
+              <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-            Chat on WhatsApp
+          </a>
+          <a
+            href="/solutions"
+            class="hero-cta inline-flex items-center gap-2 whitespace-nowrap rounded-md bg-cta hover:bg-cta-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-white transition-colors min-h-[48px] shadow-lg shadow-cta/25"
+          >
+            Explore Solutions
           </a>
         </div>
 
-        <!-- Right: form -->
-        <div class="rounded-2xl bg-slate-50 ring-1 ring-primary/10 p-6 sm:p-8">
-          <h2 class="text-lg font-semibold text-ink mb-6">Send us a message</h2>
+        <!-- Stats Banner -->
+        <dl class="mt-12 grid grid-cols-2 lg:grid-cols-4 divide-y divide-white/10 lg:divide-y-0 lg:divide-x lg:divide-white/10 border-y border-white/10 py-5 lg:py-7 max-w-2xl mx-auto hero-enter hero-enter-4">
+          {stats.map((s) => (
+            <div class="px-6 py-2 flex flex-col items-center">
+              <dt class="order-2 mt-1 text-[10px] uppercase tracking-[0.15em] text-white/65 font-medium text-center">{s.label}</dt>
+              <dd class="order-1 font-display text-2xl sm:text-3xl font-semibold text-white">{s.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Main Form Section -->
+  <section id="form" class="section-pad bg-white" aria-labelledby="form-heading">
+    <Container>
+      <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+        <!-- Left: Contact Form -->
+        <div class="bg-white rounded-2xl border border-primary/10 p-6 sm:p-8 md:p-10 shadow-card hover:shadow-card-lg transition-all duration-300 reveal">
+          <h2 id="form-heading" class="text-xl sm:text-2xl font-bold text-primary-dark mb-2">Send Us a Message</h2>
+          <p class="text-sm text-muted mb-8">Fill in the details below and our team will respond within 24 hours.</p>
           <ContactForm />
         </div>
+
+        <!-- Right: Cards & Information -->
+        <div class="space-y-6 reveal-stagger">
+          <!-- Consultation Card -->
+          <div class="bg-[#0F2238] rounded-2xl p-6 sm:p-8 text-white hover:shadow-card transition-all duration-300">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center shrink-0 ring-1 ring-white/15">
+                <svg viewBox="0 0 24 24" class="h-6 w-6 text-accent" fill="none" aria-hidden="true">
+                  <path d="M8 2v4M16 2v4M3 9h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="min-w-0">
+                <h3 class="text-base sm:text-lg font-semibold text-white">Schedule a Consultation</h3>
+                <p class="text-xs sm:text-sm text-white/70 leading-relaxed mt-2">Book a free 30-minute discovery call with our energy experts to discuss your project needs.</p>
+                <a
+                  href="mailto:info@emperealenergy.com?subject=Consultation Request"
+                  class="mt-4 inline-flex items-center gap-2 rounded-md bg-accent hover:bg-accent-dark px-4 py-2.5 text-xs font-semibold text-primary-dark transition-colors min-h-[38px] shadow-lg shadow-accent/20"
+                >
+                  Book a Call
+                  <svg viewBox="0 0 20 20" class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
+                    <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Information Card -->
+          <div class="bg-surface rounded-2xl p-6 sm:p-8 border border-primary/10 hover:shadow-card transition-all duration-300">
+            <h3 class="text-lg font-bold text-primary-dark mb-6">Contact Information</h3>
+            <div class="space-y-6">
+              {contactInfo.map((info) => (
+                <div class="flex items-start gap-4">
+                  <div class="w-10 h-10 rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/25 flex items-center justify-center shrink-0">
+                    <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" aria-hidden="true">
+                      <Fragment set:html={info.icon} />
+                    </svg>
+                  </div>
+                  <div class="min-w-0">
+                    <div class="text-xs font-semibold text-primary-dark uppercase tracking-wider">{info.title}</div>
+                    <div class="mt-1 text-sm text-muted leading-relaxed">
+                      {info.href ? (
+                        <a href={info.href} class="hover:text-primary transition-colors font-medium">{info.value}</a>
+                      ) : (
+                        info.value
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Quick Actions Grid -->
+          <div class="grid grid-cols-3 gap-3">
+            <a
+              href="mailto:info@emperealenergy.com"
+              class="flex flex-col items-center gap-2 p-4 rounded-xl bg-white border border-primary/10 hover:border-accent hover:shadow-card transition-all group text-center"
+            >
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/>
+              </svg>
+              <span class="text-2xs font-bold uppercase tracking-wider text-primary-dark">Email Us</span>
+            </a>
+            <a
+              href="tel:+971XXXXXXXX"
+              class="flex flex-col items-center gap-2 p-4 rounded-xl bg-white border border-primary/10 hover:border-accent hover:shadow-card transition-all group text-center"
+            >
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="text-2xs font-bold uppercase tracking-wider text-primary-dark">Call Us</span>
+            </a>
+            <a
+              href="https://wa.me/971XXXXXXXX"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col items-center gap-2 p-4 rounded-xl bg-white border border-primary/10 hover:border-accent hover:shadow-card transition-all group text-center"
+            >
+              <svg viewBox="0 0 24 24" class="h-5 w-5 text-accent group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span class="text-2xs font-bold uppercase tracking-wider text-primary-dark">WhatsApp</span>
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
+    </Container>
+  </section>
+
+  <!-- Regional Offices Section -->
+  <section class="section-pad bg-surface border-t border-primary/5" aria-labelledby="offices-heading">
+    <Container>
+      <div class="text-center max-w-2xl mx-auto reveal-stagger">
+        <p class="eyebrow">Global Presence</p>
+        <h2 id="offices-heading" class="fluid-h2 mt-3">Regional Offices</h2>
+        <p class="mt-4 text-muted fluid-lead">
+          Empereal operates across multiple regions to serve our clients locally with global expertise.
+        </p>
+      </div>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
+        {offices.map((office) => (
+          <div class="bg-white rounded-2xl p-6 border border-primary/10 hover:shadow-card hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/25 flex items-center justify-center shrink-0">
+                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M10 12h4M10 8h4M14 21v-3a2 2 0 0 0-4 0v3M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-base font-bold text-primary-dark">{office.city}, {office.country}</h3>
+                </div>
+                {office.tag && (
+                  <span class="inline-flex items-center px-2 py-0.5 rounded-full text-3xs font-bold uppercase tracking-wider bg-accent/20 text-primary-dark">
+                    {office.tag}
+                  </span>
+                )}
+              </div>
+              <p class="text-sm text-muted leading-relaxed pl-[52px]">{office.address}</p>
+            </div>
+            <div class="mt-6 pl-[52px] space-y-2 border-t border-primary/5 pt-4">
+              <a href={`tel:${office.phone.replace(/\s+/g, '')}`} class="flex items-center gap-2 text-xs font-semibold text-muted hover:text-primary transition-colors">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                {office.phone}
+              </a>
+              <a href={`mailto:${office.email}`} class="flex items-center gap-2 text-xs font-semibold text-muted hover:text-primary transition-colors">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="m22 6-10 7L2 6"/>
+                </svg>
+                {office.email}
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </Container>
   </section>
 </BaseLayout>
+
+<style>
+  .page-hero {
+    min-height: calc(100vh - 6rem);
+    min-height: calc(100svh - 6rem);
+    min-height: calc(100dvh - 6rem);
+  }
+  @media (min-width: 1024px) {
+    .page-hero {
+      min-height: calc(100vh - 7rem);
+      min-height: calc(100svh - 7rem);
+      min-height: calc(100dvh - 7rem);
+    }
+  }
+</style>

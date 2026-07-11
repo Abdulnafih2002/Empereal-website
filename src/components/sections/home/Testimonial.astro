@@ -3,20 +3,25 @@ import Container from "../../primitives/Container.astro";
 
 const items = [
   {
-    quote: "Empereal delivered beyond our expectations with their solar EPC expertise. The project was seamless, from design through to commissioning, setting a new standard of performance and sustainability.",
-    name: "Ryun Robson",
-    role: "Operations Director  |  Industrial Client",
-    initials: "RR",
-    avatar: "/images/testimonial-avatar-1.jpg",
+    quote: "The quality of the BIPV installation at our headquarters exceeded every expectation. The team delivered a system that isn't just generating clean energy — it's become an architectural feature of the building itself. Their attention to detail and engineering discipline stood out.",
+    name: "Ahmed Al-Rashid",
+    role: "Director of Facilities  |  Dubai Electricity and Water Authority (DEWA)",
+    initials: "AA",
     image: "/images/testimonial-1.jpg",
   },
   {
-    quote: "Empereal has helped us achieve significant energy savings while advancing our sustainability objectives — their engineering rigor stood out from day one.",
-    name: "Sara El-Hadi",
-    role: "Head of Sustainability  |  Commercial Real Estate",
-    initials: "SE",
-    avatar: "/images/testimonial-avatar-2.jpg",
+    quote: "Empereal brought a level of architectural innovation to our solar integration we hadn't seen before. They understood that for a premium development, the system needed to perform beautifully and look beautiful — and they delivered both.",
+    name: "Sarah Mitchell",
+    role: "Head of Sustainability  |  Binghatti Developers",
+    initials: "SM",
     image: "/images/testimonial-2.jpg",
+  },
+  {
+    quote: "From initial consultation through commissioning, the delivery was seamless. The project management, transparency, and technical expertise made a complex multi-site installation feel straightforward. We look forward to continuing the partnership.",
+    name: "Ryun Robson",
+    role: "Operations Director",
+    initials: "RR",
+    image: "/images/testimonial-1.jpg",
   },
 ];
 ---
@@ -56,14 +61,6 @@ const items = [
                   <span class="absolute inset-0 flex items-center justify-center text-xs font-semibold text-primary-dark">
                     {t.initials}
                   </span>
-                  <img
-                    src={t.avatar}
-                    alt=""
-                    class="absolute inset-0 h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                    onerror="this.remove()"
-                  />
                 </div>
                 <div>
                   <p class="text-sm font-semibold text-ink">{t.name}</p>

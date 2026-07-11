@@ -1,0 +1,127 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Container from "../components/primitives/Container.astro";
+
+const lastUpdated = new Date().toLocaleDateString("en-GB", {
+  day: "numeric", month: "long", year: "numeric",
+});
+---
+<BaseLayout
+  title="Cookie Policy — Empereal"
+  description="How Empereal uses cookies and similar technologies, and how you can control them."
+>
+  <!-- Hero -->
+  <section class="bg-primary-dark text-white py-16 lg:py-20" aria-labelledby="cp-title">
+    <Container>
+      <div class="max-w-2xl">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Legal</p>
+        <h1 id="cp-title" class="fluid-h2 mt-3 text-white">Cookie Policy</h1>
+        <p class="mt-4 text-white/75 fluid-lead">
+          What cookies we use, why we use them, and how you can control them.
+        </p>
+        <p class="mt-3 text-xs text-white/50">Last updated: {lastUpdated}</p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Content -->
+  <section class="bg-white section-pad" aria-label="Cookie policy">
+    <Container>
+      <div class="max-w-prose mx-auto space-y-12">
+
+        <div>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">What are cookies?</h2>
+          <p class="text-base text-muted leading-relaxed">
+            Cookies are small text files placed on your device when you visit a website.
+            They help the site remember information about your visit — for example,
+            keeping you signed in to an admin area, or measuring which pages are most useful.
+            Some cookies are essential for the site to work; others are optional and only set if you allow them.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">Cookies we use</h2>
+          <div class="overflow-x-auto rounded-xl border border-primary/10">
+            <table class="min-w-full text-sm">
+              <thead class="bg-surface text-primary-dark">
+                <tr>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Cookie</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Category</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Purpose</th>
+                  <th class="px-4 py-3 text-left text-xs font-bold uppercase tracking-wider">Lifetime</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-primary/5">
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs text-primary-dark">crm_session</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-success">Strictly Necessary</span></td>
+                  <td class="px-4 py-3 text-muted">Keeps an admin signed in to the CRM area. <code class="font-mono text-[11px]">HttpOnly</code>, <code class="font-mono text-[11px]">SameSite=Strict</code>. Most visitors never receive this cookie.</td>
+                  <td class="px-4 py-3 text-muted whitespace-nowrap">8 hours</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs text-muted">—</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">Analytics</span></td>
+                  <td class="px-4 py-3 text-muted italic">No analytics cookies are currently in use. Any future ones will be listed here and require your consent before being set.</td>
+                  <td class="px-4 py-3 text-muted">—</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs text-muted">—</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">Marketing</span></td>
+                  <td class="px-4 py-3 text-muted italic">No marketing or advertising cookies are currently in use. Any future ones will be listed here and require your consent before being set.</td>
+                  <td class="px-4 py-3 text-muted">—</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="mt-3 text-xs text-muted">
+            We also use <span class="font-medium">localStorage</span> to remember your cookie preferences (key: <code class="font-mono text-[11px]">cookie_consent</code>). This is stored only in your browser and is not transmitted to our servers.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">Your choices</h2>
+          <p class="text-base text-muted leading-relaxed">
+            On your first visit you'll see a banner letting you accept all cookies, reject non-essential cookies,
+            or pick categories individually. You can change your choice at any time:
+          </p>
+          <button
+            type="button"
+            id="open-cookie-settings"
+            class="mt-4 inline-flex items-center gap-2 rounded-md bg-primary hover:bg-primary-light px-5 py-2.5 text-sm font-semibold text-white transition-colors min-h-[44px]"
+          >
+            <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l2.5 2.5" stroke-linecap="round"/></svg>
+            Open Cookie Settings
+          </button>
+          <p class="mt-4 text-base text-muted leading-relaxed">
+            You can also clear cookies through your browser at any time. Refer to your browser's help pages for instructions.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">Your rights</h2>
+          <p class="text-base text-muted leading-relaxed">
+            Depending on where you are located, you may have the right to access, correct,
+            delete, or restrict the personal data we hold about you (UAE PDPL Federal Decree-Law 45/2021,
+            GDPR Articles 15–22, UK GDPR equivalent provisions). To exercise any of these rights,
+            please <a href="/contact" class="text-primary hover:text-cta underline transition-colors">contact us</a>.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">Changes to this policy</h2>
+          <p class="text-base text-muted leading-relaxed">
+            We may update this policy as our cookie usage changes. The date at the top of this page reflects the most recent revision.
+          </p>
+        </div>
+
+      </div>
+    </Container>
+  </section>
+
+  <script>
+    document.getElementById("open-cookie-settings")?.addEventListener("click", () => {
+      const open = (window as unknown as { openCookieSettings?: () => void }).openCookieSettings;
+      if (typeof open === "function") open();
+    });
+  </script>
+</BaseLayout>

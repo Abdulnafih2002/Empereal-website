@@ -2,7 +2,7 @@
 import Container from "../../primitives/Container.astro";
 
 interface Props {
-  active?: "solar" | "water" | "storage" | "integrated" | "bipv" | "hydrogen";
+  active?: "solar" | "water" | "storage" | "integrated" | "hydrogen";
   breadcrumb?: string;
 }
 
@@ -13,8 +13,7 @@ const items = [
   { key: "water", label: "Water & Desalination", href: "/solutions/water-desalination" },
   { key: "storage", label: "Energy Storage", href: "/solutions/energy-storage" },
   { key: "integrated", label: "Integrated Infrastructure", href: "/solutions/integrated-infrastructure" },
-  { key: "bipv", label: "Architectural BIPV", href: "/solutions" },
-  { key: "hydrogen", label: "Green Hydrogen", href: "/solutions" },
+  { key: "hydrogen", label: "Green Hydrogen", href: "/solutions/green-hydrogen" },
 ];
 ---
 <nav aria-label="Breadcrumb" class="bg-primary-dark/95 border-b border-white/5">

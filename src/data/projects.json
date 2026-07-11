@@ -1,137 +1,92 @@
 [
   {
-    "slug": "dewa-hq-jadaf",
-    "title": "DEWA HQ — Jadaf",
-    "location": "Dubai",
+    "slug": "dewa-hq",
+    "title": "DEWA HQ — Al Shera Building",
+    "location": "Jaddaf, Dubai",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "scale": "5,012 kWp",
-    "scope": "Full design, EPC, and 3-year O&M for solar roof, façade and podium installations.",
-    "summary": "World's largest net-zero building — solar roof, façade & podiums.",
-    "outcome": "World's largest net-zero government building, 5,012 kWp installed.",
-    "categories": [
-      "bipv",
-      "solar-pv"
-    ],
+    "client": "DEWA",
+    "year": "2026",
+    "status": "completed",
+    "scale": "4,983 kWp",
+    "scope": "Architectural, structural and electrical design; engineering; procurement; installation; authority approvals; generation studies; net-zero sustainability rating; 3 years O&M.",
+    "summary": "4,983 kWp BIPV grid-connected architectural solar roof, façade, podiums, and ground-mounted hybrid PVT system with 7 robotic cleaning systems — one of the world's largest BIPV installations on a single building.",
+    "outcome": "Significant on-site renewable energy generation with reduced operational carbon emissions, enhanced building efficiency, and long-term O&M coverage.",
+    "categories": ["bipv", "solar-pv"],
     "tone": "navy",
-    "image": "/images/project-uae.jpg",
-    "imageAlt": "DEWA Headquarters net-zero building in Dubai"
-  },
-  {
-    "slug": "zamani-islands-resort",
-    "title": "Zamani Islands Resort",
-    "location": "Maldives",
-    "country": "Maldives",
-    "countryCode": "MV",
-    "scale": "24,000 kWp",
-    "scope": "Custom solar facade integration for the world's largest net-zero resort.",
-    "summary": "World's largest net-zero resort. Custom solar facade integration. Completion Dec 2026.",
-    "outcome": "24 MWp BIPV across the resort — completion December 2026.",
-    "categories": [
-      "bipv",
-      "solar-pv"
-    ],
-    "tone": "ocean"
-  },
-  {
-    "slug": "uae-pavilion-expo-2020",
-    "title": "UAE Pavilion, Expo 2020",
-    "location": "Dubai",
-    "country": "United Arab Emirates",
-    "countryCode": "AE",
-    "scale": "98 kWp",
-    "scope": "Architectural solar for the Santiago Calatrava-designed LEED Platinum building.",
-    "summary": "Architectural solar for Santiago Calatrava-designed LEED Platinum building.",
-    "categories": [
-      "bipv",
-      "solar-pv"
-    ],
-    "tone": "navy"
+    "image": "/images/dewa-hq-main.jpg",
+    "imageAlt": "DEWA HQ — Al Shera Building, Jaddaf, Dubai"
   },
   {
     "slug": "masdar-mc2",
-    "title": "MASDAR MC2",
-    "location": "Abu Dhabi",
+    "title": "Masdar MC2",
+    "location": "Masdar City, Abu Dhabi",
     "country": "United Arab Emirates",
     "countryCode": "AE",
+    "client": "Masdar",
+    "year": "Oct 2025",
+    "status": "completed",
     "scale": "1,610 kWp",
-    "scope": "Building-integrated PV for MASDAR City commercial development.",
-    "summary": "Building-integrated PV for MASDAR City commercial development, Abu Dhabi.",
-    "categories": [
-      "bipv",
-      "solar-pv"
-    ],
-    "tone": "navy"
+    "scope": "Architectural, structural and electrical design; engineering; procurement; installation; authority approvals; generation studies; net-zero sustainability rating.",
+    "summary": "1,610 kWp net-zero building solar system within Masdar's sustainable development framework — delivering cost-effective renewable energy and net-zero building performance.",
+    "outcome": "Supports net-zero energy building performance and reduces grid reliance while enabling long-term cost savings.",
+    "categories": ["bipv", "solar-pv"],
+    "tone": "navy",
+    "image": "/images/masdar-22.jpg",
+    "imageAlt": "Masdar MC2 rooftop and carport solar installation, Abu Dhabi"
   },
   {
-    "slug": "al-wasl-plaza",
-    "title": "Al Wasl Plaza, Expo 2020",
-    "location": "Dubai",
+    "slug": "masdar-10mw",
+    "title": "Masdar 10MW PV Plant",
+    "location": "Masdar City, Abu Dhabi",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "scale": "—",
-    "scope": "Architectural solar integration for the iconic Al Wasl Plaza dome.",
-    "summary": "Architectural solar integration for the iconic Al Wasl Plaza dome at Expo 2020.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "navy"
+    "client": "Masdar",
+    "year": "Oct 2025",
+    "status": "ongoing",
+    "scale": "10 MWp",
+    "scope": "Rehabilitation and refurbishment of existing PV plant.",
+    "summary": "Rehabilitation and refurbishment of an existing 10 MWp solar PV plant to restore and improve energy generation efficiency — net-zero building, cost-effective renewable energy.",
+    "outcome": "Extends the lifecycle of existing solar infrastructure and restores energy generation efficiency at a fraction of new plant development costs.",
+    "categories": ["utility", "solar-pv"],
+    "tone": "mineral",
+    "image": "/images/masdar-10mw.jpg",
+    "imageAlt": "Masdar 10MW solar PV plant, Abu Dhabi"
+  },
+  {
+    "slug": "dewa-portrait",
+    "title": "DEWA Portrait Solar Installation",
+    "location": "Al Qudra, Dubai",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "client": "DEWA",
+    "year": "Jul 2024",
+    "status": "completed",
+    "scale": "2.4 kWp",
+    "scope": "Design and execution of world's first solar portrait installation.",
+    "summary": "World's first solar portrait — a 2.4 kWp artistic solar installation at the entrance to Sheikh Mohammed Solar Park, celebrating His Highness's vision and sustainability leadership.",
+    "outcome": "Promotes sustainability messaging at national level and demonstrates the integration of art and clean energy.",
+    "categories": ["bipv"],
+    "tone": "sunset",
+    "image": "/images/dewa-hq-2.jpg",
+    "imageAlt": "DEWA Portrait solar art installation, Al Qudra, Dubai"
   },
   {
     "slug": "mercedes-binghatti",
-    "title": "Mercedes Binghatti Tower",
-    "location": "Dubai",
+    "title": "Mercedes-Benz Binghatti Tower",
+    "location": "Nad Al Sheba, Dubai",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "scale": "—",
-    "scope": "Custom architectural solar integration for the Mercedes-Benz branded residential tower.",
-    "summary": "Custom architectural solar integration for the Mercedes-Benz branded residential tower, Dubai.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "navy"
-  },
-  {
-    "slug": "see-institute",
-    "title": "SEE Institute, Dubai",
-    "location": "Dubai",
-    "country": "United Arab Emirates",
-    "countryCode": "AE",
-    "scale": "14 kW",
-    "scope": "Architectural solar integration for the Sustainable Energy Exchange Institute.",
-    "summary": "Architectural solar integration for the Sustainable Energy Exchange Institute, Dubai.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "navy"
-  },
-  {
-    "slug": "solar-portrait-dewa",
-    "title": "Solar Portrait — DEWA",
-    "location": "Dubai",
-    "country": "United Arab Emirates",
-    "countryCode": "AE",
-    "scale": "2.4 kWp",
-    "scope": "World's first solar portrait — Mohammed bin Rashid Al Maktoum Solar Park.",
-    "summary": "World's first solar portrait at Mohammed bin Rashid Al Maktoum Solar Park, Dubai.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "navy"
-  },
-  {
-    "slug": "rta-depots",
-    "title": "RTA Bus / Tram / Metro Depots",
-    "location": "Dubai",
-    "country": "United Arab Emirates",
-    "countryCode": "AE",
-    "scale": "11 MWp",
-    "scope": "Solar across 12 transport infrastructure sites for Roads & Transport Authority.",
-    "summary": "Solar across 12 transport infrastructure sites for Roads & Transport Authority, Dubai.",
-    "categories": [
-      "solar-pv"
-    ],
-    "tone": "navy"
+    "client": "Mercedes-Benz",
+    "status": "ongoing",
+    "scale": "650.92 kWp",
+    "scope": "Custom BIPV façade design using cutting-edge solar technologies and glass; engineering, integration, and performance optimization.",
+    "summary": "650.92 kWp iconic BIPV façade with custom-designed solar modules — powers communal spaces and provides up to 20,000 km of carbon-free EV travel annually for residents.",
+    "outcome": "Generates clean energy directly from building façade while reducing operational energy demand and supporting EV mobility targets.",
+    "categories": ["bipv"],
+    "tone": "navy",
+    "image": "/images/mercedes-binghatti.jpg",
+    "imageAlt": "Mercedes-Benz Binghatti Tower BIPV façade, Dubai"
   },
   {
     "slug": "jeddah-oceanarium",
@@ -139,264 +94,134 @@
     "location": "Jeddah",
     "country": "Saudi Arabia",
     "countryCode": "SA",
-    "scale": "132 kWp",
-    "scope": "Architectural solar integration for landmark leisure and marine facility.",
-    "summary": "Architectural solar integration for landmark leisure and marine facility, Jeddah.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "sunset"
+    "status": "ongoing",
+    "scale": "132 kWp BIPV",
+    "scope": "Engineering and integration of BIPV systems.",
+    "summary": "132 kWp BIPV architectural solar integration within a landmark marine development, designed by SOM Architects for JCDC.",
+    "outcome": "Integrates renewable energy into landmark architecture while reducing operational electricity consumption and supporting sustainable tourism.",
+    "categories": ["bipv"],
+    "tone": "sunset",
+    "image": "/images/jeddah-oceanarium.jpg",
+    "imageAlt": "Jeddah Oceanarium architectural solar integration, Saudi Arabia"
   },
   {
-    "slug": "samih-saudi-arabia",
-    "title": "SAMIH — Saudi Arabia",
-    "location": "Saudi Arabia",
+    "slug": "zamani-islands",
+    "title": "Zamani Islands Resort",
+    "location": "South Malé Atoll, Maldives",
+    "country": "Maldives",
+    "countryCode": "MV",
+    "year": "Dec 2026",
+    "status": "ongoing",
+    "scale": "Net-Zero Resort",
+    "scope": "Renewable energy systems integration and net-zero strategy support.",
+    "summary": "Fully renewable-powered resort across 8 islands using BIPV, net-zero architecture, agri-photovoltaics, and a circular zero-waste strategy — 21 nautical miles from Velana International Airport.",
+    "outcome": "100% renewable energy-based resort operation with zero-waste strategy and sustainable food production integration.",
+    "categories": ["integrated", "solar-pv"],
+    "tone": "ocean",
+    "image": "/images/zamani-island-1.jpg",
+    "imageAlt": "Zamani Islands Resort renewable energy systems, Maldives"
+  },
+  {
+    "slug": "acwa-power-hq",
+    "title": "ACWA Power Headquarters",
+    "location": "Riyadh",
     "country": "Saudi Arabia",
     "countryCode": "SA",
-    "scale": "1,200 kWp",
-    "scope": "Large-scale BIPV installation for SAMIH development.",
-    "summary": "Large-scale BIPV installation for SAMIH development, Kingdom of Saudi Arabia.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "sunset"
+    "year": "2026",
+    "status": "ongoing",
+    "scale": "1,200 kWp BIPV",
+    "scope": "Solar integration design and execution. Stakeholders: Omrania Architects.",
+    "summary": "1,200 kWp BIPV net-zero corporate headquarters designed by Omrania Architects — innovative sustainability delivering cost-effective renewable energy generation.",
+    "outcome": "Supports corporate net-zero energy goals while reducing long-term operational energy costs and demonstrating advanced BIPV corporate architecture.",
+    "categories": ["bipv"],
+    "tone": "sunset",
+    "image": "/images/acwa-hq.jpg",
+    "imageAlt": "ACWA Power Headquarters net-zero solar integration, Riyadh"
   },
   {
-    "slug": "capital-towers",
-    "title": "Capital Towers",
-    "location": "Canada",
-    "country": "Canada",
-    "countryCode": "CA",
-    "scale": "330 kW",
-    "scope": "Building-integrated photovoltaic facade installation.",
-    "summary": "Building-integrated photovoltaic facade installation for residential tower, Canada.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "mineral"
-  },
-  {
-    "slug": "samih-scarborough",
-    "title": "SAMIH Scarborough Academy",
-    "location": "Scarborough, Ontario",
-    "country": "Canada",
-    "countryCode": "CA",
-    "scale": "509.6 kW",
-    "scope": "Building-integrated solar for educational facility.",
-    "summary": "Building-integrated solar for educational facility, Scarborough, Ontario.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "mineral"
-  },
-  {
-    "slug": "stmarys-loyola",
-    "title": "St. Mary's University Loyola Residence",
-    "location": "Halifax, Nova Scotia",
-    "country": "Canada",
-    "countryCode": "CA",
-    "scale": "94 kW",
-    "scope": "BIPV facade installation for university residence building.",
-    "summary": "BIPV facade installation for university residence building, Halifax, Nova Scotia.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "mineral"
-  },
-  {
-    "slug": "wilson-balcony",
-    "title": "1154 Wilson Balcony Retrofit",
-    "location": "Toronto",
-    "country": "Canada",
-    "countryCode": "CA",
-    "scale": "162 kW",
-    "scope": "Solar balcony railing retrofit for existing residential building.",
-    "summary": "Solar balcony railing retrofit for existing residential building, Toronto.",
-    "categories": [
-      "bipv"
-    ],
-    "tone": "mineral"
-  },
-  {
-    "slug": "nlc-110mw",
-    "title": "110 MWp NLC Solar Farm",
-    "location": "India",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "110 MWp",
-    "scope": "Large-scale ground-mounted utility solar farm EPC delivery.",
-    "summary": "Large-scale ground-mounted utility solar farm EPC delivery, India.",
-    "categories": [
-      "utility",
-      "solar-pv"
-    ],
-    "tone": "forest"
-  },
-  {
-    "slug": "charanka-solar-park",
-    "title": "Charanka Solar Park",
-    "location": "Gujarat",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "21.4 MWp",
-    "scope": "Solar park installation at Gujarat Solar Park, Charanka.",
-    "summary": "Solar park installation at Gujarat Solar Park, Charanka, Gujarat.",
-    "categories": [
-      "utility",
-      "solar-pv"
-    ],
-    "tone": "forest"
-  },
-  {
-    "slug": "karnataka-32mw",
-    "title": "32 MWp Karnataka",
-    "location": "Karnataka",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "32 MWp",
-    "scope": "Ground-mounted utility-scale solar farm EPC.",
-    "summary": "Ground-mounted utility-scale solar farm EPC, Karnataka, India.",
-    "categories": [
-      "utility",
-      "solar-pv"
-    ],
-    "tone": "forest"
-  },
-  {
-    "slug": "igi-airport-sunsource",
-    "title": "IGI Airport SunSource",
-    "location": "New Delhi",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "1.72 MWp",
-    "scope": "Airport solar installation at Indira Gandhi International Airport.",
-    "summary": "Airport solar installation — Indira Gandhi International Airport, New Delhi.",
-    "categories": [
-      "solar-pv"
-    ],
-    "tone": "forest"
-  },
-  {
-    "slug": "jindal-polyfilms",
-    "title": "3 MWp Jindal Polyfilms",
-    "location": "India",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "3 MWp",
-    "scope": "Industrial rooftop and ground-mounted solar PV for manufacturing facility.",
-    "summary": "Industrial rooftop and ground-mounted solar PV for Jindal Polyfilms manufacturing facility.",
-    "categories": [
-      "solar-pv"
-    ],
-    "tone": "forest"
-  },
-  {
-    "slug": "masdar-desalination",
-    "title": "MASDAR Solar Desalination",
-    "location": "Abu Dhabi",
+    "slug": "dewa-solar-tree",
+    "title": "DEWA Solar Tree",
+    "location": "Jaddaf, Dubai",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "scale": "40,000 L/day",
-    "scope": "Patented LFR solar thermal desalination. Commissioned May 2017.",
-    "summary": "Patented LFR solar thermal desalination. Commissioned May 2017. Inaugurated by CEO of MASDAR.",
-    "outcome": "40,000 L/day ultra-pure water — 24/7 solar operation.",
-    "categories": [
-      "desalination",
-      "solar-thermal"
-    ],
-    "tone": "ocean"
+    "client": "DEWA",
+    "year": "2026",
+    "status": "completed",
+    "scale": "Dual-Axis Tracking",
+    "scope": "Concept development, engineering, and implementation of dual-axis tracking sculptural solar structure.",
+    "summary": "A unique dual-axis tracking solar structure at DEWA's new headquarters — demonstrating that solar can be integrated into standalone architectural structures engineered to follow the sun.",
+    "outcome": "Maximizes solar energy capture through tracking system and serves as an educational sustainability landmark combining architecture, engineering, and clean energy innovation.",
+    "categories": ["utility", "solar-pv"],
+    "tone": "navy",
+    "image": "/images/solar-tree-dewa.jpg",
+    "imageAlt": "DEWA Solar Tree dual-axis tracking installation, Jaddaf, Dubai"
   },
   {
-    "slug": "ntpc-flue-gas",
-    "title": "NTPC Flue Gas Desalination",
-    "location": "Simhadri",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "150,000 L/day",
-    "scope": "Waste heat recovery integrated with MED desalination unit.",
-    "summary": "Waste heat recovery from power plant flue gas — 0.5 ppm demineralized water output.",
-    "outcome": "150,000 L/day of 0.5 ppm demineralized water from waste heat.",
-    "categories": [
-      "desalination",
-      "integrated"
-    ],
-    "tone": "ocean"
-  },
-  {
-    "slug": "ntpc-vallur",
-    "title": "NTPC Vallur Desalination",
-    "location": "Tamil Nadu",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "125,000 L/day",
-    "scope": "Solar thermal multi-effect distillation seawater desalination.",
-    "summary": "Solar thermal multi-effect distillation seawater desalination, Tamil Nadu, India.",
-    "categories": [
-      "desalination",
-      "solar-thermal"
-    ],
-    "tone": "ocean"
-  },
-  {
-    "slug": "tidco-solar-desal",
-    "title": "TIDCO Solar Desalination",
-    "location": "Tamil Nadu",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "150,000 L/day",
-    "scope": "India's first solar thermal desalination plant. Commissioned 2013.",
-    "summary": "India's first solar thermal desalination plant. Commissioned 2013. Landmark project.",
-    "categories": [
-      "desalination",
-      "solar-thermal"
-    ],
-    "tone": "ocean"
-  },
-  {
-    "slug": "forward-osmosis",
-    "title": "Forward Osmosis Plant",
-    "location": "Ramanathapuram, Tamil Nadu",
-    "country": "India",
-    "countryCode": "IN",
-    "scale": "20,000 L/day",
-    "scope": "Solar thermal-powered forward osmosis system for brackish water treatment.",
-    "summary": "Solar thermal-powered forward osmosis system for brackish water treatment, Tamil Nadu.",
-    "categories": [
-      "desalination"
-    ],
-    "tone": "ocean"
-  },
-  {
-    "slug": "luxglamp-resort",
-    "title": "Luxglamp Resort",
-    "location": "United Arab Emirates",
+    "slug": "green-hydrogen-dewa",
+    "title": "Green Hydrogen Project — DEWA R&D",
+    "location": "Al Qudra, Dubai",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "scale": "—",
-    "scope": "Solar PV + BESS + DG emergency backup for off-grid resort.",
-    "summary": "Nearly net-zero off-grid luxury resort — solar PV + BESS + DG emergency backup.",
-    "outcome": "Nearly net-zero off-grid luxury resort with no grid connection.",
-    "categories": [
-      "integrated",
-      "storage"
-    ],
-    "tone": "navy"
+    "client": "Dubai Electricity & Water Authority (DEWA) PJSC",
+    "status": "ongoing",
+    "scale": "2.5 MW Alkaline Electrolyzer",
+    "scope": "Design, supply, installation, and commissioning of 2.5MW Alkaline Electrolyzer Turnkey Project. Containerized system with electrolyzer, gas treatment, purification, compression, and other utilities.",
+    "summary": "Turnkey 2.5MW Alkaline Electrolyzer for green hydrogen generation (500 Nm³/h H₂) at DEWA R&D Center — containerized system with gas treatment, purification, and compression.",
+    "outcome": "Enables green hydrogen production from renewable energy, supporting future clean fuel ecosystem development and UAE clean energy diversification.",
+    "categories": ["hydrogen"],
+    "tone": "forest",
+    "image": "/images/acwa-hq.jpg",
+    "imageAlt": "Green Hydrogen electrolyzer project, DEWA R&D Center, Al Qudra, Dubai"
   },
   {
-    "slug": "diamond-bakery",
-    "title": "Diamond Bakery",
-    "location": "Ajman",
+    "slug": "park-hyatt-maldives",
+    "title": "Park Hyatt Maldives Hadahaa",
+    "location": "Hadahaa, Maldives",
+    "country": "Maldives",
+    "countryCode": "MV",
+    "client": "Park Hyatt",
+    "status": "ongoing",
+    "scale": "850 kWp",
+    "scope": "Structural and electrical design; engineering; procurement; installation; BESS integration; energy management system integration; authority approvals; generation studies; net-zero sustainability ratings.",
+    "summary": "850 kWp solar PV system with BESS integration and energy management for net-zero resort operations — reducing dependency on diesel generators.",
+    "outcome": "Reduces diesel generator dependency, provides stable hybrid energy supply with storage, and lowers operational fuel and maintenance costs.",
+    "categories": ["integrated", "storage", "solar-pv"],
+    "tone": "ocean",
+    "image": "/images/zamani-resort-2.jpg",
+    "imageAlt": "Park Hyatt Maldives Hadahaa solar PV and BESS system"
+  },
+  {
+    "slug": "uae-pavilion-expo",
+    "title": "UAE Pavilion — Expo 2020 Dubai",
+    "location": "Expo 2020, Dubai",
     "country": "United Arab Emirates",
     "countryCode": "AE",
-    "scale": "—",
-    "scope": "Solar PV + battery storage for all electrical and cooling systems.",
-    "summary": "All electrical and cooling systems on solar PV with battery storage, Ajman.",
-    "outcome": "Full electrical and cooling load coverage from solar + storage.",
-    "categories": [
-      "integrated",
-      "solar-pv",
-      "storage"
-    ],
-    "tone": "navy"
+    "client": "Dubai Expo 2020",
+    "status": "completed",
+    "scale": "98 kWp BIPV",
+    "scope": "Renewable energy integration support for LEED Platinum-certified pavilion.",
+    "summary": "98 kWp BIPV system seamlessly integrated into the iconic falcon-inspired façade of Santiago Calatrava's LEED Platinum-certified UAE Pavilion — a globally recognized symbol of sustainable architecture.",
+    "outcome": "Supports LEED Platinum sustainability objectives, reduces operational energy consumption, and demonstrates high-visibility clean energy application on a global stage.",
+    "categories": ["bipv"],
+    "tone": "navy",
+    "image": "/images/uae-pavilion-expo-2020.jpg",
+    "imageAlt": "UAE Pavilion Expo 2020 Dubai BIPV façade"
+  },
+  {
+    "slug": "french-pavilion-expo",
+    "title": "France Pavilion — Expo 2020 Dubai",
+    "location": "Expo 2020, Dubai",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "client": "France Pavilion – Expo 2020 Dubai",
+    "status": "completed",
+    "scale": "BIPV Façade & Roof",
+    "scope": "Design, supply, and integration of BIPV system into pavilion roof and façade.",
+    "summary": "BIPV system generating 60–80% of the pavilion's energy — later relocated to Toulouse, France post-Expo, demonstrating circular economy principles on a global stage.",
+    "outcome": "High on-site renewable energy contribution with reduced carbon footprint, showcasing circular economy through post-Expo relocation and reuse.",
+    "categories": ["bipv"],
+    "tone": "mineral",
+    "image": "/images/french-pavilion-1.jpg",
+    "imageAlt": "France Pavilion Expo 2020 Dubai BIPV façade and roof"
   }
 ]

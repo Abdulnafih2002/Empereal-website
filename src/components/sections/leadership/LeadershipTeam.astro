@@ -1,0 +1,296 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const founders = [
+  {
+    name: "Manoj Divakaran",
+    title: "Founder Director — Middle East & India Operations, Product & Service Strategy",
+    image: "/images/leader-1.jpg",
+    initials: "MD",
+    bio: "Manoj Divakaran is the Founder Director responsible for Middle East and India operations, product and service strategy, and other corporate functions at Empereal. With over 31 years of experience in technology, customer service, consulting, and renewable energy, he is a recognized thought leader in renewable energy and open innovation. Prior to Empereal, Manoj led regional and global teams at Thomson Reuters, driving rapid growth especially in emerging markets. He holds a Bachelor's degree in Electronics and Instrumentation Engineering from the University of Kerala, a Master's in Energy Management from the Bauer College of Business (Houston, USA), and a Master's in Innovation and Change from the University of York, United Kingdom.",
+  },
+  {
+    name: "Arun Subramony",
+    title: "Founder Director — Organizational Strategy, Corporate Governance, M&A & Deal Structuring",
+    image: "/images/leader-2.jpg",
+    initials: "AS",
+    bio: "Arun Subramony is the Founder Director responsible for organizational strategy, corporate governance, M&A, and deal structuring at Empereal. With 30 years of experience building and scaling businesses across the Americas and Asia (Wipro, Microsoft, IMC, UST Global, August, and Empereal Group), he has a proven track record in investing, incubating, and growing new business lines. Arun has led strategic alliances with firms such as PwC, SAP, and GE, and has executed multiple mergers and acquisitions. He holds an undergraduate degree in Mechanical Engineering from the University of Kerala, an MBA from the University of Madras, and an MBA from Kellogg School of Management, USA. He completed his Ph.D. research requirements at IIT Madras. Arun is also an active career coach and mentor.",
+  },
+];
+
+const advisors = [
+  {
+    name: "Dr. S.P. Viswanathan",
+    title: "Technology Development & Product Strategy",
+    image: "/images/advisor-1.jpg",
+    initials: "SV",
+    bio: "Responsible for technology development and product strategy. Dr. Viswanathan has over 40 years of experience in R&D in Aerospace Engineering in the USA and over 6 years leading research and development in renewable energy technologies. He designed and developed key technology and process IP, leveraging CSP and hybrid renewable technologies and freshwater production using thermal desalination. He received his Bachelor's in Mechanical Engineering from IIT Madras and his Master's and PhD from Georgia Institute of Technology, USA.",
+  },
+  {
+    name: "Erich Kreidler",
+    title: "Board Member",
+    image: "/images/advisor-2.jpg",
+    initials: "EK",
+    bio: "Erich Kreidler serves on Empereal's Board of Directors. He is the President of SprintRay Inc. and Co-Founder of KRE Consulting, LLC. Erich has a rare ability to connect and relate to people across different generations, backgrounds, and organizational responsibilities. He holds a Master's in Business Administration from the University of California, Irvine and a Bachelor of Science in Industrial Engineering from California State Polytechnic University, Pomona.",
+  },
+  {
+    name: "Ricky Husaini",
+    title: "Investment & Treasury Strategy",
+    image: "/images/advisor-3.jpg",
+    initials: "RH",
+    bio: "Ricky Husaini is a versatile leader who believes that 'in the race for excellence, there is no finishing line.' For over 20 years, Ricky has focused on multi-asset class investment and treasury management of sizable portfolios to create and scale businesses. His expertise includes asset allocation, treasury & risk management, and identifying global market opportunities across both sunrise and mature industries.",
+  },
+  {
+    name: "Stephanie Scarborough",
+    title: "Legal & Advisory",
+    image: "/images/advisor-4.jpg",
+    initials: "SS",
+    bio: "Stephanie is the founder of Scarborough Law, L.L.C., with 12 years of experience as an attorney. She serves as a trusted advisor and has built a strong reputation for representing clients in business, estate planning, and immigration matters. Stephanie received her BA from Excelsior College, USA and her Juris Doctor (JD) from the University of Buffalo, USA.",
+  },
+  {
+    name: "Sandeep Jain",
+    title: "Strategic Growth & Investment",
+    image: "/images/advisor-5.jpg",
+    initials: "SJ",
+    bio: "Sandeep Jain has enjoyed a successful executive management career during which he has helped build and lead software and technology divisions while serving Fortune 500 clients across the globe. He brings innovative ideas to deal structuring, global sales, market leadership, and relationship management. His family office has been an early-stage investor in Empereal since its formative years.",
+  },
+  {
+    name: "Dr. Jagdish Sheth",
+    title: "Marketing & Strategy",
+    image: "/images/advisor-6.jpg",
+    initials: "JS",
+    bio: "Dr. Jagdish Sheth is a Fellow of the American Psychological Association, American Marketing Association, and the Academy of Market Science, and past President of the Association for Consumer Research (ACR). He has published more than 350 research papers and books on consumer behavior, multivariate methods, competitive strategy, and relationship marketing. He received his Bachelor of Commerce from the University of Madras, India and his MBA and PhD from the University of Pittsburgh, USA.",
+  },
+  {
+    name: "Patricia M. Loui",
+    title: "International Business & Policy",
+    image: "/images/advisor-7.jpg",
+    initials: "PL",
+    bio: "The Honorable Patricia M. Loui is an international business and economic development executive in both the private and public sectors. She is currently Chair and CEO of Omnitrax Group Inc., a strategic marketing, research and planning consultancy she founded 30 years ago. She previously served as a full-time member on the Board of Directors of the Export-Import Bank of the United States (EXIM) following a nomination by former President Barack Obama.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="leadership-team-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Our People</p>
+      <h2 id="leadership-team-title" class="fluid-h2 mt-3">Founder Directors & Strategic Advisory Board</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's Strategic Advisory Board comprises some of the brightest and most accomplished leaders from around the world — bringing collective experience in technology, finance, law, marketing, academia, and international development.
+      </p>
+    </div>
+
+    <h3 class="mt-12 text-sm font-semibold uppercase tracking-[0.15em] text-accent-dark">Founder Directors</h3>
+    <div class="mt-5 grid gap-5 sm:grid-cols-2 reveal-stagger">
+      {founders.map((p) => (
+        <article 
+          class="group flex flex-col sm:flex-row rounded-2xl bg-white ring-1 ring-primary/10 overflow-hidden hover:ring-accent/40 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300 h-full cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/50"
+          role="button"
+          tabindex="0"
+          data-leader-card
+          data-name={p.name}
+          data-title={p.title}
+          data-bio={p.bio}
+          data-image={p.image}
+          data-initials={p.initials}
+          aria-label={`View bio of ${p.name}`}
+        >
+          <!-- Left/Top: Full-Height Portrait Photo -->
+          <div class="relative w-full sm:w-[38%] min-h-[220px] sm:min-h-full bg-primary-50 overflow-hidden shrink-0">
+            <span class="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-primary-dark">
+              {p.initials}
+            </span>
+            <img
+              src={p.image}
+              alt={p.name}
+              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              onerror="this.remove()"
+            />
+          </div>
+          
+          <!-- Right: Text Content -->
+          <div class="min-w-0 flex-1 flex flex-col justify-between p-6 sm:p-7">
+            <div>
+              <h4 class="text-base sm:text-lg font-semibold text-primary-dark text-center sm:text-left">{p.name}</h4>
+              <p class="mt-1 text-xs sm:text-sm font-medium text-accent-dark leading-snug text-center sm:text-left min-h-[2.5rem] sm:min-h-[3rem]">{p.title}</p>
+              <p class="mt-3 text-sm text-muted leading-relaxed line-clamp-3 text-center sm:text-left">{p.bio}</p>
+            </div>
+            
+            <div class="mt-5 flex items-center justify-center sm:justify-start gap-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted group-hover:text-accent-dark transition-colors">
+              <span>Click to view profile</span>
+              <svg class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <h3 class="mt-12 text-sm font-semibold uppercase tracking-[0.15em] text-accent-dark">Strategic Advisory Board</h3>
+    <div class="mt-5 flex flex-wrap justify-center gap-5 reveal-stagger">
+      {advisors.map((p) => (
+        <article 
+          class="group relative flex flex-col w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] rounded-2xl bg-white ring-1 ring-primary/10 overflow-hidden hover:ring-accent/40 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/50"
+          role="button"
+          tabindex="0"
+          data-leader-card
+          data-name={p.name}
+          data-title={p.title}
+          data-bio={p.bio}
+          data-image={p.image}
+          data-initials={p.initials}
+          aria-label={`View bio of ${p.name}`}
+        >
+          <!-- Full-height background photo -->
+          <div class="absolute inset-0 w-full h-full bg-primary-50">
+            <span class="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-primary-dark">
+              {p.initials}
+            </span>
+            <img
+              src={p.image}
+              alt={p.name}
+              class="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+              onerror="this.remove()"
+            />
+          </div>
+
+          <!-- Spacer to expose top of photo -->
+          <div class="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-[4/5] pointer-events-none"></div>
+
+          <!-- Overlay text container at the bottom -->
+          <div class="relative z-10 flex flex-col p-5 sm:p-6 justify-between bg-white/80 backdrop-blur-md border-t border-primary/5 flex-grow">
+            <div class="min-w-0 min-h-[4.25rem] sm:min-h-[4.5rem]">
+              <h4 class="text-base sm:text-lg font-semibold text-primary-dark leading-snug">{p.name}</h4>
+              <p class="mt-1 text-xs sm:text-sm font-medium text-accent-dark leading-snug">{p.title}</p>
+            </div>
+            <div class="mt-5 flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted group-hover:text-accent-dark transition-colors">
+              <span>Click to view profile</span>
+              <svg class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </Container>
+
+  <!-- Professional Modal overlay -->
+  <div 
+    id="leader-modal" 
+    class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 sm:p-6" 
+    role="dialog" 
+    aria-modal="true"
+  >
+    <!-- Modal Backdrop -->
+    <div 
+      class="absolute inset-0 bg-primary-dark/50 backdrop-blur-sm transition-opacity duration-300" 
+      id="modal-backdrop"
+    ></div>
+
+    <!-- Modal Content Wrapper -->
+    <div 
+      class="relative w-full max-w-2xl transform rounded-3xl bg-white p-6 sm:p-8 shadow-2xl border border-primary/10 flex flex-col sm:flex-row gap-6 max-h-[90vh] overflow-y-auto animate-fade-up z-10"
+    >
+      <!-- Close button -->
+      <button 
+        type="button" 
+        class="absolute top-4 right-4 text-muted hover:text-primary-dark focus:outline-none p-2 rounded-full hover:bg-surface transition-colors" 
+        id="modal-close" 
+        aria-label="Close modal"
+      >
+        <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+
+      <!-- Photo Column -->
+      <div class="flex-shrink-0 mx-auto sm:mx-0">
+        <div class="relative h-28 w-28 sm:h-36 sm:w-36 rounded-2xl bg-primary-50 ring-4 ring-white shadow-md overflow-hidden">
+          <span id="modal-initials" class="absolute inset-0 flex items-center justify-center text-3xl font-semibold text-primary-dark"></span>
+          <img 
+            id="modal-image" 
+            src="" 
+            alt="" 
+            class="absolute inset-0 h-full w-full object-cover object-top" 
+          />
+        </div>
+      </div>
+
+      <!-- Details Column -->
+      <div class="flex-1 min-w-0 text-center sm:text-left">
+        <h3 id="modal-name" class="text-xl sm:text-2xl font-semibold text-primary-dark"></h3>
+        <p id="modal-title" class="mt-2 text-xs sm:text-sm font-medium text-accent-dark leading-snug"></p>
+        <div class="my-4 h-px bg-gradient-to-r from-transparent via-primary/10 to-transparent sm:via-primary/10 sm:to-transparent" aria-hidden="true"></div>
+        <p id="modal-bio" class="text-sm sm:text-base text-muted leading-relaxed text-left whitespace-pre-line"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const modal = document.getElementById('leader-modal');
+  const backdrop = document.getElementById('modal-backdrop');
+  const closeBtn = document.getElementById('modal-close');
+  const modalName = document.getElementById('modal-name');
+  const modalTitle = document.getElementById('modal-title');
+  const modalBio = document.getElementById('modal-bio');
+  const modalImage = document.getElementById('modal-image') as HTMLImageElement;
+  const modalInitials = document.getElementById('modal-initials');
+  const cards = document.querySelectorAll('[data-leader-card]');
+
+  function openModal(card: Element) {
+    if (!modal || !modalName || !modalTitle || !modalBio || !modalImage || !modalInitials) return;
+    
+    const name = card.getAttribute('data-name') || '';
+    const title = card.getAttribute('data-title') || '';
+    const bio = card.getAttribute('data-bio') || '';
+    const image = card.getAttribute('data-image') || '';
+    const initials = card.getAttribute('data-initials') || '';
+
+    modalName.textContent = name;
+    modalTitle.textContent = title;
+    modalBio.textContent = bio;
+    modalInitials.textContent = initials;
+    
+    if (image) {
+      modalImage.src = image;
+      modalImage.alt = name;
+      modalImage.style.display = 'block';
+    } else {
+      modalImage.style.display = 'none';
+    }
+
+    modal.classList.remove('hidden');
+    document.body.classList.add('overflow-hidden');
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.add('hidden');
+    document.body.classList.remove('overflow-hidden');
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', () => openModal(card));
+    card.addEventListener('keydown', (e: any) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openModal(card);
+      }
+    });
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+  if (backdrop) backdrop.addEventListener('click', closeModal);
+  
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+</script>

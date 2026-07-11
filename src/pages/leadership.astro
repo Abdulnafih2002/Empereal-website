@@ -2,27 +2,21 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import LeadershipHero from "../components/sections/leadership/LeadershipHero.astro";
 import LeadershipIntro from "../components/sections/leadership/LeadershipIntro.astro";
+import LeadershipTeam from "../components/sections/leadership/LeadershipTeam.astro";
 import LeadershipPhilosophy from "../components/sections/leadership/LeadershipPhilosophy.astro";
-import TeamStructure from "../components/sections/leadership/TeamStructure.astro";
-import RegionalPresence from "../components/sections/leadership/RegionalPresence.astro";
-import TechnicalExpertise from "../components/sections/leadership/TechnicalExpertise.astro";
-import OrgCulture from "../components/sections/leadership/OrgCulture.astro";
-import AboutStats from "../components/sections/about/AboutStats.astro";
+
 import LeadershipQuote from "../components/sections/leadership/LeadershipQuote.astro";
 import LeadershipCTA from "../components/sections/leadership/LeadershipCTA.astro";
 ---
 <BaseLayout
   title="Leadership — Empereal Energy & Water Solutions"
-  description="Founder-led, experience-driven. Empereal's leadership combines expertise in renewable energy, water desalination, financial markets, and international infrastructure delivery — with operational teams embedded across five markets."
+  description="Founder-led, experience-driven. Empereal's leadership combines expertise in renewable energy, water desalination, financial markets, and international infrastructure delivery."
 >
   <LeadershipHero />
   <LeadershipIntro />
+  <LeadershipTeam />
   <LeadershipPhilosophy />
-  <TeamStructure />
-  <RegionalPresence />
-  <TechnicalExpertise />
-  <OrgCulture />
-  <AboutStats />
+
   <LeadershipQuote />
   <LeadershipCTA />
 </BaseLayout>

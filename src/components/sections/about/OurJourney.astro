@@ -1,0 +1,100 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const milestones = [
+  {
+    year: "2008",
+    short: "Founded in Singapore",
+    title: "Founded in Singapore",
+    body: "Empereal Energy was established with a mission to deliver high-quality solar engineering and consultancy across Southeast Asia.",
+  },
+  {
+    year: "2012",
+    short: "First Major Solar EPC Project",
+    title: "First Major Solar Installation",
+    body: "Our first utility-scale project, and proof that our engineering model works at commercial scale.",
+  },
+  {
+    year: "2015",
+    short: "Middle East Expansion",
+    title: "Expanded to the Middle East",
+    body: "Opened our Dubai office to meet growing demand for solar infrastructure in the Gulf.",
+  },
+  {
+    year: "2018",
+    short: "ISO Certifications Achieved",
+    title: "Achieved ISO Certification",
+    body: "Certified to ISO 9001, ISO 14001, and ISO 45001, formalising our commitment to quality, environmental responsibility, and safety.",
+  },
+  {
+    year: "2021",
+    short: "Expo 2020 Dubai Deliveries",
+    title: "Expo 2020 UAE Pavilion",
+    body: "Completed the landmark 98 kWp BIPV installation — one of the region's most architecturally significant solar integrations.",
+  },
+  {
+    year: "2024",
+    short: "DEWA Portrait & Solar Tree",
+    title: "BIPV Portfolio Milestones",
+    body: "Passed 100 BIPV projects across the GCC.",
+  },
+  {
+    year: "2025",
+    short: "Net-Zero Portfolio Growth",
+    title: "Net-Zero Portfolio Commitment",
+    body: "Launched our net-zero portfolio initiative, integrating green hydrogen, advanced BESS, and carbon-tracking technology into every new engagement.",
+  },
+];
+---
+<section class="section-pad bg-surface" aria-labelledby="journey-title">
+  <Container>
+    <div class="max-w-xl mx-auto text-center reveal">
+      <p class="eyebrow">Our Journey</p>
+      <h2 id="journey-title" class="fluid-h2 mt-3">Eighteen years of disciplined growth</h2>
+    </div>
+
+    <!-- Timeline -->
+    <div class="mt-14 relative">
+      <!-- Vertical spine (desktop) -->
+      <div class="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-primary/10 -translate-x-px" aria-hidden="true"></div>
+
+      <ol class="relative space-y-0">
+        {milestones.map((m, i) => {
+          const isLeft = i % 2 === 0;
+          return (
+            <li class={`relative flex flex-col lg:flex-row lg:items-center ${isLeft ? "lg:flex-row" : "lg:flex-row-reverse"} gap-0 reveal`}>
+
+              <!-- Connector dot (desktop) -->
+              <div class="hidden lg:flex absolute left-1/2 -translate-x-1/2 z-10 items-center justify-center">
+                <span class="h-5 w-5 rounded-full bg-accent ring-4 ring-surface shadow-md shadow-accent/30 flex items-center justify-center" aria-hidden="true">
+                  <span class="h-2 w-2 rounded-full bg-primary-dark"></span>
+                </span>
+              </div>
+
+              <!-- Mobile dot + year -->
+              <div class="flex lg:hidden items-center gap-3 mb-3 pl-2">
+                <span class="h-4 w-4 rounded-full bg-accent ring-4 ring-surface shrink-0" aria-hidden="true"></span>
+                <span class="font-display text-sm font-bold text-accent">{m.year}</span>
+              </div>
+
+              <!-- Card -->
+              <div class={`lg:w-[calc(50%-2.5rem)] ${isLeft ? "lg:pr-10 lg:text-right" : "lg:pl-10 lg:text-left"} ml-7 lg:ml-0`}>
+                <article class="group rounded-2xl bg-white border border-primary/8 p-6 hover:border-accent/30 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300">
+                  <div class={`flex items-center gap-2 mb-3 ${isLeft ? "lg:flex-row-reverse lg:justify-start" : "flex-row"}`}>
+                    <span class="hidden lg:inline font-display text-xs font-bold text-accent bg-accent/12 px-2.5 py-1 rounded-md">{m.year}</span>
+                    <span class="text-xs text-muted uppercase tracking-wider font-medium">{m.short}</span>
+                  </div>
+                  <h3 class="font-display text-base sm:text-lg font-semibold text-primary-dark">{m.title}</h3>
+                  <p class="mt-2 text-sm text-muted leading-relaxed">{m.body}</p>
+                </article>
+              </div>
+
+              <!-- Spacer on the other side -->
+              <div class="hidden lg:block lg:w-[calc(50%-2.5rem)]"></div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  </Container>
+</section>

@@ -1,0 +1,41 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const awards = [
+  {
+    icon: "🏆",
+    title: "MESIA Commercial & Industrial Project of the Year",
+    sub: "Middle East Solar Industry Association",
+  },
+  {
+    icon: "⭐",
+    title: "Multiple Solar & BIPV Project Awards across GCC",
+    sub: "GCC Region Recognition",
+  },
+  {
+    icon: "🛡️",
+    title: "Zero Lost Time Injuries on High-Risk EPC Projects",
+    sub: "Safety Record — All Operations",
+  },
+];
+---
+<section class="section-pad bg-white border-t border-primary/8" aria-labelledby="recognition-title">
+  <Container>
+    <div class="max-w-xl mx-auto text-center reveal">
+      <p class="eyebrow">Recognition</p>
+      <h2 id="recognition-title" class="fluid-h2 mt-3">Industry recognition for excellence in delivery</h2>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-3 reveal-stagger">
+      {awards.map((a) => (
+        <div class="flex flex-col items-center text-center gap-4 rounded-2xl bg-surface border border-primary/8 p-7 hover:border-accent/30 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300">
+          <span class="text-4xl" aria-hidden="true">{a.icon}</span>
+          <div>
+            <p class="font-semibold text-primary-dark leading-snug">{a.title}</p>
+            <p class="mt-1.5 text-xs text-muted uppercase tracking-wide">{a.sub}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Container>
+</section>

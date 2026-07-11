@@ -3,15 +3,57 @@ import Container from "../../primitives/Container.astro";
 ---
 <section class="section-pad bg-white" aria-labelledby="our-story-title">
   <Container>
-    <div class="max-w-2xl mx-auto text-center reveal">
-      <p class="eyebrow">Our Story</p>
-      <h2 id="our-story-title" class="fluid-h2 mt-3">Founded to close the gap</h2>
-      <p class="fluid-lead mt-6 text-muted">
-        Empereal Energy and Services was founded to enable rapidly growing economies to manage a critical infrastructure challenge: the growing gap between demand and supply in energy and fresh water. Headquartered in Singapore, with operations in India, the Middle East, and the United States, Empereal provides design, engineering, procurement, construction, and O&M services for renewable energy and water desalination systems.
-      </p>
-      <p class="mt-5 text-muted">
-        Our services are designed to be innovative and reliable, enabling clients to meet their growing requirements in a sustainable and cost-efficient manner.
-      </p>
+    <div class="grid gap-12 lg:grid-cols-2 lg:gap-16 lg:items-start">
+
+      <!-- Left: Story text -->
+      <div class="reveal">
+        <p class="eyebrow">Our Story</p>
+        <h2 id="our-story-title" class="fluid-h2 mt-3">
+          A clear mission.<br />Delivered at scale.
+        </h2>
+        <p class="fluid-lead mt-6 text-muted">
+          Empereal was founded in 2008 in Singapore with a simple but ambitious belief: sustainable energy and water infrastructure should be technically excellent, architecturally elegant, and economically viable — simultaneously.
+        </p>
+        <p class="mt-5 text-muted leading-relaxed">
+          Over the past 18 years we have grown from a focused solar engineering practice into a trusted global EPC partner with deep expertise in Solar PV, Architectural BIPV Façades, Solar Thermal Desalination, Energy Storage, and Green Hydrogen.
+        </p>
+      </div>
+
+      <!-- Right: Mission + Vision cards -->
+      <div class="flex flex-col gap-5 reveal">
+        <!-- Mission -->
+        <div class="relative overflow-hidden rounded-2xl bg-primary-dark p-7 ring-1 ring-accent/20">
+          <div class="absolute -top-8 -right-8 h-32 w-32 rounded-full bg-accent/10 blur-2xl" aria-hidden="true"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-accent/20 shrink-0" aria-hidden="true">
+              <svg viewBox="0 0 20 20" class="h-4 w-4 text-accent" fill="none">
+                <path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 3a1 1 0 011 1v4l2.5 2.5a1 1 0 01-1.414 1.414L9.5 11.414A1 1 0 019 10.5V6a1 1 0 011-1z" fill="currentColor"/>
+              </svg>
+            </span>
+            <h3 class="font-display text-lg font-semibold text-accent tracking-wide uppercase text-sm">Mission</h3>
+          </div>
+          <p class="text-white/80 leading-relaxed">
+            To deliver integrated clean energy and water solutions that perform for decades, respect the environment, and create lasting value for the communities and clients we serve.
+          </p>
+        </div>
+
+        <!-- Vision -->
+        <div class="relative overflow-hidden rounded-2xl bg-surface border border-primary/10 p-7 ring-1 ring-primary/10">
+          <div class="absolute -bottom-8 -left-8 h-32 w-32 rounded-full bg-accent/8 blur-2xl" aria-hidden="true"></div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="inline-flex items-center justify-center h-9 w-9 rounded-lg bg-accent/15 shrink-0" aria-hidden="true">
+              <svg viewBox="0 0 20 20" class="h-4 w-4 text-accent-dark" fill="none">
+                <path d="M10 3.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM2 10a8 8 0 1116 0A8 8 0 012 10zm8-3a1 1 0 011 1v2.586l1.707 1.707a1 1 0 01-1.414 1.414l-2-2A1 1 0 019 11V8a1 1 0 011-1z" fill="currentColor"/>
+              </svg>
+            </span>
+            <h3 class="font-display text-lg font-semibold text-primary-dark tracking-wide uppercase text-sm">Vision</h3>
+          </div>
+          <p class="text-ink leading-relaxed">
+            A world where every building generates power, every community has clean water, and every industry runs on renewable energy — decentralized, decarbonized, and democratized.
+          </p>
+        </div>
+      </div>
+
     </div>
   </Container>
 </section>

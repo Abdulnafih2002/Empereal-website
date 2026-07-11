@@ -3,16 +3,14 @@ import Container from "../../primitives/Container.astro";
 import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
 import { projects } from "../../../data/projects.ts";
 
-const slugs = ["luxglamp-resort", "diamond-bakery", "masdar-desalination", "ntpc-flue-gas"];
+const slugs = ["zamani-islands", "park-hyatt-maldives"];
 const featured = slugs
   .map((s) => projects.find((p) => p.slug === s))
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
 const tagFor: Record<string, string> = {
-  "luxglamp-resort": "Off-grid Resort · Solar PV · Storage · Backup",
-  "diamond-bakery": "Commercial · Solar PV · Storage · Cooling",
-  "masdar-desalination": "Solar Thermal · Thermal Storage · Desalination",
-  "ntpc-flue-gas": "Waste Heat Recovery · Industrial · Desalination",
+  "zamani-islands": "Off-grid Resort · Solar PV · Storage · Water",
+  "park-hyatt-maldives": "Resort · Solar PV · BESS · Energy Management",
 };
 ---
 <section class="section-pad bg-[#0F2238] text-white" aria-labelledby="integrated-featured-title">
@@ -21,7 +19,7 @@ const tagFor: Record<string, string> = {
       <p class="eyebrow !text-accent">Selected experience</p>
       <h2 id="integrated-featured-title" class="fluid-h2 mt-3 text-white">Integrated systems — delivered</h2>
       <p class="fluid-lead mt-5 text-white/60">
-        Four commissioned integrated energy and water projects demonstrating the breadth of Empereal's full-system delivery capability.
+        Commissioned integrated energy and water projects demonstrating the breadth of Empereal's full-system delivery capability.
       </p>
     </div>
 

@@ -2,7 +2,7 @@
 import Container from "../../primitives/Container.astro";
 import { projects, categoryLabels } from "../../../data/projects.ts";
 
-const slugs = ["luxglamp-resort", "diamond-bakery", "masdar-desalination", "ntpc-flue-gas"];
+const slugs = ["zamani-islands", "park-hyatt-maldives"];
 const rows = slugs
   .map((s) => projects.find((p) => p.slug === s))
   .filter((p): p is NonNullable<typeof p> => Boolean(p));

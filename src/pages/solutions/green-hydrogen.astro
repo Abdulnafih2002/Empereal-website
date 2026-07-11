@@ -1,0 +1,26 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import SolutionsSubNav from "../../components/sections/solutions/SolutionsSubNav.astro";
+import GreenHydrogenHero from "../../components/sections/green-hydrogen/GreenHydrogenHero.astro";
+import GreenHydrogenIntro from "../../components/sections/green-hydrogen/GreenHydrogenIntro.astro";
+import GreenHydrogenScope from "../../components/sections/green-hydrogen/GreenHydrogenScope.astro";
+import GreenHydrogenApplications from "../../components/sections/green-hydrogen/GreenHydrogenApplications.astro";
+import GreenHydrogenProcess from "../../components/sections/green-hydrogen/GreenHydrogenProcess.astro";
+import GreenHydrogenProjects from "../../components/sections/green-hydrogen/GreenHydrogenProjects.astro";
+import CertificationsBar from "../../components/sections/solutions/CertificationsBar.astro";
+import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro";
+---
+<BaseLayout
+  title="Green Hydrogen | Empereal Solutions"
+  description="Electrolyzer integration and fuel-switching solutions that turn surplus renewable energy into green hydrogen — powering industry, transport, and the wider energy transition."
+>
+  <SolutionsSubNav active="hydrogen" breadcrumb="Green Hydrogen" />
+  <GreenHydrogenHero />
+  <GreenHydrogenIntro />
+  <GreenHydrogenScope />
+  <GreenHydrogenApplications />
+  <GreenHydrogenProcess />
+  <GreenHydrogenProjects />
+  <CertificationsBar />
+  <SolutionsCTA />
+</BaseLayout>

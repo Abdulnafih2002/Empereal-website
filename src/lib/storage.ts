@@ -78,7 +78,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "solar-power-systems",
     title: "Solar Power Systems",
     description:
-      "Utility-scale PV farms, commercial and industrial rooftops, carports, ground-mounted installations, single-axis trackers, and architectural BIPV — full design, EPC, and O&M.",
+      "Utility-scale, commercial & industrial, and building-integrated photovoltaics (BIPV), engineered for maximum yield, structural integrity, and clean integration.",
     icon: "solar",
     href: "/solutions/solar-power-systems",
     order: 1,
@@ -87,7 +87,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "water-desalination",
     title: "Water & Desalination",
     description:
-      "Solar thermal desalination using LFR technology, PV-RO systems, forward osmosis, solar-biomass hybrid, industrial effluent recovery, and standalone off-grid fresh water systems.",
+      "Solar-powered water treatment and desalination that cuts energy dependency and operational cost — delivering clean water where it's needed most.",
     icon: "drop",
     href: "/solutions/water-desalination",
     order: 2,
@@ -96,7 +96,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "energy-storage",
     title: "Energy Storage Systems",
     description:
-      "Battery energy storage integrated with solar PV, patented thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
+      "Battery energy storage (BESS) and thermal storage that stabilize renewable supply, manage peak loads, and enable genuine grid independence.",
     icon: "battery",
     href: "/solutions/energy-storage",
     order: 3,
@@ -105,7 +105,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "integrated-infrastructure",
     title: "Integrated Energy Infrastructure",
     description:
-      "Hybrid systems combining solar PV, thermal, storage, and backup for 24/7 availability — off-grid resorts, industrial co-generation, net-zero buildings, and rural electrification.",
+      "Combined power and water systems, microgrids, and smart controls — designed as one unified system for maximum efficiency and reliability.",
     icon: "hub",
     href: "/solutions/integrated-infrastructure",
     order: 4,
@@ -116,16 +116,16 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     description:
       "Custom-designed solar facades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture — Dubai SHAMS/D33 compliant.",
     icon: "bipv",
-    href: "#",
+    href: "/solutions/solar-power-systems",
     order: 5,
   },
   {
     id: "green-hydrogen",
     title: "Green Hydrogen Systems",
     description:
-      "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination — including India's first sea-water-to-hydrogen project and DEWA hydrogen plant.",
+      "Electrolyzer integration and fuel-switching solutions that turn surplus renewable energy into green hydrogen — powering industry, transport, and the wider energy transition.",
     icon: "h2",
-    href: "#",
+    href: "/solutions/green-hydrogen",
     order: 6,
   },
 ];
@@ -203,34 +203,43 @@ const FEATURES_KEY = "empereal/features";
 
 const DEFAULT_FEATURES: FeaturesSection = {
   highlight: {
-    eyebrow: "End-to-End Solar EPC",
+    eyebrow: "End-to-End EPC Expertise",
     title: "From Design to Commissioning",
     description:
-      "A single accountable partner for solar development, engineering, procurement, construction, and long-horizon asset performance.",
-    badgeLabel: "Savings:",
-    badgeValue: "Up to 60–70%",
-    badgeSuffix: "Energy Cost Reduction",
-    gaugePercent: 65,
-    imageUrl: "/images/feature-epc.jpg",
+      "Single accountability from feasibility to long-term O&M — proven across 350+ projects in 15+ countries.",
+    badgeLabel: "Accountability:",
+    badgeValue: "100%",
+    badgeSuffix: "Single-Source EPC Partner",
+    gaugePercent: 100,
+    imageUrl: "/images/dewa-hq-main.jpg",
   },
   cards: [
     {
-      id: "high-efficiency",
-      title: "High-Efficiency Power Systems",
-      description: "Advanced solar technology for maximum energy output and optimized performance.",
-      icon: `<rect x="3" y="6" width="18" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h18M3 14h18M9 6v12M15 6v12" stroke="currentColor" stroke-width="1.25"/>`,
-      imageUrl: "/images/hero-solar.jpg",
-      href: "#",
+      id: "proven-track-record",
+      title: "Proven Global Track Record",
+      description: "350+ projects across 15+ countries, delivered on time and on budget.",
+      icon: `<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z" fill="none" stroke="currentColor" stroke-width="1.25"/>`,
+      imageUrl: "/images/solar-park.jpg",
+      href: "/projects",
       order: 1,
     },
     {
-      id: "commercial-industrial",
-      title: "Commercial & Industrial Solar Solutions",
-      description: "Scalable solar solutions for businesses, factories, and commercial facilities.",
-      icon: `<path d="M3 21V9l7-4 7 4v12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M14 21V13h5v8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 14h4M6 17h4" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>`,
-      imageUrl: "/images/project-uae.jpg",
-      href: "#",
+      id: "innovation-core",
+      title: "Innovation at Core",
+      description: "Pioneering BIPV, agri-PV, floating solar and smart energy systems.",
+      icon: `<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+      imageUrl: "/images/mercedes-binghatti.jpg",
+      href: "/solutions",
       order: 2,
+    },
+    {
+      id: "sustainability-first",
+      title: "Sustainability First",
+      description: "Every project delivers measurable carbon reduction and long-term value.",
+      icon: `<path d="M5 21c0-9 6-15 15-15 0 9-6 15-15 15Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 21c3-3 6-6 10-10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>`,
+      imageUrl: "/images/sustainability-city.jpg",
+      href: "/about",
+      order: 3,
     },
   ],
 };

@@ -7,11 +7,10 @@ const filters: { key: "all" | ProjectCategory; label: string }[] = [
   { key: "all", label: "All" },
   { key: "bipv", label: "BIPV" },
   { key: "solar-pv", label: "Solar PV" },
-  { key: "solar-thermal", label: "Solar Thermal" },
-  { key: "desalination", label: "Desalination" },
   { key: "storage", label: "Energy Storage" },
   { key: "integrated", label: "Integrated" },
   { key: "utility", label: "Utility-Scale" },
+  { key: "hydrogen", label: "Green Hydrogen" },
 ];
 
 const total = projects.length;
@@ -50,7 +49,8 @@ const total = projects.length;
     <ul id="projects-list" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 reveal-stagger">
       {projects.map((p) => (
         <li
-          class="project-card group flex flex-col rounded-2xl bg-white ring-1 ring-primary/10 overflow-hidden hover:-translate-y-1 hover:shadow-card-lg hover:ring-accent/40 transition-all"
+          id={p.slug}
+          class="project-card group flex flex-col rounded-2xl bg-white ring-1 ring-primary/10 overflow-hidden hover:-translate-y-1 hover:shadow-card-lg hover:ring-accent/40 transition-all scroll-mt-32"
           data-cats={p.categories.join(" ")}
         >
           <a href={`#${p.slug}`} class="block">
@@ -65,6 +65,17 @@ const total = projects.length;
               <span class="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-primary-dark/85 backdrop-blur-sm px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] text-white">
                 {p.country}
               </span>
+              {p.status && (
+                <span
+                  class={`absolute right-3 top-3 inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] ${
+                    p.status === "completed"
+                      ? "bg-success/90 text-white"
+                      : "bg-accent/90 text-primary-dark"
+                  }`}
+                >
+                  {p.status === "ongoing" ? "Ongoing" : "Completed"}
+                </span>
+              )}
             </ImagePlaceholder>
           </a>
 
@@ -84,9 +95,23 @@ const total = projects.length;
                 </svg>
               </span>
             </h3>
-            {p.scale !== "—" && (
-              <p class="mt-1 text-xs font-semibold text-accent-dark">{p.scale}</p>
-            )}
+            <div class="mt-1 flex items-center gap-2 flex-wrap">
+              {p.scale !== "—" && (
+                <p class="text-xs font-semibold text-accent-dark">{p.scale}</p>
+              )}
+              {p.client && (
+                <>
+                  <span class="text-primary/20" aria-hidden="true">·</span>
+                  <p class="text-xs text-muted">{p.client}</p>
+                </>
+              )}
+              {p.year && (
+                <>
+                  <span class="text-primary/20" aria-hidden="true">·</span>
+                  <p class="text-xs text-muted">{p.year}</p>
+                </>
+              )}
+            </div>
             <p class="mt-1.5 text-[12.5px] text-muted leading-relaxed">{p.summary}</p>
           </div>
         </li>
