@@ -72,7 +72,7 @@ const advisors = [
 ---
 <section class="section-pad bg-surface" aria-labelledby="leadership-team-title">
   <Container>
-    <div class="max-w-2xl reveal">
+    <div class="max-w-2xl mx-auto text-center reveal">
       <p class="eyebrow">Our People</p>
       <h2 id="leadership-team-title" class="fluid-h2 mt-3">Founder Directors & Strategic Advisory Board</h2>
       <p class="fluid-lead mt-5 text-muted">
@@ -80,7 +80,7 @@ const advisors = [
       </p>
     </div>
 
-    <h3 class="mt-12 text-sm font-semibold uppercase tracking-[0.15em] text-accent-dark">Founder Directors</h3>
+    <h3 class="mt-12 text-sm font-semibold uppercase tracking-[0.15em] text-accent-dark text-center">Founder Directors</h3>
     <div class="mt-5 grid gap-5 sm:grid-cols-2 reveal-stagger">
       {founders.map((p) => (
         <article 
@@ -113,12 +113,12 @@ const advisors = [
           <!-- Right: Text Content -->
           <div class="min-w-0 flex-1 flex flex-col justify-between p-6 sm:p-7">
             <div>
-              <h4 class="text-base sm:text-lg font-semibold text-primary-dark text-center sm:text-left">{p.name}</h4>
-              <p class="mt-1 text-xs sm:text-sm font-medium text-accent-dark leading-snug text-center sm:text-left min-h-[2.5rem] sm:min-h-[3rem]">{p.title}</p>
-              <p class="mt-3 text-sm text-muted leading-relaxed line-clamp-3 text-center sm:text-left">{p.bio}</p>
+              <h4 class="text-base sm:text-lg font-semibold text-primary-dark text-center">{p.name}</h4>
+              <p class="mt-1 text-xs sm:text-sm font-medium text-accent-dark leading-snug text-center">{p.title}</p>
+              <p class="mt-3 text-sm text-muted leading-relaxed line-clamp-3 text-center">{p.bio}</p>
             </div>
             
-            <div class="mt-5 flex items-center justify-center sm:justify-start gap-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted group-hover:text-accent-dark transition-colors">
+            <div class="mt-5 flex items-center justify-center gap-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted group-hover:text-accent-dark transition-colors">
               <span>Click to view profile</span>
               <svg class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -129,11 +129,11 @@ const advisors = [
       ))}
     </div>
 
-    <h3 class="mt-12 text-sm font-semibold uppercase tracking-[0.15em] text-accent-dark">Strategic Advisory Board</h3>
-    <div class="mt-5 flex flex-wrap justify-center gap-5 reveal-stagger">
+    <h3 class="mt-12 text-sm font-semibold uppercase tracking-[0.15em] text-accent-dark text-center">Strategic Advisory Board</h3>
+    <div class="mt-5 flex flex-wrap justify-center gap-4 reveal-stagger">
       {advisors.map((p) => (
         <article 
-          class="group relative flex flex-col w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] rounded-2xl bg-white ring-1 ring-primary/10 overflow-hidden hover:ring-accent/40 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/50"
+          class="group relative flex flex-col w-[calc(50%-8px)] lg:w-[calc(25%-12px)] rounded-xl bg-white ring-1 ring-primary/10 overflow-hidden hover:ring-accent/40 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300 cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/50"
           role="button"
           tabindex="0"
           data-leader-card
@@ -146,7 +146,7 @@ const advisors = [
         >
           <!-- Full-height background photo -->
           <div class="absolute inset-0 w-full h-full bg-primary-50">
-            <span class="absolute inset-0 flex items-center justify-center text-2xl font-semibold text-primary-dark">
+            <span class="absolute inset-0 flex items-center justify-center text-xl font-semibold text-primary-dark">
               {p.initials}
             </span>
             <img
@@ -160,17 +160,17 @@ const advisors = [
           </div>
 
           <!-- Spacer to expose top of photo -->
-          <div class="relative w-full aspect-[4/5] sm:aspect-[4/3] md:aspect-[4/5] pointer-events-none"></div>
+          <div class="relative w-full aspect-[4/3.5] pointer-events-none"></div>
 
           <!-- Overlay text container at the bottom -->
-          <div class="relative z-10 flex flex-col p-5 sm:p-6 justify-between bg-white/80 backdrop-blur-md border-t border-primary/5 flex-grow">
-            <div class="min-w-0 min-h-[4.25rem] sm:min-h-[4.5rem]">
-              <h4 class="text-base sm:text-lg font-semibold text-primary-dark leading-snug">{p.name}</h4>
-              <p class="mt-1 text-xs sm:text-sm font-medium text-accent-dark leading-snug">{p.title}</p>
+          <div class="relative z-10 flex flex-col p-3.5 items-center text-center justify-between bg-white/85 backdrop-blur-md border-t border-primary/5 flex-grow">
+            <div class="min-w-0 w-full">
+              <h4 class="text-sm font-semibold text-primary-dark leading-snug">{p.name}</h4>
+              <p class="mt-0.5 text-[11px] font-medium text-accent-dark leading-snug">{p.title}</p>
             </div>
-            <div class="mt-5 flex items-center gap-1.5 text-[10px] sm:text-xs font-semibold uppercase tracking-[0.08em] text-muted group-hover:text-accent-dark transition-colors">
-              <span>Click to view profile</span>
-              <svg class="h-3 w-3 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <div class="mt-3 flex items-center justify-center gap-1 text-[10px] font-semibold uppercase tracking-[0.08em] text-muted group-hover:text-accent-dark transition-colors">
+              <span>View profile</span>
+              <svg class="h-2.5 w-2.5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
               </svg>
             </div>

@@ -16,9 +16,9 @@ const offset = CIRC - (CIRC * Math.min(Math.max(highlight.gaugePercent, 0), 100)
   <div class="hidden lg:block relative lg:h-[220vh]" id="experience-pin-container">
     <div class="sticky top-20 h-[calc(100vh-5rem)] overflow-hidden flex flex-col justify-center bg-surface">
       <Container>
-        <div class="text-center max-w-2xl mx-auto reveal-stagger">
-          <h2 id="experience-title" class="fluid-h2">Experience the Future of Solar Power.</h2>
-          <p class="mt-3 text-muted fluid-lead">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 id="experience-title" class="fluid-h2 hero-enter hero-enter-1">Experience the Future of Solar Power.</h2>
+          <p class="mt-3 text-muted fluid-lead hero-enter hero-enter-2">
             Reliable solar solutions engineered for performance, savings, and sustainability.
           </p>
         </div>
@@ -272,8 +272,31 @@ const offset = CIRC - (CIRC * Math.min(Math.max(highlight.gaugePercent, 0), 100)
     const featuredCard = document.getElementById("featured-card");
     if (!track || !scrollTrack || !cardsWindow) return;
 
+    // Cards start hidden via CSS (opacity:0 / translateY) — animate them in
+    // once the section is first reached, regardless of IntersectionObserver.
+    let cardsAnimated = false;
+    function animateCardsIn() {
+      if (cardsAnimated) return;
+      cardsAnimated = true;
+      const items = scrollTrack.querySelectorAll("article");
+      items.forEach((el, i) => {
+        (el as HTMLElement).style.transition = `opacity 0.55s cubic-bezier(.22,.7,.3,1) ${i * 0.08}s, transform 0.55s cubic-bezier(.22,.7,.3,1) ${i * 0.08}s`;
+        (el as HTMLElement).style.opacity = "1";
+        (el as HTMLElement).style.transform = "none";
+      });
+    }
+
+    // Set initial hidden state on articles (desktop only)
+    function setInitialState() {
+      if (window.innerWidth < 1024) return;
+      const items = scrollTrack.querySelectorAll("article");
+      items.forEach((el) => {
+        (el as HTMLElement).style.opacity = "0";
+        (el as HTMLElement).style.transform = "translateY(18px)";
+      });
+    }
+
     const updateScroll = () => {
-      // Check screen width
       if (window.innerWidth < 1024) {
         scrollTrack.style.transform = "";
         if (featuredCard) {
@@ -287,18 +310,19 @@ const offset = CIRC - (CIRC * Math.min(Math.max(highlight.gaugePercent, 0), 100)
       const header = document.getElementById("site-header");
       const headerHeight = header ? header.offsetHeight : 80;
 
-      // The pinning begins when rect.top hits headerHeight
-      const offsetTop = rect.top - headerHeight;
+      // totalScrollRange: how many pixels the page scrolls while section is pinned
       const totalScrollRange = track.offsetHeight - window.innerHeight;
-
       if (totalScrollRange <= 0) return;
 
+      const offsetTop = rect.top - headerHeight;
       const progress = -offsetTop / totalScrollRange;
       const clampedProgress = Math.max(0, Math.min(1, progress));
 
-      // Calculate translation relative to the cards window width
+      // Animate cards in as soon as section enters view
+      if (clampedProgress > 0) animateCardsIn();
+
+      // Horizontal translate of card track
       const maxTranslate = scrollTrack.scrollWidth - cardsWindow.offsetWidth;
-      
       if (maxTranslate > 0) {
         const translateX = clampedProgress * maxTranslate;
         scrollTrack.style.transform = `translateX(-${translateX}px)`;
@@ -306,16 +330,14 @@ const offset = CIRC - (CIRC * Math.min(Math.max(highlight.gaugePercent, 0), 100)
         scrollTrack.style.transform = "";
       }
 
-      // Fade out the first card (Featured card) as we scroll
+      // Fade out the featured card as cards scroll away
       if (featuredCard) {
-        const opacity = 1 - clampedProgress;
-        featuredCard.style.opacity = opacity.toString();
+        const opacity = 1 - clampedProgress * 1.8; // fade quicker
+        featuredCard.style.opacity = Math.max(0, opacity).toString();
         featuredCard.style.visibility = opacity <= 0 ? "hidden" : "visible";
       }
     };
 
-    // Coalesce scroll/resize bursts into one update per animation frame
-    // to avoid layout thrash from synchronous getBoundingClientRect() reads.
     let ticking = false;
     const requestUpdate = () => {
       if (ticking) return;
@@ -327,14 +349,22 @@ const offset = CIRC - (CIRC * Math.min(Math.max(highlight.gaugePercent, 0), 100)
     };
 
     window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate, { passive: true });
+    window.addEventListener("resize", () => {
+      setInitialState();
+      requestUpdate();
+    }, { passive: true });
 
-    // Initial run
-    updateScroll();
+    // Defer first run to next rAF after layout is painted (avoids offsetHeight=0 during SSR hydration)
+    setInitialState();
+    requestAnimationFrame(() => requestAnimationFrame(updateScroll));
   }
 
-  // Run on startup
-  initHorizontalScroll();
+  // Guard: run after DOM is ready
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initHorizontalScroll);
+  } else {
+    initHorizontalScroll();
+  }
 </script>
 
 <style>
