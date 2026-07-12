@@ -2,21 +2,18 @@
 export const prerender = false;
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/home/Hero.astro";
-import ExperienceFeatures from "../components/sections/home/ExperienceFeatures.astro";
+import CleanEnergySolutions from "../components/sections/home/CleanEnergySolutions.astro";
 import AboutEmpereal from "../components/sections/home/AboutEmpereal.astro";
 import OurProjects from "../components/sections/home/OurProjects.astro";
 import NewsInsights from "../components/sections/home/NewsInsights.astro";
 import Testimonial from "../components/sections/home/Testimonial.astro";
-import { getFeatures } from "../lib/storage.js";
-
-const featuresData = await getFeatures();
 ---
 <BaseLayout
   title="Empereal — Smart Solar & EPC Solutions"
   description="Powering progress with smart solar solutions. A global EPC leader delivering high-performance solar projects across 15+ countries — 350+ installations, 1.2 GW of solar capacity, 20+ years of engineering expertise."
 >
   <Hero />
-  <ExperienceFeatures data={featuresData} />
+  <CleanEnergySolutions />
   <AboutEmpereal />
   <OurProjects />
   <NewsInsights />

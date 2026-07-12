@@ -22,6 +22,7 @@ const metrics = [
       alt=""
       class="h-full w-full object-cover"
       loading="eager"
+      fetchpriority="high"
       decoding="async"
       onerror="this.remove()"
     />
@@ -107,21 +108,3 @@ const metrics = [
     }
   }
 </style>
-
-<script>
-  const reveals = document.querySelectorAll<HTMLElement>(".reveal");
-  if (reveals.length) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            e.target.classList.add("is-visible");
-            io.unobserve(e.target);
-          }
-        });
-      },
-      { threshold: 0.15 }
-    );
-    reveals.forEach((el) => io.observe(el));
-  }
-</script>

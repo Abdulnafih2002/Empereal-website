@@ -1,0 +1,262 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const solutions = [
+  {
+    id: "solar-pv",
+    title: "Solar PV Systems",
+    tagline:
+      "Expert system design and architectural integration for rooftops, ground-mounted, and façade installations.",
+    image: "/images/1. Solar PV Systems.webp",
+    href: "/solutions/solar-power",
+  },
+  {
+    id: "energy-storage",
+    title: "Solar Energy Storage",
+    tagline:
+      "Intelligent battery storage solutions designed to maximize solar utilization and ensure reliable power supply.",
+    image: "/images/2. Solar Energy Storage.webp",
+    href: "/solutions/energy-storage",
+  },
+  {
+    id: "thermal-desalination",
+    title: "Solar Thermal & Desalination",
+    tagline:
+      "Advanced solar-powered systems delivering clean thermal energy and sustainable water solutions.",
+    image: "/images/3. Solar Thermal & Desalination.webp",
+    href: "/solutions/water-desalination",
+  },
+  {
+    id: "green-hydrogen",
+    title: "Green Hydrogen",
+    tagline:
+      "End-to-end green hydrogen production systems powered by renewable energy for industrial decarbonization.",
+    image: "/images/4. Green Hydrogen.webp",
+    href: "/solutions/green-hydrogen",
+  },
+  {
+    id: "bipv-facade",
+    title: "BIPV & Solar Façade",
+    tagline:
+      "Innovative building-integrated photovoltaics that combine aesthetics with high-performance energy generation.",
+    image: "/images/5. Architecture BIPV & Solar Facade.webp",
+    href: "/solutions/design-consultancy",
+  },
+];
+---
+
+<section
+  id="clean-energy-solutions"
+  class="ces-section bg-[#f0f2f5]"
+  aria-labelledby="ces-heading"
+>
+  <!-- Header -->
+  <div class="ces-header">
+    <Container>
+      <div class="ces-header-inner reveal">
+        <p class="ces-eyebrow">What We Deliver</p>
+        <h2 id="ces-heading" class="ces-title">
+          Comprehensive Clean Energy Solutions
+        </h2>
+        <p class="ces-sub">
+          From expert design to full EPC delivery, we provide end-to-end solar,
+          storage, desalination, green hydrogen, and architectural BIPV solutions
+          for a sustainable future.
+        </p>
+      </div>
+    </Container>
+  </div>
+
+  <!-- Cards Strip -->
+  <div class="ces-cards-wrap reveal-stagger">
+    {
+      solutions.map((s) => (
+        <a href={s.href} class="ces-card group" id={`ces-card-${s.id}`} aria-label={s.title}>
+          {/* Photo fills entire card */}
+          <img
+            src={s.image}
+            alt={s.title}
+            class="ces-img"
+            loading="lazy"
+            decoding="async"
+          />
+
+          {/* Dark scrim for text readability */}
+          <div class="ces-overlay" aria-hidden="true" />
+
+          {/* Text: overlay on image, always visible, top-centered */}
+          <div class="ces-text">
+            <h3 class="ces-card-title">{s.title}</h3>
+            <p class="ces-card-tagline">{s.tagline}</p>
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* ── Section wrapper ── */
+  .ces-section {
+    padding-block: 5rem 4rem;
+  }
+
+  /* ── Header ── */
+  .ces-header {
+    margin-bottom: 3rem;
+  }
+  .ces-header-inner {
+    text-align: center;
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  .ces-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f5a623; /* accent */
+    margin-bottom: 0.75rem;
+  }
+  .ces-title {
+    font-family: "Clash Display", "Syne", sans-serif;
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    font-weight: 700;
+    color: #0f172a;
+    line-height: 1.15;
+  }
+  .ces-sub {
+    margin-top: 1rem;
+    font-size: clamp(0.9rem, 1.4vw, 1.05rem);
+    color: #475569;
+    max-width: 46rem;
+    margin-inline: auto;
+    line-height: 1.7;
+  }
+
+  /* ── Cards strip ── */
+  .ces-cards-wrap {
+    display: flex;
+    gap: 0.75rem;
+    padding-inline: max(1rem, calc((100vw - 1440px) / 2 + 1.5rem));
+    padding-bottom: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+  }
+  .ces-cards-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ── Individual card: image fills entire card, text overlaid ── */
+  .ces-card {
+    position: relative;
+    flex: 1 1 0;
+    min-width: 200px;
+    max-width: 320px;
+    height: 500px;
+    border-radius: 0 0 0.5rem 0.5rem;
+    overflow: hidden;
+    scroll-snap-align: start;
+    transition: box-shadow 0.35s ease, transform 0.35s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 24px rgba(15, 23, 42, 0.1);
+    cursor: pointer;
+  }
+
+  @media (hover: hover) and (min-width: 768px) {
+    .ces-card:hover {
+      box-shadow: 0 12px 36px rgba(15, 23, 42, 0.18);
+      transform: translateY(-4px);
+    }
+  }
+
+  /* ── Image: fills entire card ── */
+  .ces-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.65s cubic-bezier(0.22, 0.9, 0.3, 1);
+  }
+  .ces-card:hover .ces-img {
+    transform: scale(1.06);
+  }
+
+  /* ── Dark overlay for text readability ── */
+  .ces-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(15, 23, 42, 0.75) 0%,
+      rgba(15, 23, 42, 0.45) 50%,
+      rgba(15, 23, 42, 0.2) 100%
+    );
+    transition: opacity 0.4s ease;
+  }
+  .ces-card:hover .ces-overlay {
+    opacity: 0.85;
+  }
+
+  /* ── Text: overlay on image, top-centered ── */
+  .ces-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: 1.75rem 1.25rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .ces-card-title {
+    font-family: "Clash Display", "Syne", sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.15rem);
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+  .ces-card-tagline {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+  }
+
+  /* ── Mobile: vertical stack ── */
+  @media (max-width: 767px) {
+    .ces-section {
+      padding-block: 3rem 2rem;
+    }
+    .ces-cards-wrap {
+      flex-direction: column;
+      padding-inline: 1rem;
+      overflow-x: visible;
+      gap: 1rem;
+    }
+    .ces-card {
+      min-width: 100%;
+      max-width: 100%;
+      flex: none;
+      height: 380px;
+    }
+  }
+
+  /* ── Tablet: horizontal scroll ── */
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .ces-cards-wrap {
+      flex-wrap: nowrap;
+      padding-inline: 1.5rem;
+    }
+    .ces-card {
+      min-width: 220px;
+    }
+  }
+</style>

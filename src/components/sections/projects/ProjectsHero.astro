@@ -78,8 +78,16 @@ const stats = [
       </div>
 
       <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px rounded-xl overflow-hidden border border-white/10 max-w-3xl bg-white/[0.04] hero-enter hero-enter-4">
-        {stats.map((s) => (
-          <div class="bg-primary-dark/60 backdrop-blur-sm px-4 py-4 text-center">
+        {stats.map((s, i) => (
+          <div
+            class:list={[
+              "bg-primary-dark/60 backdrop-blur-sm px-4 py-4 text-center",
+              // 5 items in a 2-col mobile grid leaves the last cell orphaned in
+              // a half-empty row — span it full-width instead. Reset at sm+
+              // where the 3/5-col layouts are untouched.
+              i === stats.length - 1 ? "col-span-2 sm:col-span-1" : "",
+            ]}
+          >
             <dt class="text-base font-semibold text-accent leading-tight">{s.num}</dt>
             <dd class="mt-1 text-[10px] uppercase tracking-[0.08em] text-white/50">{s.lbl}</dd>
           </div>
