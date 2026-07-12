@@ -88,10 +88,30 @@ const org = {
         if (reduce) {
           reveals.forEach((el) => el.classList.add("is-visible"));
         } else {
+          // will-change is applied only for the duration of the reveal transition,
+          // then stripped — leaving it on permanently keeps every revealed element
+          // (there can be dozens per page) promoted to its own GPU layer forever,
+          // which is a major source of scroll jank on mobile.
+          const promote = (el: Element) => {
+            const targets = el.classList.contains("reveal-stagger")
+              ? Array.from(el.children)
+              : [el];
+            targets.forEach((t) => {
+              (t as HTMLElement).style.willChange = "opacity, transform";
+              const clear = () => {
+                (t as HTMLElement).style.willChange = "";
+                t.removeEventListener("transitionend", clear);
+              };
+              t.addEventListener("transitionend", clear);
+              // Fallback in case transitionend never fires (e.g. element unmounted mid-transition)
+              setTimeout(clear, 1200);
+            });
+          };
           const io = new IntersectionObserver(
             (entries) => {
               entries.forEach((e) => {
                 if (e.isIntersecting) {
+                  promote(e.target);
                   e.target.classList.add("is-visible");
                   io.unobserve(e.target);
                 }

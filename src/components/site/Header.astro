@@ -403,7 +403,21 @@ const nav: NavLink[] = [
     header.classList.toggle("is-transparent", !scrolled && mobileMQ.matches && hasHeroBackdrop);
     header.classList.toggle("shadow-sm", scrolled);
   };
-  window.addEventListener("scroll", updateHeader, { passive: true });
+  // Coalesce scroll updates into one per animation frame — an unthrottled
+  // listener on a sticky, blurred header is a common source of scroll jank.
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateHeader();
+        ticking = false;
+      });
+    },
+    { passive: true }
+  );
   mobileMQ.addEventListener?.("change", updateHeader);
   updateHeader();
 </script>
@@ -435,5 +449,17 @@ const nav: NavLink[] = [
   }
   [data-header].is-transparent [data-drawer-toggle]:hover {
     background-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Mobile: the header is `position: sticky`, so backdrop-filter forces a
+     blur repaint on every scroll frame for the entire session — a major
+     source of scroll jank on mobile GPUs. It's already ~90% opaque, so the
+     blur is barely visible; drop it and bump opacity slightly to compensate. */
+  @media (max-width: 1023.98px) {
+    [data-header]:not(.is-transparent) {
+      background-color: rgba(255, 255, 255, 0.97);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
   }
 </style>
