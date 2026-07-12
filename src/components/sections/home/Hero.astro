@@ -69,8 +69,7 @@ const metrics = [
 
 </section>
 
-  <!-- Metrics strip: part of the hero's viewport-height block (shrink-0) so it's
-       visible on first load, no scrolling required. -->
+  <!-- Metrics strip: not visible in initial mobile viewport, appears when scrolling -->
   <div class="relative shrink-0 bg-primary-dark text-white">
     <Container>
       <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y divide-white/10 sm:divide-y-0 sm:divide-x sm:divide-white/10 reveal-stagger">
@@ -89,16 +88,18 @@ const metrics = [
 </div>
 
 <style>
-  /* The hero + metrics strip together fill the viewport on load (image extends
-     behind the header via the negative margin applied on the wrapper), so the
-     metrics are visible immediately without scrolling. On desktop we subtract
-     the header height so it still fits one screen without overlapping the
-     opaque white header. `dvh` tracks mobile browser chrome (URL bar) correctly;
-     `svh`/`vh` fallback. */
-  .hero-wrap {
-    min-height: 100vh;
-    min-height: 100svh;
-    min-height: 100dvh;
+  /* Mobile: hero section alone fills viewport, metrics below on scroll
+     Desktop: hero + metrics together fill viewport minus header */
+  @media (max-width: 1023px) {
+    .hero-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+    .hero-wrap > section[data-hero] {
+      min-height: 100vh;
+      min-height: 100svh;
+      min-height: 100dvh;
+    }
   }
   @media (min-width: 1024px) {
     .hero-wrap {
