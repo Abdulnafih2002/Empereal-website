@@ -163,6 +163,21 @@
     width: 100%;
     justify-content: center;
   }
+
+  /* Shared secondary hero action: matches the homepage white pill. */
+  .hero-home-pill {
+    @apply inline-flex min-h-[44px] w-fit self-start items-center justify-center gap-3 whitespace-nowrap rounded-full bg-white py-1 pl-6 pr-1 text-sm font-medium text-primary-dark shadow-lg shadow-black/15 transition-all duration-200;
+  }
+  .hero-home-pill::after {
+    content: "↗";
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#101418] text-base leading-none text-white transition-transform duration-200;
+  }
+  .hero-home-pill:hover {
+    @apply -translate-y-0.5 bg-white/90;
+  }
+  .hero-home-pill:hover::after {
+    transform: rotate(45deg);
+  }
   @media (min-width: 640px) {
     .hero-cta {
       width: 17rem;

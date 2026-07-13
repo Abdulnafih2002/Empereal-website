@@ -2,110 +2,108 @@
 import Container from "../../primitives/Container.astro";
 
 const metrics = [
-  { value: "350+", label: "Projects Delivered" },
-  { value: "1.2 GW", label: "Solar Capacity" },
-  { value: "15+", label: "Countries Served" },
-  { value: "20+", label: "Years of Expertise" },
-  { value: "$610M+", label: "Savings Enabled" },
+  { value: "18+", label: "Years of Experience" },
+  { value: "695 MW", label: "of Solar Commissioned" },
+  { value: "140+", label: "Projects Delivered" },
 ];
 ---
-<div class="hero-wrap flex flex-col -mt-16 lg:mt-0">
+
 <section
-  class="relative isolate overflow-hidden bg-primary-dark text-white flex flex-col flex-1"
+  class="home-hero relative isolate -mt-16 lg:-mt-20 flex min-h-[100svh] overflow-hidden rounded-b-xl bg-primary-dark text-white"
   aria-label="Empereal Energy — Smart Solar Solutions"
   data-hero
   data-hero-backdrop
 >
   <div class="absolute inset-0 -z-10">
     <img
-      src="/images/hero-solar.jpg"
-      alt=""
-      class="h-full w-full object-cover"
+      src="/images/masdar-10mw.jpg"
+      alt="Aerial view of the Masdar 10 MW solar power installation"
+      class="h-full w-full object-cover object-center"
       loading="eager"
       fetchpriority="high"
       decoding="async"
-      onerror="this.remove()"
     />
-    <!-- Readability overlay: darken left (where text sits), fade to transparent on the right -->
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-primary-dark/55 to-primary-dark/15" aria-hidden="true"></div>
-    <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/60 via-transparent to-transparent" aria-hidden="true"></div>
-    <!-- Subtle grid texture -->
-    <svg class="absolute inset-0 w-full h-full opacity-[0.06]" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-      <defs>
-        <pattern id="heroGrid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <path d="M40 0H0v40" fill="none" stroke="#fff" stroke-width="1"/>
-        </pattern>
-      </defs>
-      <rect width="1440" height="800" fill="url(#heroGrid)"/>
-    </svg>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,22,37,.88)_0%,rgba(8,22,37,.68)_38%,rgba(8,22,37,.22)_72%,rgba(8,22,37,.08)_100%)]" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,17,29,.35)_0%,transparent_28%,transparent_64%,rgba(5,17,29,.42)_100%)]" aria-hidden="true"></div>
   </div>
 
-  <Container class="relative flex-1 flex items-center">
-    <div class="pt-20 pb-8 sm:pt-28 sm:pb-20 lg:py-24 max-w-3xl">
-      <h1 class="fluid-display text-white hero-enter hero-enter-1">Powering Progress with Smart Solar Solutions</h1>
-      <p class="fluid-lead mt-6 text-white/85 max-w-2xl hero-enter hero-enter-2">
+  <Container class="relative flex w-full flex-1 items-center pb-32 pt-28 sm:pb-36 sm:pt-32 lg:pb-40 lg:pt-36">
+    <div class="max-w-[46rem]">
+      <p class="hero-enter hero-enter-1 mb-4 text-xs font-bold uppercase tracking-[0.22em] text-orange sm:text-sm">
+        Engineering a cleaner tomorrow
+      </p>
+      <h1 class="hero-title hero-enter hero-enter-2 text-white">
+        Powering Progress with Smart Solar Solutions
+      </h1>
+      <p class="hero-enter hero-enter-3 mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
         Integrated, high-performance solar energy systems for businesses and communities across Asia and the Middle East.
       </p>
 
-      <div class="mt-8 flex flex-wrap items-center gap-3 hero-enter hero-enter-3">
-        <a
-          href="/contact"
-          class="hero-cta inline-flex items-center gap-2 rounded-md bg-orange hover:bg-orange-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-orange/30 transition-colors min-h-[48px]"
-        >
-          Request a Consultation
-          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a
-          href="/projects"
-          class="hero-cta inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-white shadow-lg shadow-cta/25 transition-colors min-h-[48px]"
-        >
+      <div class="hero-enter hero-enter-4 mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="/projects" class="group/project inline-flex min-h-[44px] w-fit self-start items-center justify-center gap-3 whitespace-nowrap rounded-full bg-white py-1 pl-6 pr-1 text-sm font-medium text-primary-dark shadow-lg shadow-black/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-white/90">
           Explore Our Projects
+          <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#101418] text-white transition-transform duration-200 group-hover/project:rotate-45" aria-hidden="true">
+            <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none">
+              <path d="M4 12 12 4m0 0H6.25M12 4v5.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
         </a>
       </div>
     </div>
   </Container>
 
+  <div class="stats-wrap absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem]">
+    <dl class="stats-card grid grid-cols-3 bg-white text-ink shadow-2xl">
+      {metrics.map((metric) => (
+        <div class="relative px-3 py-5 text-center sm:px-6 sm:py-6 lg:px-8 lg:py-7">
+          <dd class="font-display text-xl font-semibold leading-none text-black sm:text-3xl lg:text-4xl">{metric.value}</dd>
+          <dt class="mx-auto mt-2 max-w-[8rem] text-[10px] font-medium leading-[1.15] text-black/75 sm:text-xs">{metric.label}</dt>
+        </div>
+      ))}
+    </dl>
+  </div>
 </section>
 
-  <!-- Metrics strip: not visible in initial mobile viewport, appears when scrolling -->
-  <div class="relative shrink-0 bg-primary-dark text-white">
-    <Container>
-      <dl class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 divide-y divide-white/10 sm:divide-y-0 sm:divide-x sm:divide-white/10 reveal-stagger">
-        {metrics.map((m, i) => (
-          <div
-            class={`px-4 py-3 lg:py-7 text-center sm:text-left ${i === metrics.length - 1 ? "col-span-2 sm:col-span-1" : ""}`}
-            data-metric
-          >
-            <dt class="order-2 mt-1 text-[11px] sm:text-xs uppercase tracking-[0.15em] text-white/65 font-medium">{m.label}</dt>
-            <dd class="order-1 font-display text-xl sm:text-3xl lg:text-4xl font-semibold text-white">{m.value}</dd>
-          </div>
-        ))}
-      </dl>
-    </Container>
-  </div>
-</div>
-
 <style>
-  /* Mobile: hero section alone fills viewport, metrics below on scroll
-     Desktop: hero + metrics together fill viewport minus header */
-  @media (max-width: 1023px) {
-    .hero-wrap {
-      display: flex;
-      flex-direction: column;
-    }
-    .hero-wrap > section[data-hero] {
-      min-height: 100vh;
-      min-height: 100svh;
-      min-height: 100dvh;
-    }
+  .hero-title {
+    max-width: 13ch;
+    font-size: clamp(2.7rem, 5.6vw, 5.4rem);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.22);
   }
-  @media (min-width: 1024px) {
-    .hero-wrap {
-      min-height: calc(100vh - 5rem);
-      min-height: calc(100svh - 5rem);
-      min-height: calc(100dvh - 5rem);
-    }
+
+  .stats-card {
+    --shape-radius: 3.5rem;
+    position: relative;
+    overflow: visible;
+    border-radius: 0 var(--shape-radius) 0 0;
+    /* Keeps the curved transition crisp against the photograph in Safari. */
+    isolation: isolate;
+    transform: translateZ(0);
+  }
+
+  .stats-card::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(
+      circle at 100% 0,
+      transparent calc(var(--shape-radius) - 0.5px),
+      #fff var(--shape-radius)
+    );
+    pointer-events: none;
+  }
+
+  @media (max-width: 639px) {
+    .home-hero { min-height: 47rem; }
+    .stats-card { --shape-radius: 2.5rem; }
+    .stats-card::after { display: none; }
   }
 </style>

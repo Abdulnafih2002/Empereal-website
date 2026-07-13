@@ -2,97 +2,96 @@
 import Container from "../../primitives/Container.astro";
 
 const stats = [
-  { num: "1.2 GW+", lbl: "Solar capacity" },
-  { num: "350+", lbl: "Projects delivered" },
-  { num: "20+", lbl: "Years operating" },
-  { num: "15+", lbl: "Countries active" },
-  { num: "16", lbl: "Portfolio projects" },
+  { num: "18+", lbl: "Years of Experience" },
+  { num: "695 MW", lbl: "of Solar Commissioned" },
+  { num: "140+", lbl: "Projects Delivered" },
 ];
 ---
-<nav aria-label="Breadcrumb" class="bg-primary-dark/95 border-b border-white/5">
-  <Container class="flex items-center gap-2 py-2.5 text-xs">
-    <a href="/" class="text-white/55 hover:text-white/90 transition-colors">Home</a>
-    <span class="text-white/30" aria-hidden="true">›</span>
-    <span class="text-white/85" aria-current="page">Projects</span>
-  </Container>
-</nav>
 
 <section
-  class="relative isolate overflow-hidden bg-primary-dark text-white"
+  class="projects-hero relative isolate -mt-16 lg:-mt-20 flex min-h-[100svh] overflow-hidden rounded-b-xl bg-primary-dark text-white"
   aria-labelledby="projects-hero-title"
+  data-hero
+  data-hero-backdrop
 >
-  <div class="absolute inset-0 -z-10" aria-hidden="true">
+  <div class="absolute inset-0 -z-10">
     <img
       src="/images/solar-park.jpg"
-      alt=""
-      class="h-full w-full object-cover opacity-90"
+      alt="Dubai solar park installation"
+      class="h-full w-full object-cover object-center"
       loading="eager"
+      fetchpriority="high"
       decoding="async"
-      onerror="this.remove()"
     />
-    <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/75 to-primary-dark/35"></div>
-    <div class="absolute -bottom-32 -right-32 h-[460px] w-[460px] rounded-full bg-accent/15 blur-[140px] animate-pulse-glow"></div>
-
-    <div class="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2 w-[440px] h-[400px] opacity-[0.07] animate-float">
-      <svg width="100%" height="100%" viewBox="0 0 220 200" fill="none" preserveAspectRatio="xMidYMid meet">
-        <rect x="10" y="20" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="80" y="10" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="150" y="25" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="10" y="80" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="80" y="75" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="150" y="85" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="10" y="140" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="80" y="145" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-        <rect x="150" y="138" width="60" height="45" rx="2" stroke="#F5B82E" stroke-width=".7"/>
-      </svg>
-    </div>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(8,22,37,.9)_0%,rgba(8,22,37,.7)_38%,rgba(8,22,37,.24)_72%,rgba(8,22,37,.1)_100%)]" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,17,29,.35)_0%,transparent_28%,transparent_64%,rgba(5,17,29,.42)_100%)]" aria-hidden="true"></div>
   </div>
 
-  <Container>
-    <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
-      <p class="eyebrow !text-white hero-enter hero-enter-1">350+ Commissioned Projects · 15+ Countries</p>
-      <h1 id="projects-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
-        World-class energy and water<br/>
-        <span class="text-accent">installations, delivered.</span>
+  <Container class="relative flex w-full flex-1 items-center pb-36 pt-28 sm:pb-40 sm:pt-32 lg:pb-44 lg:pt-36">
+    <div class="max-w-[46rem]">
+      <p class="hero-enter hero-enter-1 mb-4 text-xs font-bold uppercase tracking-[0.22em] text-orange sm:text-sm">
+        350+ Commissioned Projects · 15+ Countries
+      </p>
+      <h1 id="projects-hero-title" class="projects-hero-title hero-enter hero-enter-2 text-white">
+        World-class energy and water installations, delivered.
       </h1>
-      <p class="fluid-lead mt-6 text-white/80 max-w-2xl hero-enter hero-enter-3">
+      <p class="hero-enter hero-enter-3 mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
         Over 350 commissioned installations across solar PV, BIPV, energy storage, and integrated energy infrastructure — delivered with engineering precision across Asia, the Middle East, and beyond.
       </p>
 
-      <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 hero-enter hero-enter-4">
-        <a
-          href="/contact"
-          class="hero-cta press group flex items-center gap-2 rounded-md bg-accent hover:bg-accent-dark px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-dark transition-colors min-h-[48px] shadow-lg shadow-accent/20 text-center"
-        >
-          Discuss Your Project
-          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide shrink-0" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-        <a
-          href="#projects-grid"
-          class="hero-cta press flex items-center gap-2 rounded-md border border-white/25 bg-white/5 hover:bg-white/10 px-6 py-3.5 text-sm sm:text-base text-white transition-colors min-h-[48px] text-center"
-        >
-          Browse the Portfolio
-        </a>
+      <div class="hero-enter hero-enter-4 mt-8 flex flex-col gap-3 sm:flex-row">
+        <a href="#projects-grid" class="hero-home-pill">Browse the Portfolio</a>
       </div>
-
-      <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-px rounded-xl overflow-hidden border border-white/10 max-w-3xl bg-white/[0.04] hero-enter hero-enter-4">
-        {stats.map((s, i) => (
-          <div
-            class:list={[
-              "bg-primary-dark/60 backdrop-blur-sm px-4 py-4 text-center",
-              // 5 items in a 2-col mobile grid leaves the last cell orphaned in
-              // a half-empty row — span it full-width instead. Reset at sm+
-              // where the 3/5-col layouts are untouched.
-              i === stats.length - 1 ? "col-span-2 sm:col-span-1" : "",
-            ]}
-          >
-            <dt class="text-base font-semibold text-accent leading-tight">{s.num}</dt>
-            <dd class="mt-1 text-[10px] uppercase tracking-[0.08em] text-white/50">{s.lbl}</dd>
-          </div>
-        ))}
-      </dl>
     </div>
   </Container>
+
+  <div class="absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem]">
+    <dl class="projects-stats-card grid grid-cols-3 bg-white text-ink shadow-2xl">
+      {stats.map((stat) => (
+        <div class="relative px-3 py-5 text-center sm:px-6 sm:py-6 lg:px-8 lg:py-7">
+          <dd class="font-display text-xl font-semibold leading-none text-black sm:text-3xl lg:text-4xl">{stat.num}</dd>
+          <dt class="mx-auto mt-2 max-w-[8rem] text-[10px] font-medium leading-[1.15] text-black/75 sm:text-xs">{stat.lbl}</dt>
+        </div>
+      ))}
+    </dl>
+  </div>
 </section>
+
+<style>
+  .projects-hero-title {
+    max-width: 13ch;
+    font-size: clamp(2.7rem, 5.6vw, 5.4rem);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    text-wrap: balance;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  .projects-stats-card {
+    --shape-radius: 3.5rem;
+    position: relative;
+    overflow: visible;
+    border-radius: 0 var(--shape-radius) 0 0;
+    isolation: isolate;
+    transform: translateZ(0);
+  }
+
+  .projects-stats-card::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(circle at 100% 0, transparent calc(var(--shape-radius) - 0.5px), #fff var(--shape-radius));
+    pointer-events: none;
+  }
+
+  @media (max-width: 639px) {
+    .projects-hero { min-height: 47rem; }
+    .projects-stats-card { --shape-radius: 2.5rem; }
+    .projects-stats-card::after { display: none; }
+  }
+</style>

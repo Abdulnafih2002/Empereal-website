@@ -220,9 +220,14 @@ const nav: NavLink[] = [
     <div class="hidden lg:flex items-center">
       <a
         href="/contact"
-        class="inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-5 py-2.5 text-sm font-semibold text-white transition-colors min-h-[44px] shadow-sm"
+        class="nav-consult group/consult inline-flex min-h-[42px] items-center gap-3 rounded-full border border-primary/25 bg-transparent py-1 pl-5 pr-1 text-sm font-medium text-primary-dark transition-all duration-200 hover:border-primary/50 hover:bg-primary/5"
       >
         Request Consultation
+        <span class="nav-consult-arrow inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-transform duration-200 group-hover/consult:rotate-45" aria-hidden="true">
+          <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none">
+            <path d="M4 12 12 4m0 0H6.25M12 4v5.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </span>
       </a>
     </div>
 
@@ -395,12 +400,12 @@ const nav: NavLink[] = [
 
   const header = document.querySelector<HTMLElement>("[data-header]");
   const mobileMQ = window.matchMedia("(max-width: 1023.98px)");
-  // Only go transparent on mobile when the page has a dark hero backdrop behind the header.
+  // Go transparent while a dark hero backdrop sits behind the header.
   const hasHeroBackdrop = !!document.querySelector("[data-hero-backdrop]");
   const updateHeader = () => {
     if (!header) return;
     const scrolled = window.scrollY > 40;
-    header.classList.toggle("is-transparent", !scrolled && mobileMQ.matches && hasHeroBackdrop);
+    header.classList.toggle("is-transparent", !scrolled && hasHeroBackdrop);
     header.classList.toggle("shadow-sm", scrolled);
   };
   // Coalesce scroll updates into one per animation frame — an unthrottled
@@ -435,7 +440,7 @@ const nav: NavLink[] = [
     transition: color 0.28s ease, background-color 0.28s ease;
   }
 
-  /* Mobile-only transparent state: over the hero at the top of the page */
+  /* Transparent state: over the home-page hero at the top of the page */
   [data-header].is-transparent {
     background: transparent !important;
     backdrop-filter: none !important;
@@ -449,6 +454,29 @@ const nav: NavLink[] = [
   }
   [data-header].is-transparent [data-drawer-toggle]:hover {
     background-color: rgba(255, 255, 255, 0.12);
+  }
+  [data-header].is-transparent nav a,
+  [data-header].is-transparent nav button {
+    color: rgba(255, 255, 255, 0.9);
+  }
+  [data-header].is-transparent nav a:hover,
+  [data-header].is-transparent nav button:hover {
+    color: #ffffff;
+  }
+  [data-header].is-transparent .nav-consult {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.52);
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  [data-header].is-transparent .nav-consult:hover {
+    border-color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.14);
+  }
+  [data-header].is-transparent .nav-consult-arrow {
+    color: #1f3c5c;
+    background: #ffffff;
   }
 
   /* Mobile: the header is `position: sticky`, so backdrop-filter forces a
