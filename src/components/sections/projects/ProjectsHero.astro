@@ -45,7 +45,7 @@ const stats = [
     </div>
   </Container>
 
-  <div class="absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem]">
+  <div class="absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem] 2xl:left-1/2 2xl:max-w-[64rem] 2xl:-translate-x-1/2">
     <dl class="projects-stats-card grid grid-cols-3 bg-white text-ink shadow-2xl">
       {stats.map((stat) => (
         <div class="relative px-3 py-5 text-center sm:px-6 sm:py-6 lg:px-8 lg:py-7">
@@ -89,9 +89,32 @@ const stats = [
     pointer-events: none;
   }
 
+  .projects-stats-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(circle at 0 0, transparent calc(var(--shape-radius) - 0.5px), #fff var(--shape-radius));
+    pointer-events: none;
+    display: none;
+  }
+
   @media (max-width: 639px) {
     .projects-hero { min-height: 47rem; }
     .projects-stats-card { --shape-radius: 2.5rem; }
+    .projects-stats-card::before,
     .projects-stats-card::after { display: none; }
+  }
+
+  @media (min-width: 1536px) {
+    .projects-stats-card {
+      border-radius: var(--shape-radius) var(--shape-radius) 0 0;
+    }
+    .projects-stats-card::before {
+      display: block;
+    }
   }
 </style>

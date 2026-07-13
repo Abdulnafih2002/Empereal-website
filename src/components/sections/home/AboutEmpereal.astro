@@ -1,51 +1,57 @@
 ---
 import Container from "../../primitives/Container.astro";
 
-const points = [
-  "Trusted solar EPC expertise",
-  "Pioneering projects across 15+ countries",
+const benefits = [
+  {
+    title: "Environmentally Friendly",
+    description: "Our renewable energy systems cut carbon emissions and help build a cleaner, more sustainable future.",
+    icon: "/images/Service%20icons/How%20we%20serve/environmentally-friendly-icon.webp",
+  },
+  {
+    title: "Built to Last",
+    description: "Engineered for long-term reliability, our systems require minimal upkeep and deliver lower operational costs over time.",
+    icon: "/images/Service%20icons/How%20we%20serve/built-to-last-icon.webp",
+  },
 ];
 ---
 <section id="about" class="section-pad bg-white" aria-labelledby="about-title">
   <Container>
-    <div class="grid gap-10 lg:grid-cols-2 lg:items-center">
-      <div class="reveal-left reveal-stagger order-2 lg:order-1">
-        <p class="eyebrow">Who Are We?</p>
-        <h2 id="about-title" class="fluid-h2 mt-3">Experts in the World of Clean Energy</h2>
-        <p class="mt-5 text-muted fluid-lead max-w-xl">
+    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center xl:gap-16">
+      <div class="reveal-left">
+        <p class="inline-flex rounded-full border border-primary/15 bg-white px-3 py-1 text-[11px] font-medium text-primary-dark shadow-sm">
+          Who Are We?
+        </p>
+        <h2 id="about-title" class="mt-4 max-w-xl font-display text-[clamp(2.35rem,4.2vw,4.5rem)] font-semibold leading-[0.98] tracking-[-0.045em] text-primary-dark">
+          Experts in the World of Clean Energy
+        </h2>
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
           Empereal delivers solar, energy storage, desalination, and green hydrogen solutions across Asia and the Middle East — backed by deep engineering expertise and a track record of reliable execution.
         </p>
 
-        <ul class="mt-7 space-y-3">
-          {points.map((p) => (
-            <li class="flex items-start gap-3 text-sm sm:text-base text-ink">
-              <span class="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-success/15 text-success-dark shrink-0" aria-hidden="true">
-                <svg viewBox="0 0 20 20" class="h-3.5 w-3.5" fill="none">
-                  <path d="M4 10.5l3.5 3.5L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-              <span>{p}</span>
-            </li>
+        <div class="mt-9 grid gap-7 sm:grid-cols-2 sm:gap-8">
+          {benefits.map((benefit) => (
+            <article class="max-w-xs">
+              <img
+                src={benefit.icon}
+                alt=""
+                class="h-11 w-11 object-contain mix-blend-multiply"
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
+              />
+              <h3 class="mt-4 text-base font-semibold text-primary-dark">{benefit.title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-muted">{benefit.description}</p>
+            </article>
           ))}
-        </ul>
-
-        <a
-          href="/about"
-          class="mt-8 inline-flex items-center gap-2 rounded-md bg-ink hover:bg-primary-dark px-5 py-3 text-sm font-semibold text-white transition-colors min-h-[44px]"
-        >
-          Learn More About Us
-          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
+        </div>
       </div>
 
-      <figure class="relative order-1 lg:order-2 reveal-right">
-        <div class="relative overflow-hidden rounded-2xl aspect-[16/9] bg-white">
+      <figure class="relative reveal-right">
+        <div class="relative aspect-[16/10] overflow-hidden bg-white">
           <img
             src="/images/logos/About%20Us%20Section%20Map.png"
             alt="Map showing Empereal's global presence across the United States, Saudi Arabia, United Arab Emirates, India, Maldives, and Singapore"
-            class="absolute inset-0 h-full w-full object-contain"
+            class="absolute inset-0 h-full w-full object-contain object-center"
             loading="lazy"
             decoding="async"
           />

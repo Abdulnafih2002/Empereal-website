@@ -78,7 +78,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "solar-power-systems",
     title: "Solar Power Systems",
     description:
-      "Utility-scale, commercial & industrial, and building-integrated photovoltaics (BIPV), engineered for maximum yield, structural integrity, and clean integration.",
+      "Utility-scale PV farms, commercial and industrial rooftops, carports, ground-mounted installations, single-axis trackers, and architectural BIPV — full design, EPC, and O&M.",
     icon: "solar",
     href: "/solutions/solar-power-systems",
     order: 1,
@@ -87,7 +87,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "water-desalination",
     title: "Water & Desalination",
     description:
-      "Solar-powered water treatment and desalination that cuts energy dependency and operational cost — delivering clean water where it's needed most.",
+      "Solar thermal desalination using LFR technology, PV-RO systems, forward osmosis, solar-biomass hybrid, industrial effluent recovery, and standalone off-grid fresh water systems.",
     icon: "drop",
     href: "/solutions/water-desalination",
     order: 2,
@@ -96,19 +96,10 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "energy-storage",
     title: "Energy Storage Systems",
     description:
-      "Battery energy storage (BESS) and thermal storage that stabilize renewable supply, manage peak loads, and enable genuine grid independence.",
+      "Battery energy storage integrated with solar PV, proprietary thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
     icon: "battery",
     href: "/solutions/energy-storage",
     order: 3,
-  },
-  {
-    id: "integrated-infrastructure",
-    title: "Integrated Energy Infrastructure",
-    description:
-      "Combined power and water systems, microgrids, and smart controls — designed as one unified system for maximum efficiency and reliability.",
-    icon: "hub",
-    href: "/solutions/integrated-infrastructure",
-    order: 4,
   },
   {
     id: "bipv",
@@ -117,16 +108,16 @@ const DEFAULT_SOLUTIONS: Solution[] = [
       "Custom-designed solar facades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture — Dubai SHAMS/D33 compliant.",
     icon: "bipv",
     href: "/solutions/solar-power-systems",
-    order: 5,
+    order: 4,
   },
   {
     id: "green-hydrogen",
     title: "Green Hydrogen Systems",
     description:
-      "Electrolyzer integration and fuel-switching solutions that turn surplus renewable energy into green hydrogen — powering industry, transport, and the wider energy transition.",
+      "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination — including India's first sea-water-to-hydrogen project and DEWA hydrogen plant.",
     icon: "h2",
     href: "/solutions/green-hydrogen",
-    order: 6,
+    order: 5,
   },
 ];
 

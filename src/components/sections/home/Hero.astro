@@ -16,9 +16,9 @@ const metrics = [
 >
   <div class="absolute inset-0 -z-10">
     <img
-      src="/images/masdar-10mw.jpg"
-      alt="Aerial view of the Masdar 10 MW solar power installation"
-      class="h-full w-full object-cover object-center"
+      src="/images/sustainability-city.jpg"
+      alt="Aerial view of a sustainable city powered by solar energy"
+      class="h-full w-full -scale-x-100 object-cover object-center"
       loading="eager"
       fetchpriority="high"
       decoding="async"
@@ -27,8 +27,8 @@ const metrics = [
     <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(5,17,29,.35)_0%,transparent_28%,transparent_64%,rgba(5,17,29,.42)_100%)]" aria-hidden="true"></div>
   </div>
 
-  <Container class="relative flex w-full flex-1 items-center pb-32 pt-28 sm:pb-36 sm:pt-32 lg:pb-40 lg:pt-36">
-    <div class="max-w-[46rem]">
+  <Container class="hero-content-shell relative flex w-full flex-1 items-center pb-32 pt-28 sm:pb-36 sm:pt-32 lg:pb-40 lg:pt-36">
+    <div class="hero-copy max-w-[46rem]">
       <p class="hero-enter hero-enter-1 mb-4 text-xs font-bold uppercase tracking-[0.22em] text-orange sm:text-sm">
         Engineering a cleaner tomorrow
       </p>
@@ -52,7 +52,7 @@ const metrics = [
     </div>
   </Container>
 
-  <div class="stats-wrap absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem]">
+  <div class="stats-wrap absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem] 2xl:left-1/2 2xl:max-w-[64rem] 2xl:-translate-x-1/2">
     <dl class="stats-card grid grid-cols-3 bg-white text-ink shadow-2xl">
       {metrics.map((metric) => (
         <div class="relative px-3 py-5 text-center sm:px-6 sm:py-6 lg:px-8 lg:py-7">
@@ -101,9 +101,48 @@ const metrics = [
     pointer-events: none;
   }
 
+  .stats-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(
+      circle at 0 0,
+      transparent calc(var(--shape-radius) - 0.5px),
+      #fff var(--shape-radius)
+    );
+    pointer-events: none;
+    display: none;
+  }
+
   @media (max-width: 639px) {
     .home-hero { min-height: 47rem; }
     .stats-card { --shape-radius: 2.5rem; }
+    .stats-card::before,
     .stats-card::after { display: none; }
+  }
+
+  @media (min-width: 1536px) {
+    .hero-content-shell {
+      max-width: 100rem;
+      padding-left: clamp(4rem, 6vw, 7rem);
+      padding-right: clamp(4rem, 6vw, 7rem);
+    }
+    .hero-copy {
+      max-width: 64rem;
+    }
+    .hero-title {
+      max-width: 16ch;
+      font-size: clamp(5rem, 4.7vw, 6rem);
+    }
+    .stats-card {
+      border-radius: var(--shape-radius) var(--shape-radius) 0 0;
+    }
+    .stats-card::before {
+      display: block;
+    }
   }
 </style>
