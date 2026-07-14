@@ -1,12 +1,5 @@
 ---
 import Container from "../../primitives/Container.astro";
-
-const kpis = [
-  "Phase-change thermal storage",
-  "BESS integrated with solar PV",
-  "24/7 operation — off-grid & grid-tied",
-  "Molten salt & accumulator CSP storage",
-];
 ---
 <section
   class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
@@ -27,27 +20,27 @@ const kpis = [
 
     <div class="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 w-[380px] h-[360px] opacity-[0.10] animate-float">
       <svg width="100%" height="100%" viewBox="0 0 240 220" fill="none" preserveAspectRatio="xMidYMid meet">
-        <rect x="70" y="40" width="100" height="140" rx="6" stroke="#F5B82E" stroke-width=".8"/>
-        <rect x="70" y="40" width="100" height="28" rx="6" stroke="#F5B82E" stroke-width=".8" fill="rgba(245,166,35,.05)"/>
-        <rect x="70" y="76" width="100" height="28" stroke="#F5B82E" stroke-width=".5" fill="rgba(245,166,35,.04)"/>
-        <rect x="70" y="112" width="100" height="28" stroke="#F5B82E" stroke-width=".5" fill="rgba(245,166,35,.03)"/>
-        <rect x="70" y="148" width="100" height="28" stroke="#F5B82E" stroke-width=".4"/>
-        <rect x="100" y="28" width="18" height="12" rx="3" stroke="#F5B82E" stroke-width=".8"/>
-        <rect x="122" y="28" width="18" height="12" rx="3" stroke="#F5B82E" stroke-width=".8"/>
-        <path d="M132 48 L126 60 L131 60 L125 72 L137 56 L131 56 Z" fill="#F5B82E" opacity=".6"/>
+        <rect x="70" y="40" width="100" height="140" rx="6" stroke="#F2994A" stroke-width=".8"/>
+        <rect x="70" y="40" width="100" height="28" rx="6" stroke="#F2994A" stroke-width=".8" fill="rgba(242,153,74,.05)"/>
+        <rect x="70" y="76" width="100" height="28" stroke="#F2994A" stroke-width=".5" fill="rgba(242,153,74,.04)"/>
+        <rect x="70" y="112" width="100" height="28" stroke="#F2994A" stroke-width=".5" fill="rgba(242,153,74,.03)"/>
+        <rect x="70" y="148" width="100" height="28" stroke="#F2994A" stroke-width=".4"/>
+        <rect x="100" y="28" width="18" height="12" rx="3" stroke="#F2994A" stroke-width=".8"/>
+        <rect x="122" y="28" width="18" height="12" rx="3" stroke="#F2994A" stroke-width=".8"/>
+        <path d="M132 48 L126 60 L131 60 L125 72 L137 56 L131 56 Z" fill="#F2994A" opacity=".6"/>
       </svg>
     </div>
   </div>
 
   <Container class="relative flex-1 flex items-center">
     <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
-      <p class="eyebrow !text-white hero-enter hero-enter-1">Energy Storage Systems · Electrical &amp; Thermal</p>
+      <p class="eyebrow !text-white hero-enter hero-enter-1">Energy Storage Systems</p>
       <h1 id="storage-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
         Store energy.<br/>
         <span class="text-accent">Maintain supply. Operate continuously.</span>
       </h1>
       <p class="fluid-lead mt-6 text-white/80 max-w-2xl hero-enter hero-enter-3">
-        Battery energy storage (BESS) and thermal storage that stabilize renewable supply, manage peak loads, and enable genuine grid independence.
+        Battery energy storage (BESS) and advanced thermal storage solutions that stabilize renewable power, manage peak loads, enable 24/7 operation, and support true grid independence.
       </p>
 
       <div class="mt-8 flex flex-col sm:flex-row flex-wrap gap-3 hero-enter hero-enter-4">
@@ -59,14 +52,6 @@ const kpis = [
         </a>
       </div>
 
-      <ul class="mt-10 flex flex-wrap gap-2 hero-enter hero-enter-4">
-        {kpis.map((k) => (
-          <li class="inline-flex items-center gap-2 rounded-md bg-white/[0.05] border border-white/10 px-3 py-2 text-[11px] text-white/70">
-            <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent"></span>
-            {k}
-          </li>
-        ))}
-      </ul>
     </div>
   </Container>
 </section>

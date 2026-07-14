@@ -5,11 +5,10 @@ import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
 const checks = [
   "Single point of accountability across all system components",
   "Systems sized together — not individually, then assembled",
-  "Unified EMS coordinating all generation, storage, and loads",
+  "Unified EMS coordinating generation, storage, and loads",
   "Proven in operational off-grid resorts, industrial sites, and desalination plants",
   "ISO 9001, 14001, and 45001 certified across the entire delivery scope",
 ];
-const tags = ["Off-grid", "Grid-tied", "Power + water", "Net-zero", "Full EPCM"];
 ---
 <section class="section-pad bg-white" aria-labelledby="integrated-advantage-title">
   <Container>
@@ -34,18 +33,19 @@ const tags = ["Off-grid", "Grid-tied", "Power + water", "Net-zero", "Full EPCM"]
         <p class="eyebrow">The Empereal advantage</p>
         <h2 id="integrated-advantage-title" class="fluid-h2 mt-3">Why integrated delivery matters.</h2>
         <p class="fluid-lead mt-5 text-muted">
-          When solar PV, thermal, storage, and desalination systems are procured separately and assembled on site, the result is inevitably suboptimal — mismatched sizing, interface conflicts, duplicated controls, and no single party accountable for system performance.
+          When solar PV, thermal, storage, and desalination systems are procured separately and assembled on site, the result is often suboptimal — mismatched sizing, interface conflicts, duplicated controls, and no single party accountable for overall performance.
         </p>
         <p class="mt-4 text-muted leading-relaxed">
-          Empereal designs the entire system from a single set of inputs — the site's load profile, water demand, solar resource, and budget — then engineers every subsystem to work together. One design. One contract. One performance guarantee.
+          Empereal designs the entire system from a single set of inputs — site load profile, water demand, solar resource, and budget — then engineers every subsystem to work together. One design. One contract. One performance guarantee.
         </p>
 
-        <ul class="mt-7 space-y-3">
+        <p class="mt-7 text-sm font-semibold text-primary-dark">Key Benefits:</p>
+        <ul class="mt-3 space-y-3">
           {checks.map((c) => (
             <li class="flex items-start gap-3">
               <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent shrink-0">
                 <svg viewBox="0 0 10 10" class="h-2.5 w-2.5" fill="none" aria-hidden="true">
-                  <path d="M2 5l2 2 4-4" stroke="#11243C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 5l2 2 4-4" stroke="#003B64" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="text-[15px] text-ink/80 leading-relaxed">{c}</span>
@@ -53,13 +53,6 @@ const tags = ["Off-grid", "Grid-tied", "Power + water", "Net-zero", "Full EPCM"]
           ))}
         </ul>
 
-        <ul class="mt-6 flex flex-wrap gap-2">
-          {tags.map((t) => (
-            <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
-              {t}
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   </Container>

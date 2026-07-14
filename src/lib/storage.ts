@@ -103,11 +103,11 @@ const DEFAULT_SOLUTIONS: Solution[] = [
   },
   {
     id: "bipv",
-    title: "Architectural BIPV",
+    title: "Architectural BIPV & Integrated Solar Solutions",
     description:
-      "Custom-designed solar facades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture — Dubai SHAMS/D33 compliant.",
+      "Architectural BIPV facades, solar-integrated building systems, microgrids, and smart energy solutions — designed as unified, high-performance infrastructure.",
     icon: "bipv",
-    href: "/solutions/solar-power-systems",
+    href: "/solutions/integrated-infrastructure",
     order: 4,
   },
   {

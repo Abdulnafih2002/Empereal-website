@@ -1,0 +1,74 @@
+---
+import Container from "../../primitives/Container.astro";
+
+const solutions = [
+  {
+    title: "Solar Power Systems",
+    description:
+      "Utility-scale PV farms, commercial & industrial rooftops, solar carports, ground-mounted systems, single-axis trackers, and architectural BIPV. Full lifecycle design, EPC, and O&M.",
+    image: "/images/1. Solar PV Systems.webp",
+    href: "/solutions/solar-power-systems",
+  },
+  {
+    title: "Energy Storage Systems",
+    description:
+      "Battery energy storage integrated with solar PV, proprietary phase-change thermal storage, molten salt CSP storage, and intelligent energy management systems.",
+    image: "/images/2. Solar Energy Storage.webp",
+    href: "/solutions/energy-storage",
+  },
+  {
+    title: "Architectural BIPV & Integrated Solar Solutions",
+    description:
+      "Custom-designed solar façades, railings, canopies, and building-integrated photovoltaic systems. IEC-certified modules for landmark architecture — Dubai SHAMS/D33 compliant.",
+    image: "/images/5. Architecture BIPV & Solar Facade.webp",
+    href: "/solutions/integrated-infrastructure",
+  },
+  {
+    title: "Green Hydrogen Systems",
+    description:
+      "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination. From sea-water-to-hydrogen projects to large-scale DEWA initiatives.",
+    image: "/images/4. Green Hydrogen.webp",
+    href: "/solutions/green-hydrogen",
+  },
+];
+---
+
+<section class="section-pad bg-surface" aria-labelledby="water-other-solutions-title">
+  <Container>
+    <div class="max-w-2xl reveal">
+      <p class="eyebrow">Continue Exploring</p>
+      <h2 id="water-other-solutions-title" class="fluid-h2 mt-3">Explore Our Other Core Solutions</h2>
+    </div>
+
+    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+      {solutions.map((solution) => (
+        <a
+          href={solution.href}
+          class="group flex h-full flex-col overflow-hidden rounded-2xl bg-white ring-1 ring-primary/10 transition-all duration-300 hover:-translate-y-1 hover:ring-accent/50 hover:shadow-card-lg"
+        >
+          <div class="relative aspect-[16/10] overflow-hidden bg-white">
+            <img
+              src={solution.image}
+              alt=""
+              class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/35 to-transparent" aria-hidden="true"></div>
+          </div>
+
+          <div class="flex flex-1 flex-col p-5">
+            <h3 class="text-lg font-semibold text-primary-dark">{solution.title}</h3>
+            <p class="mt-3 flex-1 text-sm leading-relaxed text-muted">{solution.description}</p>
+            <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-accent-dark transition-colors group-hover:text-primary" aria-hidden="true">
+              Learn more
+              <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none">
+                <path d="M4 10h12m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </Container>
+</section>

@@ -7,9 +7,9 @@ const checks = [
   "4+ hour thermal storage duration — no battery required",
   "Fraction of the cost of equivalent electrical storage",
   "Enables 24/7 desalination and process heat — zero fossil fuel",
-  "Deployed in operational solar thermal systems",
+  "Already deployed in operational solar thermal systems",
 ];
-const tags = ["Desalination", "Process heat", "CSP integration", "Off-grid", "Renewable"];
+const tags = ["Desalination", "Process Heat", "CSP Integration", "Off-Grid", "Renewable"];
 ---
 <section class="section-pad bg-white" aria-labelledby="storage-pcm-title">
   <Container>
@@ -18,18 +18,19 @@ const tags = ["Desalination", "Process heat", "CSP integration", "Off-grid", "Re
         <p class="eyebrow">PCM Thermal Storage</p>
         <h2 id="storage-pcm-title" class="fluid-h2 mt-3">Continuous solar heat — day and night.</h2>
         <p class="fluid-lead mt-5 text-muted">
-          Phase-change material thermal storage addresses the fundamental limitation of solar thermal systems: intermittency. By storing heat in materials that change phase at precisely defined temperatures, the system releases a consistent, controlled heat output over extended periods — even after sunset or during cloud cover.
+          Phase-change material (PCM) thermal storage solves the fundamental limitation of solar thermal systems: intermittency. By storing heat in materials that change phase at precisely controlled temperatures, the system releases consistent, controlled heat output — even after sunset or during cloud cover.
         </p>
         <p class="mt-4 text-muted leading-relaxed">
-          This technology is integral to Empereal's solar desalination systems, enabling round-the-clock fresh water production without battery storage or fossil fuel backup — at a fraction of the capital cost of equivalent electrical storage.
+          This technology is integral to Empereal’s solar desalination and process heat systems. It enables 24/7 operation without battery storage or fossil fuel backup — at a fraction of the cost of equivalent electrical storage.
         </p>
 
-        <ul class="mt-7 space-y-3">
+        <p class="mt-7 text-sm font-semibold text-primary-dark">Key Benefits:</p>
+        <ul class="mt-3 space-y-3">
           {checks.map((c) => (
             <li class="flex items-start gap-3">
               <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent shrink-0">
                 <svg viewBox="0 0 10 10" class="h-2.5 w-2.5" fill="none" aria-hidden="true">
-                  <path d="M2 5l2 2 4-4" stroke="#11243C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 5l2 2 4-4" stroke="#003B64" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="text-[15px] text-ink/80 leading-relaxed">{c}</span>
@@ -37,13 +38,16 @@ const tags = ["Desalination", "Process heat", "CSP integration", "Off-grid", "Re
           ))}
         </ul>
 
-        <ul class="mt-6 flex flex-wrap gap-2">
-          {tags.map((t) => (
-            <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
-              {t}
-            </li>
-          ))}
-        </ul>
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <span class="text-xs font-semibold text-primary-dark">Applications:</span>
+          <ul class="flex flex-wrap gap-2">
+            {tags.map((t) => (
+              <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div class="group reveal-right">

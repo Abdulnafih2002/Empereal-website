@@ -2,9 +2,10 @@
 import Container from "../../primitives/Container.astro";
 
 const recognitions = [
-  { num: "1.2 GW+", lbl: "Solar Capacity Installed" },
-  { num: "350+", lbl: "Projects Delivered" },
-  { num: "< 5 ppm", lbl: "Ultra-pure product water" },
+  { num: "18+", lbl: "Years of Experience" },
+  { num: "695 MW", lbl: "of Solar Commissioned" },
+  { num: "140+", lbl: "Projects Delivered" },
+  { num: "< 5 ppm", lbl: "Ultra-pure Product Water" },
 ];
 ---
 <section class="bg-white" aria-labelledby="water-intro-title">
@@ -13,11 +14,11 @@ const recognitions = [
       <p class="eyebrow">Pioneers in solar desalination</p>
       <h2 id="water-intro-title" class="fluid-h2 mt-3">One of the few global firms delivering both renewable power and sustainable water.</h2>
       <p class="fluid-lead mt-5 text-muted">
-        Water scarcity is one of the defining infrastructure challenges of rapidly growing economies. Empereal is one of the few global clean energy firms with both power and water in its solutions portfolio. We design and implement solar-powered desalination systems that produce ultra-pure water without reliance on fossil fuels.
+        Water scarcity is one of the defining infrastructure challenges of rapidly growing economies. Empereal is among the few companies worldwide with integrated expertise in both clean power and water. We design and deliver solar-powered desalination systems that produce ultra-pure water without any fossil fuel dependency.
       </p>
     </div>
 
-    <div class="grid gap-3 sm:grid-cols-3 max-w-3xl mx-auto pb-16 sm:pb-20 lg:pb-24 reveal-stagger">
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto pb-16 sm:pb-20 lg:pb-24 reveal-stagger">
       {recognitions.map((r) => (
         <div class="rounded-xl bg-white ring-1 ring-primary/10 px-5 py-5 text-center hover:ring-accent/40 hover:shadow-card transition-all">
           <div class="text-lg font-semibold text-accent-dark">{r.num}</div>

@@ -7,7 +7,6 @@ import StorageTypeCards from "../../components/sections/energy-storage/StorageTy
 import StoragePCMSplit from "../../components/sections/energy-storage/StoragePCMSplit.astro";
 import StorageScope from "../../components/sections/energy-storage/StorageScope.astro";
 import StoragePrinciples from "../../components/sections/energy-storage/StoragePrinciples.astro";
-import StorageComparisonTable from "../../components/sections/energy-storage/StorageComparisonTable.astro";
 import StorageUseCases from "../../components/sections/energy-storage/StorageUseCases.astro";
 import StorageDeliverySteps from "../../components/sections/energy-storage/StorageDeliverySteps.astro";
 
@@ -15,7 +14,8 @@ import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro
 ---
 <BaseLayout
   title="Energy Storage | Empereal Solutions"
-  description="Battery energy storage (BESS) and thermal storage that stabilize renewable supply, manage peak loads, and enable genuine grid independence."
+  description="Battery energy storage (BESS) and advanced thermal storage solutions that stabilize renewable power, manage peak loads, enable 24/7 operation, and support true grid independence."
+  showClients={false}
 >
   <SolutionsSubNav active="storage" breadcrumb="Energy Storage Systems" />
   <StorageHero />
@@ -24,7 +24,6 @@ import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro
   <StoragePCMSplit />
   <StorageScope />
   <StoragePrinciples />
-  <StorageComparisonTable />
   <StorageUseCases />
   <StorageDeliverySteps />
 

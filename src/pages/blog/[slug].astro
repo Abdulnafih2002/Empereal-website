@@ -133,7 +133,7 @@ const related = posts.filter((p) => p.slug !== slug).slice(0, 2);
                   <a href={`/blog/${r.slug}`} class="hover:text-primary transition-colors">{r.title}</a>
                 </h3>
                 <p class="mt-2 text-sm text-muted leading-relaxed line-clamp-2">{r.excerpt}</p>
-                <a href={`/blog/${r.slug}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-cta transition-colors">
+                <a href={`/blog/${r.slug}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent-dark transition-colors">
                   Read article
                   <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
                     <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
@@ -157,7 +157,7 @@ const related = posts.filter((p) => p.slug !== slug).slice(0, 2);
         </p>
         <a
           href="/contact"
-          class="mt-8 inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-8 py-3.5 text-sm font-semibold text-white transition-colors shadow-sm"
+          class="mt-8 inline-flex items-center gap-2 rounded-md bg-cta hover:bg-cta-dark px-8 py-3.5 text-sm font-semibold text-primary-dark transition-colors shadow-sm"
         >
           Get in Touch
           <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">

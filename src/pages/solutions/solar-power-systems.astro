@@ -6,11 +6,13 @@ import SolarIntro from "../../components/sections/solar-power/SolarIntro.astro";
 import SolarScope from "../../components/sections/solar-power/SolarScope.astro";
 import SolarExperienceTable from "../../components/sections/solar-power/SolarExperienceTable.astro";
 import SolarDeliverySteps from "../../components/sections/solar-power/SolarDeliverySteps.astro";
+import SolarOtherSolutions from "../../components/sections/solar-power/SolarOtherSolutions.astro";
 import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro";
 ---
 <BaseLayout
   title="Solar Power Systems | Empereal Solutions"
   description="Utility-scale and commercial & industrial (C&I) solar PV systems, engineered for maximum yield, structural integrity, and clean integration."
+  showClients={false}
 >
   <SolutionsSubNav active="solar" breadcrumb="Solar Power Systems" />
   <SolarHero />
@@ -18,5 +20,6 @@ import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro
   <SolarScope />
   <SolarExperienceTable />
   <SolarDeliverySteps />
+  <SolarOtherSolutions />
   <SolutionsCTA />
 </BaseLayout>

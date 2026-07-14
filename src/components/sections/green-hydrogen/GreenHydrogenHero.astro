@@ -1,6 +1,12 @@
 ---
 import Container from "../../primitives/Container.astro";
 
+const capabilities = [
+  "Alkaline Electrolyser Systems",
+  "Solar PV + Desalination Integration",
+  "Green Hydrogen Production",
+  "Full EPC & O&M",
+];
 ---
 <section
   class="page-hero relative isolate overflow-hidden bg-primary-dark text-white flex flex-col"
@@ -21,18 +27,18 @@ import Container from "../../primitives/Container.astro";
 
     <div class="hidden lg:block absolute right-4 top-1/2 -translate-y-1/2 w-[380px] h-[360px] opacity-[0.10] animate-float">
       <svg width="100%" height="100%" viewBox="0 0 200 200" fill="none" preserveAspectRatio="xMidYMid meet">
-        <circle cx="70" cy="100" r="26" stroke="#F5B82E" stroke-width=".8"/>
-        <circle cx="130" cy="100" r="26" stroke="#F5B82E" stroke-width=".8"/>
-        <line x1="96" y1="100" x2="104" y2="100" stroke="#F5B82E" stroke-width="1.2"/>
-        <text x="70" y="106" text-anchor="middle" fill="#F5B82E" font-size="18" opacity=".7">H</text>
-        <text x="130" y="106" text-anchor="middle" fill="#F5B82E" font-size="18" opacity=".7">H</text>
+        <circle cx="70" cy="100" r="26" stroke="#F2994A" stroke-width=".8"/>
+        <circle cx="130" cy="100" r="26" stroke="#F2994A" stroke-width=".8"/>
+        <line x1="96" y1="100" x2="104" y2="100" stroke="#F2994A" stroke-width="1.2"/>
+        <text x="70" y="106" text-anchor="middle" fill="#F2994A" font-size="18" opacity=".7">H</text>
+        <text x="130" y="106" text-anchor="middle" fill="#F2994A" font-size="18" opacity=".7">H</text>
       </svg>
     </div>
   </div>
 
   <Container class="relative flex-1 flex items-center">
     <div class="py-16 sm:py-20 lg:py-24 max-w-3xl">
-      <p class="eyebrow !text-white hero-enter hero-enter-1">Green Hydrogen · EPC &amp; O&amp;M</p>
+      <p class="eyebrow !text-white hero-enter hero-enter-1">Green Hydrogen</p>
       <h1 id="hydrogen-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
         High-quality solutions,<br/>
         <span class="text-accent">engineered to perform.</span>
@@ -50,6 +56,14 @@ import Container from "../../primitives/Container.astro";
         </a>
       </div>
 
+      <ul class="mt-10 flex flex-wrap gap-2 hero-enter hero-enter-4">
+        {capabilities.map((capability) => (
+          <li class="inline-flex items-center gap-2 rounded-md bg-white/[0.05] border border-white/10 px-3 py-2 text-[11px] text-white/70">
+            <span class="inline-block h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+            {capability}
+          </li>
+        ))}
+      </ul>
     </div>
   </Container>
 </section>

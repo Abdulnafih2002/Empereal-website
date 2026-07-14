@@ -23,10 +23,10 @@ const {
 
 const tones: Record<string, string> = {
   navy: "from-primary-dark via-primary to-primary-dark",
-  ocean: "from-[#0B2338] via-[#0d3555] to-[#0B1A2E]",
-  forest: "from-[#0B2E1A] via-[#1a4d2e] to-[#0F2238]",
-  sunset: "from-[#2e1a0b] via-[#4d2e1a] to-[#11243C]",
-  mineral: "from-[#1a2e0b] via-[#2a4a1a] to-[#0F2238]",
+  ocean: "from-[#003B64] via-[#0d3555] to-[#0B1A2E]",
+  forest: "from-[#0B2E1A] via-[#1a4d2e] to-[#003B64]",
+  sunset: "from-[#2e1a0b] via-[#4d2e1a] to-[#003B64]",
+  mineral: "from-[#1a2e0b] via-[#2a4a1a] to-[#003B64]",
 };
 
 const toneClass = tones[tone] ?? tones.navy;
@@ -54,7 +54,7 @@ const toneClass = tones[tone] ?? tones.navy;
           <svg width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="none">
             <defs>
               <pattern id="ph-grid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M20 0H0V20" fill="none" stroke="#F5B82E" stroke-width=".5"/>
+                <path d="M20 0H0V20" fill="none" stroke="#F2994A" stroke-width=".5"/>
               </pattern>
             </defs>
             <rect width="100%" height="100%" fill="url(#ph-grid)" />
@@ -76,7 +76,7 @@ const toneClass = tones[tone] ?? tones.navy;
         <svg width="100%" height="100%" viewBox="0 0 200 200" preserveAspectRatio="none">
           <defs>
             <pattern id={`ph-grid-${label.replace(/\W/g,"")}`} width="20" height="20" patternUnits="userSpaceOnUse">
-              <path d="M20 0H0V20" fill="none" stroke="#F5B82E" stroke-width=".5"/>
+              <path d="M20 0H0V20" fill="none" stroke="#F2994A" stroke-width=".5"/>
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill={`url(#ph-grid-${label.replace(/\W/g,"")})`} />

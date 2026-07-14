@@ -4,13 +4,13 @@ import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
 
 const checks = [
   "Product water quality: < 5 ppm (ultra-pure)",
-  "High-temperature steam generation directly from the solar field",
-  "24/7 operation via phase-change thermal storage",
-  "Zero fossil fuel input — fully renewable operation",
-  "Scalable from community systems to large-scale industrial plants",
+  "High-temperature steam generated directly from the solar field",
+  "24/7 operation enabled by phase-change thermal storage",
+  "Zero fossil fuel input — fully renewable",
+  "Scalable from community systems to large industrial plants",
 ];
 
-const tags = ["Seawater", "Brackish water", "Industrial effluent", "Thermal storage"];
+const tags = ["Seawater", "Brackish Water", "Industrial Effluent", "Thermal Storage"];
 ---
 <section class="section-pad bg-white" aria-labelledby="water-lfr-title">
   <Container>
@@ -24,7 +24,7 @@ const tags = ["Seawater", "Brackish water", "Industrial effluent", "Thermal stor
           label="Zamani Islands Resort — Maldives"
           class="shadow-card-lg"
         >
-          <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-[#0B2338]/85 via-[#0B2338]/40 to-transparent pointer-events-none">
+          <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-[#003B64]/85 via-[#003B64]/40 to-transparent pointer-events-none">
             <p class="text-xs text-white/70 uppercase tracking-[0.14em]">Integrated Renewable Energy</p>
             <p class="mt-1 text-base lg:text-lg font-semibold text-white">Zamani Islands Resort — South Malé Atoll, Maldives</p>
           </div>
@@ -35,18 +35,19 @@ const tags = ["Seawater", "Brackish water", "Industrial effluent", "Thermal stor
         <p class="eyebrow">Solar Thermal Desalination</p>
         <h2 id="water-lfr-title" class="fluid-h2 mt-3">Direct steam generation for continuous desalination.</h2>
         <p class="fluid-lead mt-5 text-muted">
-          Linear Fresnel Reflector (LFR) solar thermal fields generate direct saturated steam from concentrated solar radiation — eliminating heat transfer fluids and reducing system complexity. The steam directly drives multi-effect distillation units, producing ultra-pure water at less than 5 ppm.
+          Linear Fresnel Reflector (LFR) solar thermal fields generate direct saturated steam from concentrated solar radiation — eliminating heat transfer fluids and reducing system complexity. The steam directly drives multi-effect distillation (MED) units, producing ultra-pure water at less than 5 ppm.
         </p>
         <p class="mt-4 text-muted leading-relaxed">
-          Thermal energy storage using phase-change materials ensures uninterrupted desalination even when solar irradiance is unavailable — enabling true 24/7 fresh water production from renewable energy.
+          Thermal energy storage using phase-change materials ensures uninterrupted desalination, enabling true 24/7 fresh water production from renewable energy.
         </p>
 
-        <ul class="mt-7 space-y-3">
+        <h3 class="mt-7 text-sm font-semibold text-primary-dark">Key Advantages:</h3>
+        <ul class="mt-4 space-y-3">
           {checks.map((c) => (
             <li class="flex items-start gap-3">
               <span class="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-accent shrink-0">
                 <svg viewBox="0 0 10 10" class="h-2.5 w-2.5" fill="none" aria-hidden="true">
-                  <path d="M2 5l2 2 4-4" stroke="#11243C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M2 5l2 2 4-4" stroke="#003B64" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
               </span>
               <span class="text-[15px] text-ink/80 leading-relaxed">{c}</span>
@@ -54,13 +55,16 @@ const tags = ["Seawater", "Brackish water", "Industrial effluent", "Thermal stor
           ))}
         </ul>
 
-        <ul class="mt-6 flex flex-wrap gap-2">
-          {tags.map((t) => (
-            <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
-              {t}
-            </li>
-          ))}
-        </ul>
+        <div class="mt-6 flex flex-wrap items-center gap-2">
+          <span class="text-sm font-semibold text-primary-dark">Suitable For:</span>
+          <ul class="flex flex-wrap gap-2">
+            {tags.map((t) => (
+              <li class="text-[10px] font-semibold uppercase tracking-[0.08em] px-2.5 py-1 rounded border border-accent/40 text-accent-dark bg-accent-soft">
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   </Container>

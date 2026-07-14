@@ -22,7 +22,7 @@ const nav: NavLink[] = [
       { label: "Solar Power Systems", href: "/solutions/solar-power-systems", desc: "Utility, C&I, BIPV, O&M." },
       { label: "Water & Desalination", href: "/solutions/water-desalination", desc: "Solar thermal & PV-RO systems." },
       { label: "Energy Storage", href: "/solutions/energy-storage", desc: "BESS & patented thermal storage." },
-      { label: "Integrated Infrastructure", href: "/solutions/integrated-infrastructure", desc: "Power + water, end to end." },
+      { label: "Architectural BIPV & Integrated Solar Solutions", href: "/solutions/integrated-infrastructure", desc: "BIPV, smart energy, power + water integration." },
       { label: "Green Hydrogen", href: "/solutions/green-hydrogen", desc: "Fuel-switching at scale." },
     ],
   },
@@ -42,7 +42,7 @@ const solutionNavIcons: Record<string, string> = {
   "/solutions/solar-power-systems": `${serviceIconRoot}/solar-pv.webp`,
   "/solutions/water-desalination": `${serviceIconRoot}/water-desalination.webp`,
   "/solutions/energy-storage": `${serviceIconRoot}/energy-storage.webp`,
-  "/solutions/integrated-infrastructure": `${howWeServeIconRoot}/full-epc.webp`,
+  "/solutions/integrated-infrastructure": `${serviceIconRoot}/architecture-bipv.webp`,
   "/solutions/green-hydrogen": `${serviceIconRoot}/green-hydrogen.webp`,
 };
 ---
@@ -182,7 +182,7 @@ const solutionNavIcons: Record<string, string> = {
                               <div class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
                                 <img src={solutionNavIcons["/solutions/integrated-infrastructure"]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
                               </div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Integrated Infrastructure</div>
+                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Architectural BIPV &amp; Integrated Solar Solutions</div>
                             </a>
                           </div>
                         </div>
@@ -228,7 +228,7 @@ const solutionNavIcons: Record<string, string> = {
         class="nav-consult group/consult inline-flex min-h-[42px] items-center gap-3 rounded-full border border-primary/25 bg-transparent py-1 pl-5 pr-1 text-sm font-medium text-primary-dark transition-all duration-200 hover:border-primary/50 hover:bg-primary/5"
       >
         Request Consultation
-        <span class="nav-consult-arrow inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-transform duration-200 group-hover/consult:rotate-45" aria-hidden="true">
+        <span class="nav-consult-arrow inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-all duration-200 group-hover/consult:rotate-45" aria-hidden="true">
           <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none">
             <path d="M4 12 12 4m0 0H6.25M12 4v5.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
@@ -349,7 +349,7 @@ const solutionNavIcons: Record<string, string> = {
   <div class="p-4 border-t border-primary/10">
     <a
       href="/contact"
-      class="flex items-center justify-center rounded-md bg-cta hover:bg-cta-dark px-5 py-3 text-sm font-semibold text-white min-h-[48px]"
+      class="flex items-center justify-center rounded-md bg-cta hover:bg-cta-dark px-5 py-3 text-sm font-semibold text-primary-dark min-h-[48px]"
       data-drawer-link
     >Request Consultation</a>
   </div>
@@ -486,8 +486,13 @@ const solutionNavIcons: Record<string, string> = {
     background: rgba(255, 255, 255, 0.14);
   }
   [data-header].is-transparent .nav-consult-arrow {
-    color: #1f3c5c;
+    color: #003b64;
     background: #ffffff;
+  }
+  .nav-consult:hover .nav-consult-arrow,
+  [data-header].is-transparent .nav-consult:hover .nav-consult-arrow {
+    color: #003b64;
+    background: #f2994a;
   }
 
   /* Mobile: the header is `position: sticky`, so backdrop-filter forces a
