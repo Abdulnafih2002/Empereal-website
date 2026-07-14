@@ -349,9 +349,16 @@ const solutionNavIcons: Record<string, string> = {
   <div class="p-4 border-t border-primary/10">
     <a
       href="/contact"
-      class="flex items-center justify-center rounded-md bg-cta hover:bg-cta-dark px-5 py-3 text-sm font-semibold text-primary-dark min-h-[48px]"
+      class="nav-consult group/consult flex min-h-[48px] w-full items-center justify-between gap-3 rounded-full border border-primary/20 bg-white py-1 pl-5 pr-1 text-sm font-semibold text-primary-dark shadow-sm transition-all duration-200 hover:border-primary/40 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
       data-drawer-link
-    >Request Consultation</a>
+    >
+      Request Consultation
+      <span class="nav-consult-arrow inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-white transition-all duration-200" aria-hidden="true">
+        <svg viewBox="0 0 16 16" class="h-3.5 w-3.5" fill="none">
+          <path d="M4 12 12 4m0 0H6.25M12 4v5.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </span>
+    </a>
   </div>
 </aside>
 
@@ -489,10 +496,11 @@ const solutionNavIcons: Record<string, string> = {
     color: #003b64;
     background: #ffffff;
   }
-  .nav-consult:hover .nav-consult-arrow,
-  [data-header].is-transparent .nav-consult:hover .nav-consult-arrow {
+  .nav-consult:is(:hover, :focus-visible, :active) .nav-consult-arrow,
+  [data-header].is-transparent .nav-consult:is(:hover, :focus-visible, :active) .nav-consult-arrow {
     color: #003b64;
     background: #f2994a;
+    transform: rotate(45deg);
   }
 
   /* Mobile: the header is `position: sticky`, so backdrop-filter forces a
