@@ -39,16 +39,18 @@ export function verifyToken(token: string): boolean {
 }
 
 export function setAuthCookie(headers: Headers, token: string): void {
+  const secure = env("NODE_ENV") === "production" ? "; Secure" : "";
   headers.set(
     "Set-Cookie",
-    `crm_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800`
+    `crm_session=${token}; HttpOnly; SameSite=Strict; Path=/; Max-Age=28800${secure}`
   );
 }
 
 export function clearAuthCookie(headers: Headers): void {
+  const secure = env("NODE_ENV") === "production" ? "; Secure" : "";
   headers.set(
     "Set-Cookie",
-    "crm_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0"
+    `crm_session=; HttpOnly; SameSite=Strict; Path=/; Max-Age=0${secure}`
   );
 }
 

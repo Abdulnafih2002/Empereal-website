@@ -4,11 +4,18 @@ import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
 import ClientsAndPartners from "../components/sections/shared/ClientsAndPartners.astro";
 import CookieConsent from "../components/site/CookieConsent.astro";
+import Analytics from "../components/site/Analytics.astro";
 
 interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
+  pageType?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  noindex?: boolean;
+  preloadImage?: string;
   showClients?: boolean;
 }
 
@@ -16,34 +23,172 @@ const {
   title = "Empereal — Smart Solar & EPC Solutions",
   description = "A global smart solar & EPC leader delivering high-performance energy solutions across Asia and the Middle East.",
   image = "/images/dewa-hq-main.jpg",
+  imageAlt = "Empereal clean energy and water engineering project",
+  pageType = "website",
+  publishedTime,
+  modifiedTime,
+  noindex = false,
+  preloadImage,
   showClients = true,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const siteUrl = Astro.site ?? new URL("https://empereal.energy");
+const pathname = Astro.url.pathname === "/"
+  ? "/"
+  : Astro.url.pathname.replace(/\/+$/, "");
+const canonical = new URL(pathname, siteUrl).toString();
+const absoluteImage = new URL(image, siteUrl).toString();
+const absoluteLogo = new URL("/logo.svg", siteUrl).toString();
+const pageName = title.split(/\s+(?:—|\|)\s+/)[0]?.trim() || title;
+const robots = noindex
+  ? "noindex, nofollow"
+  : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+const imagePath = new URL(absoluteImage).pathname.toLowerCase();
+const imageType = imagePath.endsWith(".webp")
+  ? "image/webp"
+  : imagePath.endsWith(".png")
+    ? "image/png"
+    : imagePath.endsWith(".jpg") || imagePath.endsWith(".jpeg")
+      ? "image/jpeg"
+      : undefined;
+
+const googleVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+const bingVerification = import.meta.env.PUBLIC_BING_SITE_VERIFICATION?.trim();
+const facebookVerification = import.meta.env.PUBLIC_FACEBOOK_DOMAIN_VERIFICATION?.trim();
+const twitterSite = import.meta.env.PUBLIC_TWITTER_SITE?.trim();
+
+const organizationId = new URL("/#organization", siteUrl).toString();
+const websiteId = new URL("/#website", siteUrl).toString();
+const webpageId = `${canonical}#webpage`;
 
 const org = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": organizationId,
   name: "Empereal Energy Solutions",
-  url: "https://empereal.energy",
-  logo: "https://empereal.energy/logo.svg",
-  slogan: "Energizing Communities",
-  description,
-  industry: "Solar EPC · Smart Energy · Sustainability",
-  sameAs: ["https://linkedin.com/company/empereal", "https://twitter.com/empereal"],
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Dubai",
-    addressCountry: "AE",
+  alternateName: "Empereal",
+  url: new URL("/", siteUrl).toString(),
+  logo: {
+    "@type": "ImageObject",
+    url: absoluteLogo,
+    contentUrl: absoluteLogo,
   },
-  contactPoint: {
-    "@type": "ContactPoint",
-    telephone: "+971-XX-XXX-XXXX",
-    contactType: "sales",
-    areaServed: "Middle East, Asia",
-    availableLanguage: ["English", "Arabic"],
+  slogan: "Energizing Communities",
+  description: "Empereal delivers engineering-led solar power, energy storage, water desalination, architectural BIPV, and green hydrogen solutions.",
+  foundingDate: "2008",
+  areaServed: ["Asia", "Middle East", "United States"],
+};
+
+const website = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": websiteId,
+  url: new URL("/", siteUrl).toString(),
+  name: "Empereal",
+  alternateName: "Empereal Energy Solutions",
+  publisher: { "@id": organizationId },
+  inLanguage: "en",
+};
+
+const pageSchemaType = pathname === "/about"
+  ? "AboutPage"
+  : pathname === "/contact"
+    ? "ContactPage"
+    : ["/projects", "/solutions", "/blog"].includes(pathname.replace(/\/$/, ""))
+      ? "CollectionPage"
+      : "WebPage";
+
+const webpage = {
+  "@context": "https://schema.org",
+  "@type": pageSchemaType,
+  "@id": webpageId,
+  url: canonical,
+  name: pageName,
+  headline: pageName,
+  description,
+  inLanguage: "en",
+  isPartOf: { "@id": websiteId },
+  about: { "@id": organizationId },
+  primaryImageOfPage: {
+    "@type": "ImageObject",
+    url: absoluteImage,
+    caption: imageAlt,
   },
 };
+
+const pathSegments = pathname.split("/").filter(Boolean);
+const breadcrumbItems = [
+  {
+    "@type": "ListItem",
+    position: 1,
+    name: "Home",
+    item: new URL("/", siteUrl).toString(),
+  },
+  ...pathSegments.map((segment, index) => {
+    const isLast = index === pathSegments.length - 1;
+    const segmentPath = `/${pathSegments.slice(0, index + 1).join("/")}`;
+    const readable = decodeURIComponent(segment)
+      .replace(/[-_]+/g, " ")
+      .replace(/\b\w/g, (character) => character.toUpperCase());
+    return {
+      "@type": "ListItem",
+      position: index + 2,
+      name: isLast ? pageName : readable,
+      item: new URL(segmentPath, siteUrl).toString(),
+    };
+  }),
+];
+
+const structuredData: Record<string, unknown>[] = [org, website, webpage];
+
+if (pathSegments.length > 0) {
+  structuredData.push({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": `${canonical}#breadcrumb`,
+    itemListElement: breadcrumbItems,
+  });
+}
+
+if (pathname.startsWith("/solutions/") && pathSegments.length === 2) {
+  structuredData.push({
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${canonical}#service`,
+    name: pageName,
+    description,
+    url: canonical,
+    provider: { "@id": organizationId },
+    areaServed: ["Asia", "Middle East", "United States"],
+    serviceType: "Clean energy and water engineering",
+  });
+}
+
+if (pageType === "article") {
+  structuredData.push({
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${canonical}#article`,
+    mainEntityOfPage: { "@id": webpageId },
+    headline: pageName,
+    description,
+    image: [absoluteImage],
+    datePublished: publishedTime,
+    dateModified: modifiedTime ?? publishedTime,
+    author: {
+      "@type": "Organization",
+      name: "Empereal Editorial Team",
+      url: new URL("/about", siteUrl).toString(),
+    },
+    publisher: { "@id": organizationId },
+    inLanguage: "en",
+  });
+}
+
+const serializedStructuredData = JSON.stringify({
+  "@context": "https://schema.org",
+  "@graph": structuredData.map(({ "@context": _context, ...entry }) => entry),
+}).replace(/</g, "\\u003c");
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -54,22 +199,63 @@ const org = {
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
     <meta name="theme-color" content="#003B64" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="application-name" content="Empereal" />
+    <meta name="author" content="Empereal Energy Solutions" />
+    <meta name="robots" content={robots} />
+    <meta name="googlebot" content={robots} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
-    <meta property="og:type" content="website" />
+    <meta property="og:image" content={absoluteImage} />
+    <meta property="og:image:secure_url" content={absoluteImage} />
+    {imageType && <meta property="og:image:type" content={imageType} />}
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:type" content={pageType} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Empereal" />
+    <meta property="og:locale" content="en_US" />
+    {pageType === "article" && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {pageType === "article" && (modifiedTime ?? publishedTime) && <meta property="article:modified_time" content={modifiedTime ?? publishedTime} />}
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    {twitterSite && <meta name="twitter:site" content={twitterSite} />}
+    {googleVerification && <meta name="google-site-verification" content={googleVerification} />}
+    {bingVerification && <meta name="msvalidate.01" content={bingVerification} />}
+    {facebookVerification && <meta name="facebook-domain-verification" content={facebookVerification} />}
 
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="preload" as="image" href="/images/sustainability-city.jpg" />
+    {preloadImage && <link rel="preload" as="image" href={preloadImage} />}
 
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(org)} />
+    <script is:inline type="application/ld+json" set:html={serializedStructuredData} />
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = window.gtag || function () { window.dataLayer.push(arguments); };
+      window.gtag("consent", "default", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        personalization_storage: "denied",
+        functionality_storage: "granted",
+        security_storage: "granted",
+        wait_for_update: 500,
+      });
+      window.gtag("set", "ads_data_redaction", true);
+    </script>
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
@@ -80,6 +266,7 @@ const org = {
     {showClients && <ClientsAndPartners />}
     <Footer />
     <CookieConsent />
+    <Analytics />
 
     <script>
       const reveals = document.querySelectorAll(

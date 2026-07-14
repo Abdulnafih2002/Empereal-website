@@ -10,6 +10,14 @@ interface ImportMetaEnv {
   readonly SMTP_PASS?: string;
   readonly SMTP_FROM?: string;
   readonly SMTP_TO?: string;
+  readonly PUBLIC_GTM_ID?: string;
+  readonly PUBLIC_GA4_ID?: string;
+  readonly PUBLIC_META_PIXEL_ID?: string;
+  readonly PUBLIC_CLARITY_ID?: string;
+  readonly PUBLIC_GOOGLE_SITE_VERIFICATION?: string;
+  readonly PUBLIC_BING_SITE_VERIFICATION?: string;
+  readonly PUBLIC_FACEBOOK_DOMAIN_VERIFICATION?: string;
+  readonly PUBLIC_TWITTER_SITE?: string;
 }
 
 declare namespace App {

@@ -6,6 +6,7 @@
   class="space-y-5"
   novalidate
   aria-label="Contact enquiry form"
+  data-clarity-mask="true"
 >
   <div class="grid gap-5 sm:grid-cols-2">
     <div>
@@ -102,6 +103,13 @@
       });
       const data = await res.json() as { error?: string };
       if (res.ok) {
+        const analyticsWindow = window as Window & {
+          emperealTrack?: (name: string, params?: Record<string, string | number | boolean>) => void;
+        };
+        analyticsWindow.emperealTrack?.("generate_lead", {
+          lead_source: "website_contact_form",
+          form_name: "contact_enquiry",
+        });
         form.reset();
         status.textContent = "Thank you — we'll be in touch shortly.";
         status.className = "text-sm text-success font-medium";

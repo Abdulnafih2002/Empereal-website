@@ -1,0 +1,242 @@
+---
+// Public measurement IDs are configuration, not secrets. Trackers stay fully
+// disabled when their corresponding environment variable is empty.
+const config = {
+  gtmId: import.meta.env.PUBLIC_GTM_ID?.trim() ?? "",
+  ga4Id: import.meta.env.PUBLIC_GA4_ID?.trim() ?? "",
+  metaPixelId: import.meta.env.PUBLIC_META_PIXEL_ID?.trim() ?? "",
+  clarityId: import.meta.env.PUBLIC_CLARITY_ID?.trim() ?? "",
+};
+
+const serializedConfig = JSON.stringify(config).replace(/</g, "\\u003c");
+---
+
+<script
+  id="empereal-analytics-config"
+  type="application/json"
+  set:html={serializedConfig}
+/>
+
+<script>
+  type ConsentPrefs = {
+    necessary: true;
+    analytics: boolean;
+    marketing: boolean;
+    ts: number;
+    version: number;
+  };
+
+  type AnalyticsConfig = {
+    gtmId: string;
+    ga4Id: string;
+    metaPixelId: string;
+    clarityId: string;
+  };
+
+  type AnalyticsWindow = Window & {
+    dataLayer?: unknown[];
+    gtag?: (...args: unknown[]) => void;
+    fbq?: ((...args: unknown[]) => void) & {
+      callMethod?: (...args: unknown[]) => void;
+      push?: (...args: unknown[]) => void;
+      queue?: unknown[][];
+      loaded?: boolean;
+      version?: string;
+    };
+    _fbq?: unknown;
+    clarity?: ((...args: unknown[]) => void) & { q?: unknown[][] };
+    cookieConsent?: ConsentPrefs;
+    emperealTrack?: (name: string, params?: Record<string, string | number | boolean>) => void;
+  };
+
+  const win = window as AnalyticsWindow;
+  const configElement = document.getElementById("empereal-analytics-config");
+  const config = configElement
+    ? (JSON.parse(configElement.textContent || "{}") as AnalyticsConfig)
+    : { gtmId: "", ga4Id: "", metaPixelId: "", clarityId: "" };
+
+  const STORAGE_KEY = "cookie_consent";
+  const CONSENT_VERSION = 1;
+  const CONSENT_MAX_AGE = 365 * 24 * 60 * 60 * 1000;
+  let currentPrefs: ConsentPrefs | null = null;
+  let googleLoaded = Boolean(document.getElementById("empereal-google-tag"));
+  let metaLoaded = Boolean(document.getElementById("empereal-meta-pixel"));
+  let clarityLoaded = Boolean(document.getElementById("empereal-clarity"));
+
+  function readStoredConsent(): ConsentPrefs | null {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
+      const prefs = JSON.parse(raw) as ConsentPrefs;
+      if (
+        prefs.version !== CONSENT_VERSION ||
+        typeof prefs.ts !== "number" ||
+        Date.now() - prefs.ts > CONSENT_MAX_AGE ||
+        typeof prefs.analytics !== "boolean" ||
+        typeof prefs.marketing !== "boolean"
+      ) return null;
+      return prefs;
+    } catch {
+      return null;
+    }
+  }
+
+  function loadScript(id: string, src: string) {
+    if (document.getElementById(id)) return;
+    const script = document.createElement("script");
+    script.id = id;
+    script.async = true;
+    script.src = src;
+    document.head.appendChild(script);
+  }
+
+  function updateGoogleConsent(prefs: ConsentPrefs) {
+    win.gtag?.("consent", "update", {
+      analytics_storage: prefs.analytics ? "granted" : "denied",
+      ad_storage: prefs.marketing ? "granted" : "denied",
+      ad_user_data: prefs.marketing ? "granted" : "denied",
+      ad_personalization: prefs.marketing ? "granted" : "denied",
+      functionality_storage: "granted",
+      security_storage: "granted",
+      personalization_storage: prefs.marketing ? "granted" : "denied",
+    });
+  }
+
+  function loadGoogle(prefs: ConsentPrefs) {
+    updateGoogleConsent(prefs);
+    if (googleLoaded || (!prefs.analytics && !prefs.marketing)) return;
+
+    // GTM takes precedence when both variables are configured, preventing a
+    // duplicate GA4 page view. Configure GA4 inside the GTM container in that case.
+    if (config.gtmId) {
+      win.dataLayer = win.dataLayer || [];
+      win.dataLayer.push({ "gtm.start": Date.now(), event: "gtm.js" });
+      loadScript(
+        "empereal-google-tag",
+        `https://www.googletagmanager.com/gtm.js?id=${encodeURIComponent(config.gtmId)}`,
+      );
+      googleLoaded = true;
+      return;
+    }
+
+    if (prefs.analytics && config.ga4Id) {
+      loadScript(
+        "empereal-google-tag",
+        `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(config.ga4Id)}`,
+      );
+      win.gtag?.("js", new Date());
+      win.gtag?.("config", config.ga4Id, {
+        send_page_view: true,
+        allow_google_signals: prefs.marketing,
+        allow_ad_personalization_signals: prefs.marketing,
+      });
+      googleLoaded = true;
+    }
+  }
+
+  function ensureMetaQueue() {
+    if (win.fbq) return;
+    const fbq = function (...args: unknown[]) {
+      if (fbq.callMethod) fbq.callMethod.apply(fbq, args);
+      else (fbq.queue ||= []).push(args);
+    } as AnalyticsWindow["fbq"];
+    if (!fbq) return;
+    fbq.push = fbq;
+    fbq.queue = [];
+    fbq.loaded = true;
+    fbq.version = "2.0";
+    win.fbq = fbq;
+    win._fbq = fbq;
+  }
+
+  function updateMeta(prefs: ConsentPrefs) {
+    if (metaLoaded && win.fbq) {
+      win.fbq("consent", prefs.marketing ? "grant" : "revoke");
+      return;
+    }
+    if (!prefs.marketing || !config.metaPixelId) return;
+
+    ensureMetaQueue();
+    loadScript("empereal-meta-pixel", "https://connect.facebook.net/en_US/fbevents.js");
+    win.fbq?.("init", config.metaPixelId);
+    win.fbq?.("consent", "grant");
+    win.fbq?.("track", "PageView");
+    metaLoaded = true;
+  }
+
+  function ensureClarityQueue() {
+    if (win.clarity) return;
+    const clarity = function (...args: unknown[]) {
+      (clarity.q ||= []).push(args);
+    } as AnalyticsWindow["clarity"];
+    if (!clarity) return;
+    clarity.q = [];
+    win.clarity = clarity;
+  }
+
+  function updateClarity(prefs: ConsentPrefs) {
+    if (!clarityLoaded && prefs.analytics && config.clarityId) {
+      ensureClarityQueue();
+      loadScript(
+        "empereal-clarity",
+        `https://www.clarity.ms/tag/${encodeURIComponent(config.clarityId)}`,
+      );
+      clarityLoaded = true;
+    }
+    if (!clarityLoaded || !win.clarity) return;
+    win.clarity("consentv2", {
+      analytics_Storage: prefs.analytics ? "granted" : "denied",
+      ad_Storage: prefs.marketing ? "granted" : "denied",
+    });
+    if (!prefs.analytics) win.clarity("consent", false);
+  }
+
+  function applyConsent(prefs: ConsentPrefs) {
+    currentPrefs = prefs;
+    updateGoogleConsent(prefs);
+    loadGoogle(prefs);
+    updateMeta(prefs);
+    updateClarity(prefs);
+  }
+
+  win.emperealTrack = (name, params = {}) => {
+    if (!currentPrefs?.analytics) return;
+    if (config.gtmId) {
+      win.dataLayer = win.dataLayer || [];
+      win.dataLayer.push({ event: name, ...params });
+    } else if (config.ga4Id) {
+      win.gtag?.("event", name, params);
+    }
+    if (name === "generate_lead" && currentPrefs.marketing) {
+      win.fbq?.("track", "Lead");
+    }
+  };
+
+  window.addEventListener("cookieConsent", (event) => {
+    applyConsent((event as CustomEvent<ConsentPrefs>).detail);
+  });
+
+  // Existing visitors must be applied on every page load; new visitors are
+  // handled by the cookieConsent event when they make a choice.
+  const initialPrefs = win.cookieConsent ?? readStoredConsent();
+  if (initialPrefs) applyConsent(initialPrefs);
+
+  // Track high-value navigation interactions without collecting form values or PII.
+  document.addEventListener("click", (event) => {
+    const link = (event.target as HTMLElement).closest<HTMLAnchorElement>("a[href]");
+    if (!link) return;
+    const href = link.getAttribute("href") || "";
+    const isCta =
+      link.classList.contains("hero-home-pill") ||
+      link.classList.contains("nav-consult") ||
+      href === "/contact" ||
+      href.startsWith("mailto:") ||
+      href.startsWith("tel:") ||
+      href.includes("wa.me/");
+    if (!isCta) return;
+    win.emperealTrack?.("cta_click", {
+      link_url: href,
+      link_text: (link.textContent || "").trim().slice(0, 100),
+    });
+  });
+</script>

@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Empereal Energy",
+  "short_name": "Empereal",
+  "description": "Engineered clean energy and pure water systems across Asia and the Middle East.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#003b64",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -1,9 +1,6 @@
 ---
-// Mounted once by BaseLayout. Bottom banner with Accept All / Reject Non-Essential.
-// Persists choice in localStorage. Exposes:
-//   window.cookieConsent           current preferences
-//   window.openCookieSettings()    re-shows the banner (used by footer link)
-//   addEventListener("cookieConsent", e => e.detail = prefs)
+// Site-wide consent manager. Optional trackers are loaded separately by
+// Analytics.astro only after the matching preference has been granted.
 ---
 
 <div
@@ -13,68 +10,218 @@
   aria-label="Cookie consent"
 >
   <div class="mx-auto max-w-5xl rounded-2xl bg-primary-dark text-white shadow-2xl ring-1 ring-white/10">
-    <div class="grid gap-4 p-5 sm:p-6 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+    <div class="grid gap-4 p-5 sm:p-6 lg:grid-cols-[1.35fr_1fr] lg:items-center">
       <div>
-        <h2 class="font-display text-base font-semibold text-white">We value your privacy</h2>
+        <h2 class="font-display text-base font-semibold text-white">Your privacy choices</h2>
         <p class="mt-1.5 text-sm leading-relaxed text-white/75">
-          We use cookies to keep this site running and to understand how visitors use it.
+          We use optional analytics and marketing technologies only with your permission. Necessary storage remains enabled for security and your saved preferences.
           <a href="/cookie-policy" class="underline hover:text-accent transition-colors">Read our Cookie Policy</a>.
         </p>
       </div>
       <div class="flex flex-col gap-2 sm:flex-row sm:flex-wrap lg:justify-end">
         <button
           type="button"
+          data-cc-action="manage"
+          class="inline-flex min-h-[44px] items-center justify-center rounded-md border border-white/20 bg-transparent px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+        >Manage Preferences</button>
+        <button
+          type="button"
           data-cc-action="reject"
-          class="inline-flex items-center justify-center rounded-md bg-white/10 hover:bg-white/15 px-4 py-2.5 text-sm font-semibold text-white transition-colors min-h-[44px]"
-        >Reject</button>
+          class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-white/15"
+        >Reject Non-Essential</button>
         <button
           type="button"
           data-cc-action="accept"
-          class="inline-flex items-center justify-center rounded-md bg-cta hover:bg-cta-dark px-4 py-2.5 text-sm font-semibold text-primary-dark transition-colors min-h-[44px]"
+          class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-cta px-4 py-2.5 text-sm font-semibold text-primary-dark transition-colors hover:bg-cta-dark"
         >Accept All</button>
       </div>
     </div>
   </div>
 </div>
 
+<div
+  id="cookie-preferences"
+  class="fixed inset-0 z-[95] hidden items-center justify-center p-4"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="cookie-preferences-title"
+>
+  <button
+    type="button"
+    class="absolute inset-0 bg-primary-dark/65 backdrop-blur-sm"
+    data-cc-action="close"
+    aria-label="Close cookie preferences"
+  ></button>
+
+  <div class="relative z-10 max-h-[90dvh] w-full max-w-xl overflow-y-auto rounded-2xl bg-white p-5 shadow-2xl sm:p-7">
+    <div class="flex items-start justify-between gap-5">
+      <div>
+        <p class="eyebrow">Privacy Settings</p>
+        <h2 id="cookie-preferences-title" class="mt-2 font-display text-2xl font-semibold text-primary-dark">Manage cookie preferences</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted">Choose which optional technologies Empereal may use. You can change this selection at any time.</p>
+      </div>
+      <button
+        type="button"
+        data-cc-action="close"
+        class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/10 text-primary-dark transition-colors hover:bg-primary/5"
+        aria-label="Close cookie preferences"
+      >
+        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+          <path d="M5 5l10 10M15 5 5 15" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+
+    <div class="mt-6 space-y-3">
+      <div class="rounded-xl border border-primary/10 bg-surface p-4">
+        <div class="flex items-center justify-between gap-4">
+          <div>
+            <h3 class="text-sm font-semibold text-primary-dark">Necessary</h3>
+            <p class="mt-1 text-xs leading-relaxed text-muted">Required for administrator security and remembering your privacy selection.</p>
+          </div>
+          <span class="rounded-full bg-success/10 px-3 py-1 text-[11px] font-semibold text-success">Always active</span>
+        </div>
+      </div>
+
+      <label class="flex cursor-pointer items-start justify-between gap-4 rounded-xl border border-primary/10 p-4 transition-colors hover:border-primary/25">
+        <span>
+          <span class="block text-sm font-semibold text-primary-dark">Analytics</span>
+          <span class="mt-1 block text-xs leading-relaxed text-muted">Helps us measure visits, page performance, and interactions through configured analytics providers.</span>
+        </span>
+        <input id="cookie-analytics" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#F2994A]" />
+      </label>
+
+      <label class="flex cursor-pointer items-start justify-between gap-4 rounded-xl border border-primary/10 p-4 transition-colors hover:border-primary/25">
+        <span>
+          <span class="block text-sm font-semibold text-primary-dark">Marketing</span>
+          <span class="mt-1 block text-xs leading-relaxed text-muted">Allows configured advertising platforms to measure campaigns and relevant conversions.</span>
+        </span>
+        <input id="cookie-marketing" type="checkbox" class="mt-1 h-5 w-5 shrink-0 accent-[#F2994A]" />
+      </label>
+    </div>
+
+    <div class="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+      <button
+        type="button"
+        data-cc-action="reject"
+        class="inline-flex min-h-[44px] items-center justify-center rounded-md border border-primary/15 px-4 py-2.5 text-sm font-semibold text-primary-dark transition-colors hover:bg-primary/5"
+      >Reject Non-Essential</button>
+      <button
+        type="button"
+        data-cc-action="save"
+        class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-primary-light"
+      >Save Preferences</button>
+      <button
+        type="button"
+        data-cc-action="accept"
+        class="inline-flex min-h-[44px] items-center justify-center rounded-md bg-cta px-5 py-2.5 text-sm font-semibold text-primary-dark transition-colors hover:bg-cta-dark"
+      >Accept All</button>
+    </div>
+  </div>
+</div>
+
 <script>
-  type Prefs = { necessary: true; analytics: boolean; marketing: boolean; ts: number };
+  type Prefs = {
+    necessary: true;
+    analytics: boolean;
+    marketing: boolean;
+    ts: number;
+    version: number;
+  };
 
   const STORAGE_KEY = "cookie_consent";
-  const TTL_MS = 365 * 24 * 60 * 60 * 1000; // 12 months
+  const CONSENT_VERSION = 1;
+  const TTL_MS = 365 * 24 * 60 * 60 * 1000;
 
   const banner = document.getElementById("cookie-banner")!;
+  const preferences = document.getElementById("cookie-preferences")!;
+  const analyticsInput = document.getElementById("cookie-analytics") as HTMLInputElement;
+  const marketingInput = document.getElementById("cookie-marketing") as HTMLInputElement;
+  let returnFocus: HTMLElement | null = null;
 
   function readPrefs(): Prefs | null {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (!raw) return null;
       const data = JSON.parse(raw) as Prefs;
-      if (typeof data.ts !== "number" || Date.now() - data.ts > TTL_MS) return null;
+      if (
+        data.version !== CONSENT_VERSION ||
+        typeof data.ts !== "number" ||
+        Date.now() - data.ts > TTL_MS ||
+        typeof data.analytics !== "boolean" ||
+        typeof data.marketing !== "boolean"
+      ) return null;
       return data;
-    } catch { return null; }
+    } catch {
+      return null;
+    }
   }
 
-  function savePrefs(prefs: Omit<Prefs, "ts">) {
-    const full: Prefs = { ...prefs, ts: Date.now() };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(full));
+  function savePrefs(prefs: Pick<Prefs, "analytics" | "marketing">) {
+    const full: Prefs = {
+      necessary: true,
+      analytics: prefs.analytics,
+      marketing: prefs.marketing,
+      ts: Date.now(),
+      version: CONSENT_VERSION,
+    };
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(full));
+    } catch {
+      // The in-memory choice still applies for this page if storage is blocked.
+    }
     (window as unknown as { cookieConsent: Prefs }).cookieConsent = full;
     window.dispatchEvent(new CustomEvent("cookieConsent", { detail: full }));
   }
 
-  function showBanner() { banner.classList.remove("hidden"); }
-  function hideBanner() { banner.classList.add("hidden"); }
+  function showBanner() {
+    banner.classList.remove("hidden");
+  }
 
-  document.addEventListener("click", (e) => {
-    const target = (e.target as HTMLElement).closest("[data-cc-action]") as HTMLElement | null;
-    if (!target) return;
-    const action = target.getAttribute("data-cc-action");
-    if (action === "accept") savePrefs({ necessary: true, analytics: true,  marketing: true });
-    else if (action === "reject") savePrefs({ necessary: true, analytics: false, marketing: false });
+  function hideBanner() {
+    banner.classList.add("hidden");
+  }
+
+  function openSettings() {
+    const current = readPrefs();
+    analyticsInput.checked = current?.analytics ?? false;
+    marketingInput.checked = current?.marketing ?? false;
+    returnFocus = document.activeElement as HTMLElement | null;
     hideBanner();
+    preferences.classList.remove("hidden");
+    preferences.classList.add("flex");
+    requestAnimationFrame(() => analyticsInput.focus());
+  }
+
+  function closeSettings() {
+    preferences.classList.add("hidden");
+    preferences.classList.remove("flex");
+    if (!readPrefs()) showBanner();
+    returnFocus?.focus();
+  }
+
+  function finishChoice(analytics: boolean, marketing: boolean) {
+    savePrefs({ analytics, marketing });
+    hideBanner();
+    preferences.classList.add("hidden");
+    preferences.classList.remove("flex");
+  }
+
+  document.addEventListener("click", (event) => {
+    const target = (event.target as HTMLElement).closest<HTMLElement>("[data-cc-action]");
+    if (!target) return;
+    const action = target.dataset.ccAction;
+    if (action === "accept") finishChoice(true, true);
+    else if (action === "reject") finishChoice(false, false);
+    else if (action === "manage") openSettings();
+    else if (action === "save") finishChoice(analyticsInput.checked, marketingInput.checked);
+    else if (action === "close") closeSettings();
   });
 
-  // Init: load existing prefs or show banner
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !preferences.classList.contains("hidden")) closeSettings();
+  });
+
   const initial = readPrefs();
   if (initial) {
     (window as unknown as { cookieConsent: Prefs }).cookieConsent = initial;
@@ -82,7 +229,5 @@
     showBanner();
   }
 
-  // Footer "Cookie Settings" link calls this — just re-shows the banner so the
-  // visitor can pick Accept or Reject again.
-  (window as unknown as { openCookieSettings: () => void }).openCookieSettings = showBanner;
+  (window as unknown as { openCookieSettings: () => void }).openCookieSettings = openSettings;
 </script>

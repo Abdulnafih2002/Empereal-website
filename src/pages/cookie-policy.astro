@@ -9,6 +9,8 @@ const lastUpdated = new Date().toLocaleDateString("en-GB", {
 <BaseLayout
   title="Cookie Policy — Empereal"
   description="How Empereal uses cookies and similar technologies, and how you can control them."
+  image="/images/footer-bg.jpg"
+  imageAlt="Empereal Energy and Services"
 >
   <!-- Hero -->
   <section class="bg-primary-dark text-white py-16 lg:py-20" aria-labelledby="cp-title">
@@ -59,22 +61,34 @@ const lastUpdated = new Date().toLocaleDateString("en-GB", {
                   <td class="px-4 py-3 text-muted whitespace-nowrap">8 hours</td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-3 font-mono text-xs text-muted">—</td>
-                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">Analytics</span></td>
-                  <td class="px-4 py-3 text-muted italic">No analytics cookies are currently in use. Any future ones will be listed here and require your consent before being set.</td>
-                  <td class="px-4 py-3 text-muted">—</td>
+                  <td class="px-4 py-3 font-mono text-xs text-primary-dark">cookie_consent</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-success/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-success">Strictly Necessary</span></td>
+                  <td class="px-4 py-3 text-muted">A browser <code class="font-mono text-[11px]">localStorage</code> entry that remembers your analytics and marketing choices. It is not sent automatically with web requests.</td>
+                  <td class="px-4 py-3 text-muted whitespace-nowrap">12 months</td>
                 </tr>
                 <tr>
-                  <td class="px-4 py-3 font-mono text-xs text-muted">—</td>
+                  <td class="px-4 py-3 font-mono text-xs text-primary-dark">_ga, _ga_*</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">Analytics</span></td>
+                  <td class="px-4 py-3 text-muted">Used by Google Analytics, when configured, to distinguish visitors and sessions and produce aggregate usage reports. Google Tag Manager may deliver configured tags but does not override your saved consent choices.</td>
+                  <td class="px-4 py-3 text-muted whitespace-nowrap">Up to 2 years</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs text-primary-dark">_clck, _clsk</td>
+                  <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">Analytics</span></td>
+                  <td class="px-4 py-3 text-muted">Used by Microsoft Clarity, when configured, to connect consented page views and provide aggregated interaction reports, heatmaps, and masked session recordings. Microsoft may also use provider-domain cookies according to the consent signals sent by this site.</td>
+                  <td class="px-4 py-3 text-muted">Session to 1 year</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-3 font-mono text-xs text-primary-dark">_fbp, _fbc</td>
                   <td class="px-4 py-3"><span class="inline-flex items-center rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted">Marketing</span></td>
-                  <td class="px-4 py-3 text-muted italic">No marketing or advertising cookies are currently in use. Any future ones will be listed here and require your consent before being set.</td>
-                  <td class="px-4 py-3 text-muted">—</td>
+                  <td class="px-4 py-3 text-muted">Used by the Meta Pixel, when configured, to measure visits and lead conversions and understand campaign effectiveness. Contact-form field values are not sent with the conversion event.</td>
+                  <td class="px-4 py-3 text-muted whitespace-nowrap">Up to 90 days</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <p class="mt-3 text-xs text-muted">
-            We also use <span class="font-medium">localStorage</span> to remember your cookie preferences (key: <code class="font-mono text-[11px]">cookie_consent</code>). This is stored only in your browser and is not transmitted to our servers.
+          <p class="mt-3 text-xs text-muted leading-relaxed">
+            Optional rows apply only when the corresponding provider has been configured for this website and you grant the relevant category. Cookie names and lifetimes can vary when providers update their services or browser controls shorten storage. We do not load optional provider scripts before the matching consent is granted.
           </p>
         </div>
 

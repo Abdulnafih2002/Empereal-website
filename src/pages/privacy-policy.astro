@@ -5,6 +5,8 @@ import Container from "../components/primitives/Container.astro";
 <BaseLayout
   title="Privacy Policy — Empereal"
   description="Empereal's privacy policy outlines how we collect, use, and protect your personal information."
+  image="/images/footer-bg.jpg"
+  imageAlt="Empereal Energy and Services"
 >
   <!-- Hero -->
   <section class="bg-primary-dark text-white py-16 lg:py-20" aria-labelledby="pp-title">
@@ -13,9 +15,9 @@ import Container from "../components/primitives/Container.astro";
         <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-accent">Legal</p>
         <h1 id="pp-title" class="fluid-h2 mt-3 text-white">Privacy Policy</h1>
         <p class="mt-4 text-white/75 fluid-lead">
-          This Privacy Policy describes how Empereal Energy Solutions collects, uses, and protects your personal information. By using our website, you consent to the practices described in this policy.
+          This Privacy Policy describes how Empereal Energy Solutions collects, uses, and protects your personal information, including the choices available for optional analytics and marketing technologies.
         </p>
-        <p class="mt-3 text-xs text-white/50">Last updated: January 2025</p>
+        <p class="mt-3 text-xs text-white/50">Last updated: 14 July 2026</p>
       </div>
     </Container>
   </section>
@@ -35,7 +37,7 @@ import Container from "../components/primitives/Container.astro";
         <div>
           <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">2. Information We Collect</h2>
           <p class="text-base text-muted leading-relaxed">
-            We may collect personal information that you voluntarily provide to us when you fill out our contact form, request a quote, subscribe to our newsletter, or otherwise communicate with us. This may include your name, email address, phone number, company name, project location, and project details. We also automatically collect certain information when you visit our website, such as your IP address, browser type, operating system, referring URLs, and pages viewed.
+            We may collect personal information that you voluntarily provide to us when you fill out our contact form, request a quote, subscribe to our newsletter, or otherwise communicate with us. This may include your name, email address, phone number, company name, project location, and project details. If you permit optional analytics or marketing technologies, configured providers may receive technical and usage information such as your IP address, approximate location, browser and device type, referring URL, pages viewed, and interactions with the website. We do not include contact-form names, email addresses, telephone numbers, companies, or message content in analytics conversion events.
           </p>
         </div>
 
@@ -56,51 +58,60 @@ import Container from "../components/primitives/Container.astro";
         <div>
           <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">5. Cookies and Tracking Technologies</h2>
           <p class="text-base text-muted leading-relaxed">
-            We use cookies and similar tracking technologies to enhance your browsing experience, analyse website traffic, and understand where our visitors are coming from. You can choose to accept or decline cookies through your browser settings or through our
-            <a href="/cookie-policy" class="text-primary hover:text-accent-dark underline transition-colors">Cookie Policy</a>
-            settings. For more information about the cookies we use, please see our
-            <a href="/cookie-policy" class="text-primary hover:text-accent-dark underline transition-colors">Cookie Policy</a>.
-            Essential cookies necessary for the website to function cannot be disabled.
+            Optional measurement technologies are disabled by default and load only after you grant the relevant category. Depending on which services are configured, we may use Google Analytics directly or through Google Tag Manager to measure aggregate website usage; Microsoft Clarity to understand interaction patterns through heatmaps and masked session recordings; and the Meta Pixel to measure campaign visits and lead conversions. Google consent signals, Microsoft Clarity Consent API signals, and Meta Pixel consent controls are updated when you change your preference.
+          </p>
+          <p class="mt-4 text-base text-muted leading-relaxed">
+            Analytics consent enables configured Google Analytics and Microsoft Clarity measurement. Marketing consent enables configured advertising measurement, including the Meta Pixel and advertising-related Google or Microsoft storage. Strictly necessary storage used for website security and remembering your privacy selection cannot be disabled. You may accept all, reject non-essential technologies, select categories individually, or change your choice at any time through <a href="#cookie-settings" class="text-primary hover:text-accent-dark underline transition-colors">Cookie Settings</a>. See our <a href="/cookie-policy" class="text-primary hover:text-accent-dark underline transition-colors">Cookie Policy</a> for the current categories, identifiers, purposes, and typical lifetimes.
+          </p>
+          <p class="mt-4 text-base text-muted leading-relaxed">
+            Microsoft Clarity masks input and select-field content by default, and our contact form is explicitly marked for masking. Successful contact submissions may generate a consent-gated, non-identifying <code class="font-mono text-sm">generate_lead</code> event for aggregate conversion reporting. The event contains only the form type and general lead source, never the values entered into the form.
           </p>
         </div>
 
         <div>
-          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">6. Data Security</h2>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">6. Analytics and Advertising Providers</h2>
+          <p class="text-base text-muted leading-relaxed">
+            When enabled by configuration and your consent, information may be processed by Google LLC, Microsoft Corporation, and Meta Platforms, Inc. These providers act under their own service terms and privacy documentation and may process data in countries outside your place of residence. We configure consent controls to restrict optional storage and collection according to your selection, but each provider controls its own infrastructure and retention practices.
+          </p>
+        </div>
+
+        <div>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">7. Data Security</h2>
           <p class="text-base text-muted leading-relaxed">
             We implement appropriate technical and organisational measures to protect the security of your personal information. However, please be aware that no method of transmission over the internet or electronic storage is completely secure. While we strive to use commercially acceptable means to protect your personal information, we cannot guarantee its absolute security.
           </p>
         </div>
 
         <div>
-          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">7. Data Retention</h2>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">8. Data Retention</h2>
           <p class="text-base text-muted leading-relaxed">
-            We will retain your personal information only for as long as is necessary to fulfill the purposes outlined in this Privacy Policy, unless a longer retention period is required or permitted by law. When we no longer need your personal information, we will securely delete or anonymise it in accordance with our data retention policies.
+            We will retain personal information only for as long as necessary for the purposes described in this Privacy Policy, unless a longer period is required or permitted by law. Optional providers apply their own retention schedules and account settings; typical browser-storage lifetimes are listed in our Cookie Policy. When information is no longer required, we will delete or anonymise it in accordance with applicable retention practices.
           </p>
         </div>
 
         <div>
-          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">8. Your Rights</h2>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">9. Your Rights</h2>
           <p class="text-base text-muted leading-relaxed">
             Depending on your location, you may have certain rights regarding your personal information, including: the right to access your personal data; the right to request correction of inaccurate data; the right to request deletion of your data; the right to object to processing; the right to data portability; and the right to withdraw consent. To exercise these rights, please contact us using the information provided below.
           </p>
         </div>
 
         <div>
-          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">9. Third-Party Links</h2>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">10. Third-Party Links</h2>
           <p class="text-base text-muted leading-relaxed">
             Our website may contain links to third-party websites, plug-ins, and applications. Clicking on those links or enabling those connections may allow third parties to collect or share data about you. We do not control these third-party websites and are not responsible for their privacy statements. We encourage you to read the privacy policy of every website you visit.
           </p>
         </div>
 
         <div>
-          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">10. Changes to This Policy</h2>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">11. Changes to This Policy</h2>
           <p class="text-base text-muted leading-relaxed">
             We may update this Privacy Policy from time to time to reflect changes in our practices or for other operational, legal, or regulatory reasons. We will notify you of any material changes by posting the updated policy on our website with a revised "Last Updated" date. We encourage you to review this policy periodically.
           </p>
         </div>
 
         <div>
-          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">11. Contact Us</h2>
+          <h2 class="fluid-h3 font-display font-bold text-primary-dark mb-3">12. Contact Us</h2>
           <p class="text-base text-muted leading-relaxed">
             If you have any questions about this Privacy Policy or our data practices, please contact us at
             <a href="mailto:info@emperealenergy.com" class="text-primary hover:text-accent-dark underline transition-colors">info@emperealenergy.com</a>
