@@ -13,3 +13,7 @@ pnpm-debug.log*
 .idea/
 .vscode/
 crm-credentials.json
+
+# Keep high-resolution service-card source artwork local; deploy WebP derivatives.
+public/images/Sevice Card/*.png
+public/images/Solar Storage_Hero iamge.png

@@ -5,17 +5,17 @@ const awards = [
   {
     icon: "🏆",
     title: "MESIA C&I Solar Project of the Year",
-    sub: "Middle East Solar Industry Association (MESIA) Annual Awards",
+    sub: "Awarded by the Middle East Solar Industry Association (MESIA) for outstanding commercial and industrial solar project execution.",
   },
   {
     icon: "🥇",
     title: "MESIA Net Zero Leader of the Year",
-    sub: "World Future Energy Summit (WFES), Abu Dhabi",
+    sub: "Recognized at the World Future Energy Summit (WFES), Abu Dhabi, for leadership in advancing net-zero energy solutions across the region.",
   },
   {
     icon: "🏅",
     title: "Company of the Year: BIPV",
-    sub: "Distributed Solar Leadership Awards 2023",
+    sub: "Awarded at the Distributed Solar Leadership Awards 2023 for excellence in Building-Integrated Photovoltaics (BIPV) delivery and innovation.",
   },
 ];
 ---
@@ -23,7 +23,7 @@ const awards = [
   <Container>
     <div class="max-w-xl mx-auto text-center reveal">
       <p class="eyebrow">Recognition</p>
-      <h2 id="recognition-title" class="fluid-h2 mt-3">Industry recognition for excellence in delivery</h2>
+      <h2 id="recognition-title" class="fluid-h2 mt-3">Industry recognition for technical excellence and project delivery.</h2>
     </div>
 
     <div class="mt-10 grid gap-5 sm:grid-cols-3 reveal-stagger">
@@ -32,7 +32,7 @@ const awards = [
           <span class="text-4xl" aria-hidden="true">{a.icon}</span>
           <div>
             <p class="font-semibold text-primary-dark leading-snug">{a.title}</p>
-            <p class="mt-1.5 text-xs text-muted uppercase tracking-wide">{a.sub}</p>
+            <p class="mt-2 text-sm leading-relaxed text-muted">{a.sub}</p>
           </div>
         </div>
       ))}

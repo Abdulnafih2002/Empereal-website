@@ -15,6 +15,9 @@ const related = posts.filter((p) => p.slug !== slug).slice(0, 2);
   title={`${post.title} — Empereal News & Insights`}
   description={post.excerpt}
   image={post.image}
+  imageAlt={post.title}
+  pageType="article"
+  publishedTime={post.isoDate}
 >
   <!-- Back link -->
   <div class="bg-white border-b border-primary/5 py-3">

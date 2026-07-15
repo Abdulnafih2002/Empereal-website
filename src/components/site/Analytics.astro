@@ -200,14 +200,16 @@ const serializedConfig = JSON.stringify(config).replace(/</g, "\\u003c");
   }
 
   win.emperealTrack = (name, params = {}) => {
-    if (!currentPrefs?.analytics) return;
-    if (config.gtmId) {
-      win.dataLayer = win.dataLayer || [];
-      win.dataLayer.push({ event: name, ...params });
-    } else if (config.ga4Id) {
-      win.gtag?.("event", name, params);
+    if (currentPrefs?.analytics) {
+      if (config.gtmId) {
+        win.dataLayer = win.dataLayer || [];
+        win.dataLayer.push({ event: name, ...params });
+      } else if (config.ga4Id) {
+        win.gtag?.("event", name, params);
+      }
+      if (clarityLoaded) win.clarity?.("event", name);
     }
-    if (name === "generate_lead" && currentPrefs.marketing) {
+    if (name === "generate_lead" && currentPrefs?.marketing) {
       win.fbq?.("track", "Lead");
     }
   };
