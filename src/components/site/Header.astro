@@ -48,7 +48,7 @@ const solutionNavIcons: Record<string, string> = {
 ---
 <header
   id="site-header"
-  class="sticky top-0 z-40 h-16 lg:h-20 w-full bg-white/90 backdrop-blur-md border-b border-primary/5 relative"
+  class="is-transparent fixed top-0 z-40 h-16 lg:h-20 w-full bg-white border-b border-primary/5"
   data-header
 >
   <Container class="flex items-center justify-between gap-4 h-16 lg:h-20">
@@ -57,7 +57,7 @@ const solutionNavIcons: Record<string, string> = {
       <img src="/logo-light.svg" alt="" aria-hidden="true" class="logo-light h-9 lg:h-10 w-auto" />
     </a>
 
-    <nav aria-label="Primary" class="hidden lg:flex items-center gap-1 self-stretch">
+    <nav aria-label="Primary" class="hidden lg:flex items-center gap-1 self-stretch" data-primary-nav>
       {nav.map((item) => (
         <div class="self-stretch flex items-center group" data-nav-item>
           {item.children ? (
@@ -251,16 +251,7 @@ const solutionNavIcons: Record<string, string> = {
   </Container>
 </header>
 
-<!--
-  The drawer + its backdrop live OUTSIDE <header> on purpose: the header has
-  `backdrop-blur-md` (backdrop-filter), which — like `transform`/`filter` —
-  creates a new containing block for `position: fixed` descendants. Nesting
-  the drawer inside the header meant its "fixed" positioning was actually
-  resolved against the header's own (small, sticky) box instead of the
-  viewport. On a page scrolled far down this could render the drawer
-  off-screen while the body scroll-lock still engaged — the menu silently
-  failed to open and the page appeared frozen with no way to close it.
--->
+<!-- Keep the mobile drawer outside the fixed header so it remains independently viewport-positioned. -->
 <div
   class="lg:hidden fixed inset-0 z-[85] pointer-events-none opacity-0 transition-opacity duration-200"
   data-drawer-backdrop
@@ -417,13 +408,12 @@ const solutionNavIcons: Record<string, string> = {
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 
   const header = document.querySelector<HTMLElement>("[data-header]");
-  const mobileMQ = window.matchMedia("(max-width: 1023.98px)");
-  // Go transparent while a dark hero backdrop sits behind the header.
-  const hasHeroBackdrop = !!document.querySelector("[data-hero-backdrop]");
+  // Keep the header transparent at the top of every page, then switch to a
+  // solid white navigation bar once the visitor starts scrolling.
   const updateHeader = () => {
     if (!header) return;
     const scrolled = window.scrollY > 40;
-    header.classList.toggle("is-transparent", !scrolled && hasHeroBackdrop);
+    header.classList.toggle("is-transparent", !scrolled);
     header.classList.toggle("shadow-sm", scrolled);
   };
   // Coalesce scroll updates into one per animation frame — an unthrottled
@@ -441,7 +431,6 @@ const solutionNavIcons: Record<string, string> = {
     },
     { passive: true }
   );
-  mobileMQ.addEventListener?.("change", updateHeader);
   updateHeader();
 </script>
 
@@ -458,7 +447,7 @@ const solutionNavIcons: Record<string, string> = {
     transition: color 0.28s ease, background-color 0.28s ease;
   }
 
-  /* Transparent state: over the home-page hero at the top of the page */
+  /* Transparent state over every page hero at the top of the page */
   [data-header].is-transparent {
     background: transparent !important;
     backdrop-filter: none !important;
@@ -473,12 +462,12 @@ const solutionNavIcons: Record<string, string> = {
   [data-header].is-transparent [data-drawer-toggle]:hover {
     background-color: rgba(255, 255, 255, 0.12);
   }
-  [data-header].is-transparent nav a,
-  [data-header].is-transparent nav button {
+  [data-header].is-transparent [data-primary-nav] > [data-nav-item] > a,
+  [data-header].is-transparent [data-primary-nav] > [data-nav-item] > button {
     color: rgba(255, 255, 255, 0.9);
   }
-  [data-header].is-transparent nav a:hover,
-  [data-header].is-transparent nav button:hover {
+  [data-header].is-transparent [data-primary-nav] > [data-nav-item] > a:hover,
+  [data-header].is-transparent [data-primary-nav] > [data-nav-item] > button:hover {
     color: #ffffff;
   }
   [data-header].is-transparent .nav-consult {
@@ -503,13 +492,10 @@ const solutionNavIcons: Record<string, string> = {
     transform: rotate(45deg);
   }
 
-  /* Mobile: the header is `position: sticky`, so backdrop-filter forces a
-     blur repaint on every scroll frame for the entire session — a major
-     source of scroll jank on mobile GPUs. It's already ~90% opaque, so the
-     blur is barely visible; drop it and bump opacity slightly to compensate. */
+  /* Keep the scrolled mobile header fully opaque for maximum readability. */
   @media (max-width: 1023.98px) {
     [data-header]:not(.is-transparent) {
-      background-color: rgba(255, 255, 255, 0.97);
+      background-color: #ffffff;
       backdrop-filter: none;
       -webkit-backdrop-filter: none;
     }

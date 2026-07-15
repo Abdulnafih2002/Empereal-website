@@ -9,7 +9,7 @@ const metrics = [
 ---
 
 <section
-  class="about-hero relative isolate -mt-16 lg:-mt-20 flex min-h-[100svh] overflow-hidden rounded-b-xl bg-primary-dark text-white"
+  class="about-hero relative isolate flex min-h-[100svh] overflow-hidden rounded-b-xl bg-primary-dark text-white"
   aria-labelledby="about-hero-title"
   data-hero
   data-hero-backdrop
@@ -32,7 +32,7 @@ const metrics = [
       <p class="hero-enter hero-enter-1 mb-4 text-xs font-bold uppercase tracking-[0.22em] text-orange sm:text-sm">
         Est. 2008 · 18+ Years of Experience
       </p>
-      <h1 id="about-hero-title" class="about-hero-title hero-enter hero-enter-2 text-white">
+      <h1 id="about-hero-title" class="about-hero-title fluid-display hero-enter hero-enter-2 text-white">
         Engineering the future of clean energy and water.
       </h1>
       <p class="hero-enter hero-enter-3 mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
@@ -45,7 +45,7 @@ const metrics = [
     </div>
   </Container>
 
-  <div class="about-stats-wrap absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem]">
+  <div class="about-stats-wrap absolute bottom-0 left-0 z-10 w-full sm:w-[54%] sm:max-w-[48rem] 2xl:left-1/2 2xl:max-w-[64rem] 2xl:-translate-x-1/2">
     <dl class="about-stats-card grid grid-cols-3 bg-white text-ink shadow-2xl">
       {metrics.map((metric) => (
         <div class="relative px-3 py-5 text-center sm:px-6 sm:py-6 lg:px-8 lg:py-7">
@@ -60,7 +60,6 @@ const metrics = [
 <style>
   .about-hero-title {
     max-width: 13ch;
-    font-size: clamp(2.7rem, 5.6vw, 5.4rem);
     font-weight: 600;
     line-height: 0.98;
     letter-spacing: -0.04em;
@@ -93,9 +92,37 @@ const metrics = [
     pointer-events: none;
   }
 
+  .about-stats-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(
+      circle at 0 0,
+      transparent calc(var(--shape-radius) - 0.5px),
+      #fff var(--shape-radius)
+    );
+    pointer-events: none;
+    display: none;
+  }
+
   @media (max-width: 639px) {
     .about-hero { min-height: 47rem; }
     .about-stats-card { --shape-radius: 2.5rem; }
+    .about-stats-card::before,
     .about-stats-card::after { display: none; }
+  }
+
+  @media (min-width: 1536px) {
+    .about-stats-card {
+      border-radius: var(--shape-radius) var(--shape-radius) 0 0;
+    }
+
+    .about-stats-card::before {
+      display: block;
+    }
   }
 </style>

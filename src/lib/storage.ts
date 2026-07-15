@@ -175,7 +175,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
   address: "Dubai, United Arab Emirates",
   email: "info@empereal.com",
   phone: "+971 XX XXX XXXX",
-  whatsappNumber: "971501234567",
+  whatsappNumber: "971504592854",
   linkedinUrl: "",
   twitterUrl: "",
 };

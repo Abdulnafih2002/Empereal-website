@@ -3,10 +3,9 @@ import Container from "../../primitives/Container.astro";
 
 interface Props {
   active?: "solar" | "water" | "storage" | "integrated" | "hydrogen";
-  breadcrumb?: string;
 }
 
-const { active, breadcrumb } = Astro.props;
+const { active } = Astro.props;
 
 const items = [
   { key: "solar", label: "Solar Power Systems", href: "/solutions/solar-power-systems" },
@@ -16,21 +15,7 @@ const items = [
   { key: "hydrogen", label: "Green Hydrogen", href: "/solutions/green-hydrogen" },
 ];
 ---
-<nav aria-label="Breadcrumb" class="bg-primary-dark/95 border-b border-white/5">
-  <Container class="flex items-center gap-2 py-2.5 text-xs">
-    <a href="/" class="text-white/55 hover:text-white/90 transition-colors">Home</a>
-    <span class="text-white/30" aria-hidden="true">›</span>
-    <a href="/solutions" class="text-white/55 hover:text-white/90 transition-colors">Solutions</a>
-    {breadcrumb && (
-      <>
-        <span class="text-white/30" aria-hidden="true">›</span>
-        <span class="text-white/85" aria-current="page">{breadcrumb}</span>
-      </>
-    )}
-  </Container>
-</nav>
-
-<nav aria-label="Solution areas" class="bg-[#003B64] border-b border-white/5">
+<nav aria-label="Solution areas" class="bg-[#003B64] border-b border-white/5 pt-16 lg:pt-20">
   <Container class="overflow-x-auto">
     <ul class="flex gap-0 min-w-max">
       {items.map((it) => {
