@@ -47,7 +47,12 @@ if (enquiry.status === "new") {
         {enquiry.interest && (
           <div class="col-span-2">
             <p class="mb-1 text-xs font-semibold uppercase tracking-widest text-slate-400">Area of Interest</p>
-            <span class="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">{enquiry.interest}</span>
+            <span class:list={[
+              "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium",
+              enquiry.interest === "Company Profile Download"
+                ? "bg-orange/15 text-accent-dark ring-1 ring-orange/25"
+                : "bg-blue-50 text-blue-700",
+            ]}>{enquiry.interest}</span>
           </div>
         )}
         <div class="col-span-2">

@@ -78,45 +78,45 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "solar-power-systems",
     title: "Solar Power Systems",
     description:
-      "Utility-scale PV farms, commercial and industrial rooftops, carports, ground-mounted installations, single-axis trackers, and architectural BIPV — full design, EPC, and O&M.",
+      "Utility-scale PV farms, commercial and industrial rooftops, carports, ground-mounted installations, single-axis trackers, and architectural BIPV. Full design, EPC, and O&M.",
     icon: "solar",
     href: "/solutions/solar-power-systems",
     order: 1,
   },
   {
-    id: "water-desalination",
-    title: "Water & Desalination",
-    description:
-      "Solar thermal desalination using LFR technology, PV-RO systems, forward osmosis, solar-biomass hybrid, industrial effluent recovery, and standalone off-grid fresh water systems.",
-    icon: "drop",
-    href: "/solutions/water-desalination",
-    order: 2,
-  },
-  {
     id: "energy-storage",
     title: "Energy Storage Systems",
     description:
-      "Battery energy storage integrated with solar PV, proprietary thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
+      "Battery energy storage integrated with solar PV, patented thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
     icon: "battery",
     href: "/solutions/energy-storage",
-    order: 3,
+    order: 2,
   },
   {
-    id: "bipv",
-    title: "Architectural BIPV & Integrated Solar Solutions",
+    id: "water-desalination",
+    title: "Solar Thermal & Desalination",
     description:
-      "Architectural BIPV facades, solar-integrated building systems, microgrids, and smart energy solutions — designed as unified, high-performance infrastructure.",
-    icon: "bipv",
-    href: "/solutions/integrated-infrastructure",
-    order: 4,
+      "Solar thermal desalination using LFR technology, PV-RO systems, forward osmosis, and standalone off-grid fresh water systems.",
+    icon: "drop",
+    href: "/solutions/water-desalination",
+    order: 3,
   },
   {
     id: "green-hydrogen",
     title: "Green Hydrogen Systems",
     description:
-      "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination — including India's first sea-water-to-hydrogen project and DEWA hydrogen plant.",
+      "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination, including sea-water-to-hydrogen projects and DEWA hydrogen plant.",
     icon: "h2",
     href: "/solutions/green-hydrogen",
+    order: 4,
+  },
+  {
+    id: "bipv",
+    title: "Architectural BIPV & Integrated Solutions",
+    description:
+      "Custom-designed solar façades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture and Dubai SHAMS/D33 compliant.",
+    icon: "bipv",
+    href: "/solutions/integrated-infrastructure",
     order: 5,
   },
 ];

@@ -230,6 +230,7 @@ const serializedConfig = JSON.stringify(config).replace(/</g, "\\u003c");
     const href = link.getAttribute("href") || "";
     const isCta =
       link.classList.contains("hero-home-pill") ||
+      link.classList.contains("site-cta") ||
       link.classList.contains("nav-consult") ||
       href === "/contact" ||
       href.startsWith("mailto:") ||

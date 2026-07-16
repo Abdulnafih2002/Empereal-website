@@ -78,7 +78,11 @@ const stats = [
                     <a href={`/crm/enquiries/${e.id}`} class="hover:text-primary transition-colors">{e.name}</a>
                   </td>
                   <td class="hidden px-5 py-3.5 text-slate-500 md:table-cell">{e.email}</td>
-                  <td class="hidden px-5 py-3.5 text-slate-500 lg:table-cell">{e.interest ?? "—"}</td>
+                  <td class="hidden px-5 py-3.5 text-slate-500 lg:table-cell">
+                    {e.interest === "Company Profile Download" ? (
+                      <span class="inline-flex items-center rounded-full bg-orange/15 px-2.5 py-1 text-xs font-semibold text-accent-dark ring-1 ring-orange/25">Profile Download</span>
+                    ) : (e.interest ?? "—")}
+                  </td>
                   <td class="px-5 py-3.5"><StatusBadge status={e.status} /></td>
                   <td class="hidden px-5 py-3.5 text-xs text-slate-400 sm:table-cell">
                     {new Date(e.createdAt).toLocaleDateString()}

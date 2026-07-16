@@ -164,20 +164,40 @@
     justify-content: center;
   }
 
-  /* Shared secondary hero action: matches the homepage white pill. */
+  /* Shared site CTA: the navbar consultation pill, adapted for light and dark surfaces. */
+  .site-cta,
   .hero-home-pill {
-    @apply inline-flex min-h-[44px] w-fit self-start items-center justify-center gap-3 whitespace-nowrap rounded-full bg-white py-1 pl-6 pr-1 text-sm font-medium text-primary-dark shadow-lg shadow-black/15 transition-all duration-200;
+    @apply inline-flex min-h-[44px] w-fit items-center justify-center gap-3 whitespace-nowrap rounded-full border py-1 pl-5 pr-1 text-sm font-medium transition-all duration-200;
   }
+  .site-cta {
+    @apply border-primary/25 bg-transparent text-primary-dark hover:-translate-y-0.5 hover:border-primary/50 hover:bg-primary/5;
+  }
+  .site-cta-on-dark,
+  .hero-home-pill {
+    @apply border-white/50 bg-white/[0.06] text-white shadow-lg shadow-black/10 backdrop-blur-sm hover:-translate-y-0.5 hover:border-white/85 hover:bg-white/[0.14];
+  }
+  .site-cta-solid {
+    @apply border-primary bg-primary text-white shadow-sm hover:-translate-y-0.5 hover:border-primary-light hover:bg-primary-light;
+  }
+  .site-cta::after,
   .hero-home-pill::after {
     content: "↗";
-    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#101418] text-base leading-none text-white transition-all duration-200;
+    @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary text-base leading-none text-white transition-all duration-200;
   }
-  .hero-home-pill:hover {
-    @apply -translate-y-0.5 bg-white/90;
+  .site-cta-on-dark::after,
+  .hero-home-pill::after {
+    @apply bg-white text-primary-dark;
   }
+  .site-cta-solid::after {
+    @apply bg-white text-primary-dark;
+  }
+  .site-cta:hover::after,
   .hero-home-pill:hover::after {
     transform: rotate(45deg);
     @apply bg-accent text-primary-dark;
+  }
+  .site-cta:disabled {
+    @apply cursor-not-allowed opacity-60;
   }
   @media (min-width: 640px) {
     .hero-cta {

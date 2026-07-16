@@ -42,6 +42,13 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
+  if (interest?.trim() === "Company Profile Download" && (!company?.trim() || !phone?.trim())) {
+    return new Response(
+      JSON.stringify({ error: "Name, company, email, and phone are required to download the company profile." }),
+      { status: 400, headers: { "Content-Type": "application/json" } }
+    );
+  }
+
   const enquiry: Enquiry = {
     id: crypto.randomUUID(),
     name: name.trim(),

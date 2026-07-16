@@ -19,20 +19,16 @@ const {
   ariaLabel,
 } = Astro.props;
 
-const base =
-  "inline-flex items-center justify-center gap-2 font-medium tracking-tight transition-all duration-200 rounded-full whitespace-nowrap select-none min-h-[44px]";
+const base = "site-cta select-none";
 const sizes: Record<string, string> = {
-  md: "px-5 py-2.5 text-sm",
-  lg: "px-7 py-3.5 text-base",
+  md: "",
+  lg: "min-h-[48px] text-base",
 };
 const variants: Record<string, string> = {
-  primary:
-    "bg-primary text-white hover:bg-primary-dark shadow-sm hover:shadow-md active:scale-[0.98]",
-  accent:
-    "bg-accent text-primary-dark hover:bg-accent-hover shadow-sm hover:shadow-md active:scale-[0.98]",
-  secondary:
-    "bg-white text-primary border border-primary/20 hover:border-primary hover:bg-primary/5",
-  ghost: "text-white/90 hover:text-white underline-offset-4 hover:underline",
+  primary: "site-cta-solid",
+  accent: "site-cta-solid",
+  secondary: "",
+  ghost: "site-cta-on-dark",
 };
 
 const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;
@@ -46,18 +42,4 @@ const Tag = href ? "a" : "button";
   aria-label={ariaLabel}
 >
   <slot />
-  <svg
-    class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-    viewBox="0 0 20 20"
-    fill="none"
-    aria-hidden="true"
-  >
-    <path
-      d="M4 10h12m0 0l-4-4m4 4l-4 4"
-      stroke="currentColor"
-      stroke-width="1.75"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-    />
-  </svg>
 </Tag>

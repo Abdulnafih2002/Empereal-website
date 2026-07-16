@@ -2,6 +2,7 @@
 import "../styles/globals.css";
 import Header from "../components/site/Header.astro";
 import Footer from "../components/site/Footer.astro";
+import CompanyProfileModal from "../components/site/CompanyProfileModal.astro";
 import ClientsAndPartners from "../components/sections/shared/ClientsAndPartners.astro";
 import CookieConsent from "../components/site/CookieConsent.astro";
 import Analytics from "../components/site/Analytics.astro";
@@ -265,6 +266,7 @@ const serializedStructuredData = JSON.stringify({
     </main>
     {showClients && <ClientsAndPartners />}
     <Footer />
+    <CompanyProfileModal />
     <CookieConsent />
     <Analytics />
 
