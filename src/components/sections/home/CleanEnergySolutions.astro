@@ -71,7 +71,7 @@ const solutions = [
   <div class="ces-cards-wrap reveal-stagger">
     {
       solutions.map((s) => (
-        <a href={s.href} class="ces-card group" id={`ces-card-${s.id}`} aria-label={s.title}>
+        <a href={s.href} class="ces-card group" id={`ces-card-${s.id}`} aria-label={`Learn more about ${s.title}`}>
           {/* Photo fills entire card */}
           <img
             src={s.image}
@@ -89,6 +89,10 @@ const solutions = [
             <h3 class="ces-card-title">{s.title}</h3>
             <p class="ces-card-tagline">{s.tagline}</p>
           </div>
+
+          <span class="ces-cta site-cta site-cta-on-dark" aria-hidden="true">
+            Learn More
+          </span>
         </a>
       ))
     }
@@ -230,6 +234,35 @@ const solutions = [
     line-height: 1.5;
   }
 
+  /* Shared site CTA treatment, revealed at the foot of each card. */
+  .ces-cta {
+    position: absolute;
+    left: 50%;
+    bottom: 1.25rem;
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 0.875rem);
+    transition:
+      opacity 0.3s ease,
+      transform 0.35s cubic-bezier(0.22, 0.9, 0.3, 1);
+  }
+
+  .ces-card:hover .ces-cta,
+  .ces-card:focus-visible .ces-cta {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    border-color: rgba(255, 255, 255, 0.85);
+    background-color: rgba(255, 255, 255, 0.14);
+  }
+
+  .ces-card:hover .ces-cta::after,
+  .ces-card:focus-visible .ces-cta::after {
+    color: #1e2937;
+    background-color: #f4b942;
+    transform: rotate(45deg);
+  }
+
   /* ── Mobile: vertical stack ── */
   @media (max-width: 767px) {
     .ces-section {
@@ -246,6 +279,17 @@ const solutions = [
       max-width: 100%;
       flex: none;
       height: 380px;
+    }
+    .ces-cta {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  @media (hover: none) {
+    .ces-cta {
+      opacity: 1;
+      transform: translate(-50%, 0);
     }
   }
 

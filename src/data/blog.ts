@@ -7,10 +7,29 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   image: string;
+  youtubeId?: string;
   sections: { heading: string; body: string }[];
 }
 
 export const posts: BlogPost[] = [
+  {
+    slug: "manoj-divakaran-empereal-founder-story-edb",
+    tag: "Video",
+    date: "June 18, 2026",
+    isoDate: "2026-06-18",
+    readTime: "Watch video",
+    title: "He Spent $2.5M Making Solar Panels Invisible... Now His Company Makes $41M/YR",
+    excerpt:
+      "In this Emirates Development Bank documentary, Empereal founder Manoj Divakaran shares the journey behind building a UAE clean-energy company focused on solar-integrated architecture and future-ready energy solutions.",
+    image: "https://i.ytimg.com/vi/iT87iVJYUC0/maxresdefault.jpg",
+    youtubeId: "iT87iVJYUC0",
+    sections: [
+      {
+        heading: "The Empereal Story",
+        body: "Watch Manoj Divakaran share Empereal's founder story, the investment and conviction behind its growth, and the opportunity to turn buildings into clean-energy assets through integrated solar technology.",
+      },
+    ],
+  },
   {
     slug: "empereal-powers-solar-pavilion-expo-2020",
     tag: "Projects",
@@ -37,35 +56,6 @@ export const posts: BlogPost[] = [
       {
         heading: "Key Takeaways",
         body: "The project integrated 98 kWp of BIPV into an iconic falcon-wing design, achieved LEED Platinum sustainability objectives, exposed millions of visitors to solar technology in action, and demonstrated the scalability of BIPV in landmark architecture.",
-      },
-    ],
-  },
-  {
-    slug: "empereal-partners-adnoc-solar-projects",
-    tag: "Partnerships",
-    date: "December 3, 2024",
-    isoDate: "2024-12-03",
-    readTime: "4 min read",
-    title: "Empereal Partners with ADNOC to Advance Solar Integration in Oil & Gas Operations",
-    excerpt:
-      "A strategic partnership with ADNOC marks a significant step toward integrating renewable energy into the UAE's oil and gas sector, deploying solar across ADNOC's operational facilities to reduce the carbon intensity of upstream operations while holding to the reliability standards the industry demands.",
-    image: "/images/dewa-hq-main.jpg",
-    sections: [
-      {
-        heading: "Strategic Partnership for Energy Transition",
-        body: "Empereal has entered into a strategic partnership with ADNOC (Abu Dhabi National Oil Company) to deliver large-scale solar energy solutions across their operational facilities. This partnership represents a significant step in the UAE's energy transition, demonstrating how even the most energy-intensive industries can embrace renewable power.",
-      },
-      {
-        heading: "Scope of Collaboration",
-        body: "The partnership covers multiple phases, starting with feasibility studies and pilot installations at selected ADNOC facilities, followed by a broader rollout across the company's portfolio. The projects include rooftop solar, carport installations, and ground-mounted systems optimized for the harsh desert environment.",
-      },
-      {
-        heading: "Supporting Net-Zero 2040",
-        body: "ADNOC has committed to achieving net-zero emissions by 2040, and solar energy is a cornerstone of this strategy. Empereal's expertise in designing systems for extreme climates — with automated cleaning, high-temperature performance optimization, and dust-resistant components — makes us the ideal partner for this ambitious program.",
-      },
-      {
-        heading: "Key Takeaways",
-        body: "The partnership spans a multi-phase rollout across ADNOC facilities, covering rooftop, carport, and ground-mounted systems optimized for extreme desert conditions, in direct support of ADNOC's net-zero 2040 commitment.",
       },
     ],
   },

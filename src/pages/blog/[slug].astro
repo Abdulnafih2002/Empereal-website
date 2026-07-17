@@ -19,22 +19,6 @@ const related = posts.filter((p) => p.slug !== slug).slice(0, 2);
   pageType="article"
   publishedTime={post.isoDate}
 >
-  <!-- Back link -->
-  <div class="bg-white border-b border-primary/5 py-3">
-    <Container>
-      <a
-        href="/blog"
-        class="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-primary transition-colors"
-        aria-label="Back to News & Insights"
-      >
-        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
-          <path d="M16 10H4m0 0l4-4M4 10l4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        Back to News &amp; Insights
-      </a>
-    </Container>
-  </div>
-
   <!-- Hero -->
   <section class="relative isolate overflow-hidden bg-primary-dark" aria-label="Article hero">
     <div class="relative h-[50vh] min-h-[360px] max-h-[520px]">
@@ -77,10 +61,42 @@ const related = posts.filter((p) => p.slug !== slug).slice(0, 2);
     </div>
   </section>
 
+  <!-- Back link -->
+  <div class="bg-white border-b border-primary/5 py-3">
+    <Container>
+      <a
+        href="/blog"
+        class="inline-flex items-center gap-2 text-sm font-medium text-muted hover:text-primary transition-colors"
+        aria-label="Back to News & Insights"
+      >
+        <svg viewBox="0 0 20 20" class="h-4 w-4" fill="none" aria-hidden="true">
+          <path d="M16 10H4m0 0l4-4M4 10l4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to News &amp; Insights
+      </a>
+    </Container>
+  </div>
+
   <!-- Article body -->
   <section class="bg-white section-pad" aria-label="Article content">
     <Container>
       <div class="max-w-prose mx-auto">
+        {post.youtubeId && (
+          <div class="mb-10 overflow-hidden rounded-2xl bg-primary-dark shadow-card-lg">
+            <div class="aspect-video">
+              <iframe
+                src={`https://www.youtube-nocookie.com/embed/${post.youtubeId}`}
+                title={post.title}
+                class="h-full w-full"
+                loading="lazy"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
+        )}
+
         <!-- Author strip -->
         <div class="flex items-center gap-3 mb-10 pb-6 border-b border-primary/10">
           <img src="/logo.svg" alt="" class="h-8 w-auto opacity-80" aria-hidden="true" />

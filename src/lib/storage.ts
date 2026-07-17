@@ -250,6 +250,8 @@ export async function putFeatures(features: FeaturesSection): Promise<void> {
 // ─── Blog Posts ───────────────────────────────────────────────────────────────
 
 const BLOG_KEY = "empereal/blog";
+const HIDDEN_BLOG_SLUGS = new Set(["empereal-partners-adnoc-solar-projects"]);
+const REQUIRED_BLOG_SLUGS = new Set(["manoj-divakaran-empereal-founder-story-edb"]);
 
 // Loaded at build time from src/data/blog.ts
 import { posts as staticBlogPosts } from "../data/blog.js";
@@ -264,13 +266,21 @@ const DEFAULT_BLOG_POSTS: CrmBlogPost[] = staticBlogPosts.map((p, i) => ({
   title: p.title,
   excerpt: p.excerpt,
   image: p.image,
+  youtubeId: p.youtubeId,
   sections: p.sections,
   order: i + 1,
 }));
 
 export async function getBlogPosts(): Promise<CrmBlogPost[]> {
   const posts = await getBlobJson<CrmBlogPost[]>(BLOG_KEY, DEFAULT_BLOG_POSTS);
-  return [...posts].sort((a, b) => a.order - b.order);
+  const storedSlugs = new Set(posts.map((post) => post.slug));
+  const requiredPosts = DEFAULT_BLOG_POSTS
+    .filter((post) => REQUIRED_BLOG_SLUGS.has(post.slug) && !storedSlugs.has(post.slug))
+    .map((post) => ({ ...post, order: 0 }));
+
+  return [...requiredPosts, ...posts]
+    .filter((post) => !HIDDEN_BLOG_SLUGS.has(post.slug))
+    .sort((a, b) => a.order - b.order);
 }
 
 export async function putBlogPosts(posts: CrmBlogPost[]): Promise<void> {

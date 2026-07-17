@@ -56,6 +56,7 @@ export interface CrmBlogPost {
   title: string;
   excerpt: string;
   image: string;
+  youtubeId?: string;
   sections: { heading: string; body: string }[];
   order: number;
 }

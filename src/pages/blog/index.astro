@@ -93,6 +93,15 @@ const filtered = tagParam === "All" ? posts : posts.filter((p) => p.tag === tagP
                     onerror="this.remove()"
                   />
                   <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/40 to-transparent" aria-hidden="true"></div>
+                  {post.youtubeId && (
+                    <span class="absolute inset-0 flex items-center justify-center" aria-hidden="true">
+                      <span class="flex h-14 w-14 items-center justify-center rounded-full bg-orange text-primary-dark shadow-lg ring-4 ring-white/30 transition-transform duration-300 group-hover:scale-110">
+                        <svg viewBox="0 0 24 24" class="ml-1 h-6 w-6" fill="currentColor">
+                          <path d="M8 5.5v13l10-6.5L8 5.5Z" />
+                        </svg>
+                      </span>
+                    </span>
+                  )}
                   <div class="absolute left-3 top-3 inline-flex items-center rounded-md bg-white/95 px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
                     {post.tag}
                   </div>
@@ -113,7 +122,7 @@ const filtered = tagParam === "All" ? posts : posts.filter((p) => p.tag === tagP
                 <div class="mt-4 flex items-center justify-between">
                   <span class="text-xs text-muted/70">{post.readTime}</span>
                   <a href={`/blog/${post.slug}`} class="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent-dark transition-colors">
-                    Read article
+                    {post.youtubeId ? "Watch video" : "Read article"}
                     <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
                       <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
                     </svg>
