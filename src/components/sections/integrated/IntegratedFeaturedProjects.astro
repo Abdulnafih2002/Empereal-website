@@ -1,6 +1,6 @@
 ---
 import Container from "../../primitives/Container.astro";
-import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+import ProjectCard from "../projects/ProjectCard.astro";
 import { projects } from "../../../data/projects.ts";
 
 const slugs = ["zamani-islands", "park-hyatt-maldives"];
@@ -8,10 +8,6 @@ const featured = slugs
   .map((s) => projects.find((p) => p.slug === s))
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
 
-const tagFor: Record<string, string> = {
-  "zamani-islands": "Off-grid Resort · Solar PV · Storage · Water",
-  "park-hyatt-maldives": "Resort · Solar PV · BESS · Energy Management",
-};
 ---
 <section class="section-pad bg-[#003B64] text-white" aria-labelledby="integrated-featured-title">
   <Container>
@@ -25,38 +21,8 @@ const tagFor: Record<string, string> = {
 
     <ul class="mt-10 grid gap-4 md:grid-cols-2 reveal-stagger">
       {featured.map((p) => (
-        <li class="group rounded-2xl bg-white text-ink overflow-hidden ring-1 ring-white/5 hover:-translate-y-1 hover:shadow-card-lg transition-all">
-          <ImagePlaceholder
-            src={p.image}
-            alt={p.imageAlt ?? p.title}
-            aspect="3/1.4"
-            tone={p.tone}
-            label={`${p.title} — ${p.location}`}
-            rounded="rounded-none"
-          >
-            <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-primary-dark/80 backdrop-blur-sm px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.05em] text-white">
-              {p.country}
-            </span>
-          </ImagePlaceholder>
-
-          <div class="p-5 lg:p-6">
-            <p class="text-[10px] font-semibold uppercase tracking-[0.07em] text-accent-dark">{tagFor[p.slug]}</p>
-            <h3 class="mt-1.5 text-base font-semibold text-primary-dark">{p.title}</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed">{p.summary}</p>
-
-            <dl class="mt-4 grid gap-1.5 pt-4 border-t border-primary/10 text-[12px]">
-              <div class="flex gap-2">
-                <dt class="text-muted min-w-[64px] shrink-0">Systems</dt>
-                <dd class="font-medium text-primary-dark">{p.scope}</dd>
-              </div>
-              {p.scale !== "—" && (
-                <div class="flex gap-2">
-                  <dt class="text-muted min-w-[64px] shrink-0">Output</dt>
-                  <dd class="font-medium text-primary-dark">{p.scale}</dd>
-                </div>
-              )}
-            </dl>
-          </div>
+        <li>
+          <ProjectCard project={p} />
         </li>
       ))}
     </ul>

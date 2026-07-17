@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/primitives/Container.astro";
+import ProjectCard from "../../components/sections/projects/ProjectCard.astro";
 import { projects } from "../../data/projects.ts";
 
 const relatedProject = projects.find((project) => project.slug === "dewa-hq")!;
@@ -261,36 +262,7 @@ const relatedModels = [
       </div>
 
       <div class="mt-10 max-w-sm mx-auto reveal">
-        <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
-          <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-primary-dark via-primary to-accent/40">
-            <img
-              src={relatedProject.image}
-              alt={relatedProject.imageAlt ?? relatedProject.title}
-              class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
-              decoding="async"
-              onerror="this.remove()"
-            />
-            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent" aria-hidden="true"></div>
-            <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
-              <span aria-hidden="true">🇦🇪</span>
-              {relatedProject.country}
-            </div>
-          </div>
-
-          <div class="flex flex-col flex-1 p-5 lg:p-6 text-left">
-            <h3 class="font-display text-lg lg:text-xl font-semibold text-primary-dark">{relatedProject.title}</h3>
-            <p class="mt-2 text-sm text-muted leading-relaxed flex-1">
-              {relatedProject.summary}
-            </p>
-            <a href={`/projects#${relatedProject.slug}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent-dark transition-colors">
-              View case study
-              <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
-                <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </a>
-          </div>
-        </article>
+        <ProjectCard project={relatedProject} />
       </div>
 
       <div class="mt-10 text-center reveal">
