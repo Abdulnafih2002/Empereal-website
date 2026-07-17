@@ -177,13 +177,14 @@ const DEFAULT_SETTINGS: SiteSettings = {
   address: "Dubai, United Arab Emirates",
   email: "info@empereal.com",
   phone: "+971 XX XXX XXXX",
-  whatsappNumber: "971504592854",
+  whatsappNumber: "971563762386",
   linkedinUrl: "",
   twitterUrl: "",
 };
 
 export async function getSettings(): Promise<SiteSettings> {
-  return getBlobJson<SiteSettings>(SETTINGS_KEY, DEFAULT_SETTINGS);
+  const settings = await getBlobJson<SiteSettings>(SETTINGS_KEY, DEFAULT_SETTINGS);
+  return { ...settings, whatsappNumber: DEFAULT_SETTINGS.whatsappNumber };
 }
 
 export async function putSettings(settings: SiteSettings): Promise<void> {
