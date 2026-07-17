@@ -1,68 +1,39 @@
 ---
 import Container from "../../primitives/Container.astro";
-import { projects, categoryLabels } from "../../../data/projects.ts";
+import ProjectCard from "../projects/ProjectCard.astro";
+import { projects } from "../../../data/projects.ts";
 
 const slugs = [
   "masdar-10mw",
-  "expo-thematic-districts",
   "dewa-hq",
   "masdar-mc2",
   "park-hyatt-maldives",
-  "talabat-kitchen",
   "dewa-solar-tree",
-  "zamani-islands",
 ];
 
-const rows = slugs
+const featured = slugs
   .map((s) => projects.find((p) => p.slug === s))
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
 ---
 <section class="section-pad bg-white" aria-labelledby="solar-exp-title">
   <Container>
-    <div class="max-w-2xl reveal">
-      <p class="eyebrow">Selected experience</p>
-      <h2 id="solar-exp-title" class="fluid-h2 mt-3">Project track record</h2>
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <p class="eyebrow">Related Projects</p>
+      <h2 id="solar-exp-title" class="fluid-h2 mt-3">Selected experience</h2>
       <p class="fluid-lead mt-5 text-muted">
         A selection of Empereal's commissioned solar PV projects across Asia, the Middle East, and beyond — spanning utility-scale farms, distributed rooftops, resort microgrids, and tracking systems.
       </p>
     </div>
 
-    <div class="mt-10 overflow-x-auto rounded-xl ring-1 ring-primary/10 reveal">
-      <table class="w-full text-sm border-collapse min-w-[720px]">
-        <thead class="bg-primary-dark text-white">
-          <tr>
-            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Project</th>
-            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Location</th>
-            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Scale</th>
-            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Category</th>
-            <th class="text-left px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/75">Scope</th>
-          </tr>
-        </thead>
-        <tbody class="reveal-stagger">
-          {rows.map((p) => (
-            <tr class="border-t border-primary/5 even:bg-surface hover:bg-accent/5 transition-colors">
-              <td class="px-4 py-3 font-semibold text-primary-dark align-top">{p.title}</td>
-              <td class="px-4 py-3 align-top">
-                <span class="inline-block rounded-full bg-primary/[0.06] border border-primary/10 px-2.5 py-1 text-[11px] font-medium text-primary-dark">
-                  {p.location}
-                </span>
-              </td>
-              <td class="px-4 py-3 font-semibold text-primary-dark align-top whitespace-nowrap">{p.scale}</td>
-              <td class="px-4 py-3 align-top">
-                <div class="flex flex-wrap gap-1">
-                  {p.categories.map((c) => (
-                    <span class="text-[10px] font-semibold uppercase tracking-[0.06em] px-2 py-0.5 rounded border border-accent/30 text-accent-dark bg-accent-soft">{categoryLabels[c]}</span>
-                  ))}
-                </div>
-              </td>
-              <td class="px-4 py-3 text-muted leading-relaxed align-top">{p.scope}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+    <ul class="mx-auto mt-10 flex flex-wrap justify-center gap-6 reveal-stagger">
+      {featured.map((project) => (
+        <li class="flex w-full max-w-sm sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]">
+          <ProjectCard project={project} class="w-full" />
+        </li>
+      ))}
+    </ul>
 
-    <p class="mt-6 text-sm text-muted">
+    <p class="mt-8 text-center text-sm text-muted">
       Full project portfolio available on the
       <a href="/projects" class="text-accent-dark font-semibold hover:text-accent transition-colors group inline-flex items-center gap-1">
         Projects page

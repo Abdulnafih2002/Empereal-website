@@ -11,7 +11,7 @@ const featured = slugs
 ---
 <section class="section-pad bg-white" aria-labelledby="hydrogen-projects-title">
   <Container>
-    <div class="max-w-2xl reveal">
+    <div class="mx-auto max-w-2xl text-center reveal">
       <p class="eyebrow">Related Projects</p>
       <h2 id="hydrogen-projects-title" class="fluid-h2 mt-3">Selected experience</h2>
       <p class="fluid-lead mt-5 text-muted">
@@ -19,10 +19,10 @@ const featured = slugs
       </p>
     </div>
 
-    <ul class="mt-10 grid gap-4 sm:grid-cols-2 max-w-xl reveal-stagger">
+    <ul class="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-6 reveal-stagger">
       {featured.map((p) => (
-        <li>
-          <ProjectCard project={p} />
+        <li class="flex w-full max-w-sm sm:w-[calc(50%-12px)]">
+          <ProjectCard project={p} class="w-full" />
         </li>
       ))}
     </ul>

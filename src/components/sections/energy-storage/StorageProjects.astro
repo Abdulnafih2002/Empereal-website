@@ -1,0 +1,30 @@
+---
+import Container from "../../primitives/Container.astro";
+import ProjectCard from "../projects/ProjectCard.astro";
+import { projects } from "../../../data/projects.ts";
+
+const slugs = ["park-hyatt-maldives"];
+const featured = slugs
+  .map((slug) => projects.find((project) => project.slug === slug))
+  .filter((project): project is NonNullable<typeof project> => Boolean(project));
+---
+
+<section class="section-pad bg-white" aria-labelledby="storage-projects-title">
+  <Container>
+    <div class="mx-auto max-w-2xl text-center reveal">
+      <p class="eyebrow">Related Projects</p>
+      <h2 id="storage-projects-title" class="fluid-h2 mt-3">Selected experience</h2>
+      <p class="fluid-lead mt-5 text-muted">
+        Empereal's energy storage work in action — integrating battery storage and intelligent energy management for reliable, low-carbon operations.
+      </p>
+    </div>
+
+    <ul class="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-6 reveal-stagger">
+      {featured.map((project) => (
+        <li class="flex w-full max-w-sm sm:w-[calc(50%-12px)]">
+          <ProjectCard project={project} class="w-full" />
+        </li>
+      ))}
+    </ul>
+  </Container>
+</section>

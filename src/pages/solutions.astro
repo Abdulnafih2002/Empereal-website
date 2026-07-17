@@ -6,7 +6,6 @@ import SolutionsIntro from "../components/sections/solutions/SolutionsIntro.astr
 import SolutionAreas from "../components/sections/solutions/SolutionAreas.astro";
 import ApplicationSectors from "../components/sections/solutions/ApplicationSectors.astro";
 import DeliveryApproach from "../components/sections/solutions/DeliveryApproach.astro";
-import CertificationsBar from "../components/sections/solutions/CertificationsBar.astro";
 import SolutionsCTA from "../components/sections/solutions/SolutionsCTA.astro";
 import { getSolutions } from "../lib/storage.js";
 
@@ -23,6 +22,5 @@ const solutions = await getSolutions();
   <SolutionAreas solutions={solutions} />
   <ApplicationSectors />
   <DeliveryApproach />
-  <CertificationsBar />
   <SolutionsCTA />
 </BaseLayout>

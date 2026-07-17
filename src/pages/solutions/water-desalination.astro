@@ -8,7 +8,7 @@ import WaterLFRSplit from "../../components/sections/water-desalination/WaterLFR
 import WaterScope from "../../components/sections/water-desalination/WaterScope.astro";
 import WaterUseCases from "../../components/sections/water-desalination/WaterUseCases.astro";
 import WaterDeliverySteps from "../../components/sections/water-desalination/WaterDeliverySteps.astro";
-import WaterOtherSolutions from "../../components/sections/water-desalination/WaterOtherSolutions.astro";
+import OtherCoreSolutions from "../../components/sections/solutions/OtherCoreSolutions.astro";
 import SolutionsCTA from "../../components/sections/solutions/SolutionsCTA.astro";
 import Container from "../../components/primitives/Container.astro";
 import ProjectCard from "../../components/sections/projects/ProjectCard.astro";
@@ -44,11 +44,13 @@ const relatedProjects = relatedSlugs
         <h2 id="project-title" class="fluid-h2 mt-3">Related Projects</h2>
       </div>
 
-      <div class="mt-10 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto reveal">
+      <ul class="mt-10 flex flex-wrap justify-center gap-6 max-w-4xl mx-auto reveal">
         {relatedProjects.map((p) => (
-          <ProjectCard project={p} class="w-full max-w-sm sm:w-[calc(50%-12px)]" />
+          <li class="flex w-full max-w-sm sm:w-[calc(50%-12px)]">
+            <ProjectCard project={p} class="w-full" />
+          </li>
         ))}
-      </div>
+      </ul>
 
       <div class="mt-10 text-center reveal">
         <a
@@ -64,6 +66,6 @@ const relatedProjects = relatedSlugs
     </Container>
   </section>
 
-  <WaterOtherSolutions />
+  <OtherCoreSolutions active="water" />
   <SolutionsCTA />
 </BaseLayout>
