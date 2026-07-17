@@ -79,29 +79,3 @@ export interface SiteSettings {
   linkedinUrl?: string;
   twitterUrl?: string;
 }
-
-export interface FeatureCard {
-  id: string;
-  title: string;
-  description: string;
-  icon?: string;
-  imageUrl?: string;
-  href?: string;
-  order: number;
-}
-
-export interface FeaturedHighlight {
-  eyebrow: string;
-  title: string;
-  description: string;
-  badgeLabel: string;
-  badgeValue: string;
-  badgeSuffix: string;
-  gaugePercent: number;
-  imageUrl?: string;
-}
-
-export interface FeaturesSection {
-  highlight: FeaturedHighlight;
-  cards: FeatureCard[];
-}

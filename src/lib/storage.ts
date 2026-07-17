@@ -1,5 +1,5 @@
 import { put, list, del } from "@vercel/blob";
-import type { Enquiry, Solution, Project, SiteSettings, FeaturesSection, FeatureCard, CrmBlogPost } from "./types.js";
+import type { Enquiry, Solution, Project, SiteSettings, CrmBlogPost } from "./types.js";
 
 // Local dev in-memory fallback when BLOB_READ_WRITE_TOKEN is not set
 const memStore = new Map<string, string>();
@@ -191,65 +191,6 @@ export async function putSettings(settings: SiteSettings): Promise<void> {
   return putBlobJson(SETTINGS_KEY, settings);
 }
 
-// ─── Features Section ─────────────────────────────────────────────────────────
-
-const FEATURES_KEY = "empereal/features";
-
-const DEFAULT_FEATURES: FeaturesSection = {
-  highlight: {
-    eyebrow: "End-to-End EPC Expertise",
-    title: "From Design to Commissioning",
-    description:
-      "Single accountability from feasibility to long-term O&M — proven across 350+ projects in 15+ countries.",
-    badgeLabel: "Accountability:",
-    badgeValue: "100%",
-    badgeSuffix: "Single-Source EPC Partner",
-    gaugePercent: 100,
-    imageUrl: "/images/dewa-hq-main.jpg",
-  },
-  cards: [
-    {
-      id: "proven-track-record",
-      title: "Proven Global Track Record",
-      description: "350+ projects across 15+ countries, delivered on time and on budget.",
-      icon: `<circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18 15 15 0 0 1 0-18Z" fill="none" stroke="currentColor" stroke-width="1.25"/>`,
-      imageUrl: "/images/solar-park.jpg",
-      href: "/projects",
-      order: 1,
-    },
-    {
-      id: "innovation-core",
-      title: "Innovation at Core",
-      description: "Pioneering BIPV, agri-PV, floating solar and smart energy systems.",
-      icon: `<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>`,
-      imageUrl: "/images/mercedes-binghatti.jpg",
-      href: "/solutions",
-      order: 2,
-    },
-    {
-      id: "sustainability-first",
-      title: "Sustainability First",
-      description: "Every project delivers measurable carbon reduction and long-term value.",
-      icon: `<path d="M5 21c0-9 6-15 15-15 0 9-6 15-15 15Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M5 21c3-3 6-6 10-10" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>`,
-      imageUrl: "/images/sustainability-city.jpg",
-      href: "/about",
-      order: 3,
-    },
-  ],
-};
-
-export async function getFeatures(): Promise<FeaturesSection> {
-  const data = await getBlobJson<FeaturesSection>(FEATURES_KEY, DEFAULT_FEATURES);
-  return {
-    highlight: data.highlight ?? DEFAULT_FEATURES.highlight,
-    cards: [...(data.cards ?? [])].sort((a, b) => a.order - b.order),
-  };
-}
-
-export async function putFeatures(features: FeaturesSection): Promise<void> {
-  return putBlobJson(FEATURES_KEY, features);
-}
-
 // ─── Blog Posts ───────────────────────────────────────────────────────────────
 
 const BLOG_KEY = "empereal/blog";
@@ -298,7 +239,6 @@ const DATA_KEYS = [
   "empereal/blog",
   "empereal/projects",
   "empereal/settings",
-  "empereal/features",
 ];
 
 export function blobEnabled(): boolean {

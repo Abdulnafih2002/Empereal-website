@@ -64,11 +64,16 @@ const counts: Record<string, number> = {
           </thead>
           <tbody class="divide-y divide-slate-100">
             {filtered.map((e) => (
-              <tr class="hover:bg-orange/5 transition-colors">
+              <tr
+                data-enquiry-row
+                data-href={`/crm/enquiries/${e.id}`}
+                tabindex="0"
+                role="link"
+                aria-label={`Open enquiry from ${e.name}`}
+                class="cursor-pointer transition-colors hover:bg-orange/5 focus-visible:bg-orange/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-inset focus-visible:outline-orange"
+              >
                 <td class="px-5 py-3.5">
-                  <a href={`/crm/enquiries/${e.id}`} class="font-medium text-slate-800 hover:text-primary transition-colors">
-                    {e.name}
-                  </a>
+                  <span class="font-medium text-slate-800 transition-colors">{e.name}</span>
                   {e.company && <span class="mt-0.5 block text-xs text-slate-400">{e.company}</span>}
                 </td>
                 <td class="hidden px-5 py-3.5 text-slate-500 sm:table-cell">{e.email}</td>
@@ -89,3 +94,20 @@ const counts: Record<string, number> = {
     </div>
   )}
 </CRMLayout>
+
+<script>
+  document.querySelectorAll<HTMLTableRowElement>("[data-enquiry-row]").forEach((row) => {
+    const openEnquiry = () => {
+      const href = row.dataset.href;
+      if (href) window.location.href = href;
+    };
+
+    row.addEventListener("click", openEnquiry);
+    row.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openEnquiry();
+      }
+    });
+  });
+</script>
