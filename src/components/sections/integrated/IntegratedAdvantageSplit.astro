@@ -1,6 +1,9 @@
 ---
 import Container from "../../primitives/Container.astro";
 import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+import { projects } from "../../../data/projects.ts";
+
+const featuredProject = projects.find((project) => project.slug === "zamani-islands")!;
 
 const checks = [
   "Single point of accountability across all system components",
@@ -15,16 +18,17 @@ const checks = [
     <div class="grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
       <div class="group order-2 lg:order-1 reveal-left">
         <ImagePlaceholder
-          src="/images/zamani-island-1.jpg"
-          alt="Zamani Islands Resort — Maldives — fully renewable-powered resort"
+          src={featuredProject.image}
+          alt={featuredProject.imageAlt ?? featuredProject.title}
           aspect="4/3"
           tone="navy"
-          label="Zamani Islands Resort — Maldives"
+          label={`${featuredProject.title} — ${featuredProject.location}`}
           class="shadow-card-lg"
         >
           <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-primary-dark/90 via-primary-dark/45 to-transparent pointer-events-none">
             <p class="text-xs text-white/70 uppercase tracking-[0.14em]">Featured project</p>
-            <p class="mt-1 text-base lg:text-lg font-semibold text-white">Zamani Islands Resort — Fully renewable-powered resort</p>
+            <p class="mt-1 text-base lg:text-lg font-semibold text-white">{featuredProject.title}</p>
+            <p class="mt-1 max-w-xl text-xs leading-relaxed text-white/75 sm:text-sm">{featuredProject.summary}</p>
           </div>
         </ImagePlaceholder>
       </div>

@@ -122,8 +122,10 @@ const DEFAULT_SOLUTIONS: Solution[] = [
 ];
 
 export async function getSolutions(): Promise<Solution[]> {
-  const solutions = await getBlobJson<Solution[]>(SOLUTIONS_KEY, DEFAULT_SOLUTIONS);
-  return [...solutions].sort((a, b) => a.order - b.order);
+  // Solution areas are site-defined navigation content. An older production
+  // blob contains a sixth, now-merged "Integrated Energy Infrastructure"
+  // record, so reading that blob makes deployments diverge from this source.
+  return DEFAULT_SOLUTIONS.map((solution) => ({ ...solution }));
 }
 
 export async function putSolutions(solutions: Solution[]): Promise<void> {

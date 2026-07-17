@@ -1,35 +1,18 @@
 ---
 import Container from "../../primitives/Container.astro";
+import { projects as projectData } from "../../../data/projects.ts";
 
-const projects = [
-  {
-    country: "United Arab Emirates",
-    flag: "🇦🇪",
-    title: "DEWA HQ — Al Shera Building",
-    summary: "One of the largest integrated solar façade installations in the Middle East.",
-    image: "/images/dewa-hq-main.jpg",
-    gradient: "from-primary-dark via-primary to-accent/40",
-    href: "/projects#dewa-hq",
-  },
-  {
-    country: "United Arab Emirates",
-    flag: "🇦🇪",
-    title: "Masdar MC2",
-    summary: "High-performance rooftop and carport solar installation at one of the world's most sustainable cities.",
-    image: "/images/masdar-22.jpg",
-    gradient: "from-primary to-cta/50",
-    href: "/projects#masdar-mc2",
-  },
-  {
-    country: "United Arab Emirates",
-    flag: "🇦🇪",
-    title: "UAE Pavilion — Expo 2020 Dubai",
-    summary: "Landmark 98 kWp BIPV integration — one of the region's most architecturally significant solar projects.",
-    image: "/images/uae-pavilion-expo-2020.jpg",
-    gradient: "from-orange/40 via-primary to-primary-dark",
-    href: "/projects#uae-pavilion-expo",
-  },
-];
+const featuredSlugs = ["dewa-hq", "masdar-mc2", "uae-pavilion-expo"];
+const projects = featuredSlugs
+  .map((slug) => projectData.find((project) => project.slug === slug))
+  .filter((project): project is NonNullable<typeof project> => Boolean(project));
+
+const flags: Record<string, string> = { AE: "🇦🇪", SA: "🇸🇦", MV: "🇲🇻" };
+const gradients: Record<string, string> = {
+  "dewa-hq": "from-primary-dark via-primary to-accent/40",
+  "masdar-mc2": "from-primary to-cta/50",
+  "uae-pavilion-expo": "from-orange/40 via-primary to-primary-dark",
+};
 ---
 <section id="projects" class="section-pad bg-white" aria-labelledby="projects-title">
   <Container>
@@ -44,7 +27,7 @@ const projects = [
     <div class="mt-12 lg:mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3 reveal-stagger">
       {projects.map((p) => (
         <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
-          <div class={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${p.gradient}`}>
+          <div class={`relative aspect-[4/3] overflow-hidden bg-gradient-to-br ${gradients[p.slug] ?? "from-primary-dark via-primary to-accent/40"}`}>
             <img
               src={p.image}
               alt={`${p.title} — ${p.country}`}
@@ -56,7 +39,7 @@ const projects = [
             <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/30 to-transparent" aria-hidden="true"></div>
 
             <div class="absolute left-4 top-4 inline-flex items-center gap-2 rounded-md bg-accent px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.15em] text-primary-dark shadow">
-              <span aria-hidden="true">{p.flag}</span>
+              <span aria-hidden="true">{flags[p.countryCode] ?? "🌐"}</span>
               {p.country}
             </div>
           </div>
@@ -64,7 +47,7 @@ const projects = [
           <div class="flex flex-col flex-1 p-5 lg:p-6">
             <h3 class="font-display text-lg lg:text-xl font-semibold text-primary-dark">{p.title}</h3>
             <p class="mt-2 text-sm text-muted leading-relaxed flex-1">{p.summary}</p>
-            <a href={p.href} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent-dark transition-colors">
+            <a href={`/projects#${p.slug}`} class="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:text-accent-dark transition-colors">
               View case study
               <svg viewBox="0 0 20 20" class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" aria-hidden="true">
                 <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>

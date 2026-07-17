@@ -1,6 +1,9 @@
 ---
 import Container from "../../primitives/Container.astro";
 import ImagePlaceholder from "../../primitives/ImagePlaceholder.astro";
+import { projects } from "../../../data/projects.ts";
+
+const featuredProject = projects.find((project) => project.slug === "zamani-islands")!;
 
 const checks = [
   "Product water quality: < 5 ppm (ultra-pure)",
@@ -17,16 +20,17 @@ const tags = ["Seawater", "Brackish Water", "Industrial Effluent", "Thermal Stor
     <div class="grid gap-10 lg:gap-14 lg:grid-cols-2 lg:items-center">
       <div class="group order-2 lg:order-1 reveal-left">
         <ImagePlaceholder
-          src="/images/zamani-island-1.jpg"
-          alt="Zamani Islands Resort — solar-powered water systems, Maldives"
+          src={featuredProject.image}
+          alt={featuredProject.imageAlt ?? featuredProject.title}
           aspect="4/3"
           tone="ocean"
-          label="Zamani Islands Resort — Maldives"
+          label={`${featuredProject.title} — ${featuredProject.location}`}
           class="shadow-card-lg"
         >
           <div class="absolute inset-x-0 bottom-0 p-5 lg:p-6 bg-gradient-to-t from-[#003B64]/85 via-[#003B64]/40 to-transparent pointer-events-none">
             <p class="text-xs text-white/70 uppercase tracking-[0.14em]">Integrated Renewable Energy</p>
-            <p class="mt-1 text-base lg:text-lg font-semibold text-white">Zamani Islands Resort — South Malé Atoll, Maldives</p>
+            <p class="mt-1 text-base lg:text-lg font-semibold text-white">{featuredProject.title}</p>
+            <p class="mt-1 max-w-xl text-xs leading-relaxed text-white/75 sm:text-sm">{featuredProject.summary}</p>
           </div>
         </ImagePlaceholder>
       </div>

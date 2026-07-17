@@ -45,7 +45,7 @@ export const projects: Project[] = [
     outcome: "Significant on-site renewable energy generation with reduced operational carbon emissions, enhanced building efficiency, and long-term O&M coverage.",
     categories: ["bipv", "solar-pv"],
     tone: "navy",
-    image: "/images/dewa-hq-main.jpg",
+    image: "/images/dewa-hq-1.jpg",
     imageAlt: "DEWA HQ — Al Shera Building, Jaddaf, Dubai",
   },
   {
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     outcome: "Promotes sustainability messaging at national level and demonstrates the integration of art and clean energy.",
     categories: ["bipv"],
     tone: "sunset",
-    image: "/images/dewa-hq-2.jpg",
+    image: "/images/solar-park.jpg",
     imageAlt: "DEWA Portrait solar art installation, Al Qudra, Dubai",
   },
   {
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     outcome: "Generates clean energy directly from building façade while reducing operational energy demand and supporting EV mobility targets.",
     categories: ["bipv"],
     tone: "navy",
-    image: "/images/mercedes-binghatti.jpg",
+    image: "/images/mercedes-binghatti-tower-3.webp",
     imageAlt: "Mercedes-Benz Binghatti Tower BIPV façade, Dubai",
   },
   {
@@ -206,7 +206,7 @@ export const projects: Project[] = [
     outcome: "Enables green hydrogen production from renewable energy, supporting future clean fuel ecosystem development and UAE clean energy diversification.",
     categories: ["hydrogen"],
     tone: "forest",
-    image: "/images/acwa-hq.jpg",
+    image: "/images/dewa-rd-green-hydrogen.webp",
     imageAlt: "Green Hydrogen electrolyzer project, DEWA R&D Center, Al Qudra, Dubai",
   },
   {
