@@ -32,7 +32,8 @@
 
   h1, h2, h3, h4 {
     @apply font-display tracking-tight text-primary-dark;
-    letter-spacing: -0.015em;
+    letter-spacing: 0.012em !important;
+    text-wrap: balance;
   }
 
   ::selection {
@@ -59,17 +60,24 @@
   }
 
   .fluid-display {
-    font-size: clamp(2.25rem, 4.6vw + 0.4rem, 4rem);
-    line-height: 1.04;
-    letter-spacing: -0.025em;
+    font-size: clamp(2rem, 3.5vw + 0.25rem, 3.25rem);
+    line-height: 1.06;
+    letter-spacing: 0.012em !important;
     font-weight: 600;
+    text-wrap: balance;
   }
 
   .fluid-h2 {
-    font-size: clamp(1.75rem, 3vw + 0.5rem, 2.75rem);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(1.625rem, 2.25vw + 0.4rem, 2.25rem);
+    line-height: 1.14;
+    letter-spacing: 0.012em !important;
     font-weight: 600;
+    text-wrap: balance;
+  }
+
+  .font-display {
+    font-family: "Clash Display", "Satoshi", "Inter", system-ui, sans-serif;
+    letter-spacing: 0.012em !important;
   }
 
   .fluid-lead {
