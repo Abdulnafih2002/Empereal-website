@@ -264,10 +264,10 @@ export const projects: Project[] = [
 ];
 
 export const categoryLabels: Record<ProjectCategory, string> = {
-  bipv: "Architectural BIPV",
-  "solar-pv": "Solar Power Systems",
+  bipv: "Architectural BIPV & Solar Facade",
+  "solar-pv": "Solar PV Systems",
   "solar-thermal": "Solar Thermal",
-  desalination: "Desalination",
+  desalination: "Water Desalination",
   storage: "Energy Storage",
   integrated: "Integrated",
   utility: "Utility-Scale",

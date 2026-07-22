@@ -75,35 +75,35 @@ const SOLUTIONS_KEY = "empereal/solutions";
 
 const DEFAULT_SOLUTIONS: Solution[] = [
   {
+    id: "bipv",
+    title: "Architectural BIPV & Solar Facade",
+    description:
+      "Custom-designed solar façades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture and Dubai SHAMS/D33 compliant.",
+    icon: "bipv",
+    href: "/solutions/integrated-infrastructure",
+    order: 1,
+  },
+  {
     id: "solar-power-systems",
-    title: "Solar Power Systems",
+    title: "Solar PV Systems",
     description:
       "Utility-scale PV farms, commercial and industrial rooftops, carports, ground-mounted installations, single-axis trackers, and architectural BIPV. Full design, EPC, and O&M.",
     icon: "solar",
     href: "/solutions/solar-power-systems",
-    order: 1,
+    order: 2,
   },
   {
     id: "energy-storage",
-    title: "Energy Storage Systems",
+    title: "Energy Storage",
     description:
       "Battery energy storage integrated with solar PV, patented thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
     icon: "battery",
     href: "/solutions/energy-storage",
-    order: 2,
-  },
-  {
-    id: "water-desalination",
-    title: "Solar Thermal & Desalination",
-    description:
-      "Solar thermal desalination using LFR technology, PV-RO systems, forward osmosis, and standalone off-grid fresh water systems.",
-    icon: "drop",
-    href: "/solutions/water-desalination",
     order: 3,
   },
   {
     id: "green-hydrogen",
-    title: "Green Hydrogen Systems",
+    title: "Green Hydrogen",
     description:
       "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination, including sea-water-to-hydrogen projects and DEWA hydrogen plant.",
     icon: "h2",
@@ -111,12 +111,12 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     order: 4,
   },
   {
-    id: "bipv",
-    title: "Architectural BIPV & Integrated Solutions",
+    id: "water-desalination",
+    title: "Water Desalination",
     description:
-      "Custom-designed solar façades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture and Dubai SHAMS/D33 compliant.",
-    icon: "bipv",
-    href: "/solutions/integrated-infrastructure",
+      "Solar thermal desalination using LFR technology, PV-RO systems, forward osmosis, and standalone off-grid fresh water systems.",
+    icon: "drop",
+    href: "/solutions/water-desalination",
     order: 5,
   },
 ];

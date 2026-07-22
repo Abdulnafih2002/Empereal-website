@@ -1,0 +1,283 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Container from "../../components/primitives/Container.astro";
+import ProjectCard from "../../components/sections/projects/ProjectCard.astro";
+import { projects, categoryLabels, type Project } from "../../data/projects.ts";
+import { projectDetails } from "../../data/projectDetails.ts";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+const detail = projectDetails[project.slug] ?? {
+  overview: project.summary,
+  challenge: `The project required close coordination across ${project.categories
+    .map((category) => categoryLabels[category])
+    .join(", ")} disciplines while maintaining a clear focus on buildability, performance, and long-term operation.`,
+  solution: project.scope,
+  highlights: [project.scale, project.location, project.scope, project.outcome].filter(Boolean) as string[],
+};
+
+const projectIndex = projects.findIndex((item) => item.slug === project.slug);
+const previousProject = projectIndex > 0 ? projects[projectIndex - 1] : undefined;
+const nextProject = projectIndex < projects.length - 1 ? projects[projectIndex + 1] : undefined;
+
+const relatedProjects = projects
+  .filter((candidate) => candidate.slug !== project.slug)
+  .map((candidate, index) => ({
+    candidate,
+    index,
+    score: candidate.categories.filter((category) => project.categories.includes(category)).length,
+  }))
+  .sort((a, b) => b.score - a.score || a.index - b.index)
+  .slice(0, 3)
+  .map(({ candidate }) => candidate);
+
+const statusLabel = project.status === "ongoing" ? "Ongoing" : "Completed";
+const heroImage = project.image ?? "/images/solar-park.jpg";
+const heroImageAlt = project.imageAlt ?? `${project.title} in ${project.location}`;
+const facts = [
+  { label: "Capacity / Scale", value: project.scale },
+  { label: "Location", value: project.location },
+  project.client ? { label: "Client", value: project.client } : undefined,
+  project.year ? { label: "Timeline", value: project.year } : undefined,
+].filter((fact): fact is { label: string; value: string } => Boolean(fact));
+---
+
+<BaseLayout
+  title={`${project.title} | Empereal Projects`}
+  description={project.summary}
+  image={heroImage}
+  imageAlt={heroImageAlt}
+  preloadImage={heroImage}
+>
+  <article>
+    <header class="project-detail-hero relative isolate flex overflow-hidden bg-primary-dark text-white">
+      <div class="absolute inset-0 -z-10" aria-hidden="true">
+        <img
+          src={heroImage}
+          alt=""
+          class="h-full w-full object-cover"
+          loading="eager"
+          decoding="async"
+          onerror="this.remove()"
+        />
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/95 via-primary-dark/75 to-primary-dark/30"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-dark/90 via-primary-dark/20 to-primary-dark/35"></div>
+        <div class="absolute -bottom-28 -right-28 h-[480px] w-[480px] rounded-full bg-accent/15 blur-[140px]"></div>
+      </div>
+
+      <Container class="relative flex flex-1 flex-col justify-end pb-14 pt-32 sm:pb-16 sm:pt-40 lg:pb-20 lg:pt-44">
+        <div class="max-w-4xl">
+          <div class="hero-enter hero-enter-1 flex flex-wrap items-center gap-2">
+            <span
+              class:list={[
+                "inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em]",
+                project.status === "ongoing" ? "bg-accent text-primary-dark" : "bg-success text-white",
+              ]}
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-current" aria-hidden="true"></span>
+              {statusLabel}
+            </span>
+            {project.categories.map((category) => (
+              <span class="rounded-full border border-white/25 bg-white/[0.07] px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm">
+                {categoryLabels[category]}
+              </span>
+            ))}
+          </div>
+
+          <h1 class="project-hero-title hero-enter hero-enter-2 mt-5 text-white">
+            {project.title}
+          </h1>
+          <p class="hero-enter hero-enter-3 mt-6 max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg lg:text-xl">
+            {project.summary}
+          </p>
+        </div>
+      </Container>
+    </header>
+
+    <section class="border-b border-primary/10 bg-white" aria-label="Project facts">
+      <Container>
+        <dl class:list={["grid divide-y divide-primary/10 sm:divide-x sm:divide-y-0", facts.length === 4 ? "sm:grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-3"]}>
+          {facts.map((fact) => (
+            <div class="py-6 sm:px-6 sm:first:pl-0 lg:py-8">
+              <dt class="text-[10px] font-bold uppercase tracking-[0.16em] text-muted">{fact.label}</dt>
+              <dd class="mt-2 font-display text-lg font-semibold leading-tight text-primary-dark sm:text-xl">{fact.value}</dd>
+            </div>
+          ))}
+        </dl>
+      </Container>
+    </section>
+
+    <section class="section-pad bg-white" aria-labelledby="project-overview-title">
+      <Container>
+        <div class="grid gap-12 lg:grid-cols-[minmax(0,1.4fr)_minmax(18rem,0.6fr)] lg:gap-20">
+          <div class="reveal">
+            <p class="eyebrow">Project Overview</p>
+            <h2 id="project-overview-title" class="fluid-h2 mt-3 max-w-[18ch]">
+              Engineering shaped around the project.
+            </h2>
+            <p class="fluid-lead mt-6 text-muted">{detail.overview}</p>
+          </div>
+
+          <aside class="reveal-right rounded-2xl border border-primary/10 bg-surface p-6 shadow-card sm:p-7" aria-labelledby="project-brief-title">
+            <h2 id="project-brief-title" class="text-xl font-semibold text-primary-dark">Project brief</h2>
+            <dl class="mt-6 space-y-5">
+              <div>
+                <dt class="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Empereal scope</dt>
+                <dd class="mt-2 text-sm leading-6 text-ink">{project.scope}</dd>
+              </div>
+              <div class="border-t border-primary/10 pt-5">
+                <dt class="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Solution areas</dt>
+                <dd class="mt-2 flex flex-wrap gap-2">
+                  {project.categories.map((category) => (
+                    <span class="rounded-md border border-accent/25 bg-accent-soft px-2.5 py-1 text-xs font-semibold text-accent-dark">
+                      {categoryLabels[category]}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+              <div class="border-t border-primary/10 pt-5">
+                <dt class="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Project status</dt>
+                <dd class="mt-2 text-sm font-semibold text-primary-dark">{statusLabel}</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
+      </Container>
+    </section>
+
+    <section class="section-pad border-y border-primary/5 bg-surface" aria-labelledby="engineering-response-title">
+      <Container>
+        <div class="max-w-2xl reveal">
+          <p class="eyebrow">Engineering Response</p>
+          <h2 id="engineering-response-title" class="fluid-h2 mt-3">From design intent to deliverable infrastructure.</h2>
+          <p class="fluid-lead mt-5 text-muted">
+            A coordinated approach keeps technical performance, buildability, and long-term operation aligned from the outset.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-5 md:grid-cols-3 reveal-stagger">
+          <section class="rounded-2xl border border-primary/10 bg-white p-6 shadow-card lg:p-7">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-sm font-bold text-primary-dark">01</span>
+            <h3 class="mt-5 text-xl font-semibold text-primary-dark">Define the challenge</h3>
+            <p class="mt-3 text-sm leading-6 text-muted">{detail.challenge}</p>
+          </section>
+          <section class="rounded-2xl border border-primary/10 bg-white p-6 shadow-card lg:p-7">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-sm font-bold text-primary-dark">02</span>
+            <h3 class="mt-5 text-xl font-semibold text-primary-dark">Coordinate the solution</h3>
+            <p class="mt-3 text-sm leading-6 text-muted">{detail.solution}</p>
+          </section>
+          <section class="rounded-2xl border border-primary/10 bg-white p-6 shadow-card lg:p-7">
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent text-sm font-bold text-primary-dark">03</span>
+            <h3 class="mt-5 text-xl font-semibold text-primary-dark">Focus on long-term value</h3>
+            <p class="mt-3 text-sm leading-6 text-muted">
+              {project.outcome ?? "The finished solution is designed to provide dependable performance, operational clarity, and lasting clean-energy value."}
+            </p>
+          </section>
+        </div>
+      </Container>
+    </section>
+
+    <section class="section-pad relative isolate overflow-hidden bg-primary-dark text-white" aria-labelledby="project-highlights-title">
+      <div class="absolute -right-28 -top-28 h-96 w-96 rounded-full bg-accent/10 blur-[120px]" aria-hidden="true"></div>
+      <Container class="relative">
+        <div class="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:items-start lg:gap-20">
+          <div class="reveal">
+            <p class="eyebrow !text-accent">Project Value</p>
+            <h2 id="project-highlights-title" class="fluid-h2 mt-3 text-white">Measurable scope. Lasting impact.</h2>
+            <p class="mt-6 text-base leading-7 text-white/75">
+              Technical delivery and real-world value come together through a solution tailored to the project’s site, stakeholders, and operating priorities.
+            </p>
+            <a href="/contact" class="site-cta site-cta-on-dark press mt-8">Discuss a Similar Project</a>
+          </div>
+
+          <ol class="grid gap-3 sm:grid-cols-2 reveal-stagger">
+            {detail.highlights.map((highlight, index) => (
+              <li class="flex min-h-32 gap-4 rounded-xl border border-white/10 bg-white/[0.05] p-5 backdrop-blur-sm">
+                <span class="font-display text-sm font-semibold text-accent">{String(index + 1).padStart(2, "0")}</span>
+                <p class="text-sm font-medium leading-6 text-white/85">{highlight}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </Container>
+    </section>
+
+    <section class="section-pad bg-white" aria-labelledby="related-projects-title">
+      <Container>
+        <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between reveal">
+          <div>
+            <p class="eyebrow">Continue Exploring</p>
+            <h2 id="related-projects-title" class="fluid-h2 mt-3">Related projects</h2>
+          </div>
+          <a href="/projects" class="inline-flex items-center gap-2 text-sm font-semibold text-primary transition-colors hover:text-accent-dark">
+            View all projects
+            <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
+              <path d="M4 10h12m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        </div>
+
+        <ul class="mt-10 grid gap-6 md:grid-cols-3 reveal-stagger">
+          {relatedProjects.map((relatedProject) => (
+            <li class="flex"><ProjectCard project={relatedProject} class="w-full" /></li>
+          ))}
+        </ul>
+
+        <nav class="mt-14 grid gap-3 border-t border-primary/10 pt-8 sm:grid-cols-2" aria-label="Project navigation">
+          {previousProject ? (
+            <a href={`/projects/${previousProject.slug}`} class="group rounded-xl border border-primary/10 bg-surface p-5 transition-all hover:border-accent/40 hover:shadow-card">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Previous project</span>
+              <span class="mt-2 flex items-center gap-2 font-display font-semibold text-primary-dark">
+                <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">←</span>
+                {previousProject.title}
+              </span>
+            </a>
+          ) : <span aria-hidden="true"></span>}
+          {nextProject && (
+            <a href={`/projects/${nextProject.slug}`} class="group rounded-xl border border-primary/10 bg-surface p-5 text-right transition-all hover:border-accent/40 hover:shadow-card">
+              <span class="text-[10px] font-bold uppercase tracking-[0.14em] text-muted">Next project</span>
+              <span class="mt-2 flex items-center justify-end gap-2 font-display font-semibold text-primary-dark">
+                {nextProject.title}
+                <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              </span>
+            </a>
+          )}
+        </nav>
+      </Container>
+    </section>
+  </article>
+</BaseLayout>
+
+<style>
+  .project-detail-hero {
+    min-height: 78svh;
+  }
+
+  .project-hero-title {
+    max-width: 15ch;
+    font-family: "Clash Display", "Satoshi", sans-serif;
+    font-size: clamp(2.5rem, 5.6vw, 5.4rem);
+    font-weight: 600;
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  @media (min-width: 1024px) {
+    .project-detail-hero {
+      min-height: 86svh;
+    }
+  }
+</style>

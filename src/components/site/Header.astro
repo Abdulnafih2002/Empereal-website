@@ -3,6 +3,14 @@ import Container from "../primitives/Container.astro";
 
 type NavLink = { label: string; href: string; children?: { label: string; href: string; desc?: string }[] };
 
+const coreSolutions: NonNullable<NavLink["children"]> = [
+  { label: "Architectural BIPV & Solar Facade", href: "/solutions/integrated-infrastructure", desc: "BIPV, smart energy, power + water integration." },
+  { label: "Solar PV Systems", href: "/solutions/solar-power-systems", desc: "Utility, C&I, BIPV, O&M." },
+  { label: "Energy Storage", href: "/solutions/energy-storage", desc: "BESS & patented thermal storage." },
+  { label: "Green Hydrogen", href: "/solutions/green-hydrogen", desc: "Fuel-switching at scale." },
+  { label: "Water Desalination", href: "/solutions/water-desalination", desc: "Solar thermal & PV-RO systems." },
+];
+
 const nav: NavLink[] = [
   {
     label: "About Empereal",
@@ -19,11 +27,7 @@ const nav: NavLink[] = [
       { label: "Design & Consultancy Only", href: "/solutions/design-consultancy", desc: "Independent engineering, resource studies, and system design." },
       { label: "Implementation & Construction Only", href: "/solutions/implementation", desc: "Your execution partner for build, installation, and commissioning." },
       { label: "Full End-to-End EPC", href: "/solutions/full-epc", desc: "Complete project lifecycle delivery and accountability." },
-      { label: "Solar Power Systems", href: "/solutions/solar-power-systems", desc: "Utility, C&I, BIPV, O&M." },
-      { label: "Water & Desalination", href: "/solutions/water-desalination", desc: "Solar thermal & PV-RO systems." },
-      { label: "Energy Storage", href: "/solutions/energy-storage", desc: "BESS & patented thermal storage." },
-      { label: "Architectural BIPV & Integrated Solar Solutions", href: "/solutions/integrated-infrastructure", desc: "BIPV, smart energy, power + water integration." },
-      { label: "Green Hydrogen", href: "/solutions/green-hydrogen", desc: "Fuel-switching at scale." },
+      ...coreSolutions,
     ],
   },
   {
@@ -144,47 +148,15 @@ const solutionNavIcons: Record<string, string> = {
                       {/* Right Column: CORE SOLUTIONS */}
                       <div class="flex flex-col">
                         <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-muted">Core Solutions</p>
-                        <div class="mt-4 grid grid-cols-2 gap-4">
-                          {/* Col 1 */}
-                          <div class="flex flex-col gap-2">
-                            <a href="/solutions/solar-power-systems" class="group/item flex items-center gap-3 rounded-lg p-2.5 hover:bg-primary-50 transition-colors" role="menuitem">
+                        <div class="mt-4 grid grid-cols-2 gap-2">
+                          {coreSolutions.map((solution) => (
+                            <a href={solution.href} class="group/item flex items-center gap-3 rounded-lg p-2.5 hover:bg-primary-50 transition-colors" role="menuitem">
                               <div class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
-                                <img src={solutionNavIcons["/solutions/solar-power-systems"]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
+                                <img src={solutionNavIcons[solution.href]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
                               </div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Solar Power Systems</div>
+                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">{solution.label}</div>
                             </a>
-
-                            <a href="/solutions/energy-storage" class="group/item flex items-center gap-3 rounded-lg p-2.5 hover:bg-primary-50 transition-colors" role="menuitem">
-                              <div class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
-                                <img src={solutionNavIcons["/solutions/energy-storage"]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
-                              </div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Energy Storage</div>
-                            </a>
-
-                            <a href="/solutions/green-hydrogen" class="group/item flex items-center gap-3 rounded-lg p-2.5 hover:bg-primary-50 transition-colors" role="menuitem">
-                              <div class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
-                                <img src={solutionNavIcons["/solutions/green-hydrogen"]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
-                              </div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Green Hydrogen</div>
-                            </a>
-                          </div>
-
-                          {/* Col 2 */}
-                          <div class="flex flex-col gap-2">
-                            <a href="/solutions/water-desalination" class="group/item flex items-center gap-3 rounded-lg p-2.5 hover:bg-primary-50 transition-colors" role="menuitem">
-                              <div class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
-                                <img src={solutionNavIcons["/solutions/water-desalination"]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
-                              </div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Water & Desalination</div>
-                            </a>
-
-                            <a href="/solutions/integrated-infrastructure" class="group/item flex items-center gap-3 rounded-lg p-2.5 hover:bg-primary-50 transition-colors" role="menuitem">
-                              <div class="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
-                                <img src={solutionNavIcons["/solutions/integrated-infrastructure"]} alt="" class="h-6 w-6 object-contain" loading="lazy" decoding="async" />
-                              </div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Architectural BIPV &amp; Integrated Solar Solutions</div>
-                            </a>
-                          </div>
+                          ))}
                         </div>
                       </div>
                     </div>

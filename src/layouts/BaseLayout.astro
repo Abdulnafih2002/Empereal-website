@@ -75,7 +75,7 @@ const org = {
     contentUrl: absoluteLogo,
   },
   slogan: "Energizing Communities",
-  description: "Empereal delivers engineering-led solar power, energy storage, water desalination, architectural BIPV, and green hydrogen solutions.",
+  description: "Empereal delivers engineering-led Architectural BIPV & Solar Facade, Solar PV Systems, Energy Storage, Green Hydrogen, and Water Desalination solutions.",
   foundingDate: "2008",
   areaServed: ["Asia", "Middle East", "United States"],
 };
@@ -95,6 +95,8 @@ const pageSchemaType = pathname === "/about"
   ? "AboutPage"
   : pathname === "/contact"
     ? "ContactPage"
+    : /^\/projects\/[^/]+$/.test(pathname)
+      ? "ItemPage"
     : ["/projects", "/solutions", "/blog"].includes(pathname.replace(/\/$/, ""))
       ? "CollectionPage"
       : "WebPage";
