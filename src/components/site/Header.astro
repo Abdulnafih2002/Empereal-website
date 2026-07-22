@@ -24,9 +24,9 @@ const nav: NavLink[] = [
     label: "Solutions",
     href: "/solutions",
     children: [
-      { label: "Design & Consultancy Only", href: "/solutions/design-consultancy", desc: "Independent engineering, resource studies, and system design." },
+      { label: "Design & Consultancy", href: "/solutions/design-consultancy", desc: "Independent engineering, resource studies, and system design." },
       { label: "Implementation & Construction Only", href: "/solutions/implementation", desc: "Your execution partner for build, installation, and commissioning." },
-      { label: "Full End-to-End EPC", href: "/solutions/full-epc", desc: "Complete project lifecycle delivery and accountability." },
+      { label: "Full End-to-End EPC", href: "/solutions/full-epc", desc: "Full project delivery from concept to operational handover — tested & documented." },
       ...coreSolutions,
     ],
   },
@@ -108,14 +108,14 @@ const solutionNavIcons: Record<string, string> = {
                     <div class="grid grid-cols-[1.2fr_auto_2.8fr] gap-8">
                       {/* Left Column: HOW WE DELIVER */}
                       <div class="flex flex-col">
-                        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-muted">How We Deliver</p>
+                        <p class="text-[11px] font-bold uppercase tracking-[0.1em] text-muted">Our Solution</p>
                         <div class="mt-4 flex flex-col gap-3">
                           <a href="/solutions/design-consultancy" class="group/item flex gap-4 rounded-lg p-3 hover:bg-primary-50 transition-colors" role="menuitem">
                             <div class="shrink-0 inline-flex h-10 w-10 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/20">
                               <img src={solutionNavIcons["/solutions/design-consultancy"]} alt="" class="h-7 w-7 object-contain" loading="lazy" decoding="async" />
                             </div>
                             <div>
-                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Design & Consultancy Only</div>
+                              <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Design & Consultancy</div>
                               <div class="text-xs text-muted mt-1">Independent engineering, resource studies, and system design.</div>
                             </div>
                           </a>
@@ -136,7 +136,7 @@ const solutionNavIcons: Record<string, string> = {
                             </div>
                             <div>
                               <div class="text-sm font-semibold text-primary-dark group-hover/item:text-primary transition-colors">Full End-to-End EPC</div>
-                              <div class="text-xs text-muted mt-1">Complete project lifecycle delivery and accountability.</div>
+                              <div class="text-xs text-muted mt-1">Full project delivery from concept to operational handover — tested &amp; documented.</div>
                             </div>
                           </a>
                         </div>
@@ -263,7 +263,7 @@ const solutionNavIcons: Record<string, string> = {
         <div class="pb-2 pl-3">
           {item.label === "Solutions" ? (
             <>
-              <div class="px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-muted">How We Deliver</div>
+              <div class="px-3 py-1.5 text-xs font-bold uppercase tracking-[0.1em] text-muted">Our Solution</div>
               {item.children.slice(0, 3).map((c) => (
                 <a
                   href={c.href}
