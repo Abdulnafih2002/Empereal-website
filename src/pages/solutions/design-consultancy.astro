@@ -9,21 +9,24 @@ const relatedProject = projects.find((project) => project.slug === "dewa-hq")!;
 
 const scopeItems = [
   {
-    group: "Technical Advisory",
+    group: "Technical Advisory & Design",
     items: [
       "Feasibility studies and site assessments",
-      "Architectural and structural solar design",
-      "Electrical engineering and system sizing",
-      "Energy yield modeling and financial analysis",
+      "Architectural, structural and electrical design",
+      "Energy yield modelling and financial analysis",
+      "Authority approvals, permitting and tender documentation",
+      "3D modelling and visual integration studies",
+      "Net-zero suitability ratings and certification guidance",
     ],
   },
   {
-    group: "Engineering Services",
+    group: "Implementation & Construction",
     items: [
-      "Authority approval documentation and permitting support",
-      "Net-zero suitability ratings and certification guidance",
-      "Technical specifications and tender documentation",
-      "3D modeling and visual integration studies",
+      "Procurement of high-quality components",
+      "Civil, structural and electrical works",
+      "Module mounting, installation and BOS integration",
+      "Testing, commissioning and performance verification",
+      "Grid connection, as-built documentation and handover",
     ],
   },
 ];
@@ -96,7 +99,7 @@ const relatedModels = [
 ---
 <BaseLayout
   title="Design & Consultancy Only | Empereal Solutions"
-  description="Independent engineering guidance from the earliest stage of a project. We provide feasibility studies, technical and architectural design, and authority approvals — positioning your project for success before a single panel is procured."
+  description="Independent technical guidance from the earliest project stage through feasibility, detailed design, and full construction execution when required."
   image="/images/mercedes-binghatti.jpg"
   imageAlt="Empereal architectural solar design and consultancy project"
 >
@@ -128,12 +131,12 @@ const relatedModels = [
 
     <Container class="relative flex-1 flex items-start pt-32 sm:items-center sm:pt-0">
       <div class="pb-16 sm:py-20 lg:py-24 max-w-3xl">
-        <p class="eyebrow !text-accent hero-enter hero-enter-1">Engagement Model</p>
+        <p class="eyebrow !text-accent hero-enter hero-enter-1">Our Solution</p>
         <h1 id="design-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
-          Design & <span class="text-accent">Consultancy Only</span>
+          Independent engineering, resource studies, and <span class="text-accent">system design.</span>
         </h1>
         <p class="fluid-lead mt-6 text-white/85 max-w-2xl hero-enter hero-enter-3">
-          Independent engineering guidance from the earliest stage of a project. We provide feasibility studies, technical and architectural design, and authority approvals — positioning your project for success before a single panel is procured.
+          We provide independent technical guidance from the earliest stage of your project — through feasibility, detailed design, and, when required, full construction execution. Whether you need pure advisory support or a seamless design-to-build partner, we deliver with full technical accountability.
         </p>
 
         <div class="mt-8 flex flex-wrap items-center gap-3 hero-enter hero-enter-4">
@@ -319,15 +322,8 @@ const relatedModels = [
 
 <style>
   .page-hero {
-    min-height: calc(100vh - 6rem);
-    min-height: calc(100svh - 6rem);
-    min-height: calc(100dvh - 6rem);
-  }
-  @media (min-width: 1024px) {
-    .page-hero {
-      min-height: calc(100vh - 7rem);
-      min-height: calc(100svh - 7rem);
-      min-height: calc(100dvh - 7rem);
-    }
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
   }
 </style>

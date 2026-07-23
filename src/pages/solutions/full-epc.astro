@@ -8,21 +8,21 @@ const relatedProject = projects.find((project) => project.slug === "dewa-hq")!;
 
 const scopeItems = [
   {
-    group: "Technical Advisory",
+    group: "Design & Advisory",
     items: [
-      "Complete feasibility studies and site assessments",
-      "Full architectural, structural, and electrical design",
-      "Component procurement and supply chain management",
-      "Complete civil, structural, and electrical construction",
+      "Feasibility studies and site assessments",
+      "Full architectural, structural and electrical design",
+      "Energy yield modelling and financial analysis",
+      "Authority approvals and permitting support",
     ],
   },
   {
-    group: "Engineering Services",
+    group: "Execution & Operations",
     items: [
-      "Testing, commissioning, and performance certification",
-      "Authority approvals and grid connection management",
-      "Net-zero sustainability ratings and compliance documentation",
-      "O&M services and long-term performance monitoring",
+      "Procurement and supply chain management",
+      "Civil, structural and electrical construction",
+      "Testing, commissioning and performance certification",
+      "Long-term O&M and performance monitoring",
     ],
   },
 ];
@@ -132,7 +132,7 @@ const relatedModels = [
       <div class="pb-16 sm:py-20 lg:py-24 max-w-3xl">
         <p class="eyebrow !text-accent hero-enter hero-enter-1">Our Solution</p>
         <h1 id="epc-hero-title" class="fluid-display mt-4 text-white hero-enter hero-enter-2">
-          Full End-to-<span class="text-accent">End EPC</span>
+          Full End-to-End <span class="text-accent">EPC</span>
         </h1>
         <p class="fluid-lead mt-6 text-white/85 max-w-2xl hero-enter hero-enter-3">
           Delivering the complete project from initial concept through procurement, installation, testing &amp; commissioning and handover, providing the client with a fully operational, tested, and documented project.
@@ -173,7 +173,7 @@ const relatedModels = [
         <p class="eyebrow">Scope of Services</p>
         <h2 id="epc-scope-title" class="fluid-h2 mt-3">What we deliver</h2>
         <p class="fluid-lead mt-5 text-muted">
-          Our services span the full project lifecycle, delivered with technical rigour and industry-leading expertise.
+          Complete project lifecycle management under a single contract — from concept to long-term operation.
         </p>
       </div>
 
@@ -320,15 +320,8 @@ const relatedModels = [
 
 <style>
   .page-hero {
-    min-height: calc(100vh - 6rem);
-    min-height: calc(100svh - 6rem);
-    min-height: calc(100dvh - 6rem);
-  }
-  @media (min-width: 1024px) {
-    .page-hero {
-      min-height: calc(100vh - 7rem);
-      min-height: calc(100svh - 7rem);
-      min-height: calc(100dvh - 7rem);
-    }
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
   }
 </style>

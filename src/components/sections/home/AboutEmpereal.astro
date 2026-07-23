@@ -16,47 +16,47 @@ const benefits = [
 ---
 <section id="about" class="section-pad bg-white" aria-labelledby="about-title">
   <Container>
-    <div class="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center xl:gap-16">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center lg:gap-12 xl:gap-16">
       <div class="reveal-left">
         <p class="inline-flex rounded-full border border-primary/15 bg-white px-3 py-1 text-[11px] font-medium text-primary-dark shadow-sm">
           Who Are We?
         </p>
-        <h2 id="about-title" class="mt-4 max-w-xl font-display text-[clamp(2.35rem,4.2vw,4.5rem)] font-semibold leading-[0.98] text-primary-dark">
+        <h2 id="about-title" class="mt-4 max-w-[18ch] font-display text-[clamp(2rem,3.2vw,3.25rem)] font-semibold leading-[1.04] text-primary-dark">
           Engineering Specialists in Clean Energy Systems
         </h2>
-        <p class="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+        <p class="mt-6 max-w-2xl text-base leading-7 text-muted">
           Empereal designs and delivers high-performance Architectural BIPV &amp; Solar Facade, Solar PV Systems, Energy Storage, Green Hydrogen, and Water Desalination solutions across Asia and the Middle East. We specialize in complex projects that demand both technical excellence and architectural quality.
         </p>
-
-        <div class="mt-9 grid gap-7 sm:grid-cols-2 sm:gap-8">
-          {benefits.map((benefit) => (
-            <article class="max-w-xs">
-              <img
-                src={benefit.icon}
-                alt=""
-                class="h-11 w-11 object-contain mix-blend-multiply"
-                loading="lazy"
-                decoding="async"
-                aria-hidden="true"
-              />
-              <h3 class="mt-4 text-base font-semibold text-primary-dark">{benefit.title}</h3>
-              <p class="mt-2 text-sm leading-relaxed text-muted">{benefit.description}</p>
-            </article>
-          ))}
-        </div>
       </div>
 
-      <figure class="relative reveal-right">
-        <div class="relative aspect-[16/10] overflow-hidden bg-white">
+      <figure class="reveal-right">
+        <img
+          src="/images/logos/about-us-section-map.webp"
+          alt="Map showing Empereal's global presence across the United States, Saudi Arabia, United Arab Emirates, India, Maldives, and Singapore"
+          class="h-auto w-full object-contain"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+    </div>
+
+    <div class="mt-10 grid gap-8 border-t border-primary/10 pt-8 sm:grid-cols-2 lg:mt-12 lg:gap-16 reveal-stagger">
+      {benefits.map((benefit) => (
+        <article class="flex max-w-xl items-start gap-4">
           <img
-            src="/images/logos/about-us-section-map.webp"
-            alt="Map showing Empereal's global presence across the United States, Saudi Arabia, United Arab Emirates, India, Maldives, and Singapore"
-            class="absolute inset-0 h-full w-full object-contain object-center"
+            src={benefit.icon}
+            alt=""
+            class="h-10 w-10 shrink-0 object-contain mix-blend-multiply"
             loading="lazy"
             decoding="async"
+            aria-hidden="true"
           />
-        </div>
-      </figure>
+          <div class="min-w-0">
+            <h3 class="text-sm font-semibold text-primary-dark sm:text-base">{benefit.title}</h3>
+            <p class="mt-2 text-sm leading-6 text-muted">{benefit.description}</p>
+          </div>
+        </article>
+      ))}
     </div>
   </Container>
 </section>
