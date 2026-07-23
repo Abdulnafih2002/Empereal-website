@@ -86,13 +86,6 @@ const steps = [
 
 const relatedModels = [
   {
-    title: "Implementation & Construction Only",
-    desc: "Once the design is complete and you're ready to build, we step in as your execution partner — handling procurement, construction, installation, testing, and commissioning, on time and to spec.",
-    image: "/images/dewa-hq-1.jpg",
-    href: "/solutions/implementation",
-    gradient: "from-primary-dark via-primary to-accent/40",
-  },
-  {
     title: "Full End-to-End EPC",
     desc: "Complete project lifecycle management under a single contract — from feasibility through design, procurement, construction, commissioning, and long-term O&M. We take full accountability from concept to operation.",
     image: "/images/feature-epc.jpg",
@@ -293,7 +286,7 @@ const relatedModels = [
         </p>
       </div>
 
-      <div class="mt-12 lg:mt-16 grid gap-5 md:grid-cols-2 reveal-stagger">
+      <div class="mx-auto mt-12 grid max-w-3xl gap-5 lg:mt-16 reveal-stagger">
         {relatedModels.map((m) => (
           <article class="group relative flex flex-col overflow-hidden rounded-2xl bg-white border border-primary/10 shadow-card hover:shadow-card-lg hover:-translate-y-1 transition-all duration-300">
             <div class={`relative aspect-[16/9] overflow-hidden bg-gradient-to-br ${m.gradient}`}>

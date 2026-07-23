@@ -9,7 +9,6 @@ const PUBLIC_ROUTES = [
   "/leadership",
   "/solutions",
   "/solutions/design-consultancy",
-  "/solutions/implementation",
   "/solutions/full-epc",
   "/solutions/solar-power-systems",
   "/solutions/water-desalination",

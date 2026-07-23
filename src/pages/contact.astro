@@ -30,7 +30,7 @@ const contactInfo = [
   },
   {
     title: "Business Hours",
-    value: "Saturday – Thursday | 9 am to 6 pm",
+    value: "Monday – Saturday | 9:00 am – 6:00 pm",
     icon: `<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 6v6l4 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>`,
   },
   {
@@ -53,7 +53,7 @@ const offices: Office[] = [
   {
     name: "Empereal Singapore",
     address: "7500A Beach Road,\n#14-302 The PLAZA,\nSingapore 199591",
-    hours: "Monday – Friday | 9 am to 6 pm",
+    hours: "Monday – Friday | 9:00 am – 6:00 pm",
     tag: "HQ",
   },
   {
@@ -61,19 +61,19 @@ const offices: Office[] = [
     address: "Office 211, Arenco Building 4,\nDubai Investments Park,\nDubai, UAE",
     phone: "+971 4 883 5515",
     mobile: "+971 56 376 2386",
-    hours: "Saturday – Thursday | 9 am to 6 pm",
+    hours: "Monday – Saturday | 9:00 am – 6:00 pm",
   },
   {
     name: "Empereal India",
     address: "366, Thudiyalur Road, KG Campus,\nSaravanampatti, Coimbatore – 641035,\nTamil Nadu, India",
     phone: "+91 422 661 9991",
-    hours: "Monday – Friday | 8:30 am – 6:00 pm\nSaturday | 8:30 am – 3:00 pm\nSunday | Closed",
+    hours: "Monday – Friday | 8:30 am – 6:00 pm\nSaturday | 8:30 am – 3:00 pm",
   },
   {
     name: "Empereal USA",
     address: "7480 Birdwood Avenue,\n#1120 McLean,\nVA 22102, USA",
     phone: "+1 973 747 7323",
-    hours: "Monday – Friday | 9 am to 6 pm",
+    hours: "Monday – Friday | 9:00 am – 6:00 pm",
   },
 ];
 ---
@@ -260,44 +260,46 @@ const offices: Office[] = [
       <div class="mt-10 grid items-stretch gap-5 sm:grid-cols-2 2xl:grid-cols-4 reveal-stagger">
         {offices.map((office) => (
           <article class="flex h-full min-w-0 flex-col rounded-2xl border border-primary/10 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-card sm:p-6">
-            <div class="flex flex-1 flex-col">
-              <div class="mb-5 flex min-w-0 items-start gap-3">
-                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/25">
-                  <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M10 12h4M10 8h4M14 21v-3a2 2 0 0 0-4 0v3M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
-                  </svg>
-                </div>
-                <div class="min-w-0 flex-1">
-                  <h3 class="text-sm font-bold leading-snug text-primary-dark sm:text-base">{office.name}</h3>
-                </div>
-                {office.tag && (
-                  <span class="inline-flex shrink-0 items-center rounded-full bg-accent/20 px-2 py-0.5 text-3xs font-bold uppercase tracking-wider text-primary-dark">
-                    {office.tag}
-                  </span>
+            <header class="grid min-h-12 min-w-0 grid-cols-[2.5rem_minmax(0,1fr)_auto] items-start gap-3">
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-primary-dark ring-1 ring-accent/25">
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M10 12h4M10 8h4M14 21v-3a2 2 0 0 0-4 0v3M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
+                </svg>
+              </div>
+              <h3 class="min-w-0 text-sm font-bold leading-snug text-primary-dark sm:text-base">{office.name}</h3>
+              {office.tag ? (
+                <span class="inline-flex shrink-0 items-center rounded-full bg-accent/20 px-2 py-0.5 text-3xs font-bold uppercase tracking-wider text-primary-dark">
+                  {office.tag}
+                </span>
+              ) : (
+                <span aria-hidden="true"></span>
+              )}
+            </header>
+
+            <address class="mt-5 min-h-24 min-w-0 whitespace-pre-line text-sm not-italic leading-6 text-muted">{office.address}</address>
+
+            <div class="mt-5 flex flex-1 flex-col border-t border-primary/10 pt-4">
+              <div class="min-h-[3.25rem] space-y-3">
+                {office.phone && (
+                  <a href={`tel:${office.phone.replace(/\s+/g, '')}`} class="grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] items-start gap-2.5 text-xs font-semibold leading-5 text-muted transition-colors hover:text-primary sm:text-[13px]">
+                    <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span>Tel: {office.phone}</span>
+                  </a>
+                )}
+                {office.mobile && (
+                  <a href={`tel:${office.mobile.replace(/\s+/g, '')}`} class="grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] items-start gap-2.5 text-xs font-semibold leading-5 text-muted transition-colors hover:text-primary sm:text-[13px]">
+                    <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 1 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    <span>Mob: {office.mobile}</span>
+                  </a>
                 )}
               </div>
-              <address class="min-w-0 whitespace-pre-line text-sm not-italic leading-6 text-muted">{office.address}</address>
-            </div>
-            {(office.phone || office.mobile || office.hours) && (
-            <div class="mt-5 space-y-3 border-t border-primary/10 pt-4 sm:mt-6">
-              {office.phone && (
-                <a href={`tel:${office.phone.replace(/\s+/g, '')}`} class="grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] items-start gap-2.5 text-xs font-semibold leading-5 text-muted transition-colors hover:text-primary sm:text-[13px]">
-                  <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                  <span>Tel: {office.phone}</span>
-                </a>
-              )}
-              {office.mobile && (
-                <a href={`tel:${office.mobile.replace(/\s+/g, '')}`} class="grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] items-start gap-2.5 text-xs font-semibold leading-5 text-muted transition-colors hover:text-primary sm:text-[13px]">
-                  <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 1 2.81.7A2 2 0 0 1 22 16.92z"/>
-                  </svg>
-                  <span>Mob: {office.mobile}</span>
-                </a>
-              )}
+
               {office.hours && (
-                <div class="grid min-w-0 grid-cols-[1rem_minmax(0,1fr)] items-start gap-2.5 text-xs font-semibold leading-5 text-muted sm:text-[13px]">
+                <div class="mt-4 grid min-h-[4.75rem] min-w-0 grid-cols-[1rem_minmax(0,1fr)] items-start gap-2.5 border-t border-primary/10 pt-4 text-xs font-semibold leading-5 text-muted sm:text-[13px]">
                   <svg viewBox="0 0 24 24" class="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
                     <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2" stroke-linecap="round"/>
                   </svg>
@@ -305,7 +307,6 @@ const offices: Office[] = [
                 </div>
               )}
             </div>
-            )}
           </article>
         ))}
       </div>

@@ -1,191 +1,345 @@
 export interface ProjectDetail {
+  title: string;
+  tagline: string;
   overview: string;
-  challenge: string;
-  solution: string;
+  motivationTitle: string;
+  motivation: string;
   highlights: string[];
+  location: string;
+  client: string;
+  status: string;
+  statusType: "completed" | "ongoing";
+  systemSize: string;
+  stakeholders: string;
+  scope: string;
 }
 
 export const projectDetails: Record<string, ProjectDetail> = {
   "dewa-hq": {
+    title: "New DEWA HQ (Al Shera Building)",
+    tagline:
+      "World’s largest Net-Zero Building – comprehensive BIPV integration across roof, façade and podiums",
     overview:
-      "Al Shera brings rooftop, façade, podium, and ground-mounted photovoltaics together as one coordinated 5,012 kWp generation asset. The project demonstrates how renewable energy can become part of a landmark building’s architecture while remaining practical to operate and maintain.",
-    challenge:
-      "Multiple solar typologies had to work across different architectural, structural, and electrical conditions. Every interface also needed to align with authority approvals, generation studies, and the building’s net-zero sustainability objectives.",
-    solution:
-      "Empereal provided integrated architectural, structural, and electrical engineering through procurement, installation, approvals, and long-term O&M. Seven robotic cleaning systems were incorporated to support consistent upkeep across the extensive solar surfaces.",
+      "A landmark grid-connected architectural solar installation featuring solar roof, façade, podiums, and ground-mounted hybrid system (PVT). The project includes 7 robotic cleaning systems to maximize productivity and energy yield in desert conditions. Recognized as one of the world’s largest Net-Zero buildings, this project integrates solar as a core architectural and structural element rather than an add-on system.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To create one of the world’s largest Net-Zero buildings by transforming the entire building envelope into a high-performance energy generator — delivering both architectural excellence and strong financial returns.",
     highlights: [
-      "5,012 kWp grid-connected architectural solar installation",
-      "Roof, façade, podium, and ground-mounted PV integrated as one system",
-      "Seven robotic cleaning systems supporting long-term operation",
-      "Three years of operations and maintenance coverage",
+      "World’s largest Net-Zero Building ambition",
+      "Full BIPV integration across roof, façade and podium levels",
+      "Hybrid PVT (Photovoltaic-Thermal) system for dual energy generation",
+      "7 robotic cleaning systems for optimized performance",
+      "Complete lifecycle support including 3-year O&M",
+      "High ROI generated directly from the building envelope",
     ],
+    location: "Jaddaf, Dubai, UAE",
+    client: "Dubai Electricity & Water Authority (DEWA)",
+    status: "Under Construction – Completion 2026",
+    statusType: "ongoing",
+    systemSize: "4,983 – 5,100 kWp BIPV",
+    stakeholders: "DEWA, UNEC",
+    scope:
+      "Architectural, Structural & Electrical Design, Engineering, Procurement, Installation, Authority Approvals, Generation Studies, Net-Zero Sustainability Ratings, and 3 Years O&M",
   },
   "masdar-mc2": {
+    title: "Masdar MC2",
+    tagline:
+      "Net-Zero building within Masdar City with full design-to-installation delivery",
     overview:
-      "Masdar MC2 is a 1,610 kWp solar installation developed within Masdar City’s high-performance built environment. The system combines architectural and electrical integration to support the building’s net-zero energy ambitions and reduce long-term grid dependence.",
-    challenge:
-      "The solar system needed to complement the development’s architecture while meeting structural, electrical, authority, and generation-performance requirements within a tightly coordinated net-zero framework.",
-    solution:
-      "Empereal aligned architectural, structural, and electrical design with procurement, installation, authority approvals, generation studies, and sustainability-rating requirements to create a coherent building-scale energy system.",
+      "A significant Net-Zero building project inside Masdar City. Empereal is delivering end-to-end services from concept design through installation and certification support, ensuring the solar system contributes meaningfully to the building’s net-zero energy performance targets while maintaining architectural integrity.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To achieve true Net-Zero performance for a landmark Masdar City building through carefully engineered, cost-effective renewable energy that reinforces Masdar’s global leadership in sustainability.",
     highlights: [
-      "1,610 kWp building-integrated solar capacity",
-      "Designed to support net-zero building performance",
-      "Architectural, structural, and electrical disciplines coordinated together",
-      "Authority approvals and generation studies included in the delivery scope",
+      "Full design-to-installation scope under one partner",
+      "Net-Zero building certification support",
+      "Cost-effective renewable energy generation",
+      "Seamless integration with Masdar City’s sustainability ecosystem",
     ],
+    location: "Masdar City, Abu Dhabi, UAE",
+    client: "Masdar",
+    status: "Scheduled Completion: October 2025",
+    statusType: "ongoing",
+    systemSize: "1,610 kWp",
+    stakeholders: "Masdar",
+    scope:
+      "Architectural, Structural & Electrical Design, Engineering, Procurement, Installation, Authority Approvals, Generation Studies and Net-Zero Sustainability Ratings",
   },
   "masdar-10mw": {
+    title: "Masdar 10 MW PV Plant – Rehabilitation",
+    tagline:
+      "Rehabilitation and performance upgrade of a pioneering 10 MW solar asset",
     overview:
-      "This project focuses on restoring the performance and useful life of Masdar City’s existing 10 MWp photovoltaic plant. Rehabilitation offers a resource-efficient route to renewed generation by improving an established asset instead of replacing it wholesale.",
-    challenge:
-      "An existing utility-scale plant requires a different engineering approach from a new-build project: current conditions, legacy interfaces, maintainability, and performance priorities must be understood before refurbishment work is defined.",
-    solution:
-      "Empereal’s role centers on rehabilitation and refurbishment of the PV plant, with interventions directed toward restoring dependable generation efficiency and improving long-term asset performance.",
+      "Empereal is undertaking the full rehabilitation and refurbishment of the pioneering Masdar 10 MW solar PV plant. The project focuses on upgrading performance, improving reliability, and extending the operational life of one of the region’s early large-scale solar installations while bringing it in line with modern net-zero and sustainability standards.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To extend the life and significantly improve the performance of a pioneering solar asset, proving that intelligent rehabilitation can deliver high-value renewable energy with lower embodied carbon than new construction.",
     highlights: [
-      "10 MWp existing solar PV asset",
-      "Rehabilitation-led approach to lifecycle extension",
-      "Performance restoration prioritized over full replacement",
-      "Ongoing delivery within Masdar City",
+      "Rehabilitation of a landmark 10 MW solar asset",
+      "Performance optimization and technology upgrades",
+      "Extension of plant operational life",
+      "Alignment with current Net-Zero frameworks",
     ],
+    location: "Masdar, Abu Dhabi, UAE",
+    client: "Masdar",
+    status: "Ongoing – Target October 2025",
+    statusType: "ongoing",
+    systemSize: "10 MWp Solar PV Plant",
+    stakeholders: "Masdar",
+    scope:
+      "Complete Rehabilitation & Refurbishment of the existing Masdar 10 MW PV plant",
   },
   "dewa-portrait": {
+    title: "DEWA Solar Portrait",
+    tagline:
+      "World’s first solar portrait – art, architecture and renewable energy combined",
     overview:
-      "Located at the entrance to the Mohammed bin Rashid Al Maktoum Solar Park, this installation turns photovoltaic technology into a public artwork. The 2.4 kWp composition celebrates a national sustainability vision while remaining a functioning solar asset.",
-    challenge:
-      "The design had to communicate a recognizable portrait and a clear civic message while respecting the technical geometry, orientation, support, and electrical requirements of photovoltaic modules.",
-    solution:
-      "Empereal developed and executed a bespoke solar composition in which visual form and energy generation were considered together, creating a distinctive installation appropriate for a high-profile public setting.",
+      "A unique and highly symbolic installation: the world’s first solar portrait, created as a sustainability message celebrating His Highness Sheikh Mohammed bin Rashid Al Maktoum’s vision. Located at the entrance to the Sheikh Mohammed Solar Park, the portrait itself generates clean electricity while serving as an iconic public art and awareness piece.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To create the world’s first solar portrait — a powerful public statement that turns clean energy into art and celebrates His Highness Sheikh Mohammed’s vision for a sustainable Dubai.",
     highlights: [
-      "Recognized as the world’s first solar portrait installation",
-      "2.4 kWp artistic photovoltaic system",
-      "Purpose-designed for the entrance to a major solar park",
-      "Combines public art, engineering, and sustainability communication",
+      "World’s first solar portrait",
+      "Celebrates HH Sheikh Mohammed’s sustainability vision",
+      "Located at the entrance of Sheikh Mohammed Solar Park",
+      "Combines art, architecture and renewable energy generation",
+      "Powerful public communication of DEWA’s clean energy leadership",
     ],
+    location: "Al Qudra, Dubai (Entrance to Sheikh Mohammed Solar Park)",
+    client: "Dubai Electricity & Water Authority (DEWA)",
+    status: "Completed – July 2024",
+    statusType: "completed",
+    systemSize: "2.4 kWp",
+    stakeholders: "DEWA",
+    scope:
+      "Design, engineering and installation of the world’s first solar portrait",
   },
   "mercedes-binghatti": {
+    title: "Mercedes-Benz Binghatti Tower",
+    tagline:
+      "Iconic BIPV façade powering communal spaces and enabling carbon-free EV travel",
     overview:
-      "The Mercedes-Benz Binghatti Tower uses a custom 650.92 kWp photovoltaic façade to turn the building envelope into a clean-energy asset. Solar generation is designed into the architectural identity rather than added as a conventional rooftop layer.",
-    challenge:
-      "A premium high-rise façade demands close control of appearance, module customization, structural interfaces, electrical coordination, and energy performance. The solar elements must read as part of the architecture at every scale.",
-    solution:
-      "Empereal is engineering and integrating custom BIPV modules and solar glass, coordinating façade design with performance optimization so the system can support communal loads and the development’s electric-mobility goals.",
+      "Mercedes-Benz Places features an innovative Building-Integrated Photovoltaic façade. The iconic tower is clad in custom-designed solar modules that harvest energy to power communal spaces. The system is uniquely engineered to provide up to 20,000 km of carbon-free electric vehicle travel annually for residents — creating a tangible link between the building’s energy production and sustainable mobility.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To integrate solar energy so seamlessly into the tower’s iconic façade that it powers communal spaces and enables residents to drive up to 20,000 km of carbon-free EV travel every year.",
     highlights: [
-      "650.92 kWp custom BIPV façade",
-      "Solar glass and module design integrated with the tower architecture",
-      "Clean energy allocated to communal spaces",
-      "Designed to support up to 20,000 km of carbon-free EV travel annually",
+      "Custom-designed solar façade modules",
+      "650.92 kWp capacity fully integrated into the building envelope",
+      "Powers the tower’s communal spaces",
+      "Enables up to 20,000 km of carbon-free EV travel per year",
+      "Cutting-edge solar glass and architectural integration",
+      "Strong alignment between Mercedes-Benz sustainability values and building performance",
     ],
+    location: "Nad Al Sheba District, Dubai, UAE",
+    client: "Mercedes-Benz / Binghatti Developers",
+    status: "Ongoing Project",
+    statusType: "ongoing",
+    systemSize: "650.92 kWp BIPV Façade",
+    stakeholders:
+      "Binghatti Developers, Mercedes-Benz, Silverstone Architects",
+    scope:
+      "Design of custom façade elements using cutting-edge solar technologies and architectural glass; full BIPV integration",
   },
   "jeddah-oceanarium": {
+    title: "Jeddah Oceanarium",
+    tagline:
+      "Architectural BIPV for a landmark cultural and tourism destination",
     overview:
-      "Jeddah Oceanarium incorporates a 132 kWp BIPV system into a landmark marine destination designed by SOM Architects for JCDC. The renewable-energy layer is conceived as part of the building expression and the wider visitor experience.",
-    challenge:
-      "The project required photovoltaic components to integrate cleanly with a distinctive architectural concept while maintaining the technical coordination expected for a major public attraction.",
-    solution:
-      "Empereal is providing BIPV engineering and integration, working across architectural and energy-system interfaces to embed renewable generation into the development without compromising its design intent.",
+      "A prestigious waterfront project featuring carefully designed Building-Integrated Photovoltaics that complement the architectural vision of SOM. The 132 kWp BIPV system contributes clean energy while maintaining the high aesthetic standards expected of a landmark cultural and tourism destination in Jeddah.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To deliver a high-performance BIPV solution that respects the architectural vision of SOM while contributing meaningful clean energy to a major cultural and tourism landmark in Jeddah.",
     highlights: [
-      "132 kWp Building-Integrated Photovoltaic system",
-      "Integrated into a landmark oceanarium and marine development",
-      "Architectural concept by SOM Architects for JCDC",
-      "Supports sustainable tourism through visible on-site generation",
+      "132 kWp BIPV integration",
+      "Collaboration with world-renowned SOM Architects",
+      "Seamless architectural integration for a high-profile destination",
+      "Supports sustainability goals of the Jeddah waterfront development",
     ],
+    location: "Jeddah, Kingdom of Saudi Arabia",
+    client: "JCDC",
+    status: "Ongoing Project",
+    statusType: "ongoing",
+    systemSize: "132 kWp BIPV",
+    stakeholders: "JCDC, SOM Architects",
+    scope: "Building-Integrated Photovoltaic system design and integration",
   },
   "zamani-islands": {
+    title: "Zamani Islands – Net-Zero Resort",
+    tagline:
+      "World’s largest net-zero resort – fully renewable, zero-waste hospitality destination",
     overview:
-      "Zamani Islands is planned as a fully renewable-powered, net-zero resort spanning eight islands in the South Malé Atoll. Energy, architecture, food production, and resource use are considered as connected parts of one island-development strategy.",
-    challenge:
-      "A multi-island resort must coordinate generation across a distributed site while supporting hospitality operations, architectural quality, food production, and a circular zero-waste ambition in a remote environment.",
-    solution:
-      "Empereal’s scope brings together renewable-energy systems integration and net-zero strategy support, including large-scale BIPV and agri-photovoltaics within the development’s broader circular design approach.",
+      "Positioned to become the world’s largest net-zero resort, Zamani Islands will operate entirely on renewable energy. The project combines innovative Building-Integrated Photovoltaics, energy-efficient Net Zero architecture, and agri-photovoltaic systems that generate clean energy while supporting sustainable food production. A comprehensive zero-waste strategy ensures organic waste is composted and materials are upcycled.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To build the world’s largest net-zero resort — proving that luxury hospitality can operate entirely on renewable energy, support local food production through agri-photovoltaics, and achieve a true zero-waste model.",
     highlights: [
-      "Net-zero resort development spanning eight islands",
-      "Large-scale BIPV integrated with resort architecture",
-      "Agri-photovoltaics supporting the wider sustainability strategy",
-      "Circular zero-waste principles incorporated into the development vision",
+      "World’s largest net-zero resort ambition",
+      "24 MWp of BIPV capacity across the island resort",
+      "Agri-photovoltaic systems combining energy with food production",
+      "Full renewable energy operation – no fossil fuel reliance",
+      "Zero-waste strategy (composting + material upcycling)",
+      "Holistic Net Zero architecture and energy management",
     ],
+    location:
+      "South Malé Atoll, Maldives (8 islands, 5 km lagoon, 21 nm from Velana Airport)",
+    client: "Atoll Estates",
+    status: "Scheduled Completion: December 2026",
+    statusType: "ongoing",
+    systemSize: "24,000 kWp BIPV",
+    stakeholders: "Atoll Estates, Killa Design Architects",
+    scope:
+      "Comprehensive renewable energy systems including BIPV, agri-photovoltaics and advanced energy management",
   },
   "acwa-power-hq": {
+    title: "ACWA Power Headquarters",
+    tagline: "Net-Zero headquarters for a leading regional energy company",
     overview:
-      "ACWA Power’s new headquarters is designed as a net-zero corporate environment with 1,200 kWp of Building-Integrated Photovoltaics. The project makes solar generation a visible part of the organization’s workplace and architectural identity.",
-    challenge:
-      "The headquarters required a high-capacity solar solution that could work with Omrania Architects’ design while satisfying the visual, technical, and commercial expectations of a flagship corporate building.",
-    solution:
-      "Empereal is delivering solar-integration design and execution, coordinating the BIPV system with architectural requirements to provide cost-effective renewable generation and support the headquarters’ net-zero goals.",
+      "A flagship Net-Zero headquarters building for ACWA Power in Riyadh. The 1,200 kWp BIPV system is designed to deliver significant onsite renewable generation while supporting the architectural vision of Omrania. The project showcases innovative sustainability solutions at the headquarters of one of the region’s leading energy companies.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To design a Net-Zero headquarters that embodies ACWA Power’s own energy transition values — combining architectural excellence with substantial onsite renewable generation.",
     highlights: [
-      "1,200 kWp Building-Integrated Photovoltaic capacity",
-      "Net-zero corporate headquarters in Riyadh",
-      "Architectural coordination with Omrania Architects",
-      "Designed for long-term on-site energy generation and cost reduction",
+      "1,200 kWp BIPV capacity",
+      "Net-Zero Building target",
+      "Cost-effective renewable energy generation",
+      "Innovative sustainability integrated into corporate headquarters",
+      "Collaboration with Omrania Architects",
     ],
+    location: "Riyadh, Kingdom of Saudi Arabia",
+    client: "ACWA Power",
+    status: "Year of Completion: 2026",
+    statusType: "ongoing",
+    systemSize: "1,200 kWp BIPV",
+    stakeholders: "Omrania Architects",
+    scope: "Building-Integrated Photovoltaic system for a Net-Zero Building",
   },
   "dewa-solar-tree": {
+    title: "DEWA Solar Tree",
+    tagline:
+      "Dual-axis tracking solar structure that redefines architectural solar design",
     overview:
-      "The DEWA Solar Tree is a sculptural photovoltaic structure that follows the sun using dual-axis tracking. Installed at Al Shera, it combines energy generation, public engagement, and kinetic engineering in a single freestanding feature.",
-    challenge:
-      "The structure needed to operate as both an architectural landmark and a moving solar system, bringing structural form, tracking mechanics, electrical design, and safe public visibility together.",
-    solution:
-      "Empereal developed the concept, engineered the tracking structure, and implemented the installation so its photovoltaic surface can respond to solar movement while retaining a clear sculptural character.",
+      "One of the most remarkable elements of the New DEWA HQ project is the Solar Tree. Featuring a unique dual-axis tracking system and sophisticated engineering, it demonstrates that solar is not limited to rooftops and building façades. Solar can also be integrated into standalone architectural structures, engineered to complement aesthetics while generating clean energy by continuously following the sun.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To demonstrate that solar can transcend rooftops and façades — becoming a standalone architectural landmark that continuously tracks the sun while elevating the design language of the New DEWA Headquarters.",
     highlights: [
-      "Dual-axis solar tracking for improved sun alignment",
-      "Standalone sculptural renewable-energy structure",
-      "Concept development, engineering, and implementation by Empereal",
-      "Educational landmark combining architecture and clean-energy technology",
+      "Unique dual-axis tracking system",
+      "Standalone architectural solar structure",
+      "Demonstrates solar beyond roofs and façades",
+      "Continuous sun-tracking for maximized energy yield",
+      "Blends innovation, engineering and architecture",
+      "Iconic feature of the New DEWA Headquarters",
     ],
+    location: "Jaddaf, Dubai – New DEWA Headquarters",
+    client: "Dubai Electricity & Water Authority (DEWA)",
+    status: "Part of New DEWA HQ – Completion 2026",
+    statusType: "ongoing",
+    systemSize: "Standalone dual-axis tracking solar structure",
+    stakeholders: "DEWA",
+    scope:
+      "Complex engineering design and implementation of dual-axis tracking Solar Tree",
   },
   "green-hydrogen-dewa": {
+    title: "DEWA Green Hydrogen Project",
+    tagline: "2.5 MW alkaline electrolyzer – from electrons to molecules",
     overview:
-      "This turnkey green-hydrogen project centers on a 2.5 MW alkaline electrolyzer at DEWA’s R&D Center in Al Qudra. The containerized plant brings hydrogen production, treatment, purification, compression, and supporting utilities into one coordinated system.",
-    challenge:
-      "Hydrogen production depends on precise integration across electrolysis, gas handling, purification, compression, utilities, controls, and commissioning. Each subsystem must function as part of a safe and reliable process chain.",
-    solution:
-      "Empereal’s turnkey scope covers design, supply, installation, and commissioning of the complete alkaline electrolyzer package and its associated treatment and utility systems.",
+      "A turnkey green hydrogen project at DEWA’s R&D Center. The system is a fully containerized solution comprising the electrolyzer, gas treatment, purification, compression and associated utilities. This project places Empereal at the forefront of the transition from electrons to molecules, supporting the UAE’s and DEWA’s hydrogen economy ambitions.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To advance the UAE’s hydrogen economy by delivering a fully containerized 2.5 MW alkaline electrolyzer system that converts renewable electricity into clean hydrogen at DEWA’s R&D Center.",
     highlights: [
-      "2.5 MW alkaline electrolyzer turnkey project",
-      "Rated production of 500 Nm³/h of high-purity hydrogen",
-      "Containerized gas treatment, purification, and compression systems",
-      "Supports the UAE’s emerging clean-fuel ecosystem",
+      "2.5 MW Alkaline Electrolyzer capacity",
+      "500 Nm³/h hydrogen production rate",
+      "Fully containerized turnkey system",
+      "Includes gas treatment, purification and compression",
+      "Located at DEWA R&D Center – high strategic visibility",
+      "Supports UAE national hydrogen strategy",
     ],
+    location: "DEWA R&D Center, Al Qudra, Dubai, UAE",
+    client: "Dubai Electricity & Water Authority (DEWA) PJSC",
+    status: "Ongoing Project",
+    statusType: "ongoing",
+    systemSize: "2.5 MW Alkaline Electrolyzer (500 Nm³/h H₂)",
+    stakeholders: "DEWA",
+    scope:
+      "Design, Supply, Installation and Commissioning of 2.5 MW Alkaline Electrolyzer Turnkey Project for hydrogen generation",
   },
   "park-hyatt-maldives": {
+    title: "Park Hyatt Maldives Hadahaa",
+    tagline:
+      "Solar + BESS solution reducing diesel reliance for a luxury island resort",
     overview:
-      "Park Hyatt Maldives Hadahaa combines 850 kWp of solar PV with battery storage and intelligent energy management. The integrated system is designed to reduce diesel reliance while maintaining the dependable power quality required by a remote luxury resort.",
-    challenge:
-      "Island hospitality operations need continuous, stable energy despite variable solar generation and limited grid infrastructure. Generation, storage, controls, backup, and operating demand must therefore be coordinated as one system.",
-    solution:
-      "Empereal is delivering structural and electrical design, procurement, installation, BESS and energy-management integration, authority approvals, generation studies, and net-zero sustainability-rating support.",
+      "A high-end luxury resort project focused on achieving Net-Zero performance and significantly reducing reliance on diesel generators. Empereal is delivering a comprehensive solution that includes solar generation, battery energy storage (BESS) integration, and advanced energy management — critical for an island location where fuel logistics are challenging and costly.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To dramatically reduce diesel generator dependence for a luxury island resort by combining high-performance solar with battery storage and intelligent energy management — delivering both sustainability and operational cost savings.",
     highlights: [
-      "850 kWp solar PV system",
-      "Battery Energy Storage System integration",
-      "Intelligent energy management for coordinated resort operation",
-      "Designed to reduce diesel use, fuel cost, and maintenance demand",
+      "850 kWp solar capacity",
+      "Battery Energy Storage System (BESS) integration",
+      "Advanced Energy Management System",
+      "Substantial reduction of diesel generator use",
+      "Full Net-Zero sustainability ratings support",
+      "Ideal demonstration of solar + storage for island resorts",
     ],
+    location: "Hadahaa, Maldives",
+    client: "Park Hyatt",
+    status: "Ongoing Project",
+    statusType: "ongoing",
+    systemSize: "850 kWp Solar PV + BESS Integration",
+    stakeholders: "Park Hyatt",
+    scope:
+      "Structural & Electrical Design, Engineering, Procurement, Installation, BESS Integration, Energy Management System, Authority Approvals, Generation Studies and Net-Zero Sustainability Ratings",
   },
   "uae-pavilion-expo": {
+    title: "UAE Pavilion – Expo 2020 Dubai",
+    tagline:
+      "LEED Platinum pavilion with seamlessly integrated BIPV façade by Santiago Calatrava",
     overview:
-      "The UAE Pavilion at Expo 2020 Dubai integrates a 98 kWp BIPV system into Santiago Calatrava’s falcon-inspired architecture. Renewable generation contributes to a globally recognized building that achieved LEED Platinum certification.",
-    challenge:
-      "Any energy intervention on an expressive national pavilion had to respect the architectural form, coordinate with a highly specialized envelope, and contribute meaningfully to the project’s demanding sustainability objectives.",
-    solution:
-      "Empereal supported renewable-energy integration by embedding BIPV into the pavilion’s architectural surfaces, allowing solar generation to participate in the design rather than appear as a separate technical layer.",
+      "The UAE Pavilion, designed by renowned architect Santiago Calatrava, is a landmark LEED Platinum-certified building. Empereal contributed a 98 kWp BIPV system seamlessly integrated into its iconic façade. The solar solution enhanced energy efficiency while reinforcing the pavilion’s status as a globally recognized symbol of innovation and sustainable architecture.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To integrate a high-performance BIPV façade into Santiago Calatrava’s iconic design, helping the UAE Pavilion achieve LEED Platinum certification while showcasing the country’s commitment to sustainable architecture on a global stage.",
     highlights: [
-      "98 kWp Building-Integrated Photovoltaic system",
-      "Integrated with Santiago Calatrava’s falcon-inspired pavilion",
-      "Supports the building’s LEED Platinum sustainability objectives",
-      "High-visibility demonstration of architectural clean energy",
+      "98 kWp BIPV seamlessly integrated into the iconic façade",
+      "LEED Platinum-certified building",
+      "Designed by Santiago Calatrava",
+      "Supported the pavilion’s high sustainability objectives",
+      "Globally recognized symbol of innovation and sustainable architecture",
     ],
+    location: "Expo 2020, Dubai, UAE",
+    client: "Dubai Expo 2020",
+    status: "Completed",
+    statusType: "completed",
+    systemSize: "98 kWp BIPV",
+    stakeholders: "Santiago Calatrava (Architect)",
+    scope:
+      "Delivery of renewable energy solutions supporting the pavilion’s sustainability objectives",
   },
   "french-pavilion-expo": {
+    title: "France Pavilion – Expo 2020 Dubai",
+    tagline:
+      "Solar art meets architecture – Monet’s Water Lilies recreated in custom solar modules",
     overview:
-      "The France Pavilion combined a photovoltaic façade and roof to supply a substantial share of its Expo-period energy needs. Its later relocation to Toulouse extended the project’s value beyond the event and made reuse part of the sustainability story.",
-    challenge:
-      "The BIPV system needed to integrate with both roof and façade conditions, contribute meaningfully to building demand, and support a pavilion designed for eventual dismantling and relocation.",
-    solution:
-      "Empereal designed, supplied, and integrated the BIPV system as part of the pavilion envelope, coordinating renewable generation with architectural requirements and the project’s post-Expo reuse strategy.",
+      "The French Pavilion at Expo 2020 Dubai incorporated solar PV on its roof and south façade to create an aesthetically pleasing green building. A standout feature was the Solar Art installation recreating Claude Monet’s “Water Lilies and Clouds” using custom-designed solar modules. The system was grid-connected under DEWA SHAMS and later demonstrated circular economy principles by being relocated and reused in Toulouse, France.",
+    motivationTitle: "Motivation for Solar",
+    motivation:
+      "To create a living work of solar art — recreating Monet’s Water Lilies in custom modules — while generating 60–80% of the pavilion’s energy needs and later demonstrating circular economy principles through relocation and reuse.",
     highlights: [
-      "BIPV integrated across both façade and roof",
-      "Generated approximately 60–80% of the pavilion’s energy needs",
-      "Designed for a high-profile Expo 2020 setting",
-      "Relocated to Toulouse after the Expo to demonstrate circular reuse",
+      "224 kWp BIPV on roof and south façade",
+      "Generated 60–80% of the pavilion’s energy requirements",
+      "Iconic Solar Art – Monet’s Water Lilies in solar modules",
+      "Grid-connected under DEWA SHAMS / DRRG regulations",
+      "Reduced carbon footprint and operational energy consumption",
+      "Post-Expo relocation and reuse in Toulouse – circular economy in action",
     ],
+    location: "Expo 2020 Dubai, Dubai, UAE",
+    client: "France Pavilion – Expo 2020 (BeSix Contracting)",
+    status: "Completed (system later relocated to Toulouse, France)",
+    statusType: "completed",
+    systemSize: "224 kWp BIPV (Roof + South Façade)",
+    stakeholders: "Atelier Du Prado (Architects), BeSix Contracting",
+    scope:
+      "Design, supply and integration of BIPV system into the pavilion’s roof and façade",
   },
 };

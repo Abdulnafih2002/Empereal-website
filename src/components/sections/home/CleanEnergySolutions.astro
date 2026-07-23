@@ -5,6 +5,7 @@ const solutions = [
   {
     id: "bipv-facade",
     title: "Architectural BIPV & Solar Facade",
+    titleLines: ["Architectural BIPV &", "Solar Facade"],
     tagline:
       "Innovative building-integrated photovoltaics that combine aesthetics with high-performance energy generation.",
     image: "/images/service-cards/architectural-bipv-integrated.webp",
@@ -13,6 +14,7 @@ const solutions = [
   {
     id: "solar-pv",
     title: "Solar PV Systems",
+    titleLines: ["Solar PV", "Systems"],
     tagline:
       "Expert system design and architectural integration for rooftops, ground-mounted, and façade installations.",
     image: "/images/service-cards/solar-pv-systems.webp",
@@ -21,6 +23,7 @@ const solutions = [
   {
     id: "energy-storage",
     title: "Energy Storage",
+    titleLines: ["Energy", "Storage"],
     tagline:
       "Intelligent battery storage solutions designed to maximize solar utilization and ensure reliable power supply.",
     image: "/images/service-cards/solar-energy-storage.webp",
@@ -29,6 +32,7 @@ const solutions = [
   {
     id: "green-hydrogen",
     title: "Green Hydrogen",
+    titleLines: ["Green", "Hydrogen"],
     tagline:
       "End-to-end green hydrogen production systems powered by renewable energy for industrial decarbonization.",
     image: "/images/service-cards/green-hydrogen.webp",
@@ -37,6 +41,7 @@ const solutions = [
   {
     id: "thermal-desalination",
     title: "Water Desalination",
+    titleLines: ["Water", "Desalination"],
     tagline:
       "Advanced solar-powered systems delivering clean thermal energy and sustainable water solutions.",
     image: "/images/service-cards/solar-thermal-desalination.webp",
@@ -85,7 +90,9 @@ const solutions = [
 
           {/* Text: overlay on image, always visible, top-centered */}
           <div class="ces-text">
-            <h3 class="ces-card-title">{s.title}</h3>
+            <h3 class="ces-card-title">
+              {s.titleLines.map((line) => <span class="block whitespace-nowrap">{line}</span>)}
+            </h3>
             <p class="ces-card-tagline">{s.tagline}</p>
           </div>
 

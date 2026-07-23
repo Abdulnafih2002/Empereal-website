@@ -10,12 +10,6 @@ const engagementModels = [
   },
   {
     num: "2",
-    title: "Implementation & Construction Only",
-    desc: "Your dedicated execution partner for an already-engineered project — field installation, equipment procurement, testing, grid connection, and commissioning, delivered on schedule and to specification.",
-    href: "/solutions/implementation",
-  },
-  {
-    num: "3",
     title: "Full End-to-End EPC",
     desc: "Complete project lifecycle delivery under one accountable team — from initial feasibility through construction, commissioning, and long-term O&M. No vendor handoffs, no delivery gaps, one point of contact throughout.",
     href: "/solutions/full-epc",
@@ -28,12 +22,12 @@ const engagementModels = [
       <p class="eyebrow !text-accent">How You Can Engage Us</p>
       <h2 id="delivery-approach-title" class="fluid-h2 mt-3 text-white">Choose Your Engagement Model</h2>
       <p class="fluid-lead mt-5 text-white/75">
-        Every client's starting point is different. Whether you need independent engineering, a dedicated execution partner, or complete end-to-end ownership, Empereal adapts to how you want to build.
+        Every client's starting point is different. Whether you need independent engineering or complete end-to-end ownership, Empereal adapts to how you want to build.
       </p>
     </div>
 
-    <div class="relative mt-12 grid gap-8 md:grid-cols-3 reveal-stagger">
-      <div class="hidden md:block absolute top-6 left-[16.666%] right-[16.666%] h-px bg-accent/30" aria-hidden="true"></div>
+    <div class="relative mx-auto mt-12 grid max-w-4xl gap-8 md:grid-cols-2 reveal-stagger">
+      <div class="hidden md:block absolute top-6 left-1/4 right-1/4 h-px bg-accent/30" aria-hidden="true"></div>
 
       {engagementModels.map((model) => (
         <a href={model.href} class="group relative flex flex-col items-center rounded-xl px-4 pb-4 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-[#003B64]">
