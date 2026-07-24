@@ -1,14 +1,8 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/primitives/Container.astro";
-import ProjectCard from "../../components/sections/projects/ProjectCard.astro";
+import OtherCoreSolutions from "../../components/sections/solutions/OtherCoreSolutions.astro";
 import RelatedEngagementBanner from "../../components/sections/solutions/RelatedEngagementBanner.astro";
-import { projects } from "../../data/projects.ts";
-
-const relatedProjectSlugs = ["mercedes-binghatti", "jeddah-oceanarium", "dewa-portrait"];
-const relatedProjects = relatedProjectSlugs
-  .map((slug) => projects.find((project) => project.slug === slug))
-  .filter((project): project is NonNullable<typeof project> => Boolean(project));
 
 const scopeItems = [
   {
@@ -252,35 +246,7 @@ const relatedModels = [
     </Container>
   </section>
 
-  <!-- Related Project -->
-  <section class="section-pad bg-white" aria-labelledby="project-title">
-    <Container>
-      <div class="text-center max-w-2xl mx-auto reveal">
-        <p class="eyebrow">Our Work</p>
-        <h2 id="project-title" class="fluid-h2 mt-3">Related Projects</h2>
-      </div>
-
-      <ul class="mx-auto mt-10 flex max-w-6xl flex-wrap justify-center gap-5 reveal-stagger">
-        {relatedProjects.map((project) => (
-          <li class="flex w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]">
-            <ProjectCard project={project} class="w-full" />
-          </li>
-        ))}
-      </ul>
-
-      <div class="mt-10 text-center reveal">
-        <a
-          href="/projects"
-          class="inline-flex items-center gap-2 rounded-md border border-primary/20 bg-white hover:border-primary hover:bg-primary-50 px-6 py-3 text-sm font-semibold text-primary transition-colors min-h-[44px]"
-        >
-          Explore All Projects
-          <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
-            <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
-      </div>
-    </Container>
-  </section>
+  <OtherCoreSolutions />
 
 
 

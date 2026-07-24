@@ -4,7 +4,7 @@ import Container from "../../primitives/Container.astro";
 type SolutionKey = "solar" | "water" | "storage" | "integrated" | "hydrogen";
 
 interface Props {
-  active: SolutionKey;
+  active?: SolutionKey;
 }
 
 const { active } = Astro.props;
@@ -58,8 +58,12 @@ const solutions: Array<{
   },
 ];
 
-const otherSolutions = solutions.filter((solution) => solution.key !== active);
-const titleId = `${active}-other-core-solutions-title`;
+const otherSolutions = active
+  ? solutions.filter((solution) => solution.key !== active)
+  : solutions;
+const titleId = active
+  ? `${active}-other-core-solutions-title`
+  : "all-core-solutions-title";
 ---
 
 <section class="section-pad bg-white" aria-labelledby={titleId}>
@@ -69,7 +73,12 @@ const titleId = `${active}-other-core-solutions-title`;
       <h2 id={titleId} class="fluid-h2 mt-3">Explore Our Other Core Solutions</h2>
     </div>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 reveal-stagger">
+    <div
+      class:list={[
+        "mt-10 grid gap-5 sm:grid-cols-2 reveal-stagger",
+        active ? "lg:grid-cols-4" : "lg:grid-cols-5",
+      ]}
+    >
       {otherSolutions.map((solution) => (
         <a
           href={solution.href}
