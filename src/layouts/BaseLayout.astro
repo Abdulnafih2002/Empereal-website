@@ -12,6 +12,8 @@ interface Props {
   description?: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   pageType?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
@@ -21,10 +23,12 @@ interface Props {
 }
 
 const {
-  title = "Empereal — Smart Solar & EPC Solutions",
-  description = "A global smart solar & EPC leader delivering high-performance energy solutions across Asia and the Middle East.",
-  image = "/images/dewa-hq-main.jpg",
-  imageAlt = "Empereal clean energy and water engineering project",
+  title = "empereal | Engineering the future of clean energy.",
+  description = "Smart Solar & EPC Solutions — delivering high-performance BIPV, solar PV, energy storage and green hydrogen projects across the Middle East and Asia.",
+  image = "/images/empereal-og.png",
+  imageAlt = "Empereal — Engineering the future of clean energy",
+  imageWidth,
+  imageHeight,
   pageType = "website",
   publishedTime,
   modifiedTime,
@@ -223,6 +227,8 @@ const serializedStructuredData = JSON.stringify({
     <meta property="og:image" content={absoluteImage} />
     <meta property="og:image:secure_url" content={absoluteImage} />
     {imageType && <meta property="og:image:type" content={imageType} />}
+    {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+    {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
     <meta property="og:image:alt" content={imageAlt} />
     <meta property="og:type" content={pageType} />
     <meta property="og:url" content={canonical} />
