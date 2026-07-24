@@ -1,41 +1,64 @@
 ---
 import Container from "../../primitives/Container.astro";
-
-const awards = [
-  {
-    icon: "🏆",
-    title: "MESIA C&I Solar Project of the Year",
-    sub: "Awarded by the Middle East Solar Industry Association (MESIA) for outstanding commercial and industrial solar project execution.",
-  },
-  {
-    icon: "🥇",
-    title: "MESIA Net Zero Leader of the Year",
-    sub: "Recognized at the World Future Energy Summit (WFES), Abu Dhabi, for leadership in advancing net-zero energy solutions across the region.",
-  },
-  {
-    icon: "🏅",
-    title: "Company of the Year: BIPV",
-    sub: "Awarded at the Distributed Solar Leadership Awards 2023 for excellence in Building-Integrated Photovoltaics (BIPV) delivery and innovation.",
-  },
-];
+import { featuredAwards } from "../../../data/awards";
 ---
-<section class="section-pad bg-white border-t border-primary/8" aria-labelledby="recognition-title">
+<section
+  id="awards"
+  class="section-pad bg-white border-t border-primary/8"
+  aria-labelledby="recognition-title"
+>
   <Container>
     <div class="max-w-xl mx-auto text-center reveal">
       <p class="eyebrow">Recognition</p>
       <h2 id="recognition-title" class="fluid-h2 mt-3">Industry recognition for technical excellence and project delivery.</h2>
     </div>
 
-    <div class="mt-10 grid gap-5 sm:grid-cols-3 reveal-stagger">
-      {awards.map((a) => (
-        <div class="flex flex-col items-center text-center gap-4 rounded-2xl bg-surface border border-primary/8 p-7 hover:border-accent/30 hover:shadow-card-lg hover:-translate-y-0.5 transition-all duration-300">
-          <span class="text-4xl" aria-hidden="true">{a.icon}</span>
-          <div>
-            <p class="font-semibold text-primary-dark leading-snug">{a.title}</p>
-            <p class="mt-2 text-sm leading-relaxed text-muted">{a.sub}</p>
+    <ul class="mt-12 grid gap-y-12 border-y border-primary/10 py-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-14 lg:grid-cols-4 lg:gap-x-0 lg:gap-y-0 lg:divide-x lg:divide-primary/10 lg:py-0 reveal-stagger">
+      {featuredAwards.map((award, index) => (
+        <li class="group flex h-full flex-col items-center text-center sm:px-5 lg:px-6 lg:py-10 xl:px-8">
+          <div class="relative flex h-48 w-full items-center justify-center sm:h-52 lg:h-44 xl:h-48">
+            <span
+              class="absolute h-36 w-36 rounded-full border border-primary/[0.06] bg-primary-50/70 transition-all duration-500 group-hover:scale-110 group-hover:border-accent/20 group-hover:bg-accent-soft/40 sm:h-40 sm:w-40 lg:h-32 lg:w-32 xl:h-40 xl:w-40"
+              aria-hidden="true"
+            ></span>
+            <img
+              src={award.image}
+              alt={award.imageAlt}
+              width={award.imageWidth}
+              height={award.imageHeight}
+              loading="lazy"
+              decoding="async"
+              class="relative h-full max-h-44 w-full max-w-52 object-contain drop-shadow-[0_12px_18px_rgba(0,59,100,0.08)] transition-transform duration-500 ease-out group-hover:-translate-y-1 group-hover:scale-[1.035] lg:max-h-40 xl:max-h-44"
+            />
           </div>
-        </div>
+
+          <div class="mt-7 flex flex-1 flex-col items-center">
+            <div class="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.18em]">
+              <span class="text-accent-dark">0{index + 1}</span>
+              <span class="h-px w-5 bg-primary/15" aria-hidden="true"></span>
+              <span class="text-primary/60">{award.year}</span>
+            </div>
+            <h3 class="mt-4 text-base font-semibold leading-snug text-primary-dark">
+              {award.aboutTitle ?? award.title}
+            </h3>
+            <p class="mt-3 text-sm leading-relaxed text-muted">
+              {award.aboutDescription ?? award.description}
+            </p>
+          </div>
+        </li>
       ))}
+    </ul>
+
+    <div class="mt-10 text-center reveal">
+      <a
+        href="/awards"
+        class="group inline-flex min-h-[44px] items-center gap-2 rounded-md border border-primary/20 bg-white px-6 py-3 text-sm font-semibold text-primary transition-colors hover:border-primary hover:bg-primary-50"
+      >
+        View All Awards
+        <svg viewBox="0 0 20 20" class="h-4 w-4 arrow-slide" fill="none" aria-hidden="true">
+          <path d="M4 10h12m0 0l-4-4m4 4l-4 4" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
     </div>
   </Container>
 </section>

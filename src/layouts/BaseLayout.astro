@@ -97,7 +97,7 @@ const pageSchemaType = pathname === "/about"
     ? "ContactPage"
     : /^\/projects\/[^/]+$/.test(pathname)
       ? "ItemPage"
-    : ["/projects", "/solutions", "/blog"].includes(pathname.replace(/\/$/, ""))
+    : ["/projects", "/solutions", "/blog", "/awards"].includes(pathname.replace(/\/$/, ""))
       ? "CollectionPage"
       : "WebPage";
 

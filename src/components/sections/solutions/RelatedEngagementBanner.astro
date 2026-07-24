@@ -1,0 +1,98 @@
+---
+interface Props {
+  title: string;
+  desc: string;
+  image: string;
+  href: string;
+}
+
+const { title, desc, image, href } = Astro.props;
+---
+
+<article
+  class="engagement-banner group relative isolate grid min-h-[360px] overflow-hidden rounded-[1.75rem] border border-primary-light/30 bg-primary-dark shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg lg:grid-cols-[1.1fr_0.9fr]"
+>
+  <div class="relative z-10 order-2 flex flex-col items-start justify-center p-7 sm:p-10 lg:order-1 lg:p-12">
+    <span class="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-sm">
+      <span class="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true"></span>
+      Explore this option
+    </span>
+
+    <h3 class="max-w-[18ch] font-display text-2xl font-semibold leading-tight text-white sm:text-3xl">
+      {title}
+    </h3>
+    <p class="mt-4 max-w-[56ch] text-sm leading-relaxed text-white/75 sm:text-base">
+      {desc}
+    </p>
+
+    <a
+      href={href}
+      class="site-cta site-cta-on-dark press mt-7"
+      aria-label={`Learn more about ${title}`}
+    >
+      Learn more
+    </a>
+  </div>
+
+  <div class="engagement-banner__media relative order-1 min-h-[260px] overflow-hidden lg:order-2 lg:min-h-full">
+    <img
+      src={image}
+      alt=""
+      class="engagement-banner__image absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+
+  <div class="pointer-events-none absolute -bottom-20 -left-16 h-48 w-48 rounded-full border border-white/10" aria-hidden="true"></div>
+</article>
+
+<style>
+  .engagement-banner__media {
+    background: #003b64;
+  }
+
+  .engagement-banner__image {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 68%,
+      rgba(0, 0, 0, 0.72) 82%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      #000 0%,
+      #000 68%,
+      rgba(0, 0, 0, 0.72) 82%,
+      transparent 100%
+    );
+  }
+
+  @media (min-width: 1024px) {
+    .engagement-banner__media {
+      width: calc(100% + 10rem);
+      margin-left: -10rem;
+    }
+
+    .engagement-banner__image {
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 12%,
+        rgba(0, 0, 0, 0.42) 30%,
+        rgba(0, 0, 0, 0.82) 46%,
+        #000 62%
+      );
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 12%,
+        rgba(0, 0, 0, 0.42) 30%,
+        rgba(0, 0, 0, 0.82) 46%,
+        #000 62%
+      );
+    }
+
+  }
+</style>
