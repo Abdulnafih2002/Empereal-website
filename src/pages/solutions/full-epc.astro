@@ -5,7 +5,10 @@ import ProjectCard from "../../components/sections/projects/ProjectCard.astro";
 import RelatedEngagementBanner from "../../components/sections/solutions/RelatedEngagementBanner.astro";
 import { projects } from "../../data/projects.ts";
 
-const relatedProject = projects.find((project) => project.slug === "dewa-hq")!;
+const relatedProjectSlugs = ["dewa-hq", "masdar-10mw", "uae-pavilion-expo"];
+const relatedProjects = relatedProjectSlugs
+  .map((slug) => projects.find((project) => project.slug === slug))
+  .filter((project): project is NonNullable<typeof project> => Boolean(project));
 
 const scopeItems = [
   {
@@ -257,9 +260,13 @@ const relatedModels = [
         <h2 id="epc-project-title" class="fluid-h2 mt-3">Related Projects</h2>
       </div>
 
-      <div class="mt-10 max-w-sm mx-auto reveal">
-        <ProjectCard project={relatedProject} />
-      </div>
+      <ul class="mx-auto mt-10 flex max-w-6xl flex-wrap justify-center gap-5 reveal-stagger">
+        {relatedProjects.map((project) => (
+          <li class="flex w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)]">
+            <ProjectCard project={project} class="w-full" />
+          </li>
+        ))}
+      </ul>
 
       <div class="mt-10 text-center reveal">
         <a
