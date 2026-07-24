@@ -66,10 +66,10 @@ import { awards, awardYears } from "../data/awards";
         Showing all {awards.length} awards.
       </p>
 
-      <div id="awards-list" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 reveal-stagger" role="list">
+      <div id="awards-list" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3" role="list">
         {awards.map((award) => (
           <article
-            class="group flex h-full flex-col overflow-hidden rounded-2xl border border-primary/5 bg-white text-ink shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg"
+            class="reveal group flex h-full flex-col overflow-hidden rounded-2xl border border-primary/5 bg-white text-ink shadow-card transition-all duration-300 hover:-translate-y-0.5 hover:shadow-card-lg"
             role="listitem"
             data-award-card
             data-year={award.year}
