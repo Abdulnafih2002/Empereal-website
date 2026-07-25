@@ -48,7 +48,7 @@ function renderUrl(location: URL, lastModified?: string): string {
 }
 
 export const GET: APIRoute = async ({ site }) => {
-  const origin = site ?? new URL("https://empereal.energy");
+  const origin = site ?? new URL("https://empereal-website.vercel.app");
   const posts = await getBlogPosts();
 
   const staticEntries = PUBLIC_ROUTES.map((route) =>

@@ -3,4 +3,4 @@ Allow: /
 Disallow: /crm
 Disallow: /api
 
-Sitemap: https://empereal.energy/sitemap.xml
+Sitemap: https://empereal-website.vercel.app/sitemap.xml

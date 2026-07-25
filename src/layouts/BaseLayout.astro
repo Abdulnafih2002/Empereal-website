@@ -37,7 +37,7 @@ const {
   showClients = false,
 } = Astro.props;
 
-const siteUrl = Astro.site ?? new URL("https://empereal.energy");
+const siteUrl = Astro.site ?? new URL("https://empereal-website.vercel.app");
 const pathname = Astro.url.pathname === "/"
   ? "/"
   : Astro.url.pathname.replace(/\/+$/, "");
