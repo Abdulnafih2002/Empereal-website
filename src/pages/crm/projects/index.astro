@@ -5,6 +5,9 @@ import { getProjects, getEnquiries } from "../../../lib/storage.js";
 
 const [projects, enquiries] = await Promise.all([getProjects(), getEnquiries()]);
 const newCount = enquiries.filter((e) => e.status === "new").length;
+const categoryLabels: Record<string, string> = {
+  integrated: "Unified Systems",
+};
 ---
 <CRMLayout title="Projects" newEnquiries={newCount}>
   <div class="flex items-center justify-between mb-6">
@@ -51,7 +54,7 @@ const newCount = enquiries.filter((e) => e.status === "new").length;
               <td class="px-5 py-3.5 hidden lg:table-cell">
                 {p.category && (
                   <span class="inline-flex items-center rounded-full bg-blue-50 px-2 py-0.5 text-xs font-medium text-blue-700">
-                    {p.category}
+                    {categoryLabels[p.category] ?? p.category}
                   </span>
                 )}
               </td>

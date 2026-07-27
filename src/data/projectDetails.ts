@@ -119,13 +119,13 @@ export const projectDetails: Record<string, ProjectDetail> = {
     tagline:
       "Iconic BIPV façade powering communal spaces and enabling carbon-free EV travel",
     overview:
-      "Mercedes-Benz Places features an innovative Building-Integrated Photovoltaic façade. The iconic tower is clad in custom-designed solar modules that harvest energy to power communal spaces. The system is uniquely engineered to provide up to 20,000 km of carbon-free electric vehicle travel annually for residents — creating a tangible link between the building’s energy production and sustainable mobility.",
+      "Mercedes-Benz Places features an innovative architectural BIPV façade. The iconic tower is clad in custom-designed solar modules that harvest energy to power communal spaces. The system is uniquely engineered to provide up to 20,000 km of carbon-free electric vehicle travel annually for residents — creating a tangible link between the building’s energy production and sustainable mobility.",
     motivationTitle: "Motivation for Solar",
     motivation:
       "To integrate solar energy so seamlessly into the tower’s iconic façade that it powers communal spaces and enables residents to drive up to 20,000 km of carbon-free EV travel every year.",
     highlights: [
       "Custom-designed solar façade modules",
-      "650.92 kWp capacity fully integrated into the building envelope",
+      "650.92 kWp capacity fully incorporated into the building envelope",
       "Powers the tower’s communal spaces",
       "Enables up to 20,000 km of carbon-free EV travel per year",
       "Cutting-edge solar glass and architectural integration",
@@ -146,7 +146,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     tagline:
       "Architectural BIPV for a landmark cultural and tourism destination",
     overview:
-      "A prestigious waterfront project featuring carefully designed Building-Integrated Photovoltaics that complement the architectural vision of SOM. The 132 kWp BIPV system contributes clean energy while maintaining the high aesthetic standards expected of a landmark cultural and tourism destination in Jeddah.",
+      "A prestigious waterfront project featuring carefully designed architectural BIPV that complements the architectural vision of SOM. The 132 kWp BIPV system contributes clean energy while maintaining the high aesthetic standards expected of a landmark cultural and tourism destination in Jeddah.",
     motivationTitle: "Motivation for Solar",
     motivation:
       "To deliver a high-performance BIPV solution that respects the architectural vision of SOM while contributing meaningful clean energy to a major cultural and tourism landmark in Jeddah.",
@@ -162,14 +162,14 @@ export const projectDetails: Record<string, ProjectDetail> = {
     statusType: "ongoing",
     systemSize: "132 kWp BIPV",
     stakeholders: "JCDC, SOM Architects",
-    scope: "Building-Integrated Photovoltaic system design and integration",
+    scope: "Architectural BIPV system design and integration",
   },
   "zamani-islands": {
     title: "Zamani Islands – Net-Zero Resort",
     tagline:
       "World’s largest net-zero resort – fully renewable, zero-waste hospitality destination",
     overview:
-      "Positioned to become the world’s largest net-zero resort, Zamani Islands will operate entirely on renewable energy. The project combines innovative Building-Integrated Photovoltaics, energy-efficient Net Zero architecture, and agri-photovoltaic systems that generate clean energy while supporting sustainable food production. A comprehensive zero-waste strategy ensures organic waste is composted and materials are upcycled.",
+      "Positioned to become the world’s largest net-zero resort, Zamani Islands will operate entirely on renewable energy. The project combines innovative architectural BIPV, energy-efficient Net Zero architecture, and agri-photovoltaic systems that generate clean energy while supporting sustainable food production. A comprehensive zero-waste strategy ensures organic waste is composted and materials are upcycled.",
     motivationTitle: "Motivation for Solar",
     motivation:
       "To build the world’s largest net-zero resort — proving that luxury hospitality can operate entirely on renewable energy, support local food production through agri-photovoltaics, and achieve a true zero-waste model.",
@@ -203,7 +203,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "1,200 kWp BIPV capacity",
       "Net-Zero Building target",
       "Cost-effective renewable energy generation",
-      "Innovative sustainability integrated into corporate headquarters",
+      "Innovative sustainability embedded in the corporate headquarters",
       "Collaboration with Omrania Architects",
     ],
     location: "Riyadh, Kingdom of Saudi Arabia",
@@ -212,14 +212,14 @@ export const projectDetails: Record<string, ProjectDetail> = {
     statusType: "ongoing",
     systemSize: "1,200 kWp BIPV",
     stakeholders: "Omrania Architects",
-    scope: "Building-Integrated Photovoltaic system for a Net-Zero Building",
+    scope: "Architectural BIPV system for a Net-Zero Building",
   },
   "dewa-solar-tree": {
     title: "DEWA Solar Tree",
     tagline:
       "Dual-axis tracking solar structure that redefines architectural solar design",
     overview:
-      "One of the most remarkable elements of the New DEWA HQ project is the Solar Tree. Featuring a unique dual-axis tracking system and sophisticated engineering, it demonstrates that solar is not limited to rooftops and building façades. Solar can also be integrated into standalone architectural structures, engineered to complement aesthetics while generating clean energy by continuously following the sun.",
+      "One of the most remarkable elements of the New DEWA HQ project is the Solar Tree. Featuring a unique dual-axis tracking system and sophisticated engineering, it demonstrates that solar is not limited to rooftops and building façades. Solar can also be incorporated into standalone architectural structures, engineered to complement aesthetics while generating clean energy by continuously following the sun.",
     motivationTitle: "Motivation for Solar",
     motivation:
       "To demonstrate that solar can transcend rooftops and façades — becoming a standalone architectural landmark that continuously tracks the sun while elevating the design language of the New DEWA Headquarters.",
@@ -294,14 +294,14 @@ export const projectDetails: Record<string, ProjectDetail> = {
   "uae-pavilion-expo": {
     title: "UAE Pavilion – Expo 2020 Dubai",
     tagline:
-      "LEED Platinum pavilion with seamlessly integrated BIPV façade by Santiago Calatrava",
+      "LEED Platinum pavilion with a seamless BIPV façade by Santiago Calatrava",
     overview:
-      "The UAE Pavilion, designed by renowned architect Santiago Calatrava, is a landmark LEED Platinum-certified building. Empereal contributed a 98 kWp BIPV system seamlessly integrated into its iconic façade. The solar solution enhanced energy efficiency while reinforcing the pavilion’s status as a globally recognized symbol of innovation and sustainable architecture.",
+      "The UAE Pavilion, designed by renowned architect Santiago Calatrava, is a landmark LEED Platinum-certified building. Empereal contributed a 98 kWp BIPV system seamlessly incorporated into its iconic façade. The solar solution enhanced energy efficiency while reinforcing the pavilion’s status as a globally recognized symbol of innovation and sustainable architecture.",
     motivationTitle: "Motivation for Solar",
     motivation:
       "To integrate a high-performance BIPV façade into Santiago Calatrava’s iconic design, helping the UAE Pavilion achieve LEED Platinum certification while showcasing the country’s commitment to sustainable architecture on a global stage.",
     highlights: [
-      "98 kWp BIPV seamlessly integrated into the iconic façade",
+      "98 kWp BIPV seamlessly incorporated into the iconic façade",
       "LEED Platinum-certified building",
       "Designed by Santiago Calatrava",
       "Supported the pavilion’s high sustainability objectives",

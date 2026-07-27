@@ -20,13 +20,13 @@ export const posts: BlogPost[] = [
     readTime: "Watch video",
     title: "He Spent $2.5M Making Solar Panels Invisible... Now His Company Makes $41M/YR",
     excerpt:
-      "In this Emirates Development Bank documentary, Empereal founder Manoj Divakaran shares the journey behind building a UAE clean-energy company focused on solar-integrated architecture and future-ready energy solutions.",
+      "In this Emirates Development Bank documentary, Empereal founder Manoj Divakaran shares the journey behind building a UAE clean-energy company focused on solar-powered architecture and future-ready energy solutions.",
     image: "https://i.ytimg.com/vi/iT87iVJYUC0/maxresdefault.jpg",
     youtubeId: "iT87iVJYUC0",
     sections: [
       {
         heading: "The Empereal Story",
-        body: "Watch Manoj Divakaran share Empereal's founder story, the investment and conviction behind its growth, and the opportunity to turn buildings into clean-energy assets through integrated solar technology.",
+        body: "Watch Manoj Divakaran share Empereal's founder story, the investment and conviction behind its growth, and the opportunity to turn buildings into clean-energy assets through architectural solar technology.",
       },
     ],
   },
@@ -38,12 +38,12 @@ export const posts: BlogPost[] = [
     readTime: "5 min read",
     title: "Expo 2020 UAE Pavilion: How 98kWp BIPV Brought Santiago Calatrava's Vision to Life",
     excerpt:
-      "The UAE Pavilion at Expo 2020 Dubai is one of the world's most striking examples of building-integrated photovoltaics. Designed by Santiago Calatrava with 98 kWp of solar seamlessly integrated into its falcon-inspired wing structure, the project shows how renewable energy can enhance architectural excellence rather than compromise it.",
+      "The UAE Pavilion at Expo 2020 Dubai is one of the world's most striking examples of architectural BIPV. Designed by Santiago Calatrava with 98 kWp of solar seamlessly incorporated into its falcon-inspired wing structure, the project shows how renewable energy can enhance architectural excellence rather than compromise it.",
     image: "/images/uae-pavilion-expo-2020.jpg",
     sections: [
       {
         heading: "A Landmark in Sustainable Architecture",
-        body: "The UAE Pavilion at Expo 2020 Dubai stands as a testament to what is possible when innovative engineering meets visionary architecture. Designed by the renowned Santiago Calatrava, the pavilion features a 98 kWp Building-Integrated Photovoltaic (BIPV) system that seamlessly integrates renewable energy generation into its iconic falcon-wing structure.",
+        body: "The UAE Pavilion at Expo 2020 Dubai stands as a testament to what is possible when innovative engineering meets visionary architecture. Designed by the renowned Santiago Calatrava, the pavilion features a 98 kWp architectural BIPV system that seamlessly incorporates renewable energy generation into its iconic falcon-wing structure.",
       },
       {
         heading: "Engineering Excellence",
@@ -55,7 +55,7 @@ export const posts: BlogPost[] = [
       },
       {
         heading: "Key Takeaways",
-        body: "The project integrated 98 kWp of BIPV into an iconic falcon-wing design, achieved LEED Platinum sustainability objectives, exposed millions of visitors to solar technology in action, and demonstrated the scalability of BIPV in landmark architecture.",
+        body: "The project incorporated 98 kWp of BIPV into an iconic falcon-wing design, achieved LEED Platinum sustainability objectives, exposed millions of visitors to solar technology in action, and demonstrated the scalability of BIPV in landmark architecture.",
       },
     ],
   },
@@ -67,12 +67,12 @@ export const posts: BlogPost[] = [
     readTime: "3 min read",
     title: "Empereal at WFES 2026: Previewing the Future of Middle East Solar",
     excerpt:
-      "As WFES returns to Abu Dhabi in 2026, we'll showcase our latest work in BIPV, green hydrogen, and integrated energy storage — from next-generation façade-integrated solar to utility-scale hydrogen electrolysis.",
+      "As WFES returns to Abu Dhabi in 2026, we'll showcase our latest work in BIPV, green hydrogen, and advanced energy storage — from next-generation solar façades to utility-scale hydrogen electrolysis.",
     image: "/images/masdar-10mw.jpg",
     sections: [
       {
         heading: "Innovation on Display",
-        body: "Empereal was proud to participate in the World Future Energy Summit 2026, part of Abu Dhabi Sustainability Week. Our booth showcased the latest innovations in Building-Integrated Photovoltaics, advanced battery energy storage systems, and our new green hydrogen electrolyzer platform.",
+        body: "Empereal was proud to participate in the World Future Energy Summit 2026, part of Abu Dhabi Sustainability Week. Our booth showcased the latest innovations in architectural BIPV, advanced battery energy storage systems, and our new green hydrogen electrolyzer platform.",
       },
       {
         heading: "Live Demonstrations",
@@ -80,11 +80,11 @@ export const posts: BlogPost[] = [
       },
       {
         heading: "Thought Leadership",
-        body: "Our leadership team delivered a keynote on \"The Future of Integrated Renewable Infrastructure,\" highlighting how the convergence of solar, storage, and hydrogen technologies is creating new possibilities for energy independence and industrial decarbonization. The presentation drew particular attention to our Zamani Islands project as a model for fully integrated sustainable development.",
+        body: "Our leadership team delivered a keynote on \"The Future of Unified Renewable Infrastructure,\" highlighting how the convergence of solar, storage, and hydrogen technologies is creating new possibilities for energy independence and industrial decarbonization. The presentation drew particular attention to our Zamani Islands project as a model for cohesive sustainable development.",
       },
       {
         heading: "Key Takeaways",
-        body: "The summit featured live demonstrations of BIPV, BESS, and hydrogen systems alongside a keynote on integrated renewable infrastructure, drawing strong international project inquiries and showcasing Zamani Islands as an integrated model.",
+        body: "The summit featured live demonstrations of BIPV, BESS, and hydrogen systems alongside a keynote on unified renewable infrastructure, drawing strong international project inquiries and showcasing Zamani Islands as a cohesive model.",
       },
     ],
   },
@@ -96,12 +96,12 @@ export const posts: BlogPost[] = [
     readTime: "6 min read",
     title: "The Rise of BIPV in the GCC: From Niche Technology to Mainstream Construction",
     excerpt:
-      "Building-integrated photovoltaics is moving fast from experimental installations to standard construction practice across the GCC. With landmark projects like the DEWA Headquarters and Masdar MC2 proving technical viability at scale, developers across the region are increasingly specifying BIPV as a primary building material.",
+      "Architectural BIPV is moving fast from experimental installations to standard construction practice across the GCC. With landmark projects like the DEWA Headquarters and Masdar MC2 proving technical viability at scale, developers across the region are increasingly specifying BIPV as a primary building material.",
     image: "/images/mercedes-binghatti.jpg",
     sections: [
       {
         heading: "BIPV: Where Architecture Meets Energy",
-        body: "Building-Integrated Photovoltaics (BIPV) is no longer a niche technology — it is becoming a defining feature of modern architecture in the GCC. From the Mercedes-Benz Binghatti Tower's custom solar glass façade to the DEWA Headquarters' 4,983 kWp integrated system, BIPV is transforming skylines while generating clean power.",
+        body: "Architectural BIPV is no longer a niche technology — it is becoming a defining feature of modern architecture in the GCC. From the Mercedes-Benz Binghatti Tower's custom solar glass façade to the DEWA Headquarters' 4,983 kWp unified system, BIPV is transforming skylines while generating clean power.",
       },
       {
         heading: "Key Drivers in the Region",

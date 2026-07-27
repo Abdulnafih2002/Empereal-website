@@ -78,7 +78,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "bipv",
     title: "Architectural BIPV & Solar Facade",
     description:
-      "Custom-designed solar façades, railings, canopies, and building-integrated systems. IEC-certified modules engineered for landmark architecture and Dubai SHAMS/D33 compliant.",
+      "Custom-designed solar façades, railings, canopies, and architectural BIPV systems. IEC-certified modules engineered for landmark architecture and Dubai SHAMS/D33 compliant.",
     icon: "bipv",
     href: "/solutions/integrated-infrastructure",
     order: 1,
@@ -96,7 +96,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "energy-storage",
     title: "Energy Storage",
     description:
-      "Battery energy storage integrated with solar PV, patented thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
+      "Battery energy storage paired with solar PV, patented thermal storage using phase-change materials, molten salt CSP storage, and intelligent energy management systems.",
     icon: "battery",
     href: "/solutions/energy-storage",
     order: 3,
@@ -105,7 +105,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
     id: "green-hydrogen",
     title: "Green Hydrogen",
     description:
-      "Alkaline electrolyser-based green hydrogen production integrated with solar PV and desalination, including sea-water-to-hydrogen projects and DEWA hydrogen plant.",
+      "Alkaline electrolyser-based green hydrogen production paired with solar PV and desalination, including sea-water-to-hydrogen projects and DEWA hydrogen plant.",
     icon: "h2",
     href: "/solutions/green-hydrogen",
     order: 4,
@@ -123,7 +123,7 @@ const DEFAULT_SOLUTIONS: Solution[] = [
 
 export async function getSolutions(): Promise<Solution[]> {
   // Solution areas are site-defined navigation content. An older production
-  // blob contains a sixth, now-merged "Integrated Energy Infrastructure"
+  // Blob contains a sixth, now-merged infrastructure solution.
   // record, so reading that blob makes deployments diverge from this source.
   return DEFAULT_SOLUTIONS.map((solution) => ({ ...solution }));
 }

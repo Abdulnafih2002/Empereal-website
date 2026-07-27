@@ -2,7 +2,9 @@
 import Container from "../../primitives/Container.astro";
 
 const partners = [
-  { name: "TotalEnergies", file: "totalenergies" },
+  { name: "Mitrex", file: "partners/mitrex", priority: true },
+  { name: "TotalEnergies", file: "partners/totalenergies" },
+  { name: "PERIC", file: "totalenergies" },
   { name: "JinkoSolar", file: "jinkosolar" },
   { name: "LONGi", file: "longi-partner" },
   { name: "Enphase", file: "enphase" },
@@ -23,6 +25,10 @@ const clients = [
   { name: "Shapoorji Pallonji", file: "shapoorji-pallonji" },
   { name: "UNEC", file: "unec" },
 ];
+
+// Five matching groups keep the marquee filled on wide screens while one
+// complete group moves through the animation cycle.
+const marqueeCopies = Array.from({ length: 5 });
 ---
 
 <section class="section-pad bg-white border-t border-primary/5 overflow-hidden" aria-labelledby="clients-partners-title">
@@ -44,19 +50,23 @@ const clients = [
     <div class="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
     <div class="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
 
-    <div class="marquee marquee--left flex gap-16 items-center">
-      <!-- duplicated for seamless loop -->
-      {[...partners, ...partners].map((p) => (
-        <div class="logo-item flex-none h-9 flex items-center justify-center" title={p.name}>
-          <img
-            src={`/images/logos/${p.file}.webp`}
-            alt={p.name}
-            class="logo-img h-full w-auto max-w-[130px] object-contain"
-            loading="lazy"
-            decoding="async"
-            width="240"
-            height="72"
-          />
+    <div class="marquee marquee--left">
+      {marqueeCopies.map((_, copyIndex) => (
+        <div class="marquee-group">
+          {partners.map((p) => (
+            <div class="logo-item flex-none h-9 flex items-center justify-center" title={p.name}>
+              <img
+                src={`/images/logos/${p.file}.webp`}
+                alt={p.name}
+                class="logo-img h-full w-auto max-w-[130px] object-contain"
+                loading={p.priority && copyIndex === 0 ? "eager" : "lazy"}
+                fetchpriority={p.priority && copyIndex === 0 ? "high" : "auto"}
+                decoding="async"
+                width="240"
+                height="72"
+              />
+            </div>
+          ))}
         </div>
       ))}
     </div>
@@ -67,18 +77,22 @@ const clients = [
     <div class="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-white to-transparent"></div>
     <div class="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-white to-transparent"></div>
 
-    <div class="marquee marquee--right flex gap-16 items-center">
-      {[...clients, ...clients].map((c) => (
-        <div class="logo-item flex-none h-9 flex items-center justify-center" title={c.name}>
-          <img
-            src={`/images/logos/${c.file}.webp`}
-            alt={c.name}
-            class="logo-img h-full w-auto max-w-[130px] object-contain"
-            loading="lazy"
-            decoding="async"
-            width="240"
-            height="72"
-          />
+    <div class="marquee marquee--right">
+      {marqueeCopies.map(() => (
+        <div class="marquee-group">
+          {clients.map((c) => (
+            <div class="logo-item flex-none h-9 flex items-center justify-center" title={c.name}>
+              <img
+                src={`/images/logos/${c.file}.webp`}
+                alt={c.name}
+                class="logo-img h-full w-auto max-w-[130px] object-contain"
+                loading="lazy"
+                decoding="async"
+                width="240"
+                height="72"
+              />
+            </div>
+          ))}
         </div>
       ))}
     </div>
@@ -95,6 +109,14 @@ const clients = [
     display: flex;
     width: max-content;
     will-change: transform;
+  }
+
+  .marquee-group {
+    display: flex;
+    flex: none;
+    align-items: center;
+    gap: 4rem;
+    padding-right: 4rem;
   }
 
   .marquee--left {
@@ -124,11 +146,11 @@ const clients = [
 
   @keyframes scroll-left {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-20%); }
   }
 
   @keyframes scroll-right {
-    0%   { transform: translateX(-50%); }
+    0%   { transform: translateX(-20%); }
     100% { transform: translateX(0); }
   }
 

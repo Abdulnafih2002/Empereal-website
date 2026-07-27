@@ -7,6 +7,9 @@ import AboutEmpereal from "../components/sections/home/AboutEmpereal.astro";
 import OurProjects from "../components/sections/home/OurProjects.astro";
 import NewsInsights from "../components/sections/home/NewsInsights.astro";
 import Testimonial from "../components/sections/home/Testimonial.astro";
+
+// Keep the section available for a future relaunch without removing its component.
+const showTestimonials = false;
 ---
 <BaseLayout
   title="empereal | Engineering the future of clean energy."
@@ -23,5 +26,5 @@ import Testimonial from "../components/sections/home/Testimonial.astro";
   <CleanEnergySolutions />
   <OurProjects />
   <NewsInsights />
-  <Testimonial />
+  {showTestimonials && <Testimonial />}
 </BaseLayout>

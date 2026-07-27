@@ -8,7 +8,14 @@ const [enquiries, projects] = await Promise.all([getEnquiries(), getProjects()])
 const newCount = enquiries.filter((e) => e.status === "new").length;
 const nextOrder = projects.reduce((m, p) => Math.max(m, p.order), 0) + 1;
 
-const CATEGORIES = ["solar-pv","bipv","desalination","storage","hydrogen","integrated"];
+const CATEGORIES = [
+  { value: "solar-pv", label: "Solar PV" },
+  { value: "bipv", label: "BIPV" },
+  { value: "desalination", label: "Desalination" },
+  { value: "storage", label: "Storage" },
+  { value: "hydrogen", label: "Hydrogen" },
+  { value: "integrated", label: "Unified Systems" },
+];
 ---
 <CRMLayout title="Add Project" newEnquiries={newCount}>
   <div class="max-w-lg">
@@ -52,7 +59,7 @@ const CATEGORIES = ["solar-pv","bipv","desalination","storage","hydrogen","integ
             <label for="p-category" class="block text-sm font-medium text-slate-700 mb-1.5">Category</label>
             <select id="p-category" name="category"
               class="w-full rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm text-slate-800 transition focus:border-orange focus:outline-none focus:ring-2 focus:ring-orange/20">
-              {CATEGORIES.map((c) => <option value={c}>{c}</option>)}
+              {CATEGORIES.map((category) => <option value={category.value}>{category.label}</option>)}
             </select>
           </div>
           <div>
