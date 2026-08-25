@@ -1,0 +1,195 @@
+---
+export const prerender = true;
+
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Button from "../components/primitives/Button.astro";
+import Container from "../components/primitives/Container.astro";
+
+const recoveryLinks = [
+  {
+    number: "01",
+    label: "Solutions",
+    detail: "What we engineer",
+    href: "/solutions",
+  },
+  {
+    number: "02",
+    label: "Projects",
+    detail: "See our work",
+    href: "/projects",
+  },
+  {
+    number: "03",
+    label: "Contact",
+    detail: "Talk to our team",
+    href: "/contact",
+  },
+];
+---
+
+<BaseLayout
+  title="Page Not Found | Empereal"
+  description="The page you’re looking for could not be found. Return to Empereal or explore our clean energy projects and solutions."
+  image="/images/empereal-og.png"
+  imageAlt="Empereal — Engineering the future of clean energy"
+  noindex={true}
+  preloadImage="/images/sustainability-city.jpg"
+>
+  <section
+    class="not-found-hero relative isolate flex min-h-[100svh] overflow-hidden rounded-b-xl bg-primary-dark text-white"
+    aria-labelledby="not-found-title"
+    data-hero
+    data-hero-backdrop
+  >
+    <div class="absolute inset-0 -z-20" aria-hidden="true">
+      <img
+        src="/images/sustainability-city.jpg"
+        alt=""
+        class="h-full w-full object-cover object-[58%_center]"
+        loading="eager"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
+
+    <div class="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(8,22,37,.9)_0%,rgba(8,22,37,.72)_42%,rgba(8,22,37,.28)_74%,rgba(8,22,37,.12)_100%)]" aria-hidden="true"></div>
+    <div class="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(5,17,29,.35)_0%,transparent_28%,transparent_64%,rgba(5,17,29,.48)_100%)]" aria-hidden="true"></div>
+
+    <Container class="relative flex min-h-[100svh] flex-1 items-center pb-36 pt-28 sm:pb-40 sm:pt-32 lg:pb-40 lg:pt-36">
+      <div class="w-full max-w-[46rem]">
+        <div class="relative z-10">
+          <p class="hero-enter hero-enter-1 mb-4 text-xs font-bold uppercase tracking-[0.22em] text-orange sm:text-sm">
+            404 · Page not found
+          </p>
+
+          <h1 id="not-found-title" class="not-found-title fluid-display hero-enter hero-enter-2 text-white">
+            We couldn’t find this page.
+          </h1>
+
+          <p class="hero-enter hero-enter-3 mt-5 max-w-2xl text-base leading-relaxed text-white/85 sm:text-lg">
+            The page may have moved, been renamed, or the link may be out of date. Use one of the links below to continue browsing Empereal.
+          </p>
+
+          <div class="hero-enter hero-enter-4 mt-8 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+            <Button href="/" variant="ghost" size="lg" class="press">
+              Back to Home
+            </Button>
+
+            <a
+              href="/projects"
+              class="group inline-flex min-h-12 items-center gap-2 px-1 text-sm font-semibold text-white/85 transition-colors hover:text-white"
+            >
+              Explore Our Projects
+              <svg viewBox="0 0 20 20" class="arrow-slide h-4 w-4 text-orange" fill="none" aria-hidden="true">
+                <path d="M4 10h12m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          </div>
+
+          <p class="hero-enter hero-enter-4 mt-6 text-sm text-white/60">
+            Looking for something specific?
+            <a href="/contact" class="font-semibold text-white underline decoration-orange/70 underline-offset-4 transition-colors hover:text-orange">
+              Contact our team
+            </a>
+          </p>
+        </div>
+      </div>
+    </Container>
+
+    <div class="recovery-wrap absolute bottom-0 left-0 z-10 w-full sm:w-[72%] sm:max-w-[56rem] 2xl:left-1/2 2xl:max-w-[64rem] 2xl:-translate-x-1/2">
+      <nav class="recovery-card grid grid-cols-3 bg-white text-ink shadow-2xl" aria-label="Popular pages">
+        {recoveryLinks.map((link) => (
+          <a
+            href={link.href}
+            class="group relative flex min-h-[6.5rem] items-center gap-3 px-4 py-4 transition-colors hover:bg-primary-50 sm:min-h-[7.25rem] sm:gap-4 sm:px-6 lg:px-8"
+          >
+            <span class="font-display text-xs font-semibold text-orange sm:text-sm">{link.number}</span>
+            <span class="min-w-0">
+              <strong class="block text-sm font-semibold leading-tight text-primary-dark sm:text-base">{link.label}</strong>
+              <span class="mt-1 hidden text-xs text-muted sm:block">{link.detail}</span>
+            </span>
+            <svg viewBox="0 0 20 20" class="arrow-slide ml-auto hidden h-4 w-4 shrink-0 text-primary sm:block" fill="none" aria-hidden="true">
+              <path d="M4 10h12m0 0-4-4m4 4-4 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
+        ))}
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .not-found-title {
+    max-width: 18ch;
+    text-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .recovery-card {
+    --shape-radius: 3.5rem;
+    position: relative;
+    overflow: visible;
+    border-radius: 0 var(--shape-radius) 0 0;
+    isolation: isolate;
+    transform: translateZ(0);
+  }
+
+  .recovery-card > a + a::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 25%;
+    bottom: 25%;
+    width: 1px;
+    background: rgba(0, 59, 100, 0.11);
+  }
+
+  .recovery-card::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    right: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(circle at 100% 0, transparent calc(var(--shape-radius) - 0.5px), #fff var(--shape-radius));
+    pointer-events: none;
+  }
+
+  .recovery-card::before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: calc(var(--shape-radius) * -1);
+    bottom: 0;
+    display: none;
+    width: var(--shape-radius);
+    height: var(--shape-radius);
+    background: radial-gradient(circle at 0 0, transparent calc(var(--shape-radius) - 0.5px), #fff var(--shape-radius));
+    pointer-events: none;
+  }
+
+  @media (max-width: 639px) {
+    .not-found-hero {
+      min-height: 48rem;
+    }
+
+    .recovery-card {
+      --shape-radius: 2.5rem;
+    }
+
+    .recovery-card::before,
+    .recovery-card::after {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1536px) {
+    .recovery-card {
+      border-radius: var(--shape-radius) var(--shape-radius) 0 0;
+    }
+
+    .recovery-card::before {
+      display: block;
+    }
+  }
+</style>
