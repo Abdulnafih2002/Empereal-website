@@ -36,7 +36,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
     client: "Dubai Electricity & Water Authority (DEWA)",
     status: "Under Construction – Completion 2026",
     statusType: "ongoing",
-    systemSize: "4,983 – 5,100 kWp BIPV",
+    systemSize: "4,983 kWp BIPV",
     stakeholders: "DEWA, UNEC",
     scope:
       "Architectural, Structural & Electrical Design, Engineering, Procurement, Installation, Authority Approvals, Generation Studies, Net-Zero Sustainability Ratings, and 3 Years O&M",
