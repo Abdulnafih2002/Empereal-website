@@ -17,5 +17,13 @@ export default defineConfig({
   adapter: vercel(),
   integrations: [tailwind({ applyBaseStyles: false })],
   server: { port: 4321 },
+  vite: {
+    server: {
+      watch: {
+        usePolling: true,
+        interval: 1000,
+      },
+    },
+  },
   compressHTML: true,
 });

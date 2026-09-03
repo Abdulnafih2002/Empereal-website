@@ -1,6 +1,8 @@
 /// <reference path="../.astro/types.d.ts" />
 
 interface ImportMetaEnv {
+  readonly MAINTENANCE_MODE?: string;
+  readonly MAINTENANCE_BYPASS_KEY?: string;
   readonly JWT_SECRET: string;
   readonly ADMIN_PASSWORD_HASH: string;
   readonly BLOB_READ_WRITE_TOKEN: string;
