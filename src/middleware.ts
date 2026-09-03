@@ -67,7 +67,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const maintenanceKey = env("MAINTENANCE_BYPASS_KEY").trim().replace(/^\/+|\/+$/g, "");
   const bypassPath = maintenanceKey ? `/${maintenanceKey}` : "";
   const isBypassEntry = bypassPath !== "" && pathname === bypassPath;
-  const isMaintenancePage = pathname === "/maintenance";
+  const isMaintenancePage = pathname === "/maintenance" || pathname === "/maintenance/";
 
   if (isMaintenanceEnabled() && !isMaintenancePage && !MAINTENANCE_ASSETS.has(pathname)) {
     if (isBypassEntry) {
