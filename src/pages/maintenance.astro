@@ -203,5 +203,24 @@ const description = "The website is currently under maintenance and will be rest
         </aside>
       </section>
     </main>
+    <script>
+      const checkSiteAvailability = async () => {
+        try {
+          const response = await fetch("/", {
+            cache: "no-store",
+            credentials: "same-origin",
+            redirect: "manual",
+          });
+
+          if (response.status >= 200 && response.status < 300) {
+            window.location.replace("/");
+          }
+        } catch {
+          // Keep the maintenance page visible when the network is unavailable.
+        }
+      };
+
+      window.setInterval(checkSiteAvailability, 30000);
+    </script>
   </body>
 </html>

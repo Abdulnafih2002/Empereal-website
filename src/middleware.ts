@@ -69,6 +69,16 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const isBypassEntry = bypassPath !== "" && pathname === bypassPath;
   const isMaintenancePage = pathname === "/maintenance" || pathname === "/maintenance/";
 
+  if (!isMaintenanceEnabled() && isMaintenancePage) {
+    return new Response(null, {
+      status: 307,
+      headers: {
+        Location: "/",
+        "Cache-Control": "no-store",
+      },
+    });
+  }
+
   if (isMaintenanceEnabled() && !isMaintenancePage && !MAINTENANCE_ASSETS.has(pathname)) {
     if (isBypassEntry) {
       const headers = new Headers({ Location: "/", "Cache-Control": "no-store" });
