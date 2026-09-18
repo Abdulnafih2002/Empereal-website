@@ -72,7 +72,8 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  sendEnquiryEmail(enquiry).catch((err) =>
+  // Finish the notification before the serverless invocation can shut down.
+  await sendEnquiryEmail(enquiry).catch((err) =>
     console.error("[enquiry submit] email error", err)
   );
 

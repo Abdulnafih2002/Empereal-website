@@ -4,27 +4,35 @@ import type { Enquiry, Solution, Project, SiteSettings, CrmBlogPost } from "./ty
 // Local dev in-memory fallback when BLOB_READ_WRITE_TOKEN is not set
 const memStore = new Map<string, string>();
 
-function hasBlob(): boolean {
-  return !!(
-    (import.meta.env as Record<string, string>).BLOB_READ_WRITE_TOKEN ??
-    process.env.BLOB_READ_WRITE_TOKEN
-  );
+function blobToken(): string {
+  return (process.env.BLOB_READ_WRITE_TOKEN ?? import.meta.env.BLOB_READ_WRITE_TOKEN ?? "").trim();
 }
 
-async function getBlobJson<T>(pathname: string, fallback: T): Promise<T> {
+function hasBlob(): boolean {
+  return !!blobToken();
+}
+
+function requireEnquiryStorage(): void {
+  if (!import.meta.env.DEV && !hasBlob()) {
+    throw new Error("Enquiry storage requires BLOB_READ_WRITE_TOKEN in the deployment environment.");
+  }
+}
+
+async function getBlobJson<T>(pathname: string, fallback: T, strict = false): Promise<T> {
   if (!hasBlob()) {
     const raw = memStore.get(pathname);
     return raw ? (JSON.parse(raw) as T) : fallback;
   }
   try {
-    const { blobs } = await list({ prefix: pathname });
+    const { blobs } = await list({ prefix: pathname, token: blobToken() });
     if (blobs.length === 0) return fallback;
     // Pick the newest blob — there should only ever be one, but sort defensively
     const blob = blobs.sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime())[0];
     const res = await fetch(blob.url, { cache: "no-store" });
-    if (!res.ok) return fallback;
+    if (!res.ok) throw new Error(`Blob read failed (${res.status}) for ${pathname}`);
     return (await res.json()) as T;
-  } catch {
+  } catch (error) {
+    if (strict) throw error;
     return fallback;
   }
 }
@@ -35,13 +43,14 @@ async function putBlobJson(pathname: string, data: unknown): Promise<void> {
     return;
   }
   // List old blobs BEFORE writing so we know which ones to delete
-  const { blobs: old } = await list({ prefix: pathname });
+  const token = blobToken();
+  const { blobs: old } = await list({ prefix: pathname, token });
   // addRandomSuffix: true gives each write a unique CDN URL.
   // With addRandomSuffix: false, Vercel Blob CDN can cache the fixed URL
   // for up to one year even after the content is overwritten.
-  await put(pathname, JSON.stringify(data), { access: "public", addRandomSuffix: true });
+  await put(pathname, JSON.stringify(data), { access: "public", addRandomSuffix: true, token });
   // Clean up superseded blobs (fire-and-forget — non-critical)
-  if (old.length > 0) del(old.map((b) => b.url)).catch(() => {});
+  if (old.length > 0) await del(old.map((b) => b.url), { token }).catch(() => {});
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
@@ -62,10 +71,12 @@ export async function putPasswordHash(hash: string): Promise<void> {
 const ENQUIRIES_KEY = "empereal/enquiries";
 
 export async function getEnquiries(): Promise<Enquiry[]> {
-  return getBlobJson<Enquiry[]>(ENQUIRIES_KEY, []);
+  requireEnquiryStorage();
+  return getBlobJson<Enquiry[]>(ENQUIRIES_KEY, [], true);
 }
 
 export async function putEnquiries(enquiries: Enquiry[]): Promise<void> {
+  requireEnquiryStorage();
   return putBlobJson(ENQUIRIES_KEY, enquiries);
 }
 
@@ -247,17 +258,17 @@ export function blobEnabled(): boolean {
 
 export async function listAllBlobs() {
   if (!hasBlob()) return [];
-  const { blobs } = await list({ prefix: "empereal/" });
+  const { blobs } = await list({ prefix: "empereal/", token: blobToken() });
   return blobs;
 }
 
 export async function deleteBlobUrl(url: string): Promise<void> {
-  await del([url]);
+  await del([url], { token: blobToken() });
 }
 
 export async function cleanupOrphanBlobs(): Promise<number> {
   if (!hasBlob()) return 0;
-  const { blobs } = await list({ prefix: "empereal/" });
+  const { blobs } = await list({ prefix: "empereal/", token: blobToken() });
   const toDelete: string[] = [];
   for (const key of DATA_KEYS) {
     const group = blobs
@@ -265,6 +276,6 @@ export async function cleanupOrphanBlobs(): Promise<number> {
       .sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
     if (group.length > 1) toDelete.push(...group.slice(1).map((b) => b.url));
   }
-  if (toDelete.length > 0) await del(toDelete);
+  if (toDelete.length > 0) await del(toDelete, { token: blobToken() });
   return toDelete.length;
 }
