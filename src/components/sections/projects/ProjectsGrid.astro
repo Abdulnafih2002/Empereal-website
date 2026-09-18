@@ -137,6 +137,15 @@ const total = projects.length;
 </section>
 
 <style>
+  @media (max-width: 639px) {
+    /* The tall single-column list must not wait for the grid's reveal threshold. */
+    #projects-list > .project-card {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+
   .filter-pill-list {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
