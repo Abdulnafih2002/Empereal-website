@@ -4,21 +4,32 @@ import CRMLayout from "../../layouts/CRMLayout.astro";
 import StatusBadge from "../../components/crm/StatusBadge.astro";
 import { getEnquiries, getBlogPosts, getProjects } from "../../lib/storage.js";
 
-const [enquiries, blogPosts, projects] = await Promise.all([
-  getEnquiries(), getBlogPosts(), getProjects(),
+const [enquiryResult, blogPosts, projects] = await Promise.all([
+  getEnquiries().then(
+    (data) => ({ data, failed: false }),
+    () => ({ data: [], failed: true }),
+  ),
+  getBlogPosts(), getProjects(),
 ]);
+const enquiries = enquiryResult.data;
+const enquiriesUnavailable = enquiryResult.failed;
 
 const newCount = enquiries.filter((e) => e.status === "new").length;
 const recent = enquiries.slice(0, 8);
 
 const stats = [
-  { label: "Total Enquiries", value: enquiries.length, href: "/crm/enquiries",            highlight: false },
-  { label: "New Enquiries",   value: newCount,          href: "/crm/enquiries?status=new", highlight: newCount > 0 },
+  { label: "Total Enquiries", value: enquiriesUnavailable ? "—" : enquiries.length, href: "/crm/enquiries",            highlight: false },
+  { label: "New Enquiries",   value: enquiriesUnavailable ? "—" : newCount,          href: "/crm/enquiries?status=new", highlight: newCount > 0 },
   { label: "Blog Posts",      value: blogPosts.length,  href: "/crm/blog",                 highlight: false },
   { label: "Projects",        value: projects.length,   href: "/crm/projects",             highlight: false },
 ];
 ---
 <CRMLayout title="Dashboard" newEnquiries={newCount}>
+  {enquiriesUnavailable && (
+    <div role="alert" class="mb-6 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700">
+      Enquiries could not be loaded. Check the deployment’s BLOB_READ_WRITE_TOKEN and Blob storage availability, then select Refresh enquiries.
+    </div>
+  )}
   <!-- Stat cards -->
   <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
     {stats.map((s, i) => (
@@ -45,7 +56,7 @@ const stats = [
     <div class="mb-4 flex items-center justify-between">
       <div>
         <h2 class="text-sm font-semibold text-slate-900">Recent Enquiries</h2>
-        <p class="mt-0.5 text-xs text-slate-400">Latest {recent.length} of {enquiries.length} total</p>
+        <p class="mt-0.5 text-xs text-slate-400">{enquiriesUnavailable ? "Enquiry data is currently unavailable" : `Latest ${recent.length} of ${enquiries.length} total`}</p>
       </div>
       <a href="/crm/enquiries" class="flex items-center gap-1 text-xs font-medium text-primary transition hover:text-orange">
         View all
@@ -56,7 +67,7 @@ const stats = [
     {recent.length === 0 ? (
       <div class="rounded-xl bg-white ring-1 ring-slate-200 shadow-sm py-16 text-center">
         <svg class="mx-auto mb-3 h-10 w-10 text-slate-200" viewBox="0 0 24 24" fill="currentColor"><path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"/><path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"/></svg>
-        <p class="text-sm text-slate-400">No enquiries yet</p>
+        <p class="text-sm text-slate-400">{enquiriesUnavailable ? "Unable to load enquiries" : "No enquiries yet"}</p>
       </div>
     ) : (
       <div class="overflow-hidden rounded-xl bg-white ring-1 ring-slate-200 shadow-sm">
