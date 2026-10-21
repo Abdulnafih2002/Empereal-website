@@ -4,6 +4,16 @@ import type { Enquiry, Solution, Project, SiteSettings, CrmBlogPost } from "./ty
 // Local dev in-memory fallback when BLOB_READ_WRITE_TOKEN is not set
 const memStore = new Map<string, string>();
 
+// Vercel Blob charges `list()` as an advanced operation. Keep a short-lived
+// index and JSON cache in each warm function instance so page renders do not
+// issue a list request for every record type on every navigation.
+const CACHE_TTL_MS = 30_000;
+type BlobItem = Awaited<ReturnType<typeof list>>["blobs"][number];
+let blobIndex: { expiresAt: number; items: BlobItem[] } | undefined;
+let blobIndexRequest: Promise<BlobItem[]> | undefined;
+const latestBlobUrls = new Map<string, { url: string; expiresAt: number }>();
+const jsonCache = new Map<string, { expiresAt: number; value: unknown }>();
+
 function blobToken(): string {
   return (process.env.BLOB_READ_WRITE_TOKEN ?? import.meta.env.BLOB_READ_WRITE_TOKEN ?? "").trim();
 }
@@ -24,13 +34,30 @@ async function getBlobJson<T>(pathname: string, fallback: T, strict = false): Pr
     return raw ? (JSON.parse(raw) as T) : fallback;
   }
   try {
-    const { blobs } = await list({ prefix: pathname, token: blobToken() });
-    if (blobs.length === 0) return fallback;
-    // Pick the newest blob — there should only ever be one, but sort defensively
-    const blob = blobs.sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime())[0];
-    const res = await fetch(blob.url, { cache: "no-store" });
+    const cached = jsonCache.get(pathname);
+    if (cached && cached.expiresAt > Date.now()) return cached.value as T;
+
+    const cachedUrl = latestBlobUrls.get(pathname);
+    let url = cachedUrl && cachedUrl.expiresAt > Date.now() ? cachedUrl.url : undefined;
+    if (!url) {
+      const blobs = await getBlobIndex();
+      // Pick the newest matching blob in case old versions remain after a
+      // deployment or a write made by another warm function instance.
+      const matches = blobs
+        .filter((blob) => blob.pathname === pathname || blob.pathname.startsWith(`${pathname}-`))
+        .sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
+      url = matches[0]?.url;
+      if (url) latestBlobUrls.set(pathname, { url, expiresAt: Date.now() + CACHE_TTL_MS });
+    }
+    if (!url) {
+      jsonCache.set(pathname, { expiresAt: Date.now() + CACHE_TTL_MS, value: fallback });
+      return fallback;
+    }
+    const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`Blob read failed (${res.status}) for ${pathname}`);
-    return (await res.json()) as T;
+    const value = (await res.json()) as T;
+    jsonCache.set(pathname, { expiresAt: Date.now() + CACHE_TTL_MS, value });
+    return value;
   } catch (error) {
     if (strict) throw error;
     return fallback;
@@ -42,15 +69,53 @@ async function putBlobJson(pathname: string, data: unknown): Promise<void> {
     memStore.set(pathname, JSON.stringify(data));
     return;
   }
-  // List old blobs BEFORE writing so we know which ones to delete
   const token = blobToken();
-  const { blobs: old } = await list({ prefix: pathname, token });
-  // addRandomSuffix: true gives each write a unique CDN URL.
-  // With addRandomSuffix: false, Vercel Blob CDN can cache the fixed URL
-  // for up to one year even after the content is overwritten.
-  await put(pathname, JSON.stringify(data), { access: "public", addRandomSuffix: true, token });
-  // Clean up superseded blobs (fire-and-forget — non-critical)
-  if (old.length > 0) await del(old.map((b) => b.url), { token }).catch(() => {});
+  // Reuse an already cached index to clean previous versions without an extra
+  // `list()` call. If no index is warm, leave cleanup to the Storage page's
+  // explicit orphan cleanup action.
+  const old = blobIndex?.expiresAt && blobIndex.expiresAt > Date.now()
+    ? blobIndex.items.filter((blob) => blob.pathname === pathname || blob.pathname.startsWith(`${pathname}-`))
+    : [];
+  // Keep unique URLs so the CDN cannot serve stale JSON after an overwrite.
+  const body = JSON.stringify(data);
+  const blob = await put(pathname, body, {
+    access: "public",
+    addRandomSuffix: true,
+    token,
+  });
+  latestBlobUrls.set(pathname, { url: blob.url, expiresAt: Date.now() + CACHE_TTL_MS });
+  jsonCache.set(pathname, { expiresAt: Date.now() + CACHE_TTL_MS, value: data });
+  if (old.length > 0) {
+    await del(old.map((item) => item.url), { token }).catch(() => {});
+  }
+  if (blobIndex && blobIndex.expiresAt > Date.now()) {
+    const oldUrls = new Set(old.map((item) => item.url));
+    blobIndex.items = [
+      ...blobIndex.items.filter((item) => !oldUrls.has(item.url)),
+      {
+        url: blob.url,
+        downloadUrl: blob.downloadUrl,
+        pathname: blob.pathname,
+        size: new TextEncoder().encode(body).length,
+        uploadedAt: new Date(),
+        etag: blob.etag,
+      },
+    ];
+  }
+}
+
+async function getBlobIndex(): Promise<BlobItem[]> {
+  if (blobIndex && blobIndex.expiresAt > Date.now()) return blobIndex.items;
+  if (blobIndexRequest) return blobIndexRequest;
+  blobIndexRequest = list({ prefix: "empereal/", token: blobToken() })
+    .then(({ blobs }) => {
+      blobIndex = { expiresAt: Date.now() + CACHE_TTL_MS, items: blobs };
+      return blobs;
+    })
+    .finally(() => {
+      blobIndexRequest = undefined;
+    });
+  return blobIndexRequest;
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
@@ -258,8 +323,7 @@ export function blobEnabled(): boolean {
 
 export async function listAllBlobs() {
   if (!hasBlob()) return [];
-  const { blobs } = await list({ prefix: "empereal/", token: blobToken() });
-  return blobs;
+  return getBlobIndex();
 }
 
 export async function deleteBlobUrl(url: string): Promise<void> {
@@ -268,7 +332,7 @@ export async function deleteBlobUrl(url: string): Promise<void> {
 
 export async function cleanupOrphanBlobs(): Promise<number> {
   if (!hasBlob()) return 0;
-  const { blobs } = await list({ prefix: "empereal/", token: blobToken() });
+  const blobs = await getBlobIndex();
   const toDelete: string[] = [];
   for (const key of DATA_KEYS) {
     const group = blobs
@@ -276,6 +340,9 @@ export async function cleanupOrphanBlobs(): Promise<number> {
       .sort((a, b) => b.uploadedAt.getTime() - a.uploadedAt.getTime());
     if (group.length > 1) toDelete.push(...group.slice(1).map((b) => b.url));
   }
-  if (toDelete.length > 0) await del(toDelete, { token: blobToken() });
+  if (toDelete.length > 0) {
+    await del(toDelete, { token: blobToken() });
+    blobIndex = undefined;
+  }
   return toDelete.length;
 }

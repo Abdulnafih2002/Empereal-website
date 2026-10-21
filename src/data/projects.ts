@@ -105,7 +105,7 @@ export const projects: Project[] = [
   {
     slug: "mercedes-binghatti",
     title: "Mercedes-Benz Binghatti Tower",
-    location: "Nad Al Sheba, Dubai",
+    location: "Downtown Dubai, Dubai",
     country: "United Arab Emirates",
     countryCode: "AE",
     client: "Mercedes-Benz",
@@ -113,7 +113,7 @@ export const projects: Project[] = [
     status: "ongoing",
     scale: "650.92 kWp",
     scope: "Custom BIPV façade design using cutting-edge solar technologies and glass; engineering, integration, and performance optimization.",
-    summary: "650.92 kWp iconic BIPV façade featuring custom-designed solar modules. The system powers communal spaces and enables up to 20,000 km of carbon-free EV travel annually for residents.",
+    summary: "2,843 BIPV modules with approximately 650 kWp of installed capacity transform the tower’s façade into a source of clean energy, featuring an illuminated Mercedes-Benz logo and an architectural design that supports energy efficiency and reduced carbon emissions.",
     outcome: "Generates clean energy directly from building façade while reducing operational energy demand and supporting EV mobility targets.",
     categories: ["bipv"],
     tone: "navy",

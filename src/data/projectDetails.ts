@@ -117,9 +117,9 @@ export const projectDetails: Record<string, ProjectDetail> = {
   "mercedes-binghatti": {
     title: "Mercedes-Benz Binghatti Tower",
     tagline:
-      "Iconic BIPV façade powering communal spaces and enabling carbon-free EV travel",
+      "Sustainable architecture powered by an integrated solar façade",
     overview:
-      "Mercedes-Benz Places features an innovative architectural BIPV façade. The iconic tower is clad in custom-designed solar modules that harvest energy to power communal spaces. The system is uniquely engineered to provide up to 20,000 km of carbon-free electric vehicle travel annually for residents — creating a tangible link between the building’s energy production and sustainable mobility.",
+      "Redefining the future of sustainable architecture, this project integrates 2,843 Building-Integrated Photovoltaic (BIPV) modules, with a total installed capacity of approximately 650 kWp, into the tower’s façade. Transforming the building exterior into a powerful source of clean energy, the system seamlessly combines advanced solar technology with architectural excellence.\n\nThe façade features the iconic Mercedes-Benz logo, illuminated during nighttime hours, creating a distinctive visual identity that celebrates the brand while enhancing the building’s presence after dark.\n\nBeyond its striking aesthetics, the BIPV system harnesses sunlight to generate renewable electricity, helping reduce reliance on conventional energy sources and carbon emissions. By combining an impressive solar capacity, iconic branding, and innovative architectural integration, the project demonstrates how sustainable technology can transform a building façade into a landmark of modern design, energy efficiency, and environmental responsibility.",
     motivationTitle: "Motivation for Solar",
     motivation:
       "To integrate solar energy so seamlessly into the tower’s iconic façade that it powers communal spaces and enables residents to drive up to 20,000 km of carbon-free EV travel every year.",
@@ -131,7 +131,7 @@ export const projectDetails: Record<string, ProjectDetail> = {
       "Cutting-edge solar glass and architectural integration",
       "Strong alignment between Mercedes-Benz sustainability values and building performance",
     ],
-    location: "Nad Al Sheba District, Dubai, UAE",
+    location: "Downtown Dubai, Dubai, UAE",
     client: "Mercedes-Benz / Binghatti Developers",
     status: "Ongoing Project",
     statusType: "ongoing",

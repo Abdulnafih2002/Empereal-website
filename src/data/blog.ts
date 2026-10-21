@@ -126,7 +126,7 @@ export const posts: BlogPost[] = [
     title: "Solar-Powered Hydrogen: The Cornerstone of the UAE's Net-Zero Strategy",
     excerpt:
       "The convergence of solar power and green hydrogen production is one of the most promising paths to deep decarbonization in the Middle East. This article looks at how solar-to-hydrogen systems work, the economics of green hydrogen production, and what it means for regional energy security and export potential.",
-    image: "/images/acwa-hq.jpg",
+    image: "/images/dewa-rd-green-hydrogen.webp",
     sections: [
       {
         heading: "A Perfect Match",
