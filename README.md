@@ -1,4 +1,4 @@
-# Empereal-website
+# Empereal-websites
 
 Run locally with `npm install` and `npm run dev`, using `.env.example` as the
 template for `.env`. Build with `npm run build`.
