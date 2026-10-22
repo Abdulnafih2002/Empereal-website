@@ -1,6 +1,6 @@
 # Empereal-websites
 
-Run locally with `npm install` and `npm run dev`, using `.env.example` as the
+Run locally with `npm install` and `npm run dev`, using `.env.example` as thee
 template for `.env`. Build with `npm run build`.
 
 ## Hosted enquiries and profile downloads
