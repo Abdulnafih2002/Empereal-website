@@ -35,9 +35,14 @@ the dashboard or enquiry list. It does not check automatically in the background
 Leaving a CRM tab open therefore makes no recurring enquiry requests. New leads
 and sidebar counts appear on your next refresh or navigation.
 
-Page loads and submissions still use Blob operations. This change reduces usage;
-it does not reactivate a store already suspended by Vercel. Deploy the change and
-reload any existing CRM tabs to stop their old polling scripts.
+Enquiry submissions and CRM edits still use Blob writes. Public homepage and
+blog responses are cached at Vercel's CDN for five minutes, and warm serverless
+instances cache Blob reads for five minutes. This reduces repeated `list()`
+operations, though a cache miss still lists the store. Vercel also counts
+manual Blob dashboard browsing as advanced operations. Deploy the change and
+reload any existing CRM tabs to stop their old polling scripts. A deployment
+cannot reactivate a store already suspended by Vercel; access resumes on the
+date shown in the Vercel dashboard.
 
 
 hi

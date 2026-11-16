@@ -1,5 +1,9 @@
 ---
 export const prerender = false;
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=0, s-maxage=300, stale-while-revalidate=3600",
+);
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Container from "../../components/primitives/Container.astro";
 import { getBlogPosts } from "../../lib/storage.js";

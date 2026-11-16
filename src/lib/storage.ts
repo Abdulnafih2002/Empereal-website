@@ -7,7 +7,10 @@ const memStore = new Map<string, string>();
 // Vercel Blob charges `list()` as an advanced operation. Keep a short-lived
 // index and JSON cache in each warm function instance so page renders do not
 // issue a list request for every record type on every navigation.
-const CACHE_TTL_MS = 30_000;
+// A longer per-instance cache reduces list() calls when a Vercel function is
+// reused. Public page responses are also cached at the CDN (see their routes),
+// since this in-memory cache is not shared between serverless instances.
+const CACHE_TTL_MS = 5 * 60_000;
 type BlobItem = Awaited<ReturnType<typeof list>>["blobs"][number];
 let blobIndex: { expiresAt: number; items: BlobItem[] } | undefined;
 let blobIndexRequest: Promise<BlobItem[]> | undefined;

@@ -1,5 +1,11 @@
 ---
 export const prerender = false;
+// The homepage includes the latest Blob-backed articles. Cache the rendered
+// page at Vercel's CDN so normal visitor traffic does not invoke Blob list().
+Astro.response.headers.set(
+  "Cache-Control",
+  "public, max-age=0, s-maxage=300, stale-while-revalidate=3600",
+);
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/home/Hero.astro";
 import CleanEnergySolutions from "../components/sections/home/CleanEnergySolutions.astro";
