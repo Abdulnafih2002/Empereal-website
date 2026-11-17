@@ -1,4 +1,4 @@
-import { put, list, del } from "@vercel/blob";
+import { put, list, del, get } from "@vercel/blob";
 import type { Enquiry, Solution, Project, SiteSettings, CrmBlogPost } from "./types.js";
 
 // Local dev in-memory fallback when BLOB_READ_WRITE_TOKEN is not set
@@ -40,6 +40,14 @@ async function getBlobJson<T>(pathname: string, fallback: T, strict = false): Pr
     const cached = jsonCache.get(pathname);
     if (cached && cached.expiresAt > Date.now()) return cached.value as T;
 
+    // New records have stable pathnames and can be read without listing the store.
+    const direct = await get(pathname, { access: "public", token: blobToken() });
+    if (direct) {
+      const value = (await new Response(direct.stream).json()) as T;
+      jsonCache.set(pathname, { expiresAt: Date.now() + CACHE_TTL_MS, value });
+      return value;
+    }
+
     const cachedUrl = latestBlobUrls.get(pathname);
     let url = cachedUrl && cachedUrl.expiresAt > Date.now() ? cachedUrl.url : undefined;
     if (!url) {
@@ -59,6 +67,10 @@ async function getBlobJson<T>(pathname: string, fallback: T, strict = false): Pr
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) throw new Error(`Blob read failed (${res.status}) for ${pathname}`);
     const value = (await res.json()) as T;
+    // Migrate legacy suffixed records once so future cold starts avoid list().
+    await put(pathname, JSON.stringify(value), {
+      access: "public", addRandomSuffix: false, allowOverwrite: true, token: blobToken(),
+    });
     jsonCache.set(pathname, { expiresAt: Date.now() + CACHE_TTL_MS, value });
     return value;
   } catch (error) {
@@ -83,7 +95,8 @@ async function putBlobJson(pathname: string, data: unknown): Promise<void> {
   const body = JSON.stringify(data);
   const blob = await put(pathname, body, {
     access: "public",
-    addRandomSuffix: true,
+    addRandomSuffix: false,
+    allowOverwrite: true,
     token,
   });
   latestBlobUrls.set(pathname, { url: blob.url, expiresAt: Date.now() + CACHE_TTL_MS });
